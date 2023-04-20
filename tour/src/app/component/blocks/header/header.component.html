@@ -1,37 +1,45 @@
-<div class="header">
-  <div class="top d-flex">
+<div class="header align-items-center">
+  <div class="top d-flex align-items-center">
     <img class="Logo"
       src="https://99designs-blog.imgix.net/blog/wp-content/uploads/2019/05/attachment_98891896-e1557890804541.jpg?auto=format&q=60&fit=max&w=930"
       alt="">
-    <form action="" method="POST" class="form-search my-4 mx-2">
+    <form action="" method="POST" class="form-search my-4 mx-2 position-relative">
       <input class="search" type="text" name="key_word" id="" placeholder="Search"
         autocomplete="off">
-      <input type="submit" name="btn_search" value="search">
+
+        <button type="submit" class="btn-search position-absolute right-0">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
     </form>
   </div>
-  <div class="toolbar">
+
+  <div class="toolbar d-flex align-items-center">
     <a href="" class="home btn"><i class="fa-solid fa-house"></i> Home</a>
     <a href="" class="tour btn"><i class="fa-solid fa-earth-americas"></i> Tour</a>
   </div>
 
-  <div class="group">
+  <div class="group d-flex align-items-center">
     <div class="nofica"><a href=""><i class="fa-solid fa-bell"></i></a></div>
     <div class="message"><a href=""><i class="fa-regular fa-comment"></i></a></div>
-    <div class="dropdown">
-      <button class="btn btn-secondary dropdown-toggle" type="button"
+    <div class="dropdown d-flex">
+
+        <button class="btn btn-secondary dropdown-toggle btn-logined shadow-none" type="button"
         id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-        Dropdown button
+          <img src="https://scontent.fsgn2-7.fna.fbcdn.net/v/t39.30808-1/326914493_2399918106849889_8747659832490425967_n.jpg?stp=c0.19.40.40a_cp0_dst-jpg_p40x40&_nc_cat=100&ccb=1-7&_nc_sid=7206a8&_nc_ohc=g4w-gj09FIkAX9hiNNr&_nc_ht=scontent.fsgn2-7.fna&oh=00_AfCRGoGvX4SaGbOzT5Rzxtnv5-715ZVqz-L7Tse7Fpab4g&oe=64452B9E" alt="">
+        Hồ quỳnh hương
       </button>
-      <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-        <li><a class="dropdown-item" href="#"><i class="fa-solid fa-right-to-bracket"></i>
-            Login</a></li>
-        <li><a class="dropdown-item" href="#"><i class="fa-solid fa-user"></i> profile</a>
-        </li>
-        <li><a class="dropdown-item" href="#"><i class="fa-solid fa-door-open"></i>
-            Logout</a></li>
-        <li><a class="dropdown-item" href="#"><i class="fa-solid fa-pen"></i> Password
+
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+          <li><a class="dropdown-item" href="#"><i class="fa-solid fa-user"></i> profile</a>
+          </li>
+          <li><a class="dropdown-item" href="#"><i class="fa-solid fa-pen"></i> Password
             Change</a></li>
-      </ul>
+          <li><a class="dropdown-item" href="#"><i class="fa-solid fa-door-open"></i>
+              Logout</a></li>
+        </ul>
     </div>
+
+    <!-- <a class="dropdown-item" href="#"><i class="fa-solid fa-right-to-bracket"></i>
+      Login</a> -->
   </div>
 </div>

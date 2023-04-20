@@ -1,43 +1,118 @@
 .header{
     display: flex;
-    height: 75px;
-    background-color: #f7f9fa;
+    height: 60px;
     width: 100%;
     justify-content: space-between;
-
+    position: fixed;
+    background-color: #ffffff;
+    z-index: 9;
+    .form-search
+    {
+      .search
+      {
+        border: 1px solid var(--color-border);
+        border-radius: 5px;
+        font-size: 13px;
+        height: 35px;
+        outline: none;
+        padding-left: 5px;
+        width: 250px;
+      }
+      .btn-search
+      {
+        background-color: transparent;
+        border: unset;
+        outline: none;
+        top: 50%;
+        transform: translateY(-50%);
+        right: 5px;
+        transition: all 0.25s ease;
+        i {
+          color: #d9d9d9;
+        }
+      }
+    }
     .Logo{
-        width: 120px;
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
         object-fit: cover;
     }
 
     .toolbar{
-        margin-top: 10px;
         .home{
             margin-right: 6px;
-            font-size: 20px;
+            font-size: 15px;
         }
         .tour{
-            font-size: 20px;
+            font-size: 15px;
         }
     }
 
-    .login{
-        margin-top: 25px;
-        margin-right: 20px;
-    }
     .group{
         display: flex;
-        .nofica{
-            margin-top: 24px;
-            margin-right: 20px;
+        .nofica, .message{
+            margin-right: 10px;
             font-size: 20px;
+            a
+            {
+              color: none;
+              text-decoration: none;
+
+            i {
+              text-align: center;
+              height: 40px;
+              color: var(--color-main);
+              width: 40px;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              border-radius: 50%;
+              background-color: var(--color-border);
+            }
+            }
         }
+
         .dropdown{
-            margin-top: 20px;
+          img
+          {
+            margin-right: 5px;
+            border-radius: 50%;
+            object-fit: cover;
+            height: 40px;
+            width: 40px;
+          }
+
+          .btn-logined
+          {
+            padding: unset;
+            font-size: 14px;
+            font-weight: 600;
+            background-color: unset;
+            border: unset;
+            color: var(--color-main);
+          }
+
+          .dropdown-menu
+          {
+            top: 8px !important;
+            right: 0 !important;
+            box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+            border: unset;
+            .dropdown-item
+            {
+              font-size: 14px;
+
+              i
+              {
+                margin-right: 5px;
+              }
+            }
+          }
+
         }
         .message{
-            margin-top: 21px;
-            margin-right: 20px;
+
             font-size: 20px;
         }
     }

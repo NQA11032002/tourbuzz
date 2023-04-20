@@ -1,0 +1,126 @@
+.messsenger
+{
+  margin: 0 10px;
+  padding: 10px;
+  display: grid;
+  grid-template-rows: 50px 1fr 50px;
+  row-gap: 15px;
+  right: 280px;
+  background-color: white;
+  border-radius: 5px;
+  height: 570px;
+  width: 328px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+
+  .messenger_header
+  {
+    border-bottom: 1px solid var(--color-border);
+
+    .messenger_left
+    {
+      .messenger_avatar
+      {
+        height: 35px;
+        width: 35px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+
+      .messenger_info
+      {
+        margin-left: 10px;
+        .messenger_name
+        {
+          font-size: 14px;
+          margin: unset;
+        }
+
+        .messenger_status
+        {
+          font-size: 13px;
+          color: var(--color-content);
+          margin-bottom: unset;
+        }
+      }
+    }
+
+    .messenger_window
+    {
+      position: relative;
+      i
+      {
+        font-size: 20px;
+        color: var(--color-content);
+      }
+
+    }
+  }
+
+  .messenger_content
+  {
+    overflow-y: auto;
+    .messenger_user_1
+    {
+      margin: 10px 0;
+      max-width: 250px;
+      width: auto;
+      margin-right: auto;
+
+      .essenger_user_1--avatar
+      {
+        flex-shrink: 0;
+        height: 35px;
+        width: 35px;
+        object-fit: cover;
+        border-radius: 50%;
+      }
+      .messenger_user_1--content
+      {
+        flex: 1;
+        margin-left: 10px;
+        border: 1px solid var(--color-border);
+        padding: 10px;
+        border-radius: 20px;
+        margin-bottom: unset;
+        font-size: 14px;
+        cursor: default;
+      }
+    }
+
+    .messenger_user_2
+    {
+      margin: 10px 0;
+      max-width: 250px;
+      width: auto;
+      margin-left: auto;
+      .messenger_user_2--content
+      {
+        background-color: #efefef;
+        padding: 10px;
+        font-size: 14px;
+        border-radius: 20px;
+        margin-bottom: unset;
+        cursor: default;
+      }
+    }
+  }
+
+  .messenger_insert
+  {
+    .form_messenger
+    {
+      .messenger_input
+      {
+        font-size: 13px;
+        outline: none;
+        border: none;
+      }
+      .messenger_submit
+      {
+        background-color: transparent;
+        outline: none;
+        border: none;
+      }
+    }
+  }
+}

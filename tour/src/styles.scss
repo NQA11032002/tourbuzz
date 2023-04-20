@@ -4,14 +4,20 @@
 html,body
 {
   font-family: 'Poppins', sans-serif;
-  background-color: var(--color-background-main);
+  background-color: #f7f9fa;
+}
+
+hr
+{
+  background-color: var(--color-border);
 }
 
 :root{
   --color-background-main: #f7f9fa;
   --color-btn-main: #E4E6EB;
-  --color-sub-text: #19283a;
+  --color-sub-text: #8d8b8a;
   --color-main: #191b1f;
-  --color-border: #e4e7eb;
-  --color-boxshadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+  --color-content: #585858;
+  --color-border: #d9d9d9;
+  --color-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;
 }
