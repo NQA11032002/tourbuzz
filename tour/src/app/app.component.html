@@ -1,19 +1,23 @@
+<section>
+  <div class="d-grid wrapper">
 
-<div class="container">
-  <header>
-    <app-header></app-header>
-  </header>
+    <header>
+      <app-header></app-header>
+    </header>
 
-  <div class="wp-content">
-    <div class="sidebar">
+    <div class="wp-content d-grid">
+      <div class="content">
+        content
+        <router-outlet></router-outlet>
+      </div>
+
+      <div class="sidebar">
+        siderbar
+      </div>
     </div>
 
-    <div class="content">
-      <router-outlet></router-outlet>
-    </div>
+    <footer>
+      <app-footer></app-footer>
+    </footer>
   </div>
-
-  <footer>
-    <app-footer></app-footer>
-  </footer>
-</div>
+</section>
