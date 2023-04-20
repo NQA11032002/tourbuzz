@@ -1,0 +1,17 @@
+.wrapper
+{
+  grid-template-rows: 75px auto 100px;
+  row-gap: 15px;
+
+  .wp-content
+  {
+    height: 100%;
+    grid-template-columns: 1fr 180px;
+    column-gap: 15px;
+
+    .sidebar
+    {
+      border-left: 1px solid var(--color-border);
+    }
+  }
+}
