@@ -1,5 +1,53 @@
 .header{
     display: flex;
     height: 75px;
+<<<<<<< HEAD
     background-color: aqua;
 }
+=======
+    background-color: #f7f9fa;
+    width: 100%;
+    justify-content: space-between;
+
+    .Logo{
+        width: 120px;
+        object-fit: cover;
+    }
+
+    .toolbar{
+        margin-top: 10px;
+        .home{
+            margin-right: 6px;
+            font-size: 20px;
+        }
+        .tour{
+            font-size: 20px;
+        }
+    }
+
+    .login{
+        margin-top: 25px;
+        margin-right: 20px;
+    }
+    .group{
+        display: flex;
+        .nofica{
+            margin-top: 24px;
+            margin-right: 20px;
+            font-size: 20px;
+        }
+        .dropdown{
+            margin-top: 20px;
+        }
+        .message{
+            margin-top: 21px;
+            margin-right: 20px;
+            font-size: 20px;
+        }
+    }
+    i{
+        color: #212529;
+    }
+}
+
+>>>>>>> son

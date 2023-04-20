@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 const routes: Routes = [];
 =======
@@ -14,6 +15,10 @@ const routes: Routes = [
   {path:'forgotpass', component: ForgotpassComponent},
 ];
 >>>>>>> 2d6b220aee9050767e996e83c4637326954991f3
+=======
+
+const routes: Routes = [];
+>>>>>>> son
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

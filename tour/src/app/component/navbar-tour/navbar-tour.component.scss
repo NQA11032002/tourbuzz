@@ -1,0 +1,14 @@
+.filterTour{
+    width: 264px;
+    background-color: #f7f9fa;
+    min-height: 100vh;
+    .booking{
+        margin: 10px;
+        #tour{
+            outline: none;
+        }
+    }
+    #filter{
+        width: 100%;
+    }
+}
