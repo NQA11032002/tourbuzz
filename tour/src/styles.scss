@@ -4,11 +4,12 @@
 html,body
 {
   font-family: 'Poppins', sans-serif;
+  background-color: var(--color-background-main);
 }
 
 :root{
   --color-background-main: #f7f9fa;
-  --color-btn-main: #efefef;
+  --color-btn-main: #E4E6EB;
   --color-sub-text: #19283a;
   --color-main: #191b1f;
   --color-border: #e4e7eb;
