@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\social;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class guilds extends Model
+class address_travel extends Model
 {
     use HasFactory;
 }

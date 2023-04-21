@@ -1,6 +1,7 @@
 <?php
 
-use App\Models\guilds;
+use App\Models\vehicles;
+use App\Http\Controllers\api\social\PostsController;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -20,6 +21,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/test', function () {
-    return guilds::all();
+Route::prefix('social')->group(function () {
+    Route::get('posts', [PostsController::class, "index"]);
 });
