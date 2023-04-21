@@ -1,0 +1,108 @@
+/* Định dạng kích thước cho Modal */
+.modal-dialog {
+    max-width: none;
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+  }
+  
+  .modal-dialog{
+    margin: 0;
+   
+  }
+
+  .modal-content{
+    height: 100vh;
+    width: 400px;
+  }
+
+  .btn-primary {
+    margin-top: 100px;
+  }
+
+  .modal-infor{
+    .modal-infor-img{
+        img{
+            width: 5rem;
+            height: 5rem;
+            border-radius: 5px;
+        }
+    }
+    .modal-infor-name{
+        span{
+            font-weight: 500;
+            font-size: 20px;
+        }
+    }
+    .modal-infor-linkprofile{
+        i{
+            border: 1px solid var(--color-border);
+            padding: 5px;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+    }
+  }
+
+  .modal-infor-header{
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    grid-template-rows: 30px auto;
+    .modal-infor-img{
+        grid-row-start: 1;
+        grid-row-end: 3;
+    }
+  }
+  
+  .modal-infor-desc{
+    .modal-infor-desc-title{
+        border-bottom: 1px solid var(--color-border);
+        h5{
+            margin: 0;
+            padding-top: 10px;
+            font-size: 20px;
+            font-weight: 500;
+            display: inline-block;
+            border-bottom: 2px solid black;
+        }
+    }
+    .modal-infor-desc-biography{
+        .modal-infor-desc-biography-title{
+            margin: 0;
+            padding: 10px 0;
+        }
+        span{
+            font-weight: 300;   
+            font-size: 15px;
+        }
+    }
+    .modal-infor-desc-location{
+        span{
+            margin-left: 10px;
+            font-weight: 300;
+            font-size: 15px;
+        }
+    }
+    .modal-infor-desc-membersince{
+        span{
+            margin-left: 10px;
+            font-weight: 300;
+            font-size: 15px;
+            
+        }
+    }
+    .modal-infor-desc-social-list{
+        .modal-infor-desc-social-list-title{
+            margin: 0;
+            padding: 10px 0;
+            
+        }
+        .modal-infor-desc-social-item{
+            span{
+                margin-left: 10px;
+                font-weight: 300;
+                font-size: 15px;
+            }
+        }
+    }
+  }

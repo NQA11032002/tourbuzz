@@ -1,0 +1,108 @@
+.modal-infor{
+    .modal-infor-img{
+        img{
+            width: 6rem;
+            height: 6rem;
+            border-radius: 5px;
+        }
+    }
+    .modal-infor-name{
+        span{
+            font-weight: 500;
+            font-size: 20px;
+        }
+    }
+    .modal-infor-role{
+        span{
+            margin-left: 10px;
+            color: white;
+            background: red;
+            border-radius: 30px;
+            font-size: 10px;
+            padding: 5px;
+        }
+        
+    }
+    .modal-infor-linkprofile{
+        i{
+            border: 1px solid var(--color-border);
+            padding: 5px;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+    }
+  }
+
+  .modal-infor-header{
+    display: grid;
+    grid-template-columns: 120px auto 1fr;
+    grid-template-rows: 30px auto;
+    .modal-infor-img{
+        grid-row-start: 1;
+        grid-row-end: 3;
+    }
+    .role{
+        color: white;
+        background-color: black;
+    }
+  }
+  
+  .modal-infor-desc{
+    .modal-infor-desc-title{
+        border-bottom: 1px solid var(--color-border);
+        h5{
+            margin: 0;
+            padding: 10px 0 10px 10px;
+            font-size: 20px;
+            font-weight: 500;
+            display: inline-block;
+            cursor: pointer;
+        }
+        .about{
+            border-bottom: 2px solid black;
+        }
+    }
+    .modal-infor-desc-biography{
+        .modal-infor-desc-biography-title{
+            margin: 0;
+            padding: 10px 0;
+        }
+        span{
+            font-weight: 300;   
+            font-size: 15px;
+        }
+    }
+    .modal-infor-desc-location{
+        span{
+            margin-left: 10px;
+            font-weight: 300;
+            font-size: 15px;
+        }
+    }
+    .modal-infor-desc-membersince{
+        span{
+            margin-left: 10px;
+            font-weight: 300;
+            font-size: 15px;
+            
+        }
+    }
+    .modal-infor-desc-social-list{
+        .modal-infor-desc-social-list-title{
+            margin: 0;
+            padding: 10px 0;
+            
+        }
+        .modal-infor-desc-social-item{
+            span{
+                margin-left: 10px;
+                font-weight: 300;
+                font-size: 15px;
+            }
+        }
+    }
+  }
+
+  .modal-body{
+    min-height: 500px;
+  }

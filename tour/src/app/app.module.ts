@@ -14,6 +14,8 @@ import { RegisterComponent } from './component/auth/register/register.component'
 import { ForgotpassComponent } from './component/auth/forgotpass/forgotpass.component';
 import { NavbarTourComponent } from './component/tours/navbar-tour/navbar-tour.component';
 import { MessengerComponent } from './component/blocks/messenger/messenger.component';
+import { ShortinfoComponent } from './component/social/shortinfo/shortinfo.component';
+import { FullinfoComponent } from './component/social/fullinfo/fullinfo.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +31,8 @@ import { MessengerComponent } from './component/blocks/messenger/messenger.compo
     NavbarComponent,
     NavbarTourComponent,
     MessengerComponent,
+    ShortinfoComponent,
+    FullinfoComponent,
   ],
   imports: [
     BrowserModule,
