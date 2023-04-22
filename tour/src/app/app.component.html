@@ -5,15 +5,19 @@
     </header>
 
     <div class="wp-content d-grid">
+      <div class="sidebar-fill">
+        <app-navbar-tour></app-navbar-tour>
+      </div>
 
       <div class="content">
         <!-- <app-post></app-post>  -->
-        <app-fullinfo></app-fullinfo>
+        <!-- <app-fullinfo></app-fullinfo> -->
+        <app-detailstour></app-detailstour>
         <router-outlet></router-outlet>
       </div>
 
       <div class="sidebar">
-        <!-- <app-navbar-tour></app-navbar-tour> -->
+        
         <app-navbar></app-navbar>
         <!-- <app-shortinfo></app-shortinfo> -->
       </div>
