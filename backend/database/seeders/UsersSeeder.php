@@ -20,7 +20,7 @@ class UsersSeeder extends Seeder
         DB::table('users')->insert([
             "role_id" => 1,
             "email" => $fake->email(),
-            "password" => Hash::make($fake->password()),
+            "password" => Hash::make('3747267Bi'),
             "status" => 1,
         ]);
     }

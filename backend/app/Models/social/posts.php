@@ -9,6 +9,8 @@ use App\Models\social\post_picture;
 class posts extends Model
 {
     use HasFactory;
+    protected $table = "posts";
+    protected $fillable = ["user_id", "address_travel_id", "type_travel_id", "title", "content", "status", "created_at", "updated_at"];
 
     public function post_picture()
     {
