@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Models\social;
+namespace App\Models\tour;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class status_booking extends Model
+class categories_pay extends Model
 {
     use HasFactory;
 }

@@ -17,7 +17,7 @@ class User_informationSeeder extends Seeder
         $fake  = Faker\Factory::create();
 
         DB::table('user_information')->insert([
-            "user_id" => 10,
+            "user_id" => 11,
             "name" => $fake->name(),
             "birth_date" => $fake->date(),
             "gender" => random_int(0, 1),

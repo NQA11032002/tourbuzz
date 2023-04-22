@@ -10,6 +10,9 @@ class post_picture extends Model
 {
     use HasFactory;
     protected $table = "post_picture";
+
+    protected $fillable = ["post_id", "images"];
+
     public function posts()
     {
         return $this->belongsTo(posts::class, "post_id", "id");

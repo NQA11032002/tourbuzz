@@ -15,7 +15,7 @@ class user extends Authenticatable
 
     protected $table = 'users';
     protected $hidden = ["password"];
-    protected $fillable = ["role_id", "email", "email_verify", "password", "status"];
+    protected $fillable = ["role_id", "email", "email_verify", "password", "api_token", "status"];
     public function user_information()
     {
         return $this->hasOne(user_information::class, 'user_id', 'id');

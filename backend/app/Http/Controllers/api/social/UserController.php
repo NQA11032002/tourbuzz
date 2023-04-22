@@ -22,7 +22,7 @@ class UserController extends Controller
 
     public function index()
     {
-        $users = user_information::with('posts')->get();
+        $users = user_information::with('posts')->with('users_connect')->get();
         // $users = PostResource::collection($users);
 
         if ($users->count() > 0) {

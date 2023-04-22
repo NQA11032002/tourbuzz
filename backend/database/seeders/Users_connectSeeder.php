@@ -2,13 +2,12 @@
 
 namespace Database\Seeders;
 
-use DB;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Faker;
-use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 
-class UsersSeeder extends Seeder
+class Users_connectSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -17,11 +16,11 @@ class UsersSeeder extends Seeder
     {
         $fake  = Faker\Factory::create();
 
-        DB::table('users')->insert([
-            "role_id" => 1,
-            "email" => 'em@gmail.com',
-            "password" => Hash::make('3747267Bi'),
-            "status" => 1,
+        DB::table('users_connect')->insert([
+            "user_1_id" => 1,
+            "user_2_id" => 10,
+            "chat_user_1" => $fake->slug(),
+            "chat_user_2" => $fake->slug()
         ]);
     }
 }
