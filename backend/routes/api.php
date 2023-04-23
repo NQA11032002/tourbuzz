@@ -6,10 +6,11 @@ use App\Http\Controllers\api\common\DistrictController;
 use App\Http\Controllers\api\common\Province_cityController;
 use App\Http\Controllers\api\common\TownController;
 use App\Http\Controllers\api\common\Type_travelController;
+use App\Http\Controllers\api\common\VehiclesController;
 use App\Http\Controllers\api\social\PostsController;
 use App\Models\vehicles;
 use App\Http\Controllers\api\social\UserController;
-
+use App\Http\Controllers\api\tour\ToursController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -42,6 +43,12 @@ Route::prefix('social')->name('social.')->middleware('auth:sanctum')->group(func
         Route::patch('/{id}', [PostsController::class, "update"])->name('update');
         Route::delete('/{id}', [PostsController::class, "destroy"])->name('destroy');
     });
+
+    Route::get('vehicles', [VehiclesController::class, "index"])->name('vehicles');
+});
+
+Route::prefix('tour')->name('tour.')->group(function () {
+    Route::get('/', [ToursController::class, "index"])->name('index');
 });
 
 Route::prefix('address')->name('address.')->group(function () {
@@ -54,6 +61,7 @@ Route::prefix('address')->name('address.')->group(function () {
 
 Route::prefix('auth')->name('auth.')->group(function () {
     Route::post('login', [AuthController::class, "login"])->name('login');
+    Route::get('roles', [AuthController::class, "roles"])->name('roles');
     Route::get('logout', [AuthController::class, "logout"])->name('logout')->middleware('auth:sanctum');
     Route::patch('reset-password', [AuthController::class, "resetPassword"])->name('reset-password')->middleware('auth:sanctum');
 });

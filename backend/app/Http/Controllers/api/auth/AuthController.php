@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\api\auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\auth\roles;
 use App\Models\users;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -121,6 +122,28 @@ class AuthController extends Controller
             $response = [
                 'title' => 'password has changed',
                 'status' => 200,
+            ];
+        }
+
+        return $response;
+    }
+
+    //get roles
+    public function roles()
+    {
+        $roles = roles::all();
+
+        if ($roles->count() > 0) {
+            $response = [
+                'title' => 'list roles',
+                'status' => 200,
+                'data' => $roles,
+                'detail' => 'get list roles success'
+            ];
+        } else {
+            $response = [
+                'title' => 'list roles',
+                'status' => 500,
             ];
         }
 
