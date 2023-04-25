@@ -48,7 +48,6 @@
   .create_content
   {
     margin-top: 15px;
-    margin-right: auto;
     .content
     {
       padding: 5px;
@@ -75,7 +74,7 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     grid-auto-flow: column;
-    grid-column: 200px;
+    grid-column: 230px;
     column-gap: 15px;
     height: auto;
     .image_item

@@ -1,41 +1,6 @@
+
 .wrapper
 {
   grid-template-rows: 60px auto 100px;
 
-  .wp-content
-  {
-    height: 100%;
-<<<<<<< HEAD
-<<<<<<< HEAD
-    grid-template-columns: 250px 1fr 250px;
-=======
-    grid-template-columns:250px  1fr 250px;
->>>>>>> dat
-=======
-    grid-template-columns:250px  1fr 250px;
->>>>>>> son
-    column-gap:15px;
-    
-    .content
-    {
-      margin: 0 auto;
-      margin-top: 30px;
-      width: 100%;
-<<<<<<< HEAD
-      max-width: 655px;
-=======
-      max-width: 800px;
-      margin: 0 auto;
->>>>>>> dat
-      box-shadow: var(--color-shadow);
-      border-radius: 5px;
-      background-color: white;
-      padding: 10px 0;
-    }
-
-    .sidebar
-    {
-      border-radius: 5px;
-    }
-  }
 }
