@@ -13,11 +13,29 @@
     .change_infor-img{
         text-align: center;
         padding-bottom: 13px;
+        i{
+            right: 165px;
+            font-size: 25px;
+            bottom: 3px;
+            width: 40px;
+            height: 40px;
+        }
         img{
             height: 7rem;
             width: 7rem;
             border-radius: 50%;
             object-fit: cover;
+        }
+        input{
+            opacity: 0;
+            font-size: 10px;
+            width: 40px;
+            height: 40px;
+            /* margin-bottom: 4px; */
+            position: absolute;
+            left: 0px;
+            top: -15px;
+            cursor: pointer;
         }
     }
     .change_infor{
