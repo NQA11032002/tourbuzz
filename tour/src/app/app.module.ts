@@ -18,18 +18,8 @@ import { ChangeinfoComponent } from './component/social/changeinfo/changeinfo.co
 import { ListTourComponent } from './component/tours/list-tour/list-tour.component';
 import { PostTourComponent } from './component/tours/post-tour/post-tour.component';
 import { BookTourComponent } from './component/tours/book-tour/book-tour.component';
-import { LayouttourComponent } from './component/layouttour/layouttour.component';
-import { LayoutsocialComponent } from './component/layoutsocial/layoutsocial.component';
-import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './component/home/home.component';
 import { AppRoutingModule } from './app-routing.module';
 
-
-const routes: Routes = [
-  {path:'social', component: LayoutsocialComponent},
-  {path:'tour', component: LayouttourComponent},
-
-];
 
 @NgModule({
   declarations: [
@@ -52,9 +42,7 @@ const routes: Routes = [
     ListTourComponent,
     PostTourComponent,
     BookTourComponent,
-    LayouttourComponent,
-    LayoutsocialComponent,
-    HomeComponent,
+
   ],
   imports: [
     BrowserModule,
