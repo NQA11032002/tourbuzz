@@ -16,6 +16,8 @@ import { NavbarTourComponent } from './component/tours/navbar-tour/navbar-tour.c
 import { MessengerComponent } from './component/blocks/messenger/messenger.component';
 import { ShortinfoComponent } from './component/social/shortinfo/shortinfo.component';
 import { FullinfoComponent } from './component/social/fullinfo/fullinfo.component';
+import { DetailstourComponent } from './component/tours/detailstour/detailstour.component';
+import { ChangeinfoComponent } from './component/social/changeinfo/changeinfo.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +35,8 @@ import { FullinfoComponent } from './component/social/fullinfo/fullinfo.componen
     MessengerComponent,
     ShortinfoComponent,
     FullinfoComponent,
+    DetailstourComponent,
+    ChangeinfoComponent,
   ],
   imports: [
     BrowserModule,

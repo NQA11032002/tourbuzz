@@ -1,0 +1,145 @@
+.modal-content{
+    overflow-y: auto;
+    
+}
+.modal-body{
+    input{
+        width: 300px;
+        outline: none;
+        border: none;
+        border-bottom: 1px solid var(--color-border);
+        padding-left: 5px;
+    }
+    .change_infor-img{
+        text-align: center;
+        padding-bottom: 13px;
+        img{
+            height: 7rem;
+            width: 7rem;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+    }
+    .change_infor{
+
+        // display: grid;
+        // grid-template-columns: 130px auto;
+        .change_infor-name{
+            display: grid;
+            grid-template-columns: 130px auto;
+            padding-bottom: 13px;
+            span{
+                text-align: left;
+            }
+        }
+        .change_infor-name{
+            display: grid;
+            grid-template-columns: 130px auto;
+            padding-bottom: 13px;
+            span{
+                text-align: left;
+            }
+        }
+        .change_infor-gender{
+            display: grid;
+            grid-template-columns: 130px auto;
+            padding-bottom: 13px;
+            select{
+                width: 70px;
+                outline: none;
+                border: none;
+            }
+            span{
+                text-align: left;
+            }
+        }
+        .change_infor-phonenumber{
+            display: grid;
+            grid-template-columns: 130px auto;
+            padding-bottom: 13px;
+            span{
+                text-align: left;
+            }
+        }
+        .change_infor-dateofbirth{
+            display: grid;
+            grid-template-columns: 130px auto;
+            padding-bottom: 13px;
+            span{
+                text-align: left;
+            }
+        }
+        .change_infor-biography{
+            .change_infor-biography-desc{
+                display: grid;
+                grid-template-columns: 130px auto;
+                padding-bottom: 13px;
+                span{
+                    text-align: left;
+                }
+                textarea{
+                    width: 300px;
+                    outline: none;
+                    border: 1px solid var(--color-border);
+                    resize: none;
+                }
+            }
+            .change_infor-biography-location{
+                display: grid;
+                grid-template-columns: 130px auto;
+                padding-bottom: 13px;
+                span{
+                    text-align: left;
+                }
+            }
+
+        }
+        .change_infor-social{
+            .change_infor-social-facebook{
+                display: grid;
+                grid-template-columns: 130px auto;
+                padding-bottom: 13px;
+                span{
+                    text-align: left;
+                }
+            }
+            .change_infor-social-ins{
+                display: grid;
+                grid-template-columns: 130px auto;
+                padding-bottom: 13px;
+                span{
+                    text-align: left;
+                }
+            }
+            .change_infor-social-twitter{
+                display: grid;
+                grid-template-columns: 130px auto;
+                padding-bottom: 13px;
+                span{
+                    text-align: left;
+                }
+            }
+        }
+        .change_infor-edu{
+            display: grid;
+                grid-template-columns: 130px auto;
+                padding-bottom: 13px;
+                span{
+                    text-align: left;
+                }
+        }
+    
+    }
+}
+.modal-footer{
+    .btn{
+        background-color: var(--color-btn-main);
+        color: var(--color-main);
+        border: none;   
+    }
+    .btn-save{
+        background-color: var(--color-main);
+        color: var(--color-btn-main);
+    }
+    
+}
