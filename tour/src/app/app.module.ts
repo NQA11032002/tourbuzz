@@ -21,6 +21,7 @@ import { BookTourComponent } from './component/tours/book-tour/book-tour.compone
 import { AppRoutingModule } from './app-routing.module';
 import { LayouttourComponent } from './component/layouttour/layouttour.component';
 import { LayoutsocialComponent } from './component/layoutsocial/layoutsocial.component';
+import { ResetpassComponent } from './component/social/resetpass/resetpass.component';
 
 
 @NgModule({
@@ -44,6 +45,7 @@ import { LayoutsocialComponent } from './component/layoutsocial/layoutsocial.com
     ListTourComponent,
     PostTourComponent,
     BookTourComponent,
+    ResetpassComponent,
     LayouttourComponent,
     LayoutsocialComponent
   ],
