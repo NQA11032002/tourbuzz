@@ -17,6 +17,7 @@ import { MessengerComponent } from './component/blocks/messenger/messenger.compo
 import { ShortinfoComponent } from './component/social/shortinfo/shortinfo.component';
 import { FullinfoComponent } from './component/social/fullinfo/fullinfo.component';
 import { DetailstourComponent } from './component/tours/detailstour/detailstour.component';
+import { ChangeinfoComponent } from './component/social/changeinfo/changeinfo.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { DetailstourComponent } from './component/tours/detailstour/detailstour.
     ShortinfoComponent,
     FullinfoComponent,
     DetailstourComponent,
+    ChangeinfoComponent,
   ],
   imports: [
     BrowserModule,
