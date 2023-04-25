@@ -17,13 +17,22 @@ import { NavbarTourComponent } from './component/tours/navbar-tour/navbar-tour.c
 import { MessengerComponent } from './component/blocks/messenger/messenger.component';
 import { ShortinfoComponent } from './component/social/shortinfo/shortinfo.component';
 import { FullinfoComponent } from './component/social/fullinfo/fullinfo.component';
+<<<<<<< HEAD
 import { DetailstourComponent } from './component/tours/detailstour/detailstour.component';
 import { ChangeinfoComponent } from './component/social/changeinfo/changeinfo.component';
+<<<<<<< HEAD
 import { ListTourComponent } from './component/tours/list-tour/list-tour.component';
 import { PostTourComponent } from './component/tours/post-tour/post-tour.component';
 import { BookTourComponent } from './component/tours/book-tour/book-tour.component';
 import { ResetpassComponent } from './component/social/resetpass/resetpass.component';
 
+=======
+=======
+import { ListTourComponent } from './component/tours/list-tour/list-tour.component';
+import { PostTourComponent } from './component/tours/post-tour/post-tour.component';
+import { BookTourComponent } from './component/tours/book-tour/book-tour.component';
+>>>>>>> son
+>>>>>>> 62777c35ba36da836c42fc66b2c2cdf20e24b0f4
 
 @NgModule({
   declarations: [
@@ -41,6 +50,7 @@ import { ResetpassComponent } from './component/social/resetpass/resetpass.compo
     MessengerComponent,
     ShortinfoComponent,
     FullinfoComponent,
+<<<<<<< HEAD
 
     DetailstourComponent,
     ChangeinfoComponent,
@@ -50,6 +60,16 @@ import { ResetpassComponent } from './component/social/resetpass/resetpass.compo
     BookTourComponent,
     ResetpassComponent,
 
+=======
+<<<<<<< HEAD
+    DetailstourComponent,
+    ChangeinfoComponent,
+=======
+    ListTourComponent,
+    PostTourComponent,
+    BookTourComponent,
+>>>>>>> son
+>>>>>>> 62777c35ba36da836c42fc66b2c2cdf20e24b0f4
   ],
   imports: [
     BrowserModule,
