@@ -1,0 +1,13 @@
+.modal-body{
+    .resetpass_oldpass ,.resetpass_newpass, .resetpass_renewpass{
+        display: grid;
+        grid-template-columns: 150px auto;
+        padding-bottom: 10px;
+        justify-content: space-between;
+        input{
+            width: 250px;
+            outline: none;
+
+        }
+    }
+}

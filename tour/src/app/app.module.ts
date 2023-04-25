@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
+
 import { HeaderComponent } from './component/blocks/header/header.component';
 import { FooterComponent } from './component/blocks/footer/footer.component';
 
@@ -18,6 +19,11 @@ import { ShortinfoComponent } from './component/social/shortinfo/shortinfo.compo
 import { FullinfoComponent } from './component/social/fullinfo/fullinfo.component';
 import { DetailstourComponent } from './component/tours/detailstour/detailstour.component';
 import { ChangeinfoComponent } from './component/social/changeinfo/changeinfo.component';
+import { ListTourComponent } from './component/tours/list-tour/list-tour.component';
+import { PostTourComponent } from './component/tours/post-tour/post-tour.component';
+import { BookTourComponent } from './component/tours/book-tour/book-tour.component';
+import { ResetpassComponent } from './component/social/resetpass/resetpass.component';
+
 
 @NgModule({
   declarations: [
@@ -35,8 +41,15 @@ import { ChangeinfoComponent } from './component/social/changeinfo/changeinfo.co
     MessengerComponent,
     ShortinfoComponent,
     FullinfoComponent,
+
     DetailstourComponent,
     ChangeinfoComponent,
+
+    ListTourComponent,
+    PostTourComponent,
+    BookTourComponent,
+    ResetpassComponent,
+
   ],
   imports: [
     BrowserModule,
