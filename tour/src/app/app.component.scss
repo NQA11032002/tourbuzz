@@ -5,21 +5,7 @@
   .wp-content
   {
     height: 100%;
-<<<<<<< HEAD
-
     grid-template-columns:250px  1fr 250px;
-
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-    grid-template-columns: 250px 1fr 250px;
-=======
-    grid-template-columns:250px  1fr 250px;
->>>>>>> dat
-=======
-    grid-template-columns:250px  1fr 250px;
->>>>>>> son
->>>>>>> 62777c35ba36da836c42fc66b2c2cdf20e24b0f4
     column-gap:15px;
     
     .content
@@ -27,15 +13,8 @@
       margin: 0 auto;
       margin-top: 30px;
       width: 100%;
-<<<<<<< HEAD
-      max-width: 655px;
-=======
       max-width: 800px;
-<<<<<<< HEAD
-=======
       margin: 0 auto;
->>>>>>> dat
->>>>>>> 62777c35ba36da836c42fc66b2c2cdf20e24b0f4
       box-shadow: var(--color-shadow);
       border-radius: 5px;
       background-color: white;
