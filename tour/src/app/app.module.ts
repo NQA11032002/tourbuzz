@@ -46,18 +46,10 @@ import { ResetpassComponent } from './component/social/resetpass/resetpass.compo
     DetailstourComponent,
     ChangeinfoComponent,
 
-    ListTourComponent,
+    ListTourComponent,  
     PostTourComponent,
     BookTourComponent,
     ResetpassComponent,
-
-
-    DetailstourComponent,
-    ChangeinfoComponent,
-
-    ListTourComponent,
-    PostTourComponent,
-    BookTourComponent,
   ],
   imports: [
     BrowserModule,
