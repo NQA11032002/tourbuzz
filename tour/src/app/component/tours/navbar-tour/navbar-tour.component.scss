@@ -1,11 +1,53 @@
 .filterTour{
-    width: 264px;
     background-color: #f7f9fa;
     min-height: 100vh;
+    background-color: white;
+    padding: 10px;
+    border-radius: 12px;
+
     .booking{
-        margin: 10px;
-        #tour{
-            outline: none;
+      display: grid;
+      grid-template-rows: 1fr;
+      row-gap: 15px;
+
+      .title_search
+      {
+        label{
+          font-size: 16px;
+          color: var(--color-sub-text);
+
+        }
+      }
+
+      .price
+      {
+          color: black;
+      }
+
+      .form-range
+      {
+        color: black
+      }
+
+        .form-select, .form-control
+        {
+            border-color: var(--color-border);
+        }
+
+        .form-select:focus, .form-control:focus
+        {
+          border-color: black;
+        }
+
+        .form-label
+        {
+          font-size: 16px;
+          color: var(--color-sub-text);
+        }
+        .vehicle_items
+        {
+          grid-template-columns: 1fr 1fr;
+          column-gap: 10px;
         }
     }
     #filter{

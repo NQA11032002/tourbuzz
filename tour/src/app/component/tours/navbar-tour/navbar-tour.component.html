@@ -1,48 +1,80 @@
 <div class="filterTour">
   <form action="" class="booking">
-    <h4 class="text-center"><i class="fa-solid fa-magnifying-glass"></i>Tour Search</h4>
-    <label for="tour">Tên chỗ nghĩ/điểm đến</label>
-    <input type="text" name="tour" id="tour" class="form-control" placeholder="Tour">
-    <label for="sDay">Ngày khởi hành</label>
-    <input type="date" name="startDay" id="sDay" class="form-control">
-    <label for="sDay">Ngày kết thúc</label>
-    <input type="date" name="endDay" id="eDay" class="form-control">
-    <label for="vehical">Phương tiện: </label>
-    <select id="vehical" class="form-select">
-      <option value="">xe máy</option>
-      <option value="">xe đạp</option>
-      <option value="">máy bay phản lực</option>
-      <option value="">UFO</option>
-    </select>
-    <label for="provine">Tỉnh:</label>
-    <select id="provine" class="form-select">
-      <option value="">Bình Định</option>
-      <option value="">Phú Yên</option>
-    </select>
+    <h4 class="h5 title_search">Tour Search: <label for=""> 5 result</label></h4>
 
-    <label for="city">Thành phố</label>
-    <select id="city" class="form-select">
-      <option value="">Phù Mỹ</option>
-      <option value="">An Nhơn</option>
-    </select>
+    <div>
+      <label for="customRange1" class="form-label">
+        Giá tour:
+        <span class="price_start price"> 50000 </span>
+        -
+        <span class="price_end price"> 100000</span>
+      </label>
 
-    <label for="district">Quận</label>
-    <select id="district" class="form-select">
-      <option value="">Phù Mỹ</option>
-      <option value="">An Nhơn</option>
-    </select>
+      <input type="range" class="form-range shadow-none" id="customRange1">
+    </div>
 
-    <label for="suburban">Huyện</label>
-    <select id="suburban" class="form-select">
-      <option value="">Phù Mỹ</option>
-      <option value="">An Nhơn</option>
-    </select>
+    <div>
+      <label for="tour" class="form-label">Địa điểm bắt đầu</label>
+      <select id="city" class="form-select shadow-none">
+        <option value="">Phù Mỹ</option>
+        <option value="">An Nhơn</option>
+      </select>
+    </div>
 
-    <label for="town">Thị trấn</label>
-    <select id="town" class="form-select">
-      <option value="">Phù Mỹ</option>
-      <option value="">An Nhơn</option>
-    </select>
+    <div>
+      <label for="tour" class="form-label">Địa điểm đến</label>
+      <select id="city" class="form-select shadow-none">
+        <option value="">Phù Mỹ</option>
+        <option value="">An Nhơn</option>
+      </select>
+    </div>
+
+    <div>
+      <label for="sDay" class="form-label">Ngày khởi hành</label>
+      <input type="date" name="startDay" id="sDay" class="form-control shadow-none">
+    </div>
+
+    <div>
+      <label for="sDay" class="form-label">Ngày kết thúc</label>
+      <input type="date" name="endDay" id="eDay" class="form-control shadow-none">
+    </div>
+
+    <div>
+      <label for="vehical" class="form-label">Phương tiện: </label>
+
+      <div class="vehicle_items d-grid">
+        <label>
+          <input type="checkbox" name="vehicle[]" id="">
+          Xe đạp
+        </label>
+
+        <label>
+          <input type="checkbox" name="vehicle[]" id="">
+          Xe máy
+        </label>
+
+        <label>
+          <input type="checkbox" name="vehicle[]" id="">
+          Xích lô
+        </label>
+
+        <label>
+          <input type="checkbox" name="vehicle[]" id="">
+          Cưỡi ngựa
+        </label>
+
+        <label>
+          <input type="checkbox" name="vehicle[]" id="">
+          Cưỡi voi
+        </label>
+
+        <label>
+          <input type="checkbox" name="vehicle[]" id="">
+          Xe điện
+        </label>
+      </div>
+    </div>
+
     <input type="submit" name="" id="filter" class="btn mt-2" value="Duyệt">
   </form>
 </div>

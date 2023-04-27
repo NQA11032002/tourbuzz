@@ -15,8 +15,13 @@
   </div>
 
   <div class="toolbar d-flex align-items-center">
-    <a href="" class="home btn"><i class="fa-solid fa-house"></i> Home</a>
-    <a href="" class="tour btn"><i class="fa-solid fa-earth-americas"></i> Tour</a>
+    <a [routerLink]="['/home']" class="home btn"
+      routerLinkActive="router-link-active">Home</a>
+    <a [routerLink]="['/social']" class="home btn"
+      routerLinkActive="router-link-active">Social</a>
+    <a [routerLink]="['/tour']" class="tour btn"
+      routerLinkActive="router-link-active">Tour</a>
+
   </div>
 
   <div class="group d-flex align-items-center">
@@ -32,9 +37,12 @@
         Hồ quỳnh hương
       </button>
 
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-          <li><a class="dropdown-item" href="" ><i class="fa-solid fa-user"></i> profile</a></li>
-          <li><a class="dropdown-item" href="" data-bs-toggle="modal" data-bs-target="#resetpass"><i class="fa-solid fa-pen" data-bs-toggle="modal" data-bs-target="#resetpass"></i > Password Change</a></li>
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+        <li><a class="dropdown-item" href=""><i class="fa-solid fa-user"></i> profile</a>
+        </li>
+        <li><a class="dropdown-item" href="" data-bs-toggle="modal"
+            data-bs-target="#resetpass"><i class="fa-solid fa-pen" data-bs-toggle="modal"
+              data-bs-target="#resetpass"></i> Password Change</a></li>
         <li><a class="dropdown-item" href="#"><i class="fa-solid fa-door-open"></i>
             Logout</a></li>
       </ul>

@@ -15,7 +15,6 @@ import { ShortinfoComponent } from './component/social/shortinfo/shortinfo.compo
 import { FullinfoComponent } from './component/social/fullinfo/fullinfo.component';
 import { DetailstourComponent } from './component/tours/detailstour/detailstour.component';
 import { ChangeinfoComponent } from './component/social/changeinfo/changeinfo.component';
-import { ListTourComponent } from './component/tours/list-tour/list-tour.component';
 import { PostTourComponent } from './component/tours/post-tour/post-tour.component';
 import { BookTourComponent } from './component/tours/book-tour/book-tour.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -43,7 +42,6 @@ import { TourSearchComponent } from './component/tours/tour-search/tour-search.c
     FullinfoComponent,
     DetailstourComponent,
     ChangeinfoComponent,
-    ListTourComponent,
     PostTourComponent,
     BookTourComponent,
     ResetpassComponent,
