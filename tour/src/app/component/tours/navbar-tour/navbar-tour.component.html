@@ -21,11 +21,10 @@
     </select>
 
     <label for="city">Thành phố</label>
-    <select id="city" class="form-select">
-      <option value="">Phù Mỹ</option>
-      <option value="">An Nhơn</option>
+    <select *ngFor="let item from getcity()" id="city" class="form-select">
+      <option value="">{{item.name}}</option>
     </select>
-
+<!-- 
     <label for="district">Quận</label>
     <select id="district" class="form-select">
       <option value="">Phù Mỹ</option>
@@ -42,7 +41,7 @@
     <select id="town" class="form-select">
       <option value="">Phù Mỹ</option>
       <option value="">An Nhơn</option>
-    </select>
+    </select> -->
     <input type="submit" name="" id="filter" class="btn mt-2" value="Duyệt">
   </form>
 </div>

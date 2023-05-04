@@ -23,7 +23,9 @@ import { LayouttourComponent } from './component/layouttour/layouttour.component
 import { LayoutsocialComponent } from './component/layoutsocial/layoutsocial.component';
 import { ResetpassComponent } from './component/social/resetpass/resetpass.component';
 import { TourSearchComponent } from './component/tours/tour-search/tour-search.component';
-
+import { HttpClientModule } from '@angular/common/http';
+import { LoginapiComponent } from './component/auth/loginapi/loginapi.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -49,11 +51,14 @@ import { TourSearchComponent } from './component/tours/tour-search/tour-search.c
     ResetpassComponent,
     LayouttourComponent,
     LayoutsocialComponent,
-    TourSearchComponent
+    TourSearchComponent,
+    LoginapiComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
