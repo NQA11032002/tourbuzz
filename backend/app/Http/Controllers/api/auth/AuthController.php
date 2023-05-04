@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\auth\roles;
 use App\Models\auth\user_information;
 use App\Models\users;
+use Carbon\Carbon;
 use DB;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\Request;
@@ -42,10 +43,14 @@ class AuthController extends Controller
 
         $checkLogin = Auth::attempt($arr);
         if ($checkLogin) {
+            if (auth('sanctum')->check()) {
+                auth()->user()->tokens()->delete();
+            }
+
             $user = Auth::user();
 
             //create new token for user
-            $token = $user->createToken('auth_token')->plainTextToken;
+            $token = $user->createToken('auth_token', ["*"], Carbon::now()->addHours(3))->plainTextToken;
 
             $response = [
                 'status' => 200,
@@ -97,6 +102,7 @@ class AuthController extends Controller
             "email" => $request->email,
             "password" => Hash::make($request->password),
             "role_id" => 1,
+            "status" => 1
         ]);
 
         if ($user) {
