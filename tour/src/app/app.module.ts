@@ -23,6 +23,8 @@ import { LayoutsocialComponent } from './component/layoutsocial/layoutsocial.com
 import { ResetpassComponent } from './component/social/resetpass/resetpass.component';
 import { TourSearchComponent } from './component/tours/tour-search/tour-search.component';
 import { HomeComponent } from './component/home/home.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -50,10 +52,14 @@ import { HomeComponent } from './component/home/home.component';
     LayoutsocialComponent,
     TourSearchComponent,
     HomeComponent
+    
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
