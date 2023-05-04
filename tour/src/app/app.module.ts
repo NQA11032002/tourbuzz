@@ -22,6 +22,7 @@ import { LayouttourComponent } from './component/layouttour/layouttour.component
 import { LayoutsocialComponent } from './component/layoutsocial/layoutsocial.component';
 import { ResetpassComponent } from './component/social/resetpass/resetpass.component';
 import { TourSearchComponent } from './component/tours/tour-search/tour-search.component';
+import { HomeComponent } from './component/home/home.component';
 
 
 @NgModule({
@@ -47,7 +48,8 @@ import { TourSearchComponent } from './component/tours/tour-search/tour-search.c
     ResetpassComponent,
     LayouttourComponent,
     LayoutsocialComponent,
-    TourSearchComponent
+    TourSearchComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
