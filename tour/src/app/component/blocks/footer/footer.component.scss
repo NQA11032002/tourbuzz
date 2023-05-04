@@ -1,0 +1,91 @@
+.container_footer{
+    .footer{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        height: 250px;
+        background-color: #292c2f;
+        // text-align: center;
+        color: white;
+        .footer_infor{
+            margin-left: 50%;
+            transform: translateX(-50%);
+            margin-top: 40px;
+            display: grid;
+            grid-template-columns: 60px 60px 60px;
+            text-align: center;
+            grid-template-rows: 70px 30px;
+            img{
+                height: 60px;
+                width: 155px;
+                border-radius: 50%;
+                grid-column-start: 1;
+                grid-column-end: 4;
+            }
+            a{
+                text-align: left;
+                text-decoration: none;
+                color: white;
+            }
+            .footer_infor-companyname{
+                grid-column-start: 1;
+                grid-column-end: 4;
+                text-align: left;
+                color: var(--color-sub-text);
+            }
+        }
+        .footer_contact{
+            margin-left: 50%;
+            transform: translateX(-50%);
+            margin-top: 40px;
+            i{
+                background-color: #33383b;
+                color: #ffffff;
+                font-size: 18px;
+                width: 38px;
+                height: 38px;
+                border-radius: 50%;
+                text-align: center;
+                line-height: 42px;
+                margin: 10px 15px;
+                vertical-align: middle;
+            }
+            .footer_contact-location{
+               
+            }
+            .footer_contact-phonenumber{
+                
+            }
+            .footer_contact-email{
+
+            }
+        }
+        .footer_about-us{
+            margin-left: 50%;
+            transform: translateX(-50%);
+            margin-top: 40px;
+            i{
+                background-color: #33383b;
+                color: #ffffff;
+                font-size: 20px;
+                width: 38px;
+                height: 38px;
+                text-align: center;
+                line-height: 42px;
+                margin: 10px 6px;
+                vertical-align: middle;
+            }
+            .footer_about-us-title{
+                font-size: 25.38px;
+                padding-bottom: 20px;
+            }
+            .footer_about-us-desc{
+                font-size: 13.7px;
+                color: var(--color-sub-text);
+                padding-bottom: 15px;
+            }
+            .footer_about-us-icon{
+
+            }
+        }
+    }
+}
