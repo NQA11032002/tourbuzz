@@ -11,7 +11,7 @@ class user_information extends Model
 {
     use HasFactory;
     protected $table = 'user_information';
-    protected $fillable = ["user_id", "name", "birth_date", "gender", "phone", "education"];
+    protected $fillable = ["user_id", "name", "birth_date", "gender", "phone", "education", "image"];
 
     public function user()
     {
@@ -22,7 +22,6 @@ class user_information extends Model
     {
         return $this->hasMany(posts::class, 'user_id', 'id');
     }
-
 
     public function users_connect()
     {

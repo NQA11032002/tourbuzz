@@ -52,7 +52,7 @@ import { HttpClientModule } from '@angular/common/http';
     LayoutsocialComponent,
     TourSearchComponent,
     HomeComponent
-    
+
   ],
   imports: [
     BrowserModule,

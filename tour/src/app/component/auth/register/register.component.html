@@ -23,48 +23,59 @@
           <div class="card fat">
             <div class="card-body">
               <h4 class="card-title">Register</h4>
-              <form method="post" class="my-login-validation" novalidate="">
+              <form method="post" class="my-login-validation" novalidate="" [formGroup]="registerForm" (ngSubmit)="submitRegister()">
                 <div class="form-group">
                   <label for="name">Name</label>
-                  <input id="name" type="text" class="form-control" name="name" required
+                  <input id="name" type="text" formControlName="name" class="form-control" name="name" required
                     autofocus>
-                  <div class="invalid-feedback">
-                    What's your name?
-                  </div>
+
+                    <div class="errors" *ngIf="registerForm.controls['name'].invalid && (registerForm.controls['name'].dirty || registerForm.controls['name'].touched)">
+                      <p *ngIf="registerForm.get('name')?.hasError('required')">Tên không được để trống</p>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="name">Birth Day</label>
+                  <input id="name" type="date" class="form-control" formControlName="birth_date" name="name" required
+                    autofocus>
+
+                    <div class="errors" *ngIf="registerForm.controls['birth_date'].invalid && (registerForm.controls['birth_date'].dirty || registerForm.controls['birth_date'].touched)">
+                      <p *ngIf="registerForm.get('birth_date')?.hasError('required')">Ngày sinh không được để trống</p>
+                    </div>
                 </div>
 
                 <div class="form-group">
                   <label for="email">E-Mail Address</label>
-                  <input id="email" type="email" class="form-control" name="email"
+                  <input id="email" type="email" class="form-control" formControlName="email" name="email"
                     required>
-                  <div class="invalid-feedback">
-                    Your email is invalid
-                  </div>
+                    <div class="errors" *ngIf="registerForm.controls['email'].invalid && (registerForm.controls['email'].dirty || registerForm.controls['email'].touched)">
+                      <p *ngIf="registerForm.get('email')?.hasError('required')">Email không được để trống</p>
+                      <p *ngIf="registerForm.get('email')?.hasError('email')">Email không đúng định dạng</p>
+                    </div>
                 </div>
 
                 <div class="form-group">
                   <label for="password">Password</label>
-                  <input id="password" type="password" class="form-control"
+                  <input id="password" type="password" class="form-control" formControlName="password"
                     name="password" required data-eye>
-                  <div class="invalid-feedback">
-                    Password is required
-                  </div>
+                    <div class="errors" *ngIf="registerForm.controls['password'].invalid && (registerForm.controls['password'].dirty || registerForm.controls['password'].touched)">
+                      <p *ngIf="registerForm.get('password')?.hasError('required')">Mật khẩu không được để trống</p>
+                    </div>
+                </div>
+
+                <div class="errors" *ngIf="registerFail">
+                  <p>{{ this.registerFail }}</p>
                 </div>
 
                 <div class="form-group">
-                  <div class="custom-checkbox custom-control">
-                    <input type="checkbox" name="agree" id="agree"
-                      class="custom-control-input" required="">
-                    <label for="agree" class="custom-control-label">I agree to the <a
+                    <label for="agree" class="d-flex align-items-center">
+                      <input type="checkbox" name="agree" id="agree"
+                       required="" class="mr-1">I agree to the <a
                         href="#">Terms and Conditions</a></label>
-                    <div class="invalid-feedback">
-                      You must agree with our Terms and Conditions
-                    </div>
-                  </div>
                 </div>
 
                 <div class="form-group m-0">
-                  <button type="submit" class="btn btn-primary btn-block">
+                  <button type="submit" [disabled]="registerForm.invalid" class="btn btn-primary btn-block">
                     Register
                   </button>
                 </div>

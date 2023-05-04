@@ -4,8 +4,7 @@ namespace App\Http\Controllers\api\auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\auth\roles;
-use App\Models\auth\user_information;
-use App\Models\users;
+use App\Models\auth\user_image;
 use Carbon\Carbon;
 use DB;
 use Illuminate\Foundation\Auth\User;
@@ -55,6 +54,7 @@ class AuthController extends Controller
             $response = [
                 'status' => 200,
                 'token' => $token,
+                'data' => $user->user_information,
             ];
         } else {
             $response = [
@@ -70,7 +70,7 @@ class AuthController extends Controller
     public function register(Request $request)
     {
         $rules = [
-            "email" => 'required|email',
+            "email" => 'required|email|unique:users,email',
             "password" => [
                 'required',
                 'min:6',
@@ -83,6 +83,7 @@ class AuthController extends Controller
         $messenger = [
             "email.required" => 'Email đăng nhập không được để trống',
             "email.email" => 'Email đăng nhập không đúng định dạng',
+            "email.unique" => 'Email đã được sử dụng',
             "password.required" => 'Mật khẩu đăng nhập không được để trống',
             "password.min" => "Mật khẩu phải trên 6 ký tự",
             "password.regex" => "Mật khẩu phải bao gồm *số-chữ thường-chữ hoa*",
@@ -106,10 +107,11 @@ class AuthController extends Controller
         ]);
 
         if ($user) {
-            user_information::create([
+            DB::table('user_information')->insertGetId([
                 "user_id" => $user,
                 "name" => $request->name,
-                "birth_date" => $request->birth_date
+                "birth_date" => $request->birth_date,
+                "image" => "./assets/img/avatar/default.png",
             ]);
 
             $response = [
@@ -131,7 +133,7 @@ class AuthController extends Controller
     {
         Auth::user()->tokens()->delete();
 
-        return response()->json(['message' => 'Logout successfully']);
+        return response()->json(['message' => 'Logout successfully', 'status' => 200]);
     }
 
     //reset password account user

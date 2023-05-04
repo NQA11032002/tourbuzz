@@ -15,6 +15,8 @@ const routes: Routes = [
   {path:'tour', component: LayouttourComponent},
   {path:'home', component: HomeComponent},
   {path:'login', component: LoginComponent},
+  {path:'register', component: RegisterComponent},
+  {path:'forgot-password', component: ForgotpassComponent},
   {path:'profile', component: FullinfoComponent},
 
   {path:'**', component: HomeComponent},
