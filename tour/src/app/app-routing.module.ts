@@ -6,14 +6,18 @@ import { ForgotpassComponent } from './component/auth/forgotpass/forgotpass.comp
 import { LayoutsocialComponent } from './component/layoutsocial/layoutsocial.component';
 import { LayouttourComponent } from './component/layouttour/layouttour.component';
 import { HomeComponent } from './component/home/home.component';
+import { FullinfoComponent } from './component/social/fullinfo/fullinfo.component';
+import { ResetpassComponent } from './component/social/resetpass/resetpass.component';
 
 const routes: Routes = [
-  {path:'', component: LayouttourComponent},
+  {path:'', component: HomeComponent},
   {path:'social', component: LayoutsocialComponent},
   {path:'tour', component: LayouttourComponent},
   {path:'home', component: HomeComponent},
   {path:'login', component: LoginComponent},
-  {path:'**', component: LayouttourComponent},
+  {path:'profile', component: FullinfoComponent},
+
+  {path:'**', component: HomeComponent},
 
 ];
 

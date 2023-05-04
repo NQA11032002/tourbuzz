@@ -1,4 +1,3 @@
-<app-resetpass></app-resetpass>
 <div class="header align-items-center">
   <div class="top d-flex align-items-center">
     <img class="Logo"
@@ -38,11 +37,14 @@
       </button>
 
       <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-        <li><a class="dropdown-item" href=""><i class="fa-solid fa-user"></i> profile</a>
+        <li><a class="dropdown-item" [routerLink]="['/profile']"
+            routerLinkActive="router-link-active"><i class="fa-solid fa-user"></i>
+            profile</a>
         </li>
-        <li><a class="dropdown-item" href="" data-bs-toggle="modal"
-            data-bs-target="#resetpass"><i class="fa-solid fa-pen" data-bs-toggle="modal"
-              data-bs-target="#resetpass"></i> Password Change</a></li>
+        <li><a class="dropdown-item" [routerLink]="['/change-password']"
+            routerLinkActive="router-link-active"><i class="fa-solid fa-pen"></i> Password
+            Change</a>
+        </li>
         <li><a class="dropdown-item" href="#"><i class="fa-solid fa-door-open"></i>
             Logout</a></li>
       </ul>
