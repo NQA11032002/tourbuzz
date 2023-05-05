@@ -1,26 +1,21 @@
 .wp-content
 {
   height: 100%;
-  grid-template-columns:360px 1fr;
-  column-gap:10px;
+  grid-template-columns: 300px 1fr;
+  column-gap: 40px;
   margin-top: 100px;
+  max-width: 1280px;
+  margin: 100px auto;
 
   .content
   {
     width: 100%;
-    max-width: 920px;
     margin: 0 auto;
-    box-shadow: var(--color-shadow);
     border-radius: 5px;
-    background-color: white;
-    padding: 10px 0;
   }
 
   .sidebar_fill
   {
-    margin-left: auto;
-    border: 1px solid var(--color-border);
-    border-radius: 12px;
-    height: 670px;
+    height: auto;
   }
 }

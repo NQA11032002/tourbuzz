@@ -9,13 +9,11 @@ import { PostComponent } from './component/social/post/post.component';
 import { LoginComponent } from './component/auth/login/login.component';
 import { RegisterComponent } from './component/auth/register/register.component';
 import { ForgotpassComponent } from './component/auth/forgotpass/forgotpass.component';
-import { NavbarTourComponent } from './component/tours/navbar-tour/navbar-tour.component';
 import { MessengerComponent } from './component/blocks/messenger/messenger.component';
 import { ShortinfoComponent } from './component/social/shortinfo/shortinfo.component';
 import { FullinfoComponent } from './component/social/fullinfo/fullinfo.component';
 import { DetailstourComponent } from './component/tours/detailstour/detailstour.component';
 import { ChangeinfoComponent } from './component/social/changeinfo/changeinfo.component';
-import { ListTourComponent } from './component/tours/list-tour/list-tour.component';
 import { PostTourComponent } from './component/tours/post-tour/post-tour.component';
 import { BookTourComponent } from './component/tours/book-tour/book-tour.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -23,9 +21,10 @@ import { LayouttourComponent } from './component/layouttour/layouttour.component
 import { LayoutsocialComponent } from './component/layoutsocial/layoutsocial.component';
 import { ResetpassComponent } from './component/social/resetpass/resetpass.component';
 import { TourSearchComponent } from './component/tours/tour-search/tour-search.component';
+import { HomeComponent } from './component/home/home.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { LoginapiComponent } from './component/auth/loginapi/loginapi.component';
-import { FormsModule } from '@angular/forms';
+import { NavbarTourComponent } from './component/tours/navbar-tour/navbar-tour.component';
 
 @NgModule({
   declarations: [
@@ -45,20 +44,20 @@ import { FormsModule } from '@angular/forms';
     FullinfoComponent,
     DetailstourComponent,
     ChangeinfoComponent,
-    ListTourComponent,
     PostTourComponent,
     BookTourComponent,
     ResetpassComponent,
     LayouttourComponent,
     LayoutsocialComponent,
     TourSearchComponent,
-    LoginapiComponent
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
