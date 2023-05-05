@@ -26,7 +26,7 @@
                 (ngSubmit)="submitLogin()" action="#">
                 <div class="form-group">
                   <label for="email">E-Mail Address</label>
-                  <input id="email" formControlName="email" type="email" class="form-control shadow-none"
+                  <input id="email" #inputemail formControlName="email" type="email" class="form-control shadow-none" [value]="loginForm.controls['email'].value"
                     name="email">
 
                     <div class="errors" *ngIf="loginForm.controls['email'].invalid && (loginForm.controls['email'].dirty || loginForm.controls['email'].touched)">
@@ -37,7 +37,7 @@
 
                 <div class="form-group">
                   <label for="email">Password</label>
-                  <input id="password" formControlName="password" type="password" class="form-control shadow-none" name="password" required data-eye>
+                  <input id="password" #inputpassword formControlName="password" type="password" class="form-control shadow-none" name="password" required data-eye>
 
                   <div class="errors" *ngIf="loginForm.controls['password'].invalid && (loginForm.controls['password'].dirty || loginForm.controls['password'].touched)">
                     <p *ngIf="loginForm.get('password')?.hasError('required')">Password không được để trống</p>
@@ -52,7 +52,7 @@
                 <div class="form-group">
                   <div class="custom-checkbox d-flex justify-content-between align-items-center">
                     <label for="remember" class="d-flex align-items-center">
-                      <input type="checkbox" name="remember" id="remember" class="mr-1 shadow-none">Remember Me</label>
+                      <input type="checkbox" name="remember" id="remember" class="mr-1 shadow-none" formControlName="remember">Remember Me</label>
 
                     <label for="password">
                       <a [routerLink]="['/forgot-password']" class="float-right">

@@ -1,3 +1,4 @@
+<app-resetpass></app-resetpass>
 <div class="header align-items-center">
   <div class="top d-flex align-items-center">
     <img class="Logo"
@@ -42,7 +43,7 @@
             profile</a>
         </li>
         <li><a class="dropdown-item" [routerLink]="['/change-password']"
-            routerLinkActive="router-link-active"><i class="fa-solid fa-pen"></i> Password
+            routerLinkActive="router-link-active" data-bs-toggle="modal" data-bs-target="#resetpass"><i data-bs-toggle="modal" data-bs-target="#resetpass" class="fa-solid fa-pen"></i> Password
             Change</a>
         </li>
         <li><a class="dropdown-item" (click)="logout()"><i class="fa-solid fa-door-open"></i>
