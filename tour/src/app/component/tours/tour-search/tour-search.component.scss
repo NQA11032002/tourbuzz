@@ -1,0 +1,86 @@
+.tour_search{
+    padding: 0 12px;
+    .soft {
+        height: auto;
+        padding: 10px;
+        border-radius: 5px;
+        background-color: #ffff;
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+        .search_form{
+
+          div
+          {
+            .sub_title
+            {
+              width: 120px;
+              color: var(--color-content);
+            }
+
+            .sort_item{
+              font-size: 14px;
+              border: 1px solid var(--color-border);
+            }
+
+            .sort_item:focus
+            {
+              border-color: black;
+            }
+          }
+        }
+    }
+
+    .tour-items-holder
+    {
+      margin-top: 25px;
+      display: grid;
+      grid-template-rows: repeat(auto-fit, minmax(289px,1fr));
+      row-gap: 15px;
+
+      .tours-items-list {
+        width: 100%;
+        height: 289px;
+        background-color: #ffff;
+        border-radius: 5px;
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+
+        .thumbnail-tour {
+            padding-top: 19px;
+            width: 268px;
+            height: 289px;
+            overflow: hidden;
+        }
+
+        .thumbnail-tour img{
+            transition: all 1.3s ease;
+        }
+
+        .thumbnail-tour:hover img{
+            transform: scale(1.2);
+        }
+
+        .tour-content {
+            padding: 35px;
+
+            .tour-content-left {
+                border-right:1px solid #cfcccf;
+                .tour-title {
+                    a {
+                        font-weight: 800;
+                        color: #191b1f;
+                    }
+                }
+            }
+            .tour-content-right{
+                padding-left: 10px;
+                a{
+                    background-color: #212529;
+                    color: #f7f9fa;
+                    font-size: 14px;
+                }
+            }
+
+        }
+    }
+    }
+
+}
