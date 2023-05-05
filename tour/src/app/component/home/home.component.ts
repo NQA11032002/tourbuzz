@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Cities } from 'src/app/models/Cities.models';
 import { AddressService } from 'src/app/services/address.service';
 import { SocialService } from 'src/app/services/social.service';
+import { TourService } from 'src/app/services/tour.service';
 
 @Component({
   selector: 'app-home',
@@ -14,12 +15,15 @@ export class HomeComponent {
   public towns:Array<any> = new Array<any>();
   public vehicles:Array<any> = new Array<any>();
   public posts:Array<any> = new Array<any>();
+  public tours:Array<any> = new Array<any>();
 
-  public constructor(private address:AddressService, private post:SocialService){
+  public constructor(private address:AddressService, private social:SocialService, private tour:TourService){
     this.getCities();
     this.typeTravels();
     this.getVehicles();
     this.getPosts();
+    this.getTours();
+
   }
 
   getCities(){
@@ -46,7 +50,7 @@ export class HomeComponent {
     let token = sessionStorage.getItem("token_user");
 
     if(token != null){
-      this.address.getTypeTravel(token).subscribe(p => {
+      this.social.getVehicles(token).subscribe(p => {
         this.vehicles = p.data;
       });
     }
@@ -56,11 +60,20 @@ export class HomeComponent {
     let token = sessionStorage.getItem("token_user");
 
     if(token != null){
-      this.post.getPosts(token).subscribe(p => {
+      this.social.getPosts(token).subscribe(p => {
         this.posts = p.data;
-
-        console.log(this.posts);
       });
     }
   }
+
+  getTours(){
+    let token = sessionStorage.getItem("token_user");
+
+    if(token != null){
+      this.tour.getTourPopular(token).subscribe(p => {
+        this.tours = p.data;
+      });
+    }
+  }
+
 }

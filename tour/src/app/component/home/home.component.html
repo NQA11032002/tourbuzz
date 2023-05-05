@@ -116,7 +116,7 @@
       <div class="home_discount-title">
         <h5 class="title">GET DISCOUNT 10-20% OFF ANY TOUR PACKAGE</h5>
         <h6 class="subtitle">WHEN YOU PURCHASE ANY PACKAGE & GET NEXT TOUR</h6>
-        <button>Start your trip now!</button>
+        <a [routerLink]="['/social']">Start your trip now!</a>
       </div>
     </div>
     <div class="spaceline">
@@ -126,23 +126,25 @@
       <div class="home_social-title">
         <h3>SOCIAL NETWORK</h3>
       </div>
-      <div class="home_social-list">
-        <div class="home_social-details" *ngFor="let item of posts">
-          <div class="home_social-details-img">
-            <img src="{{ item.user_information.image }}" alt="">
-          </div>
-          <div class="home_social-details-name">
-            <span>{{ item.user_information.name }}</span>
-          </div>
-          <div class="home_social-details-time">
-            <span>{{ item.user_information.birth_date }}</span>
-          </div>
-          <div class="home_social-details-desc">
-            <div class="home_social-desc home_social-content">
-              {{ item.content }}
+      <div class="home_social-list multiple-items">
+        <div *ngFor="let item of posts; let i = index">
+          <div class="home_social-details" *ngIf="i < 3">
+            <div class="home_social-details-img">
+              <img src="{{ item.user_information.image }}" alt="">
             </div>
-            <div class="home_social-desc-img">
-              <img src="{{ item.post_picture[0].images }}" alt="" class="img-tour">
+            <div class="home_social-details-name">
+              <span>{{ item.user_information.name }}</span>
+            </div>
+            <div class="home_social-details-time">
+              <span>{{ item.user_information.birth_date }}</span>
+            </div>
+            <div class="home_social-details-desc d-flex flex-column">
+              <h5 class="post-title pt-3 flex-shrink-0">{{ item.title }}</h5>
+              <p class="home_social-content flex-1">{{ item.content }}</p>
+              <div class="home_social-desc-img flex-shrink-0">
+                <img *ngIf="item.post_picture.length > 0" src="{{ item.post_picture[0].images  }}" alt="" class="img-tour">
+                <img *ngIf="item.post_picture.length == 0" src="" alt="" class="img-tour">
+              </div>
             </div>
           </div>
         </div>
@@ -161,7 +163,7 @@
       <div class="home_discount-title">
         <h5 class="title">DISCOUNT UP TO 70%</h5>
         <h6 class="subtitle">WHEN YOU GO WITH YOUR FAMILY OR YOUR FRIEND</h6>
-        <button>Booking now!</button>
+        <a [routerLink]="['/social']">Booking now!</a>
       </div>
     </div>
     <div class="spaceline">
@@ -172,86 +174,30 @@
         <h3>POPULAR PLACE</h3>
       </div>
       <div class="home_popular-list">
-        <div class="home_popular-item">
+        <div class="home_popular-item" *ngFor="let item of tours">
           <div class="home_popular-item-img">
             <img
-              src="https://cdn.pixabay.com/photo/2013/04/11/19/46/building-102840_960_720.jpg"
+              src="{{ item.images }}"
               alt="">
           </div>
           <div class="home_popular-item-title">
-            <span>Lourve Museum France</span>
+            <span>{{ item.title }}</span>
           </div>
           <div class="home_popular-item-price">
-            <span>$5000</span>
+            <span>{{ item.price_tour | number: '1.0-0' }} VNĐ</span>
           </div>
           <div class="home_popular-item-desc">
-            <span>Victoria Falls, 5 Days, 4 Night Tour</span>
+            <span>{{ item.description }}</span>
           </div>
           <div class="home_popular-item-btn">
-            <button>Views Details</button>
-          </div>
-        </div>
-        <div class="home_popular-item">
-          <div class="home_popular-item-img">
-            <img
-              src="https://cdn.pixabay.com/photo/2013/04/11/19/46/building-102840_960_720.jpg"
-              alt="">
-          </div>
-          <div class="home_popular-item-title">
-            <span>Lourve Museum France</span>
-          </div>
-          <div class="home_popular-item-price">
-            <span>$5000</span>
-          </div>
-          <div class="home_popular-item-desc">
-            <span>Victoria Falls, 5 Days, 4 Night Tour</span>
-          </div>
-          <div class="home_popular-item-btn">
-            <button>Views Details</button>
-          </div>
-        </div>
-        <div class="home_popular-item">
-          <div class="home_popular-item-img">
-            <img
-              src="https://cdn.pixabay.com/photo/2013/04/11/19/46/building-102840_960_720.jpg"
-              alt="">
-          </div>
-          <div class="home_popular-item-title">
-            <span>Lourve Museum France</span>
-          </div>
-          <div class="home_popular-item-price">
-            <span>$5000</span>
-          </div>
-          <div class="home_popular-item-desc">
-            <span>Victoria Falls, 5 Days, 4 Night Tour</span>
-          </div>
-          <div class="home_popular-item-btn">
-            <button>Views Details</button>
-          </div>
-        </div>
-        <div class="home_popular-item">
-          <div class="home_popular-item-img">
-            <img
-              src="https://cdn.pixabay.com/photo/2013/04/11/19/46/building-102840_960_720.jpg"
-              alt="">
-          </div>
-          <div class="home_popular-item-title">
-            <span>Lourve Museum France</span>
-          </div>
-          <div class="home_popular-item-price">
-            <span>$5000</span>
-          </div>
-          <div class="home_popular-item-desc">
-            <span>Victoria Falls, 5 Days, 4 Night Tour Victoria Falls, 5 Days, 4 Night
-              Tour Victoria Falls, 5 Days, 4 Night Tour Victoria Falls, 5 Days, 4 Night
-              Tour</span>
-          </div>
-          <div class="home_popular-item-btn">
-            <button>Views Details</button>
+            <a>Views Details</a>
           </div>
         </div>
       </div>
     </div>
   </div>
 </section>
+
 <app-footer></app-footer>
+
+

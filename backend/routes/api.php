@@ -50,6 +50,7 @@ Route::prefix('social')->name('social.')->middleware('auth:sanctum')->group(func
 
 Route::prefix('tour')->name('tour.')->middleware('auth:sanctum')->group(function () {
     Route::get('/', [ToursController::class, "index"])->name('index');
+    Route::get('/popular', [ToursController::class, "toursPopular"])->name('popular');
     Route::get('/{id}', [ToursController::class, "index"])->name('index');
     Route::post('/', [ToursController::class, "create"])->name('create');
     Route::patch('/{id}', [ToursController::class, "update"])->name('update');
