@@ -21,16 +21,33 @@
           <h3>SEARCH NOW</h3>
         </div>
         <div class="home_header-search-list">
-          <div class="home_header-search-item">
+          <div class="home_header-search-item d-flex align-items-center">
             <i class="icon-loca fa-solid fa-location-dot"></i>
             <span>Location</span>
+            <select name="" id="">
+              <option *ngFor="let item of data" value="{{ item.matp }}">{{ item.name }}
+              </option>
+            </select>
+          </div>
+
+          <div class="home_header-search-item d-flex align-items-center">
+            <i class="fa-solid fa-plane icon-loca"></i>
+            <span>Type Travel</span>
             <select name="" id="">
               <option value="">Quy Nhơn</option>
               <option value="">Kỳ Co</option>
               <option value="">Tam Đảo</option>
             </select>
           </div>
-          <div class="home_header-search-item">
+
+          <div class="home_header-search-item d-flex align-items-center">
+            <i class="fa-regular fa-calendar-days icon-loca"></i>
+            <span>Date</span>
+            <input class="shadow-none border-0" type="date">
+          </div>
+
+
+          <div class="home_header-search-item d-flex align-items-center">
             <i class="icon-trans fa-solid fa-car-side"></i>
             <Span>Transition</Span>
             <select name="" id="">
@@ -39,31 +56,13 @@
               <option value="">Xe khách</option>
             </select>
           </div>
-          <div class="home_header-search-item">
+          <div class="home_header-search-item d-flex align-items-center">
             <i class="icon-price fa-solid fa-dollar-sign"></i>
             <span>Price</span>
             <select name="" id="">
               <option value="">500000</option>
               <option value="">1000000</option>
               <option value="">2000000</option>
-            </select>
-          </div>
-          <div class="home_header-search-item">
-            <i class="icon-loca fa-solid fa-location-dot"></i>
-            <span>Location</span>
-            <select name="" id="">
-              <option value="">Quy Nhơn</option>
-              <option value="">Kỳ Co</option>
-              <option value="">Tam Đảo</option>
-            </select>
-          </div>
-          <div class="home_header-search-item">
-            <i class="icon-loca fa-solid fa-location-dot"></i>
-            <span>Location</span>
-            <select name="" id="">
-              <option value="">Quy Nhơn</option>
-              <option value="">Kỳ Co</option>
-              <option value="">Tam Đảo</option>
             </select>
           </div>
         </div>

@@ -65,7 +65,7 @@ Route::prefix('booking')->name('booking.')->middleware('auth:sanctum')->group(fu
     Route::get('/categories-pay', [Tour_bookingController::class, "categories_pay"])->name('categories_pay');
 });
 
-Route::prefix('address')->name('address.')->group(function () {
+Route::prefix('address')->name('address.')->middleware('auth:sanctum')->group(function () {
     Route::get('/city', [Province_cityController::class, "index"]);
     Route::get('/district', [DistrictController::class, "index"]);
     Route::get('/town', [TownController::class, "index"]);
