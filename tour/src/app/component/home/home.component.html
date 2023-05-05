@@ -24,8 +24,8 @@
           <div class="home_header-search-item d-flex align-items-center">
             <i class="icon-loca fa-solid fa-location-dot"></i>
             <span>Location</span>
-            <select name="" id="">
-              <option *ngFor="let item of data" value="{{ item.matp }}">{{ item.name }}
+            <select name="" id="" class="w-100">
+              <option *ngFor="let item of cities" value="{{ item.matp }}">{{ item.name }}
               </option>
             </select>
           </div>
@@ -33,41 +33,42 @@
           <div class="home_header-search-item d-flex align-items-center">
             <i class="fa-solid fa-plane icon-loca"></i>
             <span>Type Travel</span>
-            <select name="" id="">
-              <option value="">Quy Nhơn</option>
-              <option value="">Kỳ Co</option>
-              <option value="">Tam Đảo</option>
+            <select name="" id="" class="w-100">
+              <option *ngFor="let item of travels" value="{{ item.id }}">{{ item.name }}
+              </option>
+            </select>
+          </div>
+
+          <div class="home_header-search-item d-flex align-items-center">
+            <i class="icon-trans fa-solid fa-car-side"></i>
+            <Span>Transition</Span>
+            <select name="" id="" class="w-100">
+              <option *ngFor="let item of vehicles" value="{{ item.id }}" value="">
+                {{ item.name }}</option>
             </select>
           </div>
 
           <div class="home_header-search-item d-flex align-items-center">
             <i class="fa-regular fa-calendar-days icon-loca"></i>
             <span>Date</span>
-            <input class="shadow-none border-0" type="date">
+            <input class="shadow-none border-0 w-100" type="date">
           </div>
 
 
-          <div class="home_header-search-item d-flex align-items-center">
-            <i class="icon-trans fa-solid fa-car-side"></i>
-            <Span>Transition</Span>
-            <select name="" id="">
-              <option value="">Xe Máy</option>
-              <option value="">Xe ô tô</option>
-              <option value="">Xe khách</option>
-            </select>
-          </div>
           <div class="home_header-search-item d-flex align-items-center">
             <i class="icon-price fa-solid fa-dollar-sign"></i>
             <span>Price</span>
-            <select name="" id="">
-              <option value="">500000</option>
-              <option value="">1000000</option>
-              <option value="">2000000</option>
+            <select name="" id="" class="w-100">
+              <option value="499999">Dưới 500.000VNĐ</option>
+              <option value="500000">Từ 500.000 - 1.500.000VNĐ</option>
+              <option value="1500000">Từ 1.500.000 - 2.500.000VNĐ</option>
+              <option value="2500000">Trên 2.500.000VNĐ</option>
             </select>
           </div>
-        </div>
-        <div class="home_header-search-btn">
-          <button class="btn_search">Search</button>
+
+          <div class="home_header-search-btn">
+            <button class="btn_search">Search</button>
+          </div>
         </div>
       </div>
     </div>
@@ -126,72 +127,28 @@
         <h3>SOCIAL NETWORK</h3>
       </div>
       <div class="home_social-list">
-        <div class="home_social-details">
+        <div class="home_social-details" *ngFor="let item of posts">
           <div class="home_social-details-img">
-            <img src="assets/img/Dat.jpg" alt="">
+            <img src="{{ item.user_information.image }}" alt="">
           </div>
           <div class="home_social-details-name">
-            <span>Hồ Quang Đạt</span>
+            <span>{{ item.user_information.name }}</span>
           </div>
           <div class="home_social-details-time">
-            <span>15/5/2023</span>
+            <span>{{ item.user_information.birth_date }}</span>
           </div>
           <div class="home_social-details-desc">
-            <div class="home_social-desc">
-              Kỳ Co đẹp vl đáng để trải nghiệm!
+            <div class="home_social-desc home_social-content">
+              {{ item.content }}
             </div>
             <div class="home_social-desc-img">
-              <img
-                src="https://dulichfun.com/wp-content/uploads/2019/01/Kinh-nghiem-phuot-Ky-Co-Quy-Nhon-tu-tuc.jpg"
-                alt="" class="img-tour">
-            </div>
-          </div>
-        </div>
-        <div class="home_social-details">
-          <div class="home_social-details-img">
-            <img src="assets/img/Dat.jpg" alt="">
-          </div>
-          <div class="home_social-details-name">
-            <span>Hồ Quang Đạt</span>
-          </div>
-          <div class="home_social-details-time">
-            <span>15/5/2023</span>
-          </div>
-          <div class="home_social-details-desc">
-            <div class="home_social-desc">
-              Kỳ Co đẹp vl đáng để trải nghiệm!
-            </div>
-            <div class="home_social-desc-img">
-              <img
-                src="https://dulichfun.com/wp-content/uploads/2019/01/Kinh-nghiem-phuot-Ky-Co-Quy-Nhon-tu-tuc.jpg"
-                alt="" class="img-tour">
-            </div>
-          </div>
-        </div>
-        <div class="home_social-details">
-          <div class="home_social-details-img">
-            <img src="assets/img/Dat.jpg" alt="">
-          </div>
-          <div class="home_social-details-name">
-            <span>Hồ Quang Đạt</span>
-          </div>
-          <div class="home_social-details-time">
-            <span>15/5/2023</span>
-          </div>
-          <div class="home_social-details-desc">
-            <div class="home_social-desc">
-              Kỳ Co đẹp vl đáng để trải nghiệm!
-            </div>
-            <div class="home_social-desc-img">
-              <img
-                src="https://dulichfun.com/wp-content/uploads/2019/01/Kinh-nghiem-phuot-Ky-Co-Quy-Nhon-tu-tuc.jpg"
-                alt="" class="img-tour">
+              <img src="{{ item.post_picture[0].images }}" alt="" class="img-tour">
             </div>
           </div>
         </div>
       </div>
       <div class="home_social-btn">
-        <button>Join with us!</button>
+        <a [routerLink]="['/social']">Join with us!</a>
       </div>
     </div>
 

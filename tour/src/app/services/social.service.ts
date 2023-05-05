@@ -10,4 +10,17 @@ export class SocialService {
 
   private api = "http://localhost:8000/api/social/";
 
+  getSocials(token:string){
+    let headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
+    let urlApi = `${this.api}vehicles?bearer=${token}`;
+
+    return this.http.get<any>(urlApi, {headers});
+  }
+
+  getPosts(token:string){
+    let headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
+    let urlApi = `${this.api}posts?bearer=${token}`;
+
+    return this.http.get<any>(urlApi, {headers});
+  }
 }
