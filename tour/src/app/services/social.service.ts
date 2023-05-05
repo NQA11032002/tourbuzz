@@ -6,32 +6,32 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 })
 export class SocialService {
 
-  constructor(private http:HttpClient) { }
+  constructor(private http: HttpClient) { }
 
   private api = "http://localhost:8000/api/social/";
   private apiTour = "http://localhost:8000/api/tour";
 
   //get list vehicle
-  getVehicles(token:string){
+  getVehicles(token: string) {
     let headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
     let urlApi = `${this.api}vehicles?bearer=${token}`;
 
-    return this.http.get<any>(urlApi, {headers});
+    return this.http.get<any>(urlApi, { headers });
   }
 
   //get list post social
-  getPosts(token:string){
+  getPosts(token: string) {
     let headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
     let urlApi = `${this.api}posts?bearer=${token}`;
 
-    return this.http.get<any>(urlApi, {headers});
+    return this.http.get<any>(urlApi, { headers });
   }
 
   //get list tour
-  getTours(token:string){
+  getTours(token: string) {
     let headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
     let urlApi = `${this.apiTour}?bearer=${token}`;
 
-    return this.http.get<any>(urlApi, {headers});
+    return this.http.get<any>(urlApi, { headers });
   }
 }
