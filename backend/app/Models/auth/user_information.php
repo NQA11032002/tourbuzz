@@ -25,6 +25,6 @@ class user_information extends Model
 
     public function users_connect()
     {
-        return $this->hasMany(users_connect::class, "user_2_id", "id");
+        return $this->hasMany(users_connect::class, "user_1_id", "id");
     }
 }

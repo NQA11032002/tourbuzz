@@ -1,3 +1,4 @@
+import { Posts } from './../models/Post.model';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
@@ -34,4 +35,15 @@ export class SocialService {
 
     return this.http.get<any>(urlApi, { headers });
   }
+
+  //create post
+  createPost(post:Posts, images:[] ,token:string){
+    let headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
+    let para = {"address_travel_id" : post.address_travel_id, "type_travel_id" : post.type_travel_id, "title" : post.title, "content":post.content, "status":post.status, "images":images};
+    let urlApi = `${this.api}posts?bearer=${token}`;
+
+    return this.http.post<any>(urlApi, para,{ headers });
+  }
+
+
 }

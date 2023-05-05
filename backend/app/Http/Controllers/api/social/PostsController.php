@@ -8,6 +8,7 @@ use App\Models\social\post_favorite;
 use App\Models\social\post_picture;
 use App\Models\social\posts;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
@@ -22,7 +23,14 @@ class PostsController extends Controller
             if (!empty($keyWork)) {
                 $query->where('name', 'like', '%' . $keyWork . '%')->orWhere('address', 'like', '%' . $keyWork . '%');
             }
-        })->orderByDesc('id')->with('user_information')->with('post_picture')->with('post_comments')->with('post_favorite')->with('type_travel')->with('address_travel')->get();
+        })->orderByDesc('id')->with('post_picture')->with('post_comments')->with('user_information')->with('post_favorite')->with('type_travel')->with('address_travel')->get();
+
+
+        foreach ($posts as $post) {
+            foreach ($post->post_comments as $comment) {
+                $comment->user_information;
+            }
+        }
 
         if ($posts->count() > 0) {
             $response = [
@@ -49,7 +57,6 @@ class PostsController extends Controller
     public function create(Request $request)
     {
         $rules = [
-            "user_id" => 'required',
             "address_travel_id" => 'required',
             "type_travel_id" => 'required',
             "title" => 'required|max:200',
@@ -57,7 +64,6 @@ class PostsController extends Controller
         ];
 
         $messenger = [
-            "user_id.required" => 'ID người đăng không được để trống',
             "address_travel_id.required" => 'Hãy chọn địa chỉ du lịch của bạn',
             "type_travel_id.required" => 'Hãy chọn loại hình du lịch mà bạn muốn chia sẽ',
             "title.required" => 'Tiêu đề không được để trống',
@@ -74,7 +80,7 @@ class PostsController extends Controller
 
         //create new post and get id new post
         $post = DB::table('posts')->insertGetId([
-            "user_id" => $request->user_id,
+            "user_id" => Auth::user()->user_information->id,
             "address_travel_id" => $request->address_travel_id,
             "type_travel_id" => $request->type_travel_id,
             "title" => $request->title,

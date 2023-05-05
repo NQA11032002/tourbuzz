@@ -6,38 +6,26 @@
   <hr>
 
   <div class="posts">
-    <div class="post_item">
+    <div class="post_item" *ngFor="let item of posts">
       <div class="post_top d-flex align-items-center">
         <img
-          src="https://scontent.fsgn2-7.fna.fbcdn.net/v/t39.30808-1/335021120_125817703593998_8544065672237814919_n.jpg?stp=cp0_dst-jpg_p40x40&_nc_cat=108&ccb=1-7&_nc_sid=7206a8&_nc_ohc=jWWuoSKMZPQAX9m4ISH&_nc_ht=scontent.fsgn2-7.fna&oh=00_AfArxu7y09yz4QgctmHAqt2U_0-sgOzLmClawHz7ilZEWg&oe=6446A4B0"
+          src="{{item.user_information.image}}"
         alt=""  data-bs-toggle="modal" data-bs-target="#shortinformodal">
 
         <div class="post_top--info">
-          <h5 class="post_name">Name</h5>
-          <p class="post_time">22 giờ <i class="fa-solid fa-earth-asia"></i></p>
+          <h5 class="post_name">{{item.user_information.name}}</h5>
+          <p class="post_time">{{item.created_at | date: 'dd-MM-yyyy'}} <i class="fa-solid fa-earth-asia"></i></p>
         </div>
       </div>
 
       <div class="post_content">
-        <p>content</p>
+        <p>{{item.content}}</p>
       </div>
 
       <div class="post_images d-grid overflow-auto">
-        <div class="post_image">
+        <div class="post_image" *ngFor="let picture of item.post_picture">
           <img
-            src="https://scontent.fsgn2-7.fna.fbcdn.net/v/t39.30808-6/341857422_213834411342259_2047968322786129824_n.png?stp=dst-png_s600x600&_nc_cat=1&ccb=1-7&_nc_sid=730e14&_nc_ohc=fZcEieP7FDQAX8RnTwn&_nc_ht=scontent.fsgn2-7.fna&oh=00_AfBoFpIo3YXmYxcAHTRhEgq4bX9Gk86l1BacMgwo4uqwNg&oe=64454313"
-            alt="">
-        </div>
-
-        <div class="post_image">
-          <img
-            src="https://scontent.fsgn2-7.fna.fbcdn.net/v/t39.30808-6/341857422_213834411342259_2047968322786129824_n.png?stp=dst-png_s600x600&_nc_cat=1&ccb=1-7&_nc_sid=730e14&_nc_ohc=fZcEieP7FDQAX8RnTwn&_nc_ht=scontent.fsgn2-7.fna&oh=00_AfBoFpIo3YXmYxcAHTRhEgq4bX9Gk86l1BacMgwo4uqwNg&oe=64454313"
-            alt="">
-        </div>
-
-        <div class="post_image">
-          <img
-            src="https://scontent.fsgn2-7.fna.fbcdn.net/v/t39.30808-6/341857422_213834411342259_2047968322786129824_n.png?stp=dst-png_s600x600&_nc_cat=1&ccb=1-7&_nc_sid=730e14&_nc_ohc=fZcEieP7FDQAX8RnTwn&_nc_ht=scontent.fsgn2-7.fna&oh=00_AfBoFpIo3YXmYxcAHTRhEgq4bX9Gk86l1BacMgwo4uqwNg&oe=64454313"
+            src="{{picture.images}}"
             alt="">
         </div>
       </div>
@@ -45,27 +33,23 @@
       <div class="likes mt-3 d-flex">
         <span>
           <i class="fa-regular fa-heart"></i>
-          <p>54k</p>
+          <p>{{item.post_favorite.length}}</p>
         </span>
         <span>
           <i class="fa-regular fa-comment"></i>
-          <p>15.3k</p>
-        </span>
-        <span>
-          <i class="fa-regular fa-paper-plane"></i>
-          <p>9k</p>
+          <p>{{item.post_comments.length}}</p>
         </span>
       </div>
 
       <div class="comments d-grid">
-        <div class="comment">
+        <div class="comment" *ngFor="let comment of item.post_comments">
           <div class="comment_item d-flex align-items-center">
             <img
-              src="https://scontent.fsgn2-7.fna.fbcdn.net/v/t39.30808-6/341857422_213834411342259_2047968322786129824_n.png?stp=dst-png_s600x600&_nc_cat=1&ccb=1-7&_nc_sid=730e14&_nc_ohc=fZcEieP7FDQAX8RnTwn&_nc_ht=scontent.fsgn2-7.fna&oh=00_AfBoFpIo3YXmYxcAHTRhEgq4bX9Gk86l1BacMgwo4uqwNg&oe=64454313"
+              src="{{ comment.user_information[0].image }}"
               alt="">
 
             <div class="comment__item--content">
-              <span class="reply_content"><b>Nguyễn quôc anh:</b> Wow you looking gorgeous
+              <span class="reply_content"><b>{{ comment.user_information[0].name }}:</b> {{ comment.content }}
               </span>
 
               <div class="d-flex reply_container align-items-center">
@@ -73,39 +57,7 @@
                 <input type="checkbox" hidden name="" id="popup_reply">
                 <label for="popup_reply" class="popup position-fixed"></label>
 
-                <span class="reply_time">2 giây</span>
-                <button class="reply_choose" value="">Trả lời</button>
-                <label for="popup_reply">
-                  <i class="fa-solid fa-ellipsis btn-chooses"></i>
-                </label>
-
-                <div class="card card_popup">
-                  <button class="btn btn-popup btn-report">Báo cáo</button>
-                  <button class="btn btn-popup btn-delete">Xóa</button>
-                  <label for="popup_reply" class="btn btn-popup btn-cancel">Hủy</label>
-                </div>
-
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="comment">
-          <div class="comment_item d-flex align-items-center">
-            <img
-              src="https://scontent.fsgn2-7.fna.fbcdn.net/v/t39.30808-6/341857422_213834411342259_2047968322786129824_n.png?stp=dst-png_s600x600&_nc_cat=1&ccb=1-7&_nc_sid=730e14&_nc_ohc=fZcEieP7FDQAX8RnTwn&_nc_ht=scontent.fsgn2-7.fna&oh=00_AfBoFpIo3YXmYxcAHTRhEgq4bX9Gk86l1BacMgwo4uqwNg&oe=64454313"
-              alt="">
-
-            <div class="comment__item--content">
-              <span class="reply_content"><b>Nguyễn quôc anh:</b> Wow you looking gorgeous
-              </span>
-
-              <div class="d-flex reply_container align-items-center">
-
-                <input type="checkbox" hidden name="" id="popup_reply">
-                <label for="popup_reply" class="popup position-fixed"></label>
-
-                <span class="reply_time">2 giây</span>
+                <span class="reply_time">{{ comment.created_at | date:'dd-MM-yyyy' }}</span>
                 <button class="reply_choose" value="">Trả lời</button>
                 <label for="popup_reply">
                   <i class="fa-solid fa-ellipsis btn-chooses"></i>
@@ -131,134 +83,5 @@
       </form>
     </div>
 
-    <div class="post_item">
-      <div class="post_top d-flex align-items-center">
-        <img
-          src="https://scontent.fsgn2-7.fna.fbcdn.net/v/t39.30808-1/335021120_125817703593998_8544065672237814919_n.jpg?stp=cp0_dst-jpg_p40x40&_nc_cat=108&ccb=1-7&_nc_sid=7206a8&_nc_ohc=jWWuoSKMZPQAX9m4ISH&_nc_ht=scontent.fsgn2-7.fna&oh=00_AfArxu7y09yz4QgctmHAqt2U_0-sgOzLmClawHz7ilZEWg&oe=6446A4B0"
-          alt="">
-
-        <div class="post_top--info">
-          <h5 class="post_name">Name</h5>
-          <p class="post_time">22 giờ <i class="fa-solid fa-earth-asia"></i></p>
-        </div>
-      </div>
-
-      <div class="post_content">
-        <p>content</p>
-      </div>
-
-      <div class="post_images d-grid overflow-auto">
-        <div class="post_image">
-          <img
-            src="https://scontent.fsgn2-7.fna.fbcdn.net/v/t39.30808-6/341857422_213834411342259_2047968322786129824_n.png?stp=dst-png_s600x600&_nc_cat=1&ccb=1-7&_nc_sid=730e14&_nc_ohc=fZcEieP7FDQAX8RnTwn&_nc_ht=scontent.fsgn2-7.fna&oh=00_AfBoFpIo3YXmYxcAHTRhEgq4bX9Gk86l1BacMgwo4uqwNg&oe=64454313"
-            alt="">
-        </div>
-
-        <div class="post_image">
-          <img
-            src="https://scontent.fsgn2-7.fna.fbcdn.net/v/t39.30808-6/341857422_213834411342259_2047968322786129824_n.png?stp=dst-png_s600x600&_nc_cat=1&ccb=1-7&_nc_sid=730e14&_nc_ohc=fZcEieP7FDQAX8RnTwn&_nc_ht=scontent.fsgn2-7.fna&oh=00_AfBoFpIo3YXmYxcAHTRhEgq4bX9Gk86l1BacMgwo4uqwNg&oe=64454313"
-            alt="">
-        </div>
-
-        <div class="post_image">
-          <img
-            src="https://scontent.fsgn2-7.fna.fbcdn.net/v/t39.30808-6/341857422_213834411342259_2047968322786129824_n.png?stp=dst-png_s600x600&_nc_cat=1&ccb=1-7&_nc_sid=730e14&_nc_ohc=fZcEieP7FDQAX8RnTwn&_nc_ht=scontent.fsgn2-7.fna&oh=00_AfBoFpIo3YXmYxcAHTRhEgq4bX9Gk86l1BacMgwo4uqwNg&oe=64454313"
-            alt="">
-        </div>
-      </div>
-
-      <div class="likes mt-3 d-flex">
-        <span>
-          <i class="fa-regular fa-heart"></i>
-          <p>54k</p>
-        </span>
-        <span>
-          <i class="fa-regular fa-comment"></i>
-          <p>15.3k</p>
-        </span>
-        <span>
-          <i class="fa-regular fa-paper-plane"></i>
-          <p>9k</p>
-        </span>
-      </div>
-
-      <div class="comments d-grid">
-        <div class="comment">
-          <div class="comment_item d-flex align-items-center">
-            <img
-              src=""
-              alt="">
-
-            <div class="comment__item--content">
-              <span class="reply_content"><b>Nguyễn quôc anh:</b> Wow you looking gorgeous
-              </span>
-
-              <div class="d-flex reply_container align-items-center">
-
-                <input type="checkbox" hidden name="" id="popup_reply">
-                <label for="popup_reply" class="popup position-fixed"></label>
-
-                <span class="reply_time">2 giây</span>
-                <button class="reply_choose" value="">Trả lời</button>
-                <label for="popup_reply">
-                  <i class="fa-solid fa-ellipsis btn-chooses"></i>
-                </label>
-
-                <div class="card card_popup">
-                  <button class="btn btn-popup btn-report">Báo cáo</button>
-                  <button class="btn btn-popup btn-delete">Xóa</button>
-                  <label for="popup_reply" class="btn btn-popup btn-cancel">Hủy</label>
-                </div>
-
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="comment">
-          <div class="comment_item d-flex align-items-center">
-            <img
-              src=""
-              alt="">
-
-            <div class="comment__item--content">
-              <span class="reply_content"><b>Nguyễn quôc anh:</b> Wow you looking gorgeous
-              </span>
-
-              <div class="d-flex reply_container align-items-center">
-
-                <input type="checkbox" hidden name="" id="popup_reply">
-                <label for="popup_reply" class="popup position-fixed"></label>
-
-                <span class="reply_time">2 giây</span>
-                <button class="reply_choose" value="">Trả lời</button>
-                <label for="popup_reply">
-                  <i class="fa-solid fa-ellipsis btn-chooses"></i>
-                </label>
-
-                <div class="card card_popup">
-                  <button class="btn btn-popup btn-report">Báo cáo</button>
-                  <button class="btn btn-popup btn-delete">Xóa</button>
-                  <label for="popup_reply" class="btn btn-popup btn-cancel">Hủy</label>
-                </div>
-
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <form action="" class="d-flex form-control form-comment">
-        <input type="text" class="comment_insert w-100 shadow-none"
-          placeholder="Thêm bình luận">
-
-        <button type="submit" class="btn btn-comment shadow-none">Đăng</button>
-      </form>
-
-      <div class="messenger_container position-fixed bottom-0 d-flex">
-        <!-- <app-messenger class="d-flex"></app-messenger> -->
-      </div>
-
-    </div>
   </div>
 </section>

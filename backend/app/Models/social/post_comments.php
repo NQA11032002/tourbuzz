@@ -14,6 +14,6 @@ class post_comments extends Model
 
     public function user_information()
     {
-        return $this->hasOne(user_information::class, 'user_id', "id");
+        return $this->hasMany(user_information::class, 'id', "user_id");
     }
 }

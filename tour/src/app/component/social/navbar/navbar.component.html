@@ -4,55 +4,18 @@
       <h3 class="navbar-item-breadscrumb">Home</h3>
 
       <h6 class="navbar-item-title">Friends (10)</h6>
-      <div class="navbar-item">
-        <div class="navbar-infor">
-          <div class="navbar-infor-image position-relative">
-            <img src="assets/img/QA.jpg" alt="logo">
-            <i
-              class="status-info fa-solid fa-circle position-absolute bottom-0 right-0"></i>
+      <div  *ngFor="let item of friends">
+        <div class="navbar-item" *ngFor="let friend of item.friends">
+          <div class="navbar-infor">
+            <div class="navbar-infor-image position-relative">
+              <img src="{{ friend.user_information.image }}" alt="logo">
+              <i
+                class="status-info fa-solid fa-circle position-absolute bottom-0 right-0"></i>
 
-          </div>
-          <div class="navbar-infor-name">
-            <span>Nguyễn Quốc Anh</span>
-          </div>
-        </div>
-      </div>
-      <div class="navbar-item">
-        <div class="navbar-infor">
-          <div class="navbar-infor-image position-relative">
-            <img src="assets/img/QA.jpg" alt="logo">
-            <i
-              class="status-info fa-solid fa-circle position-absolute bottom-0 right-0"></i>
-
-          </div>
-          <div class="navbar-infor-name">
-            <span>Nguyễn Quốc Anh</span>
-          </div>
-        </div>
-      </div>
-      <div class="navbar-item">
-        <div class="navbar-infor">
-          <div class="navbar-infor-image position-relative">
-            <img src="assets/img/QA.jpg" alt="logo">
-            <i
-              class="status-info fa-solid fa-circle position-absolute bottom-0 right-0"></i>
-
-          </div>
-          <div class="navbar-infor-name">
-            <span>Nguyễn Quốc Anh</span>
-          </div>
-        </div>
-      </div>
-      <div class="navbar-item">
-        <div class="navbar-infor">
-          <div class="navbar-infor-image position-relative">
-            <img src="assets/img/QA.jpg" alt="logo">
-            <i
-              class="status-info fa-solid fa-circle position-absolute bottom-0 right-0"></i>
-
-          </div>
-          <div class="navbar-infor-name">
-            <span>Nguyễn Quốc Anh</span>
+            </div>
+            <div class="navbar-infor-name">
+              <span>{{ friend.user_information.name }}</span>
+            </div>
           </div>
         </div>
       </div>

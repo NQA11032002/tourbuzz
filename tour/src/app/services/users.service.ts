@@ -9,6 +9,7 @@ export class UsersService {
   constructor(private http:HttpClient){}
 
   private api = "http://localhost:8000/api/auth/";
+  private apiUser = "http://localhost:8000/api/social/users";
 
   //when user login call api to perform application
   login(email:string, password:string){
@@ -30,6 +31,14 @@ export class UsersService {
   logout(token:string){
     let headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
     let urlApi = `${this.api}logout?bearer=${token}`;
+
+    return this.http.get<any>(urlApi, {headers});
+  }
+
+  //get list friend of user login
+  getFriends(token:string){
+    let headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
+    let urlApi = `${this.apiUser}?bearer=${token}`;
 
     return this.http.get<any>(urlApi, {headers});
   }

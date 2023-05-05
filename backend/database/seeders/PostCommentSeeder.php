@@ -4,19 +4,22 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use DB;
 use Faker;
+use DB;
 
-class Post_pictureSeeder extends Seeder
+class PostCommentSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        DB::table('post_picture')->insert([
+        $fake  = Faker\Factory::create();
+
+        DB::table('post_comments')->insert([
+            "user_id" => 2,
             "post_id" => 2,
-            "images" => "https://i.pinimg.com/564x/b5/85/11/b58511cfc2f13627fafa33118f70bead.jpg",
+            "content" => $fake->text()
         ]);
     }
 }
