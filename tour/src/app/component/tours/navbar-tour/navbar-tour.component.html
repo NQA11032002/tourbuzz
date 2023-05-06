@@ -5,39 +5,71 @@
     <div>
       <label for="customRange1" class="form-label">
         Giá tour:
-        <span class="price_start price"> 50000 </span>
-        -
-        <span class="price_end price"> 100000</span>
+        <span class="price">{{ rangeValue }}</span><span>$</span>
       </label>
 
-      <input type="range" class="form-range shadow-none" id="customRange1">
+      <input type="range" class="form-range shadow-none" id="customRange1" min="500000" max="10000000" step="10000"
+        [value]="rangeValue" (input)="onRangeValueChange($event)">
     </div>
 
-    <label for="city">Thành phố</label>
-    <select id="city" class="form-select">
-      <option value="">Phù Mỹ</option>
-      <option value="">An Nhơn</option>
-    </select>
-
-    <label for="district">Quận</label>
-    <select id="district" class="form-select">
-      <option value="">Phù Mỹ</option>
-      <option value="">An Nhơn</option>
-    </select>
     <div>
-      <div>
+      <label for="tour" class="form-label">Địa điểm bắt đầu</label>
+      <select id="city" class="form-select shadow-none">
+        <option *ngFor="let item of data" value="{{item.matp}}">{{item.name}}</option>
+      </select>
+    </div>
+
+    <div>
+      <label for="tour" class="form-label">Địa điểm đến</label>
+      <select id="city" class="form-select shadow-none">
+        <option *ngFor="let item of data" value="{{item.matp}}">{{item.name}}</option>
+      </select>
+    </div>
+
+    <div>
+      <label for="sDay" class="form-label">Ngày khởi hành</label>
+      <input type="date" name="startDay" id="sDay" class="form-control shadow-none">
+    </div>
+
+    <div>
+      <label for="sDay" class="form-label">Ngày kết thúc</label>
+      <input type="date" name="endDay" id="eDay" class="form-control shadow-none">
+    </div>
+
+    <div>
+      <label for="vehical" class="form-label">Phương tiện: </label>
+
+      <div class="vehicle_items d-grid">
+        <label>
+          <input type="checkbox" name="vehicle[]" id="">
+          Xe đạp
+        </label>
+
+        <label>
+          <input type="checkbox" name="vehicle[]" id="">
+          Xe máy
+        </label>
+
+        <label>
+          <input type="checkbox" name="vehicle[]" id="">
+          Xích lô
+        </label>
+
+        <label>
+          <input type="checkbox" name="vehicle[]" id="">
+          Cưỡi ngựa
+        </label>
+
+        <label>
+          <input type="checkbox" name="vehicle[]" id="">
+          Cưỡi voi
+        </label>
+
         <label>
           <input type="checkbox" name="vehicle[]" id="">
           Xe điện
         </label>
       </div>
     </div>
-
-    <label for="town">Thị trấn</label>
-    <select id="town" class="form-select">
-      <option value="">Phù Mỹ</option>
-      <option value="">An Nhơn</option>
-    </select>
-    <input type="submit" name="" id="filter" class="btn mt-2" value="Duyệt">
   </form>
 </div>

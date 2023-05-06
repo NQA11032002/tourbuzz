@@ -6,8 +6,7 @@
 	<meta name="author" content="Kodinger">
 	<meta name="viewport" content="width=device-width,initial-scale=1">
 	<title>My Login Page</title>
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 	<link href="assets/css/style.css">
 </head>
 
@@ -22,34 +21,51 @@
 					<div class="card fat">
 						<div class="card-body">
 							<h4 class="card-title">Login</h4>
-							<form method="POST" class="my-login-validation" novalidate="">
+							<form [formGroup]="loginForm" method="post" class="my-login-validation"
+								(ngSubmit)="submitLogin()" action="#">
 								<div class="form-group">
 									<label for="email">E-Mail Address</label>
-									<input id="email" type="email" class="form-control" name="email" value="" required
-										autofocus>
-									<div class="invalid-feedback">
-										Email is invalid
+									<input id="email" formControlName="email" type="email"
+										class="form-control shadow-none" name="email">
+
+									<div class="errors"
+										*ngIf="loginForm.controls['email'].invalid && (loginForm.controls['email'].dirty || loginForm.controls['email'].touched)">
+										<p *ngIf="loginForm.get('email')?.hasError('required')">Email không được để
+											trống</p>
+										<p *ngIf="loginForm.get('email')?.hasError('email')">Email không đúng định dạng
+										</p>
 									</div>
 								</div>
 
 								<div class="form-group">
-									<label for="password">Password
-										<a href="/forgotpass" class="float-right">
-											Forgot Password?
-										</a>
-									</label>
-									<input id="password" type="password" class="form-control" name="password" required
-										data-eye>
-									<div class="invalid-feedback">
-										Password is required
+									<label for="email">Password</label>
+									<input id="password" formControlName="password" type="password"
+										class="form-control shadow-none" name="password" required data-eye>
+
+									<div class="errors"
+										*ngIf="loginForm.controls['password'].invalid && (loginForm.controls['password'].dirty || loginForm.controls['password'].touched)">
+										<p *ngIf="loginForm.get('password')?.hasError('required')">Password không được
+											để trống</p>
+										<p *ngIf="loginForm.get('password')?.hasError('min')">Password từ 6 ký tự trở
+											lên</p>
 									</div>
 								</div>
 
+								<div class="errors" *ngIf="loginFail">
+									<p>{{ this.loginFail }}</p>
+								</div>
+
 								<div class="form-group">
-									<div class="custom-checkbox custom-control">
-										<input type="checkbox" name="remember" id="remember"
-											class="custom-control-input">
-										<label for="remember" class="custom-control-label">Remember Me</label>
+									<div class="custom-checkbox d-flex justify-content-between align-items-center">
+										<label for="remember" class="d-flex align-items-center">
+											<input type="checkbox" name="remember" id="remember"
+												class="mr-1 shadow-none">Remember Me</label>
+
+										<label for="password">
+											<a [routerLink]="['/forgot-password']" class="float-right">
+												Forgot Password?
+											</a>
+										</label>
 									</div>
 								</div>
 
