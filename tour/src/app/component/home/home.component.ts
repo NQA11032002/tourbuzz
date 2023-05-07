@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Cities } from 'src/app/models/Cities.models';
 import { AddressService } from 'src/app/services/address.service';
 import { SocialService } from 'src/app/services/social.service';
@@ -9,13 +9,14 @@ import { TourService } from 'src/app/services/tour.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent {
+export class HomeComponent{
   public cities:Array<any> = new Array<any>();
   public travels:Array<any> = new Array<any>();
   public towns:Array<any> = new Array<any>();
   public vehicles:Array<any> = new Array<any>();
   public posts:Array<any> = new Array<any>();
   public tours:Array<any> = new Array<any>();
+  public coloricon:Array<any> = new Array<any>();
 
   public constructor(private address:AddressService, private social:SocialService, private tour:TourService){
     this.getCities();
@@ -23,7 +24,14 @@ export class HomeComponent {
     this.getVehicles();
     this.getPosts();
     this.getTours();
+  }
 
+
+  checkAmount(amount_customer_present: number, amount_customer_maximum: number): Boolean{
+    if(amount_customer_present < amount_customer_maximum){
+      return false;
+    }
+    return true;
   }
 
   getCities(){
