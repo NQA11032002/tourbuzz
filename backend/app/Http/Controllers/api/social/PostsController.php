@@ -11,6 +11,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Str;
 
 class PostsController extends Controller
 {
@@ -85,33 +87,16 @@ class PostsController extends Controller
             "type_travel_id" => $request->type_travel_id,
             "title" => $request->title,
             "content" => $request->content,
-            "status" => 1
+            "status" => $request->status
         ]);
 
-        //images will create with a new post if user is chooses images
-        if (!empty($request->images)) {
-            $images = explode(',', $request->images);
-
-            if (count($images) > 0) {
-                foreach ($images as $image) {
-                    DB::table('post_picture')->insert([
-                        "post_id" => $post,
-                        "images" => $image
-                    ]);
-                };
-            } else {
-                DB::table('post_picture')->insert([
-                    "post_id" => $post,
-                    "images" => $images
-                ]);
-            }
-        }
 
         if (!empty($post)) {
             $response = [
                 'title' => 'create a new post',
                 'status' => 200,
-                'detail' => 'post was create with the images'
+                'detail' => 'post was create with the images',
+                'data' => $post
             ];
         } else {
             $response = [
@@ -119,6 +104,83 @@ class PostsController extends Controller
                 'status' => 500,
                 'data' => [],
                 'detail' => 'error create new post'
+            ];
+        }
+
+        return $response;
+    }
+
+    public function uploadImages(Request $request)
+    {
+        $file = $request->file('file');
+
+        //upload file
+        //lấy ra file
+        $file = $request->file;
+
+        //lấy ra đuôi file
+        $ext = $file->extension();
+
+        //đổi tên file gán với đuôi
+        $file_name = Str::random(20) . '.' . time() . '.' . $ext;
+
+        //get current url disk backend
+        $urlDisk = public_path('assets');
+
+        //replace url disk current backend change to url disk tour
+        $directory = str_replace("backend\\public\\assets", "tour/src/assets/images/social", $urlDisk);
+        $directory = str_replace("\\", "/", $directory);
+
+        //di chuyển file vào thư mực avatar
+        $file->move($directory, $file_name);
+
+        $image = $file_name;
+
+        //images will create with a new post if user is chooses images
+
+        DB::table('post_picture')->insert([
+            "post_id" => $request->post,
+            "images" => $image,
+        ]);
+
+        $response = [
+            'title' => 'create a new post',
+            'status' => 200,
+            'detail' => 'post was create with the images',
+        ];
+
+        return $response;
+    }
+
+    //when user like a post will delete if you exists in table post_favorite, or insert into table
+    public function favorite(Request $request)
+    {
+        $isFavorite = post_favorite::where('post_id', $request->post_id)->where('user_id', Auth::user()->user_information->id)->first();
+
+        if (!empty($isFavorite)) {
+            $isFavorite->delete();
+
+            $listFavorite = post_favorite::where('post_id', $request->post_id)->get();
+
+            $response = [
+                'title' => 'The user remove favorite a post',
+                'status' => 200,
+                'detail' => 'success',
+                'data' => $listFavorite,
+                'check' => "unlike",
+            ];
+        } else {
+            $post = post_favorite::create([
+                "post_id" => $request->post_id,
+                "user_id" => Auth::user()->user_information->id,
+            ]);
+
+            $response = [
+                'title' => 'The user remove favorite a post',
+                'status' => 200,
+                'detail' => 'success',
+                'data' => $post,
+                'check' => "like"
             ];
         }
 

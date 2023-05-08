@@ -41,12 +41,16 @@ Route::prefix('social')->name('social.')->middleware('auth:sanctum')->group(func
         Route::get('/', [PostsController::class, "index"])->name('index');
         Route::get('/{name}', [PostsController::class, "index"])->name('search');
         Route::post('/', [PostsController::class, "create"])->name('create');
+        Route::post('/favorite', [PostsController::class, "favorite"])->name('favorite');
         Route::patch('/{id}', [PostsController::class, "update"])->name('update');
         Route::delete('/{id}', [PostsController::class, "destroy"])->name('destroy');
     });
 
     Route::get('vehicles', [VehiclesController::class, "index"])->name('vehicles');
 });
+
+Route::post('/upload', [PostsController::class, "uploadImages"])->name('upload-images');
+
 
 Route::prefix('tour')->name('tour.')->middleware('auth:sanctum')->group(function () {
     Route::get('/', [ToursController::class, "index"])->name('index');

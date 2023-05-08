@@ -7,80 +7,85 @@
 
   <div class="posts">
     <div class="post_item" *ngFor="let item of posts">
-      <div class="post_top d-flex align-items-center">
-        <img
-          src="{{item.user_information.image}}"
-        alt=""  data-bs-toggle="modal" data-bs-target="#shortinformodal">
-
-        <div class="post_top--info">
-          <h5 class="post_name">{{item.user_information.name}}</h5>
-          <p class="post_time">{{item.created_at | date: 'dd-MM-yyyy'}} <i class="fa-solid fa-earth-asia"></i></p>
-        </div>
-      </div>
-
-      <div class="post_content">
-        <p>{{item.content}}</p>
-      </div>
-
-      <div class="post_images d-grid overflow-auto">
-        <div class="post_image" *ngFor="let picture of item.post_picture">
+      <div *ngIf="item.status != 0">
+        <div class="post_top d-flex align-items-center">
           <img
-            src="{{picture.images}}"
-            alt="">
+            src="assets/images/avatar/{{item.user_information.image}}"
+          alt=""  data-bs-toggle="modal" data-bs-target="#shortinformodal">
+  
+          <div class="post_top--info">
+            <h5 class="post_name">{{item.user_information.name}}</h5>
+            <p class="post_time">{{item.created_at | date: 'dd-MM-yyyy'}} <i *ngIf="item.status == 1" class="fa-solid fa-earth-asia"></i> <i *ngIf="item.status == 2" class="fa-solid fa-user-group"></i> <i *ngIf="item.status == 0" class="fa-solid fa-lock"></i></p>
+          </div>
         </div>
-      </div>
-
-      <div class="likes mt-3 d-flex">
-        <span>
-          <i class="fa-regular fa-heart"></i>
-          <p>{{item.post_favorite.length}}</p>
-        </span>
-        <span>
-          <i class="fa-regular fa-comment"></i>
-          <p>{{item.post_comments.length}}</p>
-        </span>
-      </div>
-
-      <div class="comments d-grid">
-        <div class="comment" *ngFor="let comment of item.post_comments">
-          <div class="comment_item d-flex align-items-center">
+  
+        <div class="post_content">
+          <h5 class="title">Tiêu đề: {{item.title}}</h5>
+          <p class="content">{{item.content}}</p>
+        </div>
+  
+        <div class="post_images d-grid overflow-auto">
+          <div class="post_image" *ngFor="let picture of item.post_picture">
             <img
-              src="{{ comment.user_information[0].image }}"
+              src="assets/images/social/{{picture.images}}"
               alt="">
+          </div>
+        </div>
+  
+        <div class="likes mt-3 d-flex">
+          <span>
+            <i (click)="favorite(item)" [class]="isFavorite(item.post_favorite) == true ? 'fa-solid fa-heart favorite' : 'fa-regular fa-heart unfavorite'"></i>
 
-            <div class="comment__item--content">
-              <span class="reply_content"><b>{{ comment.user_information[0].name }}:</b> {{ comment.content }}
-              </span>
-
-              <div class="d-flex reply_container align-items-center">
-
-                <input type="checkbox" hidden name="" id="popup_reply">
-                <label for="popup_reply" class="popup position-fixed"></label>
-
-                <span class="reply_time">{{ comment.created_at | date:'dd-MM-yyyy' }}</span>
-                <button class="reply_choose" value="">Trả lời</button>
-                <label for="popup_reply">
-                  <i class="fa-solid fa-ellipsis btn-chooses"></i>
-                </label>
-
-                <div class="card card_popup">
-                  <button class="btn btn-popup btn-report">Báo cáo</button>
-                  <button class="btn btn-popup btn-delete">Xóa</button>
-                  <label for="popup_reply" class="btn btn-popup btn-cancel">Hủy</label>
+            <p>{{item.post_favorite.length}}</p>
+          </span>
+          <span class="comment">
+            <i class="fa-regular fa-comment"></i>
+            <p>{{item.post_comments.length}}</p>
+          </span>
+        </div>
+  
+        <div class="comments d-grid">
+          <div class="comment" *ngFor="let comment of item.post_comments">
+            <div class="comment_item d-flex align-items-center">
+              <img
+                src="assets/images/avatar/{{ comment.user_information[0].image }}"
+                alt="">
+  
+              <div class="comment__item--content">
+                <span class="reply_content"><b>{{ comment.user_information[0].name }}:</b> {{ comment.content }}
+                </span>
+  
+                <div class="d-flex reply_container align-items-center">
+  
+                  <input type="checkbox" hidden name="" id="popup_reply">
+                  <label for="popup_reply" class="popup position-fixed"></label>
+  
+                  <span class="reply_time">{{ comment.created_at | date:'dd-MM-yyyy' }}</span>
+                  <button class="reply_choose" value="">Trả lời</button>
+                  <label for="popup_reply">
+                    <i class="fa-solid fa-ellipsis btn-chooses"></i>
+                  </label>
+  
+                  <div class="card card_popup">
+                    <button class="btn btn-popup btn-report">Báo cáo</button>
+                    <button class="btn btn-popup btn-delete">Xóa</button>
+                    <label for="popup_reply" class="btn btn-popup btn-cancel">Hủy</label>
+                  </div>
+  
                 </div>
-
               </div>
             </div>
           </div>
         </div>
+  
+        <form action="" class="d-flex form-control form-comment">
+          <input type="text" class="comment_insert w-100 shadow-none"
+            placeholder="Thêm bình luận">
+  
+          <button type="submit" class="btn btn-comment shadow-none">Đăng</button>
+        </form>
       </div>
 
-      <form action="" class="d-flex form-control form-comment">
-        <input type="text" class="comment_insert w-100 shadow-none"
-          placeholder="Thêm bình luận">
-
-        <button type="submit" class="btn btn-comment shadow-none">Đăng</button>
-      </form>
     </div>
 
   </div>
