@@ -21,7 +21,7 @@ class Address_travelSeeder extends Seeder
             "city_matp" => "01",
             "district_maqh" => "001",
             "town_xaid" => "00001",
-            "type_travel_id" => 3,
+            "type_travel_id" => 1,
         ]);
     }
 }

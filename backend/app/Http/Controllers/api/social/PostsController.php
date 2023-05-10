@@ -4,6 +4,7 @@ namespace App\Http\Controllers\api\social;
 
 use App\Http\Controllers\Controller;
 use App\Models\social\post_comments;
+use App\Models\social\post_comments_reply;
 use App\Models\social\post_favorite;
 use App\Models\social\post_picture;
 use App\Models\social\posts;
@@ -23,7 +24,7 @@ class PostsController extends Controller
     {
         $posts = posts::whereHas('user_information', function ($query) use ($keyWork) {
             if (!empty($keyWork)) {
-                $query->where('name', 'like', '%' . $keyWork . '%')->orWhere('address', 'like', '%' . $keyWork . '%');
+                $query->where('name', 'like', '%' . $keyWork . '%')->orWhere('address', 'like', '%' . $keyWork  . '%');
             }
         })->orderByDesc('id')->with('post_picture')->with('post_comments')->with('user_information')->with('post_favorite')->with('type_travel')->with('address_travel')->get();
 
@@ -31,6 +32,10 @@ class PostsController extends Controller
         foreach ($posts as $post) {
             foreach ($post->post_comments as $comment) {
                 $comment->user_information;
+                foreach ($comment->post_comments_reply as $comment_reply) {
+                    $comment_reply->user_information;
+                    $comment_reply->user_information_2;
+                }
             }
         }
 
@@ -187,12 +192,93 @@ class PostsController extends Controller
         return $response;
     }
 
+    //comment a post
+    public function comment(Request $request)
+    {
+        $comment = post_comments::create([
+            "post_id" => $request->post_id,
+            "user_id" => Auth::user()->user_information->id,
+            "content" => $request->content,
+        ]);
+
+        if ($comment) {
+            $newComment = post_comments::where('post_id', $comment->post_id)->orderByDesc('id')->with('user_information')->first();
+
+            $response = [
+                'title' => 'The user comment a post',
+                'status' => 200,
+                'data' => $newComment,
+                'detail' => 'success',
+            ];
+        } else {
+            $response = [
+                'title' => 'The user comment a post',
+                'status' => 500,
+                'detail' => 'fails',
+            ];
+        }
+
+        return $response;
+    }
+
+    //reply comment of a post
+    public function commentReply(Request $request)
+    {
+        $comment_reply = post_comments_reply::create([
+            "comment_id" => $request->comment_id,
+            "users_id_1" => Auth::user()->user_information->id,
+            "users_id_2" => $request->user_id_2,
+            "content" => $request->content,
+        ]);
+
+        if ($comment_reply) {
+            $commentReply = post_comments_reply::where('comment_id', $request->comment_id)->orderByDesc('id')->with('user_information')->with('user_information_2')->first();
+
+            $response = [
+                'title' => 'The user reply comment of a post',
+                'status' => 200,
+                'data' => $commentReply,
+                'detail' => 'success',
+            ];
+        } else {
+            $response = [
+                'title' => 'The user reply comment of a post',
+                'status' => 500,
+                'detail' => 'fail',
+            ];
+        }
+
+        return $response;
+    }
+
+    //The user deletes them comment a post
+    public function deleteComment($id)
+    {
+        $result = post_comments::find($id)->delete();
+
+        if ($result) {
+            $response = [
+                'title' => 'The user deletes them comment a post',
+                'status' => 200,
+                'data' => $id,
+                'detail' => 'success',
+            ];
+        } else {
+            $response = [
+                'title' => 'The user deletes them comment a post',
+                'status' => 500,
+                'detail' => 'success',
+            ];
+        }
+
+        return $response;
+    }
+
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store()
     {
-        //
     }
 
     /**

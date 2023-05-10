@@ -56,7 +56,7 @@ export class LoginComponent implements OnInit{
   submitLogin(){
 
     this.user.login(this.loginForm.get('email')?.value, this.loginForm.get('password')?.value).subscribe(p => {
-
+      console.log(p);
       if(p.status === 401)
       {
         this.loginFail = "Tài khoản hoặc mật khẩu không chính xác";

@@ -102,7 +102,7 @@ class AuthController extends Controller
         $user = DB::table('users')->insertGetId([
             "email" => $request->email,
             "password" => Hash::make($request->password),
-            "role_id" => 1,
+            "role_id" => 2,
             "status" => 1
         ]);
 
@@ -111,7 +111,7 @@ class AuthController extends Controller
                 "user_id" => $user,
                 "name" => $request->name,
                 "birth_date" => $request->birth_date,
-                "image" => "./assets/img/avatar/default.png",
+                "image" => "default.png",
             ]);
 
             $response = [

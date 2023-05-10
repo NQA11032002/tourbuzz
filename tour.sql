@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th5 05, 2023 lúc 04:57 PM
--- Phiên bản máy phục vụ: 10.4.24-MariaDB
--- Phiên bản PHP: 8.1.6
+-- Thời gian đã tạo: Th5 10, 2023 lúc 07:31 PM
+-- Phiên bản máy phục vụ: 10.4.28-MariaDB
+-- Phiên bản PHP: 8.1.17
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -28,22 +28,22 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `address_travel` (
-  `id` int(10) NOT NULL,
-  `name_travel` varchar(255) CHARACTER SET utf8 COLLATE utf8_vietnamese_ci DEFAULT NULL,
-  `city_matp` varchar(255) CHARACTER SET utf8 COLLATE utf8_vietnamese_ci DEFAULT NULL,
-  `district_maqh` varchar(255) CHARACTER SET utf8 COLLATE utf8_vietnamese_ci DEFAULT NULL,
-  `town_xaid` varchar(255) CHARACTER SET utf8 COLLATE utf8_vietnamese_ci DEFAULT NULL,
-  `type_travel_id` int(11) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `id` int(10) UNSIGNED NOT NULL,
+  `name_travel` varchar(60) NOT NULL,
+  `city_matp` varchar(255) NOT NULL,
+  `district_maqh` varchar(255) NOT NULL,
+  `town_xaid` varchar(255) NOT NULL,
+  `type_travel_id` int(10) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `address_travel`
 --
 
-INSERT INTO `address_travel` (`id`, `name_travel`, `city_matp`, `district_maqh`, `town_xaid`, `type_travel_id`) VALUES
-(1, 'Dr. Jolie Fahey', '01', '001', '00001', 1),
-(2, 'Amiya Halvorson', '01', '001', '00001', 2),
-(3, 'Candace Beahan', '01', '001', '00001', 3);
+INSERT INTO `address_travel` (`id`, `name_travel`, `city_matp`, `district_maqh`, `town_xaid`, `type_travel_id`, `created_at`, `updated_at`) VALUES
+(2, 'Kylee Bogisich', '01', '001', '00001', 1, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -52,19 +52,11 @@ INSERT INTO `address_travel` (`id`, `name_travel`, `city_matp`, `district_maqh`,
 --
 
 CREATE TABLE `categories_pay` (
-  `id` int(10) NOT NULL,
-  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_vietnamese_ci DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Đang đổ dữ liệu cho bảng `categories_pay`
---
-
-INSERT INTO `categories_pay` (`id`, `name`) VALUES
-(1, 'Thanh toán bằng MOMO'),
-(2, 'Thanh toán bằng ngân hàng'),
-(3, 'Thanh toán bằng giấy ghi nợ'),
-(4, 'Thanh toán bằng tiền mặt');
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(60) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -73,11 +65,11 @@ INSERT INTO `categories_pay` (`id`, `name`) VALUES
 --
 
 CREATE TABLE `district` (
-  `maqh` varchar(5) CHARACTER SET utf8 NOT NULL,
-  `name` varchar(100) CHARACTER SET utf8 NOT NULL,
-  `type` varchar(30) CHARACTER SET utf8 NOT NULL,
-  `matp` varchar(5) CHARACTER SET utf8 NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `maqh` varchar(5) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `name` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `type` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `matp` varchar(5) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `district`
@@ -798,11 +790,11 @@ INSERT INTO `district` (`maqh`, `name`, `type`, `matp`) VALUES
 
 CREATE TABLE `failed_jobs` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `uuid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `uuid` varchar(255) NOT NULL,
+  `connection` text NOT NULL,
+  `queue` text NOT NULL,
+  `payload` longtext NOT NULL,
+  `exception` longtext NOT NULL,
   `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -814,7 +806,7 @@ CREATE TABLE `failed_jobs` (
 
 CREATE TABLE `migrations` (
   `id` int(10) UNSIGNED NOT NULL,
-  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `migration` varchar(255) NOT NULL,
   `batch` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -823,9 +815,31 @@ CREATE TABLE `migrations` (
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(1, '2014_10_12_100000_create_password_reset_tokens_table', 1),
-(2, '2019_08_19_000000_create_failed_jobs_table', 1),
-(3, '2019_12_14_000001_create_personal_access_tokens_table', 1);
+(4, '2023_05_10_001428_create_post_comment_reply', 2),
+(5, '2023_05_10_001541_create_test', 3),
+(216, '2014_10_12_100000_create_password_reset_tokens_table', 4),
+(217, '2019_08_19_000000_create_failed_jobs_table', 4),
+(218, '2019_12_14_000001_create_personal_access_tokens_table', 4),
+(219, '2023_05_10_152706_create_roles_table', 4),
+(220, '2023_05_10_152726_create_users_table', 4),
+(221, '2023_05_10_152906_create_user_information_table', 4),
+(222, '2023_05_10_153426_create_users_connect_table', 4),
+(223, '2023_05_10_153551_create_vehicles_table', 4),
+(224, '2023_05_10_153626_create_type_travel_table', 4),
+(225, '2023_05_10_153646_create_tours_table', 4),
+(226, '2023_05_10_154016_create_tour_comments_table', 4),
+(227, '2023_05_10_154057_create_tour_evaluation_table', 4),
+(228, '2023_05_10_154131_create_tour_picture_table', 4),
+(229, '2023_05_10_154200_create_status_booking_table', 4),
+(230, '2023_05_10_154234_create_tour_booking_table', 4),
+(231, '2023_05_10_154358_create_categories_pay_table', 4),
+(232, '2023_05_10_154419_create_tour_pay_table', 4),
+(233, '2023_05_10_154605_create_address_travel_table', 4),
+(234, '2023_05_10_154702_create_posts_table', 4),
+(235, '2023_05_10_154841_create_post_comments_table', 4),
+(236, '2023_05_10_154920_create_post_favorite_table', 4),
+(237, '2023_05_10_154940_create_post_picture_table', 4),
+(238, '2023_05_10_155508_create_post_comment_reply_table', 4);
 
 -- --------------------------------------------------------
 
@@ -834,8 +848,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 --
 
 CREATE TABLE `password_reset_tokens` (
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `token` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -847,13 +861,13 @@ CREATE TABLE `password_reset_tokens` (
 
 CREATE TABLE `personal_access_tokens` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `tokenable_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tokenable_type` varchar(255) NOT NULL,
   `tokenable_id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `abilities` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(255) NOT NULL,
+  `token` varchar(64) NOT NULL,
+  `abilities` text DEFAULT NULL,
   `last_used_at` timestamp NULL DEFAULT NULL,
-  `expires_at` timestamp NULL DEFAULT NULL,
+  `expires_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -863,10 +877,9 @@ CREATE TABLE `personal_access_tokens` (
 --
 
 INSERT INTO `personal_access_tokens` (`id`, `tokenable_type`, `tokenable_id`, `name`, `token`, `abilities`, `last_used_at`, `expires_at`, `created_at`, `updated_at`) VALUES
-(62, 'App\\Models\\auth\\user', 11, 'auth_token', '2595a7d738382244ea2a539116242a419b2e1107d957e880aa905c2f00f67f7d', '[\"*\"]', NULL, '2023-05-04 18:22:34', '2023-05-04 15:22:34', '2023-05-04 15:22:34'),
-(65, 'App\\Models\\auth\\user', 13, 'auth_token', '3f62f751ee6ea5afc0f05c10474cdb1dfa4c33e98659a600262d535fd0952cd3', '[\"*\"]', NULL, '2023-05-04 18:32:36', '2023-05-04 15:32:36', '2023-05-04 15:32:36'),
-(95, 'App\\Models\\auth\\user', 16, 'auth_token', 'a4fb38868c91c4d9fbfd2ba91701de5151f2240d71e4a0c74c9a3adafde49911', '[\"*\"]', NULL, '2023-05-04 19:23:54', '2023-05-04 16:23:54', '2023-05-04 16:23:54'),
-(130, 'App\\Models\\auth\\user', 17, 'auth_token', 'e28395f4be7a6395e47373a994340f9aec41bb208ed053e718e3988e4082bf0f', '[\"*\"]', '2023-05-05 14:55:51', '2023-05-05 17:24:49', '2023-05-05 14:24:49', '2023-05-05 14:55:51');
+(7, 'App\\Models\\auth\\user', 5, 'auth_token', '5eb964994372a7f379551f9c7509d70917bac9730be29fd9e64b4db96ad3ccd9', '[\"*\"]', '2023-05-10 16:39:46', '2023-05-10 19:32:47', '2023-05-10 16:32:47', '2023-05-10 16:39:46'),
+(9, 'App\\Models\\auth\\user', 6, 'auth_token', 'dbf353cd11cd35c786ad27d05270cd3b44c9e9c27e936e207f795dd4439e699c', '[\"*\"]', '2023-05-10 17:18:23', '2023-05-10 19:45:52', '2023-05-10 16:45:52', '2023-05-10 17:18:23'),
+(10, 'App\\Models\\auth\\user', 7, 'auth_token', '15eedc2922ae3f8cf055e70b77d81593ff8332f8b3253b92a1d3f1a90cb249fb', '[\"*\"]', '2023-05-10 17:24:15', '2023-05-10 20:15:32', '2023-05-10 17:15:32', '2023-05-10 17:24:15');
 
 -- --------------------------------------------------------
 
@@ -875,26 +888,25 @@ INSERT INTO `personal_access_tokens` (`id`, `tokenable_type`, `tokenable_id`, `n
 --
 
 CREATE TABLE `posts` (
-  `id` int(10) NOT NULL,
-  `user_id` int(11) DEFAULT NULL,
-  `address_travel_id` int(11) DEFAULT NULL,
-  `type_travel_id` int(11) DEFAULT NULL,
-  `title` varchar(255) CHARACTER SET utf8 COLLATE utf8_vietnamese_ci DEFAULT NULL,
-  `content` text CHARACTER SET utf8 COLLATE utf8_vietnamese_ci DEFAULT NULL,
-  `status` varchar(255) CHARACTER SET utf8 COLLATE utf8_vietnamese_ci DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `id` int(10) UNSIGNED NOT NULL,
+  `user_id` int(10) UNSIGNED NOT NULL,
+  `address_travel_id` int(10) UNSIGNED NOT NULL,
+  `type_travel_id` int(10) UNSIGNED NOT NULL,
+  `title` varchar(70) NOT NULL,
+  `content` text NOT NULL,
+  `status` varchar(30) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `posts`
 --
 
 INSERT INTO `posts` (`id`, `user_id`, `address_travel_id`, `type_travel_id`, `title`, `content`, `status`, `created_at`, `updated_at`) VALUES
-(1, 1, 2, 2, 'Một bầu trời tươi mát', 'Du lịch cùng trà xanh', '1', '2023-04-22 15:09:25', '2023-04-22 08:09:25'),
-(3, 4, 1, 1, 'Dr.', 'Ipsam dicta eius quod omnis necessitatibus pariatur. Qui est et quo ut fuga natus voluptas. Sunt pariatur mollitia sed consectetur rerum et. Sed ratione quod ea perspiciatis praesentium dolorem nam.', '1', '2023-04-21 14:28:23', '2023-04-21 14:28:23'),
-(4, 1, 2, 2, 'Du lịch biển xanh', 'Một chuyến đi đầy niềm vui và ấm áp giải tỏa mọi căng thẳng', '1', '2023-04-22 14:11:17', '2023-04-22 14:11:17'),
-(2, 2, 3, 0, 'Hoang thien de', '1', '[value-7]', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
+(1, 3, 2, 1, 'xcvxcv', 'cxv', '2', NULL, NULL),
+(2, 3, 2, 1, 'zxc', 'zzxczx', '1', NULL, NULL),
+(3, 5, 2, 1, 'ád', 'áda', '2', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -903,13 +915,66 @@ INSERT INTO `posts` (`id`, `user_id`, `address_travel_id`, `type_travel_id`, `ti
 --
 
 CREATE TABLE `post_comments` (
-  `id` int(10) NOT NULL,
-  `post_id` int(11) DEFAULT NULL,
-  `user_id` int(11) DEFAULT NULL,
-  `content` text CHARACTER SET utf8 COLLATE utf8_vietnamese_ci DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `id` int(10) UNSIGNED NOT NULL,
+  `post_id` int(10) UNSIGNED NOT NULL,
+  `user_id` int(10) UNSIGNED NOT NULL,
+  `content` text NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `post_comments`
+--
+
+INSERT INTO `post_comments` (`id`, `post_id`, `user_id`, `content`, `created_at`, `updated_at`) VALUES
+(1, 2, 3, 'zxczxczxc', '2023-05-10 10:25:29', '2023-05-10 10:25:29'),
+(3, 1, 3, 'zxczxc', '2023-05-10 15:28:41', '2023-05-10 15:28:41'),
+(6, 2, 4, 'asd', '2023-05-10 16:14:18', '2023-05-10 16:14:18'),
+(7, 2, 3, 'anh', '2023-05-10 16:17:04', '2023-05-10 16:17:04'),
+(8, 2, 3, 'zxczxc', '2023-05-10 16:31:51', '2023-05-10 16:31:51');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `post_comment_reply`
+--
+
+CREATE TABLE `post_comment_reply` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `comment_id` int(10) UNSIGNED NOT NULL,
+  `users_id_1` int(10) UNSIGNED NOT NULL,
+  `users_id_2` int(10) UNSIGNED NOT NULL,
+  `content` text NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `post_comment_reply`
+--
+
+INSERT INTO `post_comment_reply` (`id`, `comment_id`, `users_id_1`, `users_id_2`, `content`, `created_at`, `updated_at`) VALUES
+(1, 1, 4, 3, 'zxczxczx', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(22, 6, 3, 4, '@quoc anh anh', '2023-05-10 16:31:46', '2023-05-10 16:31:46'),
+(23, 7, 3, 3, '@quoc em adsa', '2023-05-10 16:31:58', '2023-05-10 16:31:58'),
+(24, 8, 3, 3, '@quoc em asdad', '2023-05-10 16:32:01', '2023-05-10 16:32:01'),
+(25, 6, 4, 4, '@quoc anh asdasd', '2023-05-10 16:46:05', '2023-05-10 16:46:05'),
+(26, 1, 4, 3, ': zxczxczxc', '2023-05-10 16:52:28', '2023-05-10 16:52:28'),
+(27, 1, 4, 3, ': zxczxc', '2023-05-10 16:52:47', '2023-05-10 16:52:47'),
+(28, 1, 4, 3, 'zxczxc', '2023-05-10 16:53:07', '2023-05-10 16:53:07'),
+(29, 1, 4, 3, 'anh', '2023-05-10 16:53:19', '2023-05-10 16:53:19'),
+(30, 1, 4, 3, 'anh:em', '2023-05-10 16:53:31', '2023-05-10 16:53:31'),
+(42, 3, 4, 3, 'alo', '2023-05-10 17:10:00', '2023-05-10 17:10:00'),
+(43, 3, 4, 3, 'hmmm', '2023-05-10 17:10:05', '2023-05-10 17:10:05'),
+(48, 6, 4, 4, 'asdada', '2023-05-10 17:15:02', '2023-05-10 17:15:02'),
+(49, 7, 5, 3, 'đạt nè', '2023-05-10 17:15:57', '2023-05-10 17:15:57'),
+(50, 7, 5, 3, 'hé lô quốc em', '2023-05-10 17:16:07', '2023-05-10 17:16:07'),
+(51, 7, 4, 5, 'ok đạt', '2023-05-10 17:16:20', '2023-05-10 17:16:20'),
+(52, 8, 5, 3, 'áda', '2023-05-10 17:16:55', '2023-05-10 17:16:55'),
+(53, 7, 5, 5, 'ok', '2023-05-10 17:16:59', '2023-05-10 17:16:59'),
+(54, 7, 4, 4, 'ok', '2023-05-10 17:17:26', '2023-05-10 17:17:26'),
+(55, 7, 5, 4, 'ok', '2023-05-10 17:17:38', '2023-05-10 17:17:38');
 
 -- --------------------------------------------------------
 
@@ -918,12 +983,22 @@ CREATE TABLE `post_comments` (
 --
 
 CREATE TABLE `post_favorite` (
-  `id` int(10) NOT NULL,
-  `post_id` int(11) DEFAULT NULL,
-  `user_id` int(11) DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `id` int(10) UNSIGNED NOT NULL,
+  `post_id` int(10) UNSIGNED NOT NULL,
+  `user_id` int(10) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `post_favorite`
+--
+
+INSERT INTO `post_favorite` (`id`, `post_id`, `user_id`, `created_at`, `updated_at`) VALUES
+(1, 2, 3, '2023-05-10 10:25:12', '2023-05-10 10:25:12'),
+(3, 1, 3, '2023-05-10 15:28:39', '2023-05-10 15:28:39'),
+(4, 2, 5, '2023-05-10 17:18:18', '2023-05-10 17:18:18'),
+(5, 2, 4, '2023-05-10 17:18:22', '2023-05-10 17:18:22');
 
 -- --------------------------------------------------------
 
@@ -932,21 +1007,19 @@ CREATE TABLE `post_favorite` (
 --
 
 CREATE TABLE `post_picture` (
-  `id` int(10) NOT NULL,
-  `post_id` int(11) NOT NULL,
-  `images` text CHARACTER SET utf8 COLLATE utf8_vietnamese_ci DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `id` int(10) UNSIGNED NOT NULL,
+  `post_id` int(10) UNSIGNED NOT NULL,
+  `images` text NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `post_picture`
 --
 
 INSERT INTO `post_picture` (`id`, `post_id`, `images`, `created_at`, `updated_at`) VALUES
-(16, 4, 'https://thuvienanime.com/wp-content/uploads/2021/09/thanh-y-thuvienanime.jpeg', '2023-05-05 13:45:40', '2023-04-22 15:09:25'),
-(12, 3, 'https://i.pinimg.com/236x/19/2e/70/192e70d1119db12de6b8fe30a92912a1.jpg', '2023-05-05 12:58:33', '2023-04-22 15:07:42'),
-(6, 2, 'https://i.pinimg.com/736x/75/17/90/75179084d2c7a3eb0307988319b78ced.jpg', '2023-05-05 13:45:22', '2023-04-21 14:34:06');
+(1, 1, 'mFI3WlrueCCmUl498uDX.1683713316.jpg', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -955,11 +1028,11 @@ INSERT INTO `post_picture` (`id`, `post_id`, `images`, `created_at`, `updated_at
 --
 
 CREATE TABLE `province_city` (
-  `matp` varchar(5) CHARACTER SET utf8 NOT NULL,
-  `name` varchar(100) CHARACTER SET utf8 NOT NULL,
-  `type` varchar(30) CHARACTER SET utf8 NOT NULL,
+  `matp` varchar(5) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `name` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `type` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `slug` varchar(30) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `province_city`
@@ -1037,19 +1110,19 @@ INSERT INTO `province_city` (`matp`, `name`, `type`, `slug`) VALUES
 --
 
 CREATE TABLE `roles` (
-  `id` int(10) NOT NULL,
-  `role` varchar(100) CHARACTER SET utf8 COLLATE utf8_vietnamese_ci DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `id` int(10) UNSIGNED NOT NULL,
+  `role` varchar(10) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `roles`
 --
 
 INSERT INTO `roles` (`id`, `role`, `created_at`, `updated_at`) VALUES
-(1, 'user', '2023-04-21 13:49:36', '2023-04-21 13:49:36'),
-(2, 'admin', '2023-04-21 13:49:44', '2023-04-21 13:49:44');
+(1, 'admin', NULL, NULL),
+(2, 'user', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1058,20 +1131,11 @@ INSERT INTO `roles` (`id`, `role`, `created_at`, `updated_at`) VALUES
 --
 
 CREATE TABLE `status_booking` (
-  `id` int(10) NOT NULL,
-  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_vietnamese_ci DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Đang đổ dữ liệu cho bảng `status_booking`
---
-
-INSERT INTO `status_booking` (`id`, `name`) VALUES
-(1, 'Đã thanh toán'),
-(2, 'Chưa thanh toán'),
-(3, 'Cọc 30%'),
-(4, 'Hủy bỏ'),
-(5, 'Ghi nợ');
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -1080,38 +1144,23 @@ INSERT INTO `status_booking` (`id`, `name`) VALUES
 --
 
 CREATE TABLE `tours` (
-  `id` int(10) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `vehicle_id` int(11) NOT NULL,
-  `title` text CHARACTER SET utf8 COLLATE utf8_vietnamese_ci DEFAULT NULL,
-  `description` text CHARACTER SET utf8 COLLATE utf8_unicode_nopad_ci DEFAULT NULL,
-  `address_start` varchar(255) CHARACTER SET utf8 COLLATE utf8_vietnamese_ci DEFAULT NULL,
-  `address_end` varchar(255) CHARACTER SET utf8 COLLATE utf8_vietnamese_ci DEFAULT NULL,
-  `date_start` date DEFAULT NULL,
-  `date_end` date DEFAULT NULL,
-  `price_tour` double DEFAULT NULL,
-  `detail_price_tour` text CHARACTER SET utf8 COLLATE utf8_vietnamese_ci DEFAULT NULL,
-  `amount_customer_maximum` int(11) DEFAULT NULL,
-  `amount_customer_present` int(11) DEFAULT NULL,
-  `status` int(11) DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Đang đổ dữ liệu cho bảng `tours`
---
-
-INSERT INTO `tours` (`id`, `user_id`, `vehicle_id`, `title`, `description`, `address_start`, `address_end`, `date_start`, `date_end`, `price_tour`, `detail_price_tour`, `amount_customer_maximum`, `amount_customer_present`, `status`, `created_at`, `updated_at`) VALUES
-(1, 1, 1, 'Mr.', 'Delectus delectus aut ut non. In deleniti quidem quos consequatur ullam et ipsam. Tempore ea ut quis sit.', '276 Adolf Expressway Apt. 060\nPadbergville, PA 22917', '984 Damon Walks Suite 605\nPort Veda, NV 50124-3538', '1973-08-28', '2005-08-26', 175014, 'Ducimus nisi cum quod id consequuntur. Sit labore est sit voluptatem error. Voluptatem et voluptas eos aut ea neque.', 50, 2, 1, '2023-04-23 16:46:32', '2023-04-23 16:46:32'),
-(2, 2, 2, 'Miss', 'da nang', 'da nang', 'quy nhon', '1986-07-29', '1986-12-07', 700000, 'Dolore facere et qui voluptatem eveniet ullam fuga. Porro harum est similique ea veniam. Numquam aut quis corporis cum consequuntur optio.', 40, 2, 1, '2023-04-23 17:32:02', '2023-04-23 16:46:48'),
-(3, 4, 3, 'Prof.', 'Dolorem qui delectus adipisci voluptas sint. Placeat placeat perferendis totam. Quia dicta in sint natus natus et. Maiores qui ad sint repudiandae sed aliquid.', '57757 Cremin Fork Suite 425\nMyrtisside, CO 43513-8252', 'quy nhon', '2010-05-05', '2021-10-05', 263883, 'Tempore non rerum eum ab sunt sed voluptatem. Laborum alias nobis rerum omnis quis et minus. Ut consequuntur doloremque qui quidem quidem eligendi enim. Minima quidem in tempore.', 25, 2, 1, '2023-04-23 17:26:57', '2023-04-23 16:46:58'),
-(4, 11, 1, 'xuan ha thu dong', 'zxczc', 'zxczxczcx', 'zxcxzczxc', '2023-04-24', '2023-10-03', 500000, 'du lich: 300k, choi: 200k', 50, 49, 0, '2023-04-24 14:01:20', '2023-04-24 14:01:20'),
-(5, 11, 1, 'xuan ha thu dong', 'zxczc', 'zxczxczcx', 'zxcxzczxc', '2023-04-24', '2023-10-03', 500000, 'du lich: 300k, choi: 200k', 50, 49, 0, '2023-04-24 14:07:18', '2023-04-24 14:07:18'),
-(6, 11, 1, 'xuan ha thu dong', 'zxczc', 'zxczxczcx', 'zxcxzczxc', '2023-04-24', '2023-10-03', 500000, 'du lich: 300k, choi: 200k', 50, 49, 0, '2023-04-24 14:07:52', '2023-04-24 14:07:52'),
-(7, 11, 1, 'xuan ha thu dong', 'zxczc', 'zxczxczcx', 'zxcxzczxc', '2023-04-24', '2023-10-03', 500000, 'du lich: 300k, choi: 200k', 50, 49, 0, '2023-04-24 14:08:09', '2023-04-24 14:08:09'),
-(8, 11, 1, 'xuan ha thu dong', 'zxczc', 'zxczxczcx', 'zxcxzczxc', '2023-04-24', '2023-10-03', 500000, 'du lich: 300k, choi: 200k', 50, 49, 0, '2023-04-24 14:08:19', '2023-04-24 14:08:19'),
-(9, 11, 1, 'xuan ha thu dong', 'zxczc', 'zxczxczcx', 'zxcxzczxc', '2023-04-24', '2023-10-03', 500000, 'du lich: 300k, choi: 200k', 50, 49, 0, '2023-04-24 14:08:38', '2023-04-24 14:08:38');
+  `id` int(10) UNSIGNED NOT NULL,
+  `user_id` int(10) UNSIGNED NOT NULL,
+  `vehicle_id` int(10) UNSIGNED NOT NULL,
+  `title` varchar(70) NOT NULL,
+  `description` text NOT NULL,
+  `address_start` varchar(255) NOT NULL,
+  `address_end` varchar(255) NOT NULL,
+  `date_start` date NOT NULL,
+  `date_end` date NOT NULL,
+  `price_tour` double NOT NULL,
+  `detail_price_tour` text NOT NULL,
+  `amount_customer_maximum` int(11) NOT NULL,
+  `amount_customer_present` int(11) NOT NULL,
+  `status` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -1120,23 +1169,14 @@ INSERT INTO `tours` (`id`, `user_id`, `vehicle_id`, `title`, `description`, `add
 --
 
 CREATE TABLE `tour_booking` (
-  `id` int(10) NOT NULL,
-  `tour_id` int(11) DEFAULT NULL,
-  `user_id` int(11) DEFAULT NULL,
-  `amount_customer` int(11) DEFAULT NULL,
-  `status_booking_id` int(11) DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Đang đổ dữ liệu cho bảng `tour_booking`
---
-
-INSERT INTO `tour_booking` (`id`, `tour_id`, `user_id`, `amount_customer`, `status_booking_id`, `created_at`, `updated_at`) VALUES
-(1, 1, 1, 41, 1, '2023-04-24 14:50:29', '2023-04-24 14:50:29'),
-(2, 1, 2, 40, 2, '2023-04-24 14:58:38', '2023-04-24 14:50:40'),
-(3, 2, 3, 38, 3, '2023-04-24 15:04:14', '2023-04-24 14:50:45');
+  `id` int(10) UNSIGNED NOT NULL,
+  `user_id` int(10) UNSIGNED NOT NULL,
+  `tour_id` int(10) UNSIGNED NOT NULL,
+  `amount_customer` int(11) NOT NULL,
+  `status_booking_id` int(10) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -1145,24 +1185,13 @@ INSERT INTO `tour_booking` (`id`, `tour_id`, `user_id`, `amount_customer`, `stat
 --
 
 CREATE TABLE `tour_comments` (
-  `id` int(10) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `tour_id` int(11) NOT NULL,
-  `content` text CHARACTER SET utf8 COLLATE utf8_vietnamese_ci DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Đang đổ dữ liệu cho bảng `tour_comments`
---
-
-INSERT INTO `tour_comments` (`id`, `user_id`, `tour_id`, `content`, `created_at`, `updated_at`) VALUES
-(1, 1, 1, 'tour rat chat luong', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(2, 1, 2, 'tour rat chat luong', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(3, 1, 2, 'tour rat chat luong', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(4, 3, 2, 'tour rat chat luong', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(5, 3, 1, 'tour rat chat luong', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
+  `id` int(10) UNSIGNED NOT NULL,
+  `user_id` int(10) UNSIGNED NOT NULL,
+  `tour_id` int(10) UNSIGNED NOT NULL,
+  `content` text NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -1171,27 +1200,13 @@ INSERT INTO `tour_comments` (`id`, `user_id`, `tour_id`, `content`, `created_at`
 --
 
 CREATE TABLE `tour_evaluation` (
-  `id` int(10) NOT NULL,
-  `user_id` int(11) DEFAULT NULL,
-  `tour_id` int(11) DEFAULT NULL,
-  `rate` float DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Đang đổ dữ liệu cho bảng `tour_evaluation`
---
-
-INSERT INTO `tour_evaluation` (`id`, `user_id`, `tour_id`, `rate`, `created_at`, `updated_at`) VALUES
-(1, 1, 5, 3, '2023-05-05 13:54:08', '2023-04-23 17:03:47'),
-(2, 4, 3, 9, '2023-05-05 13:53:54', '2023-04-23 17:03:49'),
-(3, 1, 4, 6, '2023-05-05 13:54:10', '2023-04-23 17:03:50'),
-(4, 2, 3, 1, '2023-04-23 17:03:53', '2023-04-23 17:03:53'),
-(5, 5, 5, 3, '2023-05-05 13:54:17', '2023-04-23 17:03:58'),
-(6, 2, 6, 7, '2023-05-05 13:54:12', '2023-04-23 17:04:01'),
-(7, 6, 1, 9, '2023-05-05 13:53:57', '2023-04-23 17:04:05'),
-(8, 3, 2, 3, '2023-04-23 17:04:10', '2023-04-23 17:04:10');
+  `id` int(10) UNSIGNED NOT NULL,
+  `user_id` int(10) UNSIGNED NOT NULL,
+  `tour_id` int(10) UNSIGNED NOT NULL,
+  `rate` double(8,2) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -1200,24 +1215,14 @@ INSERT INTO `tour_evaluation` (`id`, `user_id`, `tour_id`, `rate`, `created_at`,
 --
 
 CREATE TABLE `tour_pay` (
-  `id` int(10) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `tour_booking_id` int(11) DEFAULT NULL,
-  `category_pay_id` int(11) DEFAULT NULL,
-  `total_price` double DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Đang đổ dữ liệu cho bảng `tour_pay`
---
-
-INSERT INTO `tour_pay` (`id`, `user_id`, `tour_booking_id`, `category_pay_id`, `total_price`, `created_at`, `updated_at`) VALUES
-(1, 1, 1, 1, 75508, '2023-04-24 14:55:42', '2023-04-24 14:55:42'),
-(2, 2, 1, 1, 356332, '2023-04-24 14:56:46', '2023-04-24 14:55:54'),
-(3, 3, 2, 4, 137852, '2023-04-24 14:56:12', '2023-04-24 14:56:12'),
-(4, 5, 2, 4, 447357, '2023-04-24 14:56:20', '2023-04-24 14:56:20');
+  `id` int(10) UNSIGNED NOT NULL,
+  `user_id` int(10) UNSIGNED NOT NULL,
+  `tour_booking_id` int(10) UNSIGNED NOT NULL,
+  `category_pay_id` int(10) UNSIGNED NOT NULL,
+  `total_price` double NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -1226,30 +1231,12 @@ INSERT INTO `tour_pay` (`id`, `user_id`, `tour_booking_id`, `category_pay_id`, `
 --
 
 CREATE TABLE `tour_picture` (
-  `id` int(10) NOT NULL,
-  `tour_id` int(11) DEFAULT NULL,
-  `images` text CHARACTER SET utf8 COLLATE utf8_vietnamese_ci DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Đang đổ dữ liệu cho bảng `tour_picture`
---
-
-INSERT INTO `tour_picture` (`id`, `tour_id`, `images`) VALUES
-(1, 1, 'https://i.pinimg.com/564x/24/7b/68/247b681d1b11e46184ef5428575b0cd8.jpg'),
-(2, 7, 'https://i.pinimg.com/564x/b1/69/28/b16928adec4f2a76cfe316f4ca3d38de.jpg'),
-(3, 1, 'https://i.pinimg.com/736x/8e/7f/a8/8e7fa81e8fa4ef3c8c11c90bbae7388c.jpg'),
-(4, 3, 'https://i.pinimg.com/564x/55/87/7a/55877a729bfadfbcf1dece3c07efcda8.jpg'),
-(5, 2, 'https://i.pinimg.com/564x/ba/df/d4/badfd4783a9b43d5ffcd5e9327c63f55.jpg'),
-(6, 3, 'https://i.pinimg.com/564x/5c/6f/07/5c6f0788568c328754f6f174109a329e.jpg'),
-(7, 3, 'https://i.pinimg.com/564x/b0/fd/be/b0fdbe3ea10f0b5a8a99f3909345d45c.jpg'),
-(8, 4, 'https://i.pinimg.com/750x/5d/db/65/5ddb656f2f6184f386ce0c959c425433.jpg'),
-(9, 5, 'https://i.pinimg.com/736x/72/e5/8d/72e58d8a531e61e7137c60aa40ef42d8.jpg'),
-(10, 6, 'https://i.pinimg.com/564x/24/ef/43/24ef43d531e28c7235d6ef0f89bf399d.jpg'),
-(11, 9, 'https://i.pinimg.com/564x/5f/98/02/5f9802ccfa7b5f466bb07fcc0b848355.jpg'),
-(12, 8, 'https://i.pinimg.com/564x/84/57/b9/8457b9117201bef04b2c93f6822b9f7f.jpg'),
-(13, 9, 'https://i.pinimg.com/564x/15/bc/e8/15bce8513f405cb759cdd66db2791d17.jpg'),
-(18, 10, 'https://i.pinimg.com/564x/24/ef/43/24ef43d531e28c7235d6ef0f89bf399d.jpg');
+  `id` int(10) UNSIGNED NOT NULL,
+  `tour_id` int(10) UNSIGNED NOT NULL,
+  `images` text DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -1258,11 +1245,11 @@ INSERT INTO `tour_picture` (`id`, `tour_id`, `images`) VALUES
 --
 
 CREATE TABLE `town` (
-  `xaid` varchar(5) CHARACTER SET utf8 NOT NULL,
-  `name` varchar(100) CHARACTER SET utf8 NOT NULL,
-  `type` varchar(30) CHARACTER SET utf8 NOT NULL,
-  `maqh` varchar(5) CHARACTER SET utf8 NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `xaid` varchar(5) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `name` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `type` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `maqh` varchar(5) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `town`
@@ -11888,21 +11875,18 @@ INSERT INTO `town` (`xaid`, `name`, `type`, `maqh`) VALUES
 --
 
 CREATE TABLE `type_travel` (
-  `id` int(10) NOT NULL,
-  `name` text CHARACTER SET utf8 COLLATE utf8_vietnamese_ci DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `type_travel`
 --
 
-INSERT INTO `type_travel` (`id`, `name`) VALUES
-(1, 'Du lịch thiên nhiên – Du lịch xanh'),
-(2, 'Du lịch văn hóa'),
-(3, 'Du lịch hoạt động'),
-(4, 'Du lịch giải trí'),
-(5, 'Du lịch chuyên đề'),
-(6, 'Du lịch tôn giáo');
+INSERT INTO `type_travel` (`id`, `name`, `created_at`, `updated_at`) VALUES
+(1, 'Du lịch tôn giáo', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -11911,34 +11895,25 @@ INSERT INTO `type_travel` (`id`, `name`) VALUES
 --
 
 CREATE TABLE `users` (
-  `id` int(10) NOT NULL,
-  `role_id` int(11) NOT NULL,
-  `email` varchar(255) CHARACTER SET utf8 COLLATE utf8_vietnamese_ci NOT NULL,
-  `email_verify` varchar(255) CHARACTER SET utf8 COLLATE utf8_vietnamese_ci DEFAULT NULL,
-  `password` varchar(255) CHARACTER SET utf8 COLLATE utf8_vietnamese_ci NOT NULL,
-  `status` int(11) DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `id` int(10) UNSIGNED NOT NULL,
+  `role_id` int(10) UNSIGNED NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `password` varchar(250) NOT NULL,
+  `status` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `users`
 --
 
-INSERT INTO `users` (`id`, `role_id`, `email`, `email_verify`, `password`, `status`, `created_at`, `updated_at`) VALUES
-(1, 1, 'nlittel@schinner.com', NULL, '$2y$10$qpV5UbQNWaowBQsL08yttuXw130x0..AXONA5fQEzLP2C6LtDSOsu', 1, '2023-04-21 13:50:23', '2023-04-21 13:50:23'),
-(2, 2, 'gay97@ebert.net', NULL, '$2y$10$uXyVYBDc83n6egNAkzzfiO1UIVQBIm.7YKXm8OzaHSYadNjfcGv4O', 1, '2023-04-21 13:50:30', '2023-04-21 13:50:30'),
-(3, 1, 'oconner.taryn@koelpin.org', NULL, '$2y$10$dps28wvPkjZ39rQI2hoW0OZuw333QFro9M3o08OSpQQp7bWNwRGrG', 1, '2023-04-21 13:50:56', '2023-04-21 13:50:56'),
-(4, 1, 'hand.hailey@hotmail.com', NULL, '$2y$10$l2cwOUt2X5kYGPTDCCGOru75rXmGB5NeiaUIPbDunHa7Grqvuylci', 1, '2023-04-21 13:50:59', '2023-04-21 13:50:59'),
-(6, 1, 'bikunte@gmail.com', NULL, '$2y$10$3xeBmGLEFmQU06n4xkN1e.DB.RlNmnI.vc7SZQ5shlPmmFVvsm8vK', 1, '2023-04-21 17:49:50', '2023-04-21 17:49:50'),
-(10, 1, 'bikuntebi@gmail.com', NULL, '$2y$10$TjwBNCgDdwKteNW8GDodsO48BJQGxIAP9hOXmSpMEnnFTi7z3hpIm', 1, '2023-04-22 18:55:38', '2023-04-22 11:55:38'),
-(11, 1, 'em@gmail.com', NULL, '$2y$10$P2hQV06sjuM4NBC4sIo2/Os/p4GBXgp9aCTpA.TVRTbLUUPIOusDG', 1, '2023-04-22 19:00:34', '2023-04-22 19:00:34'),
-(12, 1, 'em5@gmail.com', NULL, '$2y$10$vr72kDnnnVWKdd/YlpcxPeLf3sUgwaoR7UcTQeJIxRNVQ8wtfaqlO', 1, '2023-05-04 15:04:22', '2023-05-04 15:04:22'),
-(13, 1, 'em53@gmail.com', NULL, '$2y$10$0DrFgCTjgWZ4X.y0WCmSreIevLCn/rIbAq3NlUhFoJPglXCs9hgCG', 1, '2023-05-04 15:16:16', '2023-05-04 15:16:16'),
-(14, 1, 'em555@gmail.com', NULL, '$2y$10$/RF/W9c/9P.wpb7todnaIu0U5v6vnZkPYULYIiBal/pcfriAd/NR6', 1, '2023-05-04 15:27:22', '2023-05-04 15:27:22'),
-(15, 1, 'em5525@gmail.com', NULL, '$2y$10$j92y9QYzgIoWhJVVHURpxe8u/F3zKxPSbNrNgERByWHLkeR35uXgO', 1, '2023-05-04 16:12:45', '2023-05-04 16:12:45'),
-(16, 1, 'em55215@gmail.com', NULL, '$2y$10$KnNcSU7lZjoXLDZWcx5UeuLFmPfQ5kylvHjXXCAZNPTIt24sbfzc6', 1, '2023-05-04 16:14:03', '2023-05-04 16:14:03'),
-(17, 1, 'em25@gmail.com', NULL, '$2y$10$YFuP5tocjJM2EqMMMmF18OvQIw9cmFXOWRftbspp4nkq5.CUezGFK', 1, '2023-05-04 16:24:03', '2023-05-04 16:24:03');
+INSERT INTO `users` (`id`, `role_id`, `email`, `password`, `status`, `created_at`, `updated_at`) VALUES
+(3, 2, 'em25@gmail.com', '$2y$10$6LrCv7E6', 1, NULL, NULL),
+(4, 2, 'user@gmail.com', '$2y$10$137ZCxmc', 1, NULL, NULL),
+(5, 2, 'user1@gmail.com', '$2y$10$xZM0fLVX9HnioeFXl50fYuLjCWSYJxefY9Yk5gsv/1hgT7VUE1C/C', 1, NULL, NULL),
+(6, 2, 'user2@gmail.com', '$2y$10$fkD3EMDCQILMK6Ugrwy3p.YV1ewsPnH1HvXbfx2AWR5Dei5GX63im', 1, NULL, NULL),
+(7, 2, 'dat@gmail.com', '$2y$10$7YZwkPdS2tZ0uABqHBh6lO0uNLpxOSb.ytSIDkuk3xeiY7I.3TJzC', 1, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -11947,28 +11922,14 @@ INSERT INTO `users` (`id`, `role_id`, `email`, `email_verify`, `password`, `stat
 --
 
 CREATE TABLE `users_connect` (
-  `id` int(10) NOT NULL,
-  `user_1_id` int(11) DEFAULT NULL,
-  `user_2_id` int(11) DEFAULT NULL,
-  `chat_user_1` text CHARACTER SET utf8 COLLATE utf8_vietnamese_ci DEFAULT NULL,
-  `chat_user_2` text CHARACTER SET utf8 COLLATE utf8_vietnamese_ci DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Đang đổ dữ liệu cho bảng `users_connect`
---
-
-INSERT INTO `users_connect` (`id`, `user_1_id`, `user_2_id`, `chat_user_1`, `chat_user_2`, `created_at`, `updated_at`) VALUES
-(1, 1, 2, 'rerum-vel-est-asperiores-dignissimos-et-aperiam', 'dolorem-non-officia-est-quaerat', '2023-04-22 13:06:04', '2023-04-22 13:06:04'),
-(2, 1, 3, 'eum-nulla-dolorem-autem', 'illo-porro-cum-voluptate-commodi', '2023-04-22 13:06:09', '2023-04-22 13:06:09'),
-(3, 1, 3, 'ad-ut-et-unde-unde', 'ipsam-molestias-tempora-nostrum-asperiores-et-modi-vel', '2023-04-22 13:06:30', '2023-04-22 13:06:30'),
-(4, 1, 4, 'nobis-in-odio-quia-dicta-et', 'in-voluptas-iusto-at-in', '2023-04-22 13:06:34', '2023-04-22 13:06:34'),
-(5, 2, 4, 'est-veniam-et-consequatur-libero-quo-atque-qui', 'delectus-qui-repudiandae-accusantium-rerum-vel-repellendus-sit', '2023-04-22 13:06:39', '2023-04-22 13:06:39'),
-(6, 2, 6, 'fugit-dolor-veniam-unde-repudiandae-distinctio-tempora-fugit', 'ipsam-quis-consequatur-culpa-qui-autem-qui', '2023-04-22 13:06:46', '2023-04-22 13:06:46'),
-(7, 4, 10, 'suscipit-dolore-magnam-ut-nihil-accusantium-neque-voluptate', 'alias-molestiae-dignissimos-voluptatem-et-qui-enim', '2023-04-22 13:06:53', '2023-04-22 13:06:53'),
-(8, 1, 10, 'maiores-molestiae-ea-laboriosam-sunt', 'similique-recusandae-quia-sed-est-iure-cumque', '2023-04-22 13:07:05', '2023-04-22 13:07:05');
+  `id` int(10) UNSIGNED NOT NULL,
+  `user_1_id` int(10) UNSIGNED NOT NULL,
+  `user_2_id` int(10) UNSIGNED NOT NULL,
+  `chat_user_1` text DEFAULT NULL,
+  `chat_user_2` text DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -11977,39 +11938,29 @@ INSERT INTO `users_connect` (`id`, `user_1_id`, `user_2_id`, `chat_user_1`, `cha
 --
 
 CREATE TABLE `user_information` (
-  `id` int(10) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `name` varchar(50) CHARACTER SET utf8 COLLATE utf8_vietnamese_ci NOT NULL,
-  `birth_date` date DEFAULT NULL,
-  `gender` int(1) DEFAULT NULL,
-  `address` varchar(200) CHARACTER SET utf8 COLLATE utf8_vietnamese_ci DEFAULT NULL,
-  `phone` varchar(20) CHARACTER SET utf8 COLLATE utf8_vietnamese_ci DEFAULT NULL,
-  `education` varchar(250) CHARACTER SET utf8 COLLATE utf8_vietnamese_ci DEFAULT NULL,
+  `id` int(10) UNSIGNED NOT NULL,
+  `user_id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(30) NOT NULL,
+  `birth_date` date NOT NULL,
+  `gender` int(11) DEFAULT NULL,
+  `address` varchar(255) DEFAULT NULL,
+  `phone` varchar(13) DEFAULT NULL,
+  `education` varchar(200) DEFAULT NULL,
   `image` text DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `user_information`
 --
 
 INSERT INTO `user_information` (`id`, `user_id`, `name`, `birth_date`, `gender`, `address`, `phone`, `education`, `image`, `created_at`, `updated_at`) VALUES
-(1, 1, 'Nickolas Mitchell', '2012-10-28', 1, '97272 Reilly Streets\nWest Arthur, TN 76375', '520-502-2771', 'Nihil aut quasi quia quos cumque non. Unde saepe quibusdam aliquam. Sed quia quidem vel eos. Reprehenderit quisquam omnis officia expedita laudantium.', 'https://i.pinimg.com/236x/19/2e/70/192e70d1119db12de6b8fe30a92912a1.jpg', '2023-05-05 13:26:22', '2023-04-21 13:57:20'),
-(2, 2, 'Dr. Pedro Johnson MD', '1971-11-05', 0, '42322 Mikel Courts\nRansomburgh, PA 74477', '+1.412.658.9020', 'Qui ex numquam et quaerat magnam ducimus. Blanditiis nulla enim ut officiis rerum.', 'https://i.pinimg.com/236x/19/2e/70/192e70d1119db12de6b8fe30a92912a1.jpg', '2023-05-05 13:26:23', '2023-04-21 13:58:02'),
-(3, 3, 'Em', '2002-11-03', 1, 'hạ thuân xu đông', '0988772323', 'zxczx', 'https://i.pinimg.com/236x/19/2e/70/192e70d1119db12de6b8fe30a92912a1.jpg', '2023-05-05 13:26:24', '2023-04-21 11:21:26'),
-(9, 8, 'quốc em', NULL, 1, NULL, NULL, NULL, 'https://i.pinimg.com/236x/19/2e/70/192e70d1119db12de6b8fe30a92912a1.jpg', '2023-05-05 13:26:26', '2023-04-21 18:22:37'),
-(4, 4, 'Sabina Schaefer', '2008-04-08', 1, '975 Scot Crescent\nWest Hope, FL 03787-7845', '+1-631-589-1034', 'Recusandae hic suscipit nam ea velit qui. Voluptatibus rem laboriosam sunt voluptas quibusdam. Deserunt est blanditiis non illum velit nulla voluptatum et.', 'https://i.pinimg.com/236x/19/2e/70/192e70d1119db12de6b8fe30a92912a1.jpg', '2023-05-05 13:26:26', '2023-04-21 13:58:16'),
-(5, 6, 'quoc em', NULL, NULL, NULL, NULL, NULL, 'https://i.pinimg.com/236x/19/2e/70/192e70d1119db12de6b8fe30a92912a1.jpg', '2023-05-05 13:26:27', '2023-04-21 17:49:50'),
-(6, 7, 'Anh', NULL, NULL, NULL, NULL, NULL, 'https://i.pinimg.com/236x/19/2e/70/192e70d1119db12de6b8fe30a92912a1.jpg', '2023-05-05 13:26:32', '2023-04-21 18:01:57'),
-(11, 10, 'Norris Prosacco', '1997-07-20', 0, '19427 Schumm Drive Apt. 546\nJeanettefort, CO 44401-8226', '(757) 397-0689', 'Eius hic qui et ipsa. Rem impedit numquam et. Modi occaecati nihil sequi.', 'https://i.pinimg.com/236x/19/2e/70/192e70d1119db12de6b8fe30a92912a1.jpg', '2023-05-05 13:26:30', '2023-04-22 09:40:44'),
-(12, 11, 'Eryn Weber', '1987-03-13', 1, '37886 Rosa Court\nDonnellytown, WY 96639', '+1-785-709-7102', 'Dolores voluptates qui necessitatibus at. Est a nisi veritatis eum et. Optio velit ut earum modi et.', 'https://i.pinimg.com/236x/19/2e/70/192e70d1119db12de6b8fe30a92912a1.jpg', '2023-05-05 13:26:29', '2023-04-22 19:00:59'),
-(13, 12, 'quoc em', '2022-01-03', NULL, NULL, NULL, NULL, 'https://i.pinimg.com/236x/19/2e/70/192e70d1119db12de6b8fe30a92912a1.jpg', '2023-05-05 13:26:33', '2023-05-04 15:04:22'),
-(14, 13, 'quoc em', '2022-01-03', NULL, NULL, NULL, NULL, 'https://i.pinimg.com/236x/19/2e/70/192e70d1119db12de6b8fe30a92912a1.jpg', '2023-05-05 13:26:36', '2023-05-04 15:16:16'),
-(15, 14, 'quốc em', '2023-05-12', NULL, NULL, NULL, NULL, 'https://i.pinimg.com/236x/19/2e/70/192e70d1119db12de6b8fe30a92912a1.jpg', '2023-05-05 13:26:35', '2023-05-04 15:27:22'),
-(16, 15, 'qu as', '2022-01-03', NULL, NULL, NULL, NULL, 'https://i.pinimg.com/236x/19/2e/70/192e70d1119db12de6b8fe30a92912a1.jpg', '2023-05-05 13:26:34', '2023-05-04 16:12:45'),
-(17, 16, 'quee', '2022-01-03', NULL, NULL, NULL, NULL, 'https://i.pinimg.com/236x/19/2e/70/192e70d1119db12de6b8fe30a92912a1.jpg', '2023-05-05 13:26:37', '2023-05-04 16:14:03'),
-(18, 17, 'qucxc', '2022-01-03', NULL, NULL, NULL, NULL, './assets/img/avatar/default.png', '2023-05-04 16:28:59', '2023-05-04 16:24:03');
+(1, 3, 'quoc anh', '0000-00-00', NULL, NULL, NULL, NULL, 'default.png', NULL, NULL),
+(2, 4, 'quoc em', '2002-03-11', NULL, NULL, NULL, NULL, 'default.png', NULL, NULL),
+(3, 5, 'quoc em', '2002-03-11', NULL, NULL, NULL, NULL, 'default.png', NULL, NULL),
+(4, 6, 'quoc anh', '2002-03-11', NULL, NULL, NULL, NULL, 'default.png', NULL, NULL),
+(5, 7, 'Đạt nè', '2002-09-11', NULL, NULL, NULL, NULL, 'default.png', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -12018,25 +11969,11 @@ INSERT INTO `user_information` (`id`, `user_id`, `name`, `birth_date`, `gender`,
 --
 
 CREATE TABLE `vehicles` (
-  `id` int(10) NOT NULL,
-  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_vietnamese_ci DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Đang đổ dữ liệu cho bảng `vehicles`
---
-
-INSERT INTO `vehicles` (`id`, `name`) VALUES
-(1, 'XE MÁY'),
-(2, 'XÍCH LÔ'),
-(3, 'CÁP TREO'),
-(4, 'THUYỀN KAYAK'),
-(5, 'THUYỀN THÚNG'),
-(6, 'CƯỠI VOI'),
-(7, 'XE Ô TÔ ĐIỆN'),
-(8, 'XE ĐẠP'),
-(9, 'XE NGỰA'),
-(10, 'TRỰC THĂNG');
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -12047,9 +11984,6 @@ INSERT INTO `vehicles` (`id`, `name`) VALUES
 --
 ALTER TABLE `address_travel`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `city_matp` (`city_matp`),
-  ADD KEY `town_xaid` (`town_xaid`),
-  ADD KEY `district_maqh` (`district_maqh`),
   ADD KEY `type_travel_id` (`type_travel_id`);
 
 --
@@ -12096,16 +12030,26 @@ ALTER TABLE `personal_access_tokens`
 --
 ALTER TABLE `posts`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `user_id` (`user_id`),
   ADD KEY `type_travel_id` (`type_travel_id`),
-  ADD KEY `address_travel_id` (`address_travel_id`);
+  ADD KEY `address_travel_id` (`address_travel_id`),
+  ADD KEY `posts_ibfk_1` (`user_id`);
 
 --
 -- Chỉ mục cho bảng `post_comments`
 --
 ALTER TABLE `post_comments`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `post_id` (`post_id`);
+  ADD KEY `post_id` (`post_id`),
+  ADD KEY `user_id` (`user_id`);
+
+--
+-- Chỉ mục cho bảng `post_comment_reply`
+--
+ALTER TABLE `post_comment_reply`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `comment_id` (`comment_id`),
+  ADD KEY `users_id_1` (`users_id_1`),
+  ADD KEY `users_id_2` (`users_id_2`);
 
 --
 -- Chỉ mục cho bảng `post_favorite`
@@ -12120,7 +12064,7 @@ ALTER TABLE `post_favorite`
 --
 ALTER TABLE `post_picture`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_picture` (`post_id`);
+  ADD KEY `post_picture_ibfk_1` (`post_id`);
 
 --
 -- Chỉ mục cho bảng `province_city`
@@ -12153,8 +12097,8 @@ ALTER TABLE `tours`
 --
 ALTER TABLE `tour_booking`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `tour_id` (`tour_id`),
   ADD KEY `user_id` (`user_id`),
+  ADD KEY `tour_id` (`tour_id`),
   ADD KEY `status_booking_id` (`status_booking_id`);
 
 --
@@ -12170,16 +12114,17 @@ ALTER TABLE `tour_comments`
 --
 ALTER TABLE `tour_evaluation`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `user_id` (`user_id`),
-  ADD KEY `tour_id` (`tour_id`);
+  ADD KEY `tour_id` (`tour_id`),
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- Chỉ mục cho bảng `tour_pay`
 --
 ALTER TABLE `tour_pay`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `category_pay_id` (`category_pay_id`),
-  ADD KEY `tour_booking_id` (`tour_booking_id`);
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `tour_booking_id` (`tour_booking_id`),
+  ADD KEY `category_pay_id` (`category_pay_id`);
 
 --
 -- Chỉ mục cho bảng `tour_picture`
@@ -12212,15 +12157,15 @@ ALTER TABLE `users`
 --
 ALTER TABLE `users_connect`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `user_1_id` (`user_1_id`),
-  ADD KEY `user_2_id` (`user_2_id`);
+  ADD KEY `users_connect_ibfk_1` (`user_1_id`),
+  ADD KEY `users_connect_ibfk_2` (`user_2_id`);
 
 --
 -- Chỉ mục cho bảng `user_information`
 --
 ALTER TABLE `user_information`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_user_id` (`user_id`);
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- Chỉ mục cho bảng `vehicles`
@@ -12236,13 +12181,13 @@ ALTER TABLE `vehicles`
 -- AUTO_INCREMENT cho bảng `address_travel`
 --
 ALTER TABLE `address_travel`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT cho bảng `categories_pay`
 --
 ALTER TABLE `categories_pay`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT cho bảng `failed_jobs`
@@ -12254,115 +12199,229 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT cho bảng `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=239;
 
 --
 -- AUTO_INCREMENT cho bảng `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=131;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT cho bảng `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT cho bảng `post_comments`
 --
 ALTER TABLE `post_comments`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT cho bảng `post_comment_reply`
+--
+ALTER TABLE `post_comment_reply`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 
 --
 -- AUTO_INCREMENT cho bảng `post_favorite`
 --
 ALTER TABLE `post_favorite`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT cho bảng `post_picture`
 --
 ALTER TABLE `post_picture`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT cho bảng `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT cho bảng `status_booking`
 --
 ALTER TABLE `status_booking`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT cho bảng `tours`
 --
 ALTER TABLE `tours`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT cho bảng `tour_booking`
 --
 ALTER TABLE `tour_booking`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT cho bảng `tour_comments`
 --
 ALTER TABLE `tour_comments`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT cho bảng `tour_evaluation`
 --
 ALTER TABLE `tour_evaluation`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT cho bảng `tour_pay`
 --
 ALTER TABLE `tour_pay`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT cho bảng `tour_picture`
 --
 ALTER TABLE `tour_picture`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT cho bảng `type_travel`
 --
 ALTER TABLE `type_travel`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT cho bảng `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT cho bảng `users_connect`
 --
 ALTER TABLE `users_connect`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT cho bảng `user_information`
 --
 ALTER TABLE `user_information`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT cho bảng `vehicles`
 --
 ALTER TABLE `vehicles`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- Các ràng buộc cho các bảng đã đổ
+--
+
+--
+-- Các ràng buộc cho bảng `address_travel`
+--
+ALTER TABLE `address_travel`
+  ADD CONSTRAINT `address_travel_ibfk_1` FOREIGN KEY (`type_travel_id`) REFERENCES `type_travel` (`id`);
+
+--
+-- Các ràng buộc cho bảng `posts`
+--
+ALTER TABLE `posts`
+  ADD CONSTRAINT `posts_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user_information` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `posts_ibfk_2` FOREIGN KEY (`type_travel_id`) REFERENCES `type_travel` (`id`),
+  ADD CONSTRAINT `posts_ibfk_3` FOREIGN KEY (`address_travel_id`) REFERENCES `address_travel` (`id`);
+
+--
+-- Các ràng buộc cho bảng `post_comments`
+--
+ALTER TABLE `post_comments`
+  ADD CONSTRAINT `post_comments_ibfk_1` FOREIGN KEY (`post_id`) REFERENCES `posts` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `post_comments_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user_information` (`id`) ON DELETE CASCADE;
+
+--
+-- Các ràng buộc cho bảng `post_comment_reply`
+--
+ALTER TABLE `post_comment_reply`
+  ADD CONSTRAINT `post_comment_reply_ibfk_1` FOREIGN KEY (`comment_id`) REFERENCES `post_comments` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `post_comment_reply_ibfk_2` FOREIGN KEY (`users_id_1`) REFERENCES `user_information` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `post_comment_reply_ibfk_3` FOREIGN KEY (`users_id_2`) REFERENCES `user_information` (`id`) ON DELETE CASCADE;
+
+--
+-- Các ràng buộc cho bảng `post_favorite`
+--
+ALTER TABLE `post_favorite`
+  ADD CONSTRAINT `post_favorite_ibfk_1` FOREIGN KEY (`post_id`) REFERENCES `posts` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `post_favorite_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user_information` (`id`);
+
+--
+-- Các ràng buộc cho bảng `post_picture`
+--
+ALTER TABLE `post_picture`
+  ADD CONSTRAINT `post_picture_ibfk_1` FOREIGN KEY (`post_id`) REFERENCES `posts` (`id`) ON DELETE CASCADE;
+
+--
+-- Các ràng buộc cho bảng `tours`
+--
+ALTER TABLE `tours`
+  ADD CONSTRAINT `tours_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user_information` (`id`),
+  ADD CONSTRAINT `tours_ibfk_2` FOREIGN KEY (`vehicle_id`) REFERENCES `vehicles` (`id`);
+
+--
+-- Các ràng buộc cho bảng `tour_booking`
+--
+ALTER TABLE `tour_booking`
+  ADD CONSTRAINT `tour_booking_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user_information` (`id`),
+  ADD CONSTRAINT `tour_booking_ibfk_2` FOREIGN KEY (`tour_id`) REFERENCES `tours` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `tour_booking_ibfk_3` FOREIGN KEY (`status_booking_id`) REFERENCES `status_booking` (`id`);
+
+--
+-- Các ràng buộc cho bảng `tour_comments`
+--
+ALTER TABLE `tour_comments`
+  ADD CONSTRAINT `tour_comments_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user_information` (`id`),
+  ADD CONSTRAINT `tour_comments_ibfk_2` FOREIGN KEY (`tour_id`) REFERENCES `tours` (`id`) ON DELETE CASCADE;
+
+--
+-- Các ràng buộc cho bảng `tour_evaluation`
+--
+ALTER TABLE `tour_evaluation`
+  ADD CONSTRAINT `tour_evaluation_ibfk_1` FOREIGN KEY (`tour_id`) REFERENCES `tours` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `tour_evaluation_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user_information` (`id`);
+
+--
+-- Các ràng buộc cho bảng `tour_pay`
+--
+ALTER TABLE `tour_pay`
+  ADD CONSTRAINT `tour_pay_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user_information` (`id`),
+  ADD CONSTRAINT `tour_pay_ibfk_2` FOREIGN KEY (`tour_booking_id`) REFERENCES `tour_booking` (`id`),
+  ADD CONSTRAINT `tour_pay_ibfk_3` FOREIGN KEY (`category_pay_id`) REFERENCES `categories_pay` (`id`);
+
+--
+-- Các ràng buộc cho bảng `tour_picture`
+--
+ALTER TABLE `tour_picture`
+  ADD CONSTRAINT `tour_picture_ibfk_1` FOREIGN KEY (`tour_id`) REFERENCES `tours` (`id`) ON DELETE CASCADE;
+
+--
+-- Các ràng buộc cho bảng `users`
+--
+ALTER TABLE `users`
+  ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`);
+
+--
+-- Các ràng buộc cho bảng `users_connect`
+--
+ALTER TABLE `users_connect`
+  ADD CONSTRAINT `users_connect_ibfk_1` FOREIGN KEY (`user_1_id`) REFERENCES `user_information` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `users_connect_ibfk_2` FOREIGN KEY (`user_2_id`) REFERENCES `user_information` (`id`) ON DELETE CASCADE;
+
+--
+-- Các ràng buộc cho bảng `user_information`
+--
+ALTER TABLE `user_information`
+  ADD CONSTRAINT `user_information_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

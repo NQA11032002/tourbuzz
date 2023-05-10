@@ -54,4 +54,30 @@ export class SocialService {
 
     return this.http.post<any>(urlApi, para, {headers});
   }
+
+  //comment the post
+  comment(post_id:any, content:string, token:string){
+    let headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
+    let para = {"post_id" : post_id, "content" : content};
+    let urlApi = `${this.api}posts/comment?bearer=${token}`;
+
+    return this.http.post<any>(urlApi, para, {headers});
+  }
+
+  //comment the post
+  deleteComment(id:any, token:string){
+    let headers = new HttpHeaders().set('Authorization', 'Bearer ' + token).set('Content-Type', 'application/json');
+    let urlApi = `${this.api}posts/comment/${id}?bearer=${token}`;
+  
+    return this.http.delete<any>(urlApi, {headers});
+  }
+
+  //The user reply comment other user of the post
+  replyComment(comment_id:any, user_id:any, content:string, token:string){
+    let headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
+    let para = {"comment_id" : comment_id, "user_id_2" : user_id, "content" : content};
+    let urlApi = `${this.api}posts/comment-reply?bearer=${token}`;
+
+    return this.http.post<any>(urlApi, para ,{headers});
+  }
 }

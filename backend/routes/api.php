@@ -42,6 +42,9 @@ Route::prefix('social')->name('social.')->middleware('auth:sanctum')->group(func
         Route::get('/{name}', [PostsController::class, "index"])->name('search');
         Route::post('/', [PostsController::class, "create"])->name('create');
         Route::post('/favorite', [PostsController::class, "favorite"])->name('favorite');
+        Route::post('/comment', [PostsController::class, "comment"])->name('comment');
+        Route::delete('/comment/{id}', [PostsController::class, "deleteComment"])->name('deleteComment');
+        Route::post('comment-reply', [PostsController::class, 'commentReply'])->name('commentReply');
         Route::patch('/{id}', [PostsController::class, "update"])->name('update');
         Route::delete('/{id}', [PostsController::class, "destroy"])->name('destroy');
     });

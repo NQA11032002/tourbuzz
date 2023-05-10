@@ -3,7 +3,6 @@ import { AddressService } from 'src/app/services/address.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Posts } from 'src/app/models/Post.model';
 import { SocialService } from 'src/app/services/social.service';
-import { UsersService } from 'src/app/services/users.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
