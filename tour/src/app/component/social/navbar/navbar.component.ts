@@ -19,7 +19,6 @@ export class NavbarComponent {
     if(token != null){
       this.user.getFriends(token).subscribe(p => {
         this.friends = p.data.data;
-        console.log(this.friends);
       });
     }
   }

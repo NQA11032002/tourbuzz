@@ -42,11 +42,19 @@ Route::prefix('social')->name('social.')->middleware('auth:sanctum')->group(func
         Route::get('/{name}', [PostsController::class, "index"])->name('search');
         Route::post('/', [PostsController::class, "create"])->name('create');
         Route::post('/favorite', [PostsController::class, "favorite"])->name('favorite');
-        Route::post('/comment', [PostsController::class, "comment"])->name('comment');
-        Route::delete('/comment/{id}', [PostsController::class, "deleteComment"])->name('deleteComment');
-        Route::post('comment-reply', [PostsController::class, 'commentReply'])->name('commentReply');
         Route::patch('/{id}', [PostsController::class, "update"])->name('update');
         Route::delete('/{id}', [PostsController::class, "destroy"])->name('destroy');
+    });
+
+    Route::prefix('comments')->name('comments.')->group(function () {
+        Route::get('/', [PostsController::class, "getComments"])->name('getComments');
+        Route::post('/', [PostsController::class, "comment"])->name('comment');
+        Route::delete('/{id}', [PostsController::class, "deleteComment"])->name('deleteComment');
+    });
+
+    Route::prefix('comment-reply')->name('comments.')->group(function () {
+        Route::get('/', [PostsController::class, 'getCommentReply'])->name('getCommentReply');
+        Route::post('/', [PostsController::class, 'commentReply'])->name('commentReply');
     });
 
     Route::get('vehicles', [VehiclesController::class, "index"])->name('vehicles');

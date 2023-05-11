@@ -32,7 +32,7 @@
           </div>
         </div>
   
-        <div class="likes mt-3 d-flex">
+        <div class="likes mt-2 d-flex">
           <span>
             <i (click)="favorite(item)" [class]="isFavorite(item.post_favorite) == true ? 'fa-solid fa-heart favorite' : 'fa-regular fa-heart unfavorite'"></i>
 
@@ -45,11 +45,11 @@
         </div>
         
         <input type="checkbox" name="" hidden class="show_comment" id="show_comments_{{item.id}}">
-        <label for="show_comments_{{item.id}}" class="amount-comment show-comment" *ngIf="item.post_comments.length > 0" >Có tất cả {{item.post_comments.length}} bình luận</label>
+        <label for="show_comments_{{item.id}}" class="amount-comment show-comment" *ngIf="getComments(item.id).length > 0" >Có tất cả {{getComments(item.id).length}} bình luận</label>
         <label for="show_comments_{{item.id}}" class="amount-comment collapse-comment ">Thu gọn bình luận</label>
 
         <div class="comments d-grid">
-          <div class="comment" *ngFor="let comment of item.post_comments">
+          <div class="comment" *ngFor="let comment of getComments(item.id)">
             <div class="comment_item d-flex align-items-center">
               <img
                 src="assets/images/avatar/{{ comment.user_information[0].image }}"
@@ -62,10 +62,10 @@
                 <div class="d-flex reply_container align-items-center">
                   <span class="reply_time">{{ comment.created_at | date:'dd-MM-yyyy' }}</span>
                   <button class="reply_choose" value="" (click)="replyComment(comment.id, comment.user_information[0])">Trả lời</button>
-                  <button class="btn btn-popup btn-delete" (click)="deleteComment(comment, item.id)" *ngIf="comment.user_id === user_id">Xóa</button>
+                  <button class="btn btn-popup btn-delete" (click)="deleteComment(comment)" *ngIf="comment.user_id === user_id">Xóa</button>
                 </div>
 
-                <div class="comment comment_reply mt-2" *ngFor="let reply of comment.post_comments_reply">
+                <div class="comment comment_reply mt-2" *ngFor="let reply of getCommentsReply(comment.id)">
                   <div class="comment_item d-flex align-items-center">
                     <img
                       src="assets/images/avatar/{{ reply.user_information[0].image }}"

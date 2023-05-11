@@ -28,17 +28,6 @@ class PostsController extends Controller
             }
         })->orderByDesc('id')->with('post_picture')->with('post_comments')->with('user_information')->with('post_favorite')->with('type_travel')->with('address_travel')->get();
 
-
-        foreach ($posts as $post) {
-            foreach ($post->post_comments as $comment) {
-                $comment->user_information;
-                foreach ($comment->post_comments_reply as $comment_reply) {
-                    $comment_reply->user_information;
-                    $comment_reply->user_information_2;
-                }
-            }
-        }
-
         if ($posts->count() > 0) {
             $response = [
                 'title' => 'list posts on page social',
@@ -186,6 +175,52 @@ class PostsController extends Controller
                 'detail' => 'success',
                 'data' => $post,
                 'check' => "like"
+            ];
+        }
+
+        return $response;
+    }
+
+    //get list comment of the post by ID
+    public function getComments()
+    {
+        $comments = post_comments::orderByDesc('id')->with('user_information')->get();
+
+        if ($comments->count() > 0) {
+            $response = [
+                'title' => 'List comment of the post',
+                'status' => 200,
+                'data' => $comments,
+                'detail' => 'success',
+            ];
+        } else {
+            $response = [
+                'title' => 'List comment of the post',
+                'status' => 500,
+                'detail' => 'success',
+            ];
+        }
+
+        return $response;
+    }
+
+    //get comments reply
+    public function getCommentReply()
+    {
+        $comments = post_comments_reply::orderByDesc('id')->with('user_information')->with('user_information_2')->get();
+
+        if ($comments->count() > 0) {
+            $response = [
+                'title' => 'List comment reply of the post',
+                'status' => 200,
+                'data' => $comments,
+                'detail' => 'success',
+            ];
+        } else {
+            $response = [
+                'title' => 'List comment reply of the post',
+                'status' => 500,
+                'detail' => 'success',
             ];
         }
 

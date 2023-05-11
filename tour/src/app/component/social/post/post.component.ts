@@ -1,26 +1,43 @@
-import { Component } from '@angular/core';
+import { Component} from '@angular/core';
 import { SocialService } from 'src/app/services/social.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Comments } from 'src/app/models/Comments.model';
 
 @Component({
   selector: 'app-post',
   templateUrl: './post.component.html',
   styleUrls: ['./post.component.scss']
 })
-export class PostComponent {
+export class PostComponent{
   public posts:Array<any> = new Array<any>();
+  public comments:Array<any> = new Array<any>();
+  public commentsReply:Array<any> = new Array<any>();
+
   public user_id = "";
   public commentForm:FormGroup;
   public status_comment = 0;
   public comment_id = null;
   public info_user:any;
+  public post_id_change = null;
+  public setIntervalComment:any = undefined;
 
   constructor(private social:SocialService, private fb:FormBuilder){
-    this.getPosts();
-
+    
     this.commentForm = this.fb.group({
       content: ['', Validators.required],
     })
+  }
+
+  ngOnInit() {
+    this.getPosts();
+    this.getListComments();
+    this.getListCommentsReply();
+
+    //refresh api comment and reply comment 5s/1
+    this.setIntervalComment = setInterval(() => {
+      this.getListComments();
+      this.getListCommentsReply();
+    }, 3000);
   }
 
   //get list post
@@ -38,9 +55,10 @@ export class PostComponent {
       this.social.getPosts(token).subscribe(p => {
         this.posts = p.data;
       });
+
     }
   }
-  
+
   //post is favorite by user
   isFavorite(favorites:any) : boolean {
     
@@ -85,6 +103,46 @@ export class PostComponent {
     }
   }
 
+  //get list comment of the post
+  getListComments(){
+    let token = sessionStorage.getItem("token_user");
+    
+    if(token != null){
+      this.social.getComments(token).subscribe((p:any) => {
+        this.comments = p.data;
+      })
+    }
+  }
+
+  //get Comment of the post
+  getComments(post_id:any){
+    let comments = this.comments.filter((p:Comments) => {
+      return p.post_id == post_id;
+    })
+    
+    return comments;
+  }
+
+  //get list comment of the post
+  getListCommentsReply(){
+    let token = sessionStorage.getItem("token_user");
+  
+    if(token != null){
+      this.social.getCommentsReply(token).subscribe((p:any) => {
+        this.commentsReply = p.data;
+      })
+    }
+  }
+
+  //get Comment reply of the comment
+  getCommentsReply(comment_id:any){
+    let comments = this.commentsReply.filter((p:any) => {
+      return p.comment_id == comment_id;
+    })
+      
+    return comments;
+  }
+
   //comment the post
   comment(item:any)
   {
@@ -92,13 +150,14 @@ export class PostComponent {
     let content = this.commentForm.get('content')?.value;
 
     if(token != null){
-
+      this.post_id_change = item.id;
       //if status_comment == 0 the user is commenting or status_comment different 0 the user is reply comment
       if(this.status_comment == 0)
       {
         this.social.comment(item.id, content, token).subscribe(p => {
           if(p.status === 200){
             item.post_comments.push(p.data);
+            this.comments.push(p.data);
             this.commentForm.get('content')?.setValue("");
           }
         })
@@ -109,13 +168,7 @@ export class PostComponent {
         content = content.slice(index + 2);
 
           this.social.replyComment(this.comment_id, this.info_user.id, content, token).subscribe(p => {
-            item.post_comments.forEach((comment:any) => {
-
-              if(comment.id == this.comment_id)
-              {
-                comment.post_comments_reply.push(p.data);
-              }
-            });
+            this.commentsReply.push(p.data);
 
             this.status_comment = 0;
             this.info_user = null;
@@ -127,27 +180,16 @@ export class PostComponent {
   }
 
   //The user deletes them comment a post
-  deleteComment(comment:any, post:any){
+  deleteComment(comment:any):void{
     let token = sessionStorage.getItem("token_user");
 
     if(token != null){
       this.social.deleteComment(comment.id, token).subscribe(p => {
         if(p.status === 200){
-          
-          //get each post
-            this.posts.filter(p => {
-              //if post has id = post of comment delete
-              if(p.id === post){
-                //get new comment of post has id comment different id comment delete
-                let newComment = p.post_comments.filter((item:any) => {
-                  return item.id != comment.id;
-                })
-
-                //return array new comments of post
-                return p.post_comments = newComment;
-              }
-            });
-          }
+          this.comments = this.comments.filter((item:any) => {
+            return item.id != comment.id;
+          });
+        }
       })
     }
   }
