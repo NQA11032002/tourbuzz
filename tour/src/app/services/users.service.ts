@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ export class UsersService {
   constructor(private http:HttpClient){}
 
   private api = "http://localhost:8000/api/auth/";
-  private apiUser = "http://localhost:8000/api/social/users";
+  private apiUser = "http://localhost:8000/api/social/";
 
   //when user login call api to perform application
   login(email:string, password:string){
@@ -36,9 +37,17 @@ export class UsersService {
   }
 
   //get list friend of user login
-  getFriends(token:string){
+  getFriends(token:string):Observable<any>{
     let headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
-    let urlApi = `${this.apiUser}?bearer=${token}`;
+    let urlApi = `${this.apiUser}friends?bearer=${token}`;
+
+    return this.http.get<any>(urlApi, {headers});
+  }
+  
+  //get messenger with friend
+  getMessenger(user_id:any, token:string):Observable<any>{
+    let headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
+    let urlApi = `${this.apiUser}friends/${user_id}?bearer=${token}`;
 
     return this.http.get<any>(urlApi, {headers});
   }
