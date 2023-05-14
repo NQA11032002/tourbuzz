@@ -6,12 +6,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\auth\user_information;
 
-class users_connect extends Model
+class users_relationship extends Model
 {
     use HasFactory;
-    protected $table = "users_connect";
-    protected $fillable = ["user_1_id", "user_2_id", "chat_user_1", "chat_user_2"];
-
+    protected $table = "users_relationship";
+    protected $fillable = ["user_1_id", "user_2_id", "status"];
     public function user_information()
     {
         return $this->belongsTo(user_information::class, "user_2_id", "id");

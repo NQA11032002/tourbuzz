@@ -11,7 +11,7 @@ class user_information extends Model
 {
     use HasFactory;
     protected $table = 'user_information';
-    protected $fillable = ["user_id", "name", "birth_date", "gender", "phone", "education", "image"];
+    protected $fillable = ["user_id", "name", "birth_date", "gender", "phone", "education", "image", "is_login"];
 
     public function user()
     {

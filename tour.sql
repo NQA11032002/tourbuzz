@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th5 10, 2023 lúc 07:31 PM
+-- Thời gian đã tạo: Th5 14, 2023 lúc 08:06 PM
 -- Phiên bản máy phục vụ: 10.4.28-MariaDB
 -- Phiên bản PHP: 8.1.17
 
@@ -839,7 +839,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (235, '2023_05_10_154841_create_post_comments_table', 4),
 (236, '2023_05_10_154920_create_post_favorite_table', 4),
 (237, '2023_05_10_154940_create_post_picture_table', 4),
-(238, '2023_05_10_155508_create_post_comment_reply_table', 4);
+(238, '2023_05_10_155508_create_post_comment_reply_table', 4),
+(239, '2023_05_15_003539_create_users_relationship', 5);
 
 -- --------------------------------------------------------
 
@@ -877,9 +878,8 @@ CREATE TABLE `personal_access_tokens` (
 --
 
 INSERT INTO `personal_access_tokens` (`id`, `tokenable_type`, `tokenable_id`, `name`, `token`, `abilities`, `last_used_at`, `expires_at`, `created_at`, `updated_at`) VALUES
-(7, 'App\\Models\\auth\\user', 5, 'auth_token', '5eb964994372a7f379551f9c7509d70917bac9730be29fd9e64b4db96ad3ccd9', '[\"*\"]', '2023-05-10 16:39:46', '2023-05-10 19:32:47', '2023-05-10 16:32:47', '2023-05-10 16:39:46'),
-(9, 'App\\Models\\auth\\user', 6, 'auth_token', 'dbf353cd11cd35c786ad27d05270cd3b44c9e9c27e936e207f795dd4439e699c', '[\"*\"]', '2023-05-10 17:18:23', '2023-05-10 19:45:52', '2023-05-10 16:45:52', '2023-05-10 17:18:23'),
-(10, 'App\\Models\\auth\\user', 7, 'auth_token', '15eedc2922ae3f8cf055e70b77d81593ff8332f8b3253b92a1d3f1a90cb249fb', '[\"*\"]', '2023-05-10 17:24:15', '2023-05-10 20:15:32', '2023-05-10 17:15:32', '2023-05-10 17:24:15');
+(17, 'App\\Models\\auth\\user', 5, 'auth_token', '838ab1132cd1dd8e6e1d9605a0c06b78a16c3c948a8988e2f53b838dceadfbb8', '[\"*\"]', '2023-05-11 14:26:09', '2023-05-11 17:25:37', '2023-05-11 14:25:37', '2023-05-11 14:26:09'),
+(28, 'App\\Models\\auth\\user', 6, 'auth_token', '7181ac5c9398dfd510c861bfea3ad771913eaf7a8a79ad710fb5c33ebb9b61b0', '[\"*\"]', '2023-05-14 18:02:23', '2023-05-14 21:00:39', '2023-05-14 18:00:39', '2023-05-14 18:02:23');
 
 -- --------------------------------------------------------
 
@@ -906,7 +906,11 @@ CREATE TABLE `posts` (
 INSERT INTO `posts` (`id`, `user_id`, `address_travel_id`, `type_travel_id`, `title`, `content`, `status`, `created_at`, `updated_at`) VALUES
 (1, 3, 2, 1, 'xcvxcv', 'cxv', '2', NULL, NULL),
 (2, 3, 2, 1, 'zxc', 'zzxczx', '1', NULL, NULL),
-(3, 5, 2, 1, 'ád', 'áda', '2', NULL, NULL);
+(3, 5, 2, 1, 'ád', 'áda', '2', NULL, NULL),
+(4, 4, 2, 1, 'zxc', 'zxc', '2', NULL, NULL),
+(5, 4, 2, 1, 'alo tui là hacker lỏ', 'tui sẽ trở thành hacker', '1', NULL, NULL),
+(6, 4, 2, 1, 'Tui là hacker nè', 'tui sẽ hack tất cả', '1', NULL, NULL),
+(7, 4, 2, 1, 'Xin chào toàn thể đồng bào tui là hacker mũ lỏ', 'Ai có bồ tui hack bay nick', '1', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -932,7 +936,62 @@ INSERT INTO `post_comments` (`id`, `post_id`, `user_id`, `content`, `created_at`
 (3, 1, 3, 'zxczxc', '2023-05-10 15:28:41', '2023-05-10 15:28:41'),
 (6, 2, 4, 'asd', '2023-05-10 16:14:18', '2023-05-10 16:14:18'),
 (7, 2, 3, 'anh', '2023-05-10 16:17:04', '2023-05-10 16:17:04'),
-(8, 2, 3, 'zxczxc', '2023-05-10 16:31:51', '2023-05-10 16:31:51');
+(8, 2, 3, 'zxczxc', '2023-05-10 16:31:51', '2023-05-10 16:31:51'),
+(27, 3, 5, 'zxczxczxc', '2023-05-11 08:32:26', '2023-05-11 08:32:26'),
+(28, 2, 5, 'zxczxc', '2023-05-11 08:32:29', '2023-05-11 08:32:29'),
+(29, 3, 5, 'zxczcz', '2023-05-11 09:45:47', '2023-05-11 09:45:47'),
+(30, 3, 5, 'zxcxzc', '2023-05-11 10:06:34', '2023-05-11 10:06:34'),
+(31, 3, 5, 'zxczxc', '2023-05-11 10:06:49', '2023-05-11 10:06:49'),
+(32, 3, 5, 'zxczx', '2023-05-11 10:07:45', '2023-05-11 10:07:45'),
+(33, 3, 5, 'zxczxc', '2023-05-11 10:23:06', '2023-05-11 10:23:06'),
+(34, 3, 4, 'zxczxc', '2023-05-11 10:23:44', '2023-05-11 10:23:44'),
+(35, 3, 4, 'anh', '2023-05-11 10:25:20', '2023-05-11 10:25:20'),
+(36, 3, 4, 'em', '2023-05-11 10:25:43', '2023-05-11 10:25:43'),
+(37, 3, 4, 'bi', '2023-05-11 10:26:16', '2023-05-11 10:26:16'),
+(38, 3, 5, 'zxczxc', '2023-05-11 10:32:59', '2023-05-11 10:32:59'),
+(39, 3, 5, 'anhanh', '2023-05-11 10:33:08', '2023-05-11 10:33:08'),
+(40, 3, 5, 'em', '2023-05-11 10:34:20', '2023-05-11 10:34:20'),
+(41, 3, 4, 'zxczxc', '2023-05-11 10:37:48', '2023-05-11 10:37:48'),
+(43, 4, 5, 'zxczxczx', '2023-05-11 10:40:03', '2023-05-11 10:40:03'),
+(44, 4, 4, 'ádsad', '2023-05-11 10:40:21', '2023-05-11 10:40:21'),
+(45, 4, 5, 'zxczxczxc', '2023-05-11 10:41:03', '2023-05-11 10:41:03'),
+(46, 4, 4, 'zxczxc', '2023-05-11 10:41:21', '2023-05-11 10:41:21'),
+(47, 4, 4, 'qưeqwe', '2023-05-11 10:42:12', '2023-05-11 10:42:12'),
+(48, 4, 4, 'ád213', '2023-05-11 10:42:37', '2023-05-11 10:42:37'),
+(49, 4, 4, '242342342', '2023-05-11 10:42:48', '2023-05-11 10:42:48'),
+(50, 4, 4, '235253', '2023-05-11 10:43:18', '2023-05-11 10:43:18'),
+(51, 4, 4, 'zxczxc', '2023-05-11 10:43:59', '2023-05-11 10:43:59'),
+(52, 4, 4, 'anh', '2023-05-11 10:44:36', '2023-05-11 10:44:36'),
+(54, 4, 4, 'zxczxc', '2023-05-11 10:46:53', '2023-05-11 10:46:53'),
+(55, 4, 4, 'em', '2023-05-11 10:47:43', '2023-05-11 10:47:43'),
+(56, 4, 4, 'anh', '2023-05-11 10:49:33', '2023-05-11 10:49:33'),
+(57, 4, 4, 'zxcz', '2023-05-11 10:50:34', '2023-05-11 10:50:34'),
+(58, 4, 4, '213123', '2023-05-11 10:52:55', '2023-05-11 10:52:55'),
+(59, 4, 4, 'ấccs', '2023-05-11 10:53:36', '2023-05-11 10:53:36'),
+(60, 4, 4, '123123', '2023-05-11 10:54:09', '2023-05-11 10:54:09'),
+(61, 4, 4, '5555', '2023-05-11 10:55:25', '2023-05-11 10:55:25'),
+(62, 4, 4, 'zxczxc', '2023-05-11 10:56:26', '2023-05-11 10:56:26'),
+(63, 4, 4, '555555', '2023-05-11 10:56:41', '2023-05-11 10:56:41'),
+(64, 4, 4, 'ấcc', '2023-05-11 10:57:51', '2023-05-11 10:57:51'),
+(65, 4, 4, '12233', '2023-05-11 10:58:25', '2023-05-11 10:58:25'),
+(66, 4, 4, 'anh', '2023-05-11 11:00:29', '2023-05-11 11:00:29'),
+(77, 5, 4, 'zxczxc', '2023-05-11 11:20:31', '2023-05-11 11:20:31'),
+(86, 5, 4, '1234', '2023-05-11 15:57:31', '2023-05-11 15:57:31'),
+(87, 5, 4, '555', '2023-05-11 15:57:57', '2023-05-11 15:57:57'),
+(88, 5, 5, '124', '2023-05-11 16:00:08', '2023-05-11 16:00:08'),
+(89, 5, 4, '1555', '2023-05-11 16:01:15', '2023-05-11 16:01:15'),
+(90, 5, 4, '1222', '2023-05-11 16:01:37', '2023-05-11 16:01:37'),
+(91, 5, 4, '123123', '2023-05-11 16:02:38', '2023-05-11 16:02:38'),
+(92, 5, 4, '155', '2023-05-11 16:02:59', '2023-05-11 16:02:59'),
+(93, 5, 4, 'ssss', '2023-05-11 16:04:42', '2023-05-11 16:04:42'),
+(94, 5, 4, '555555', '2023-05-11 16:06:03', '2023-05-11 16:06:03'),
+(95, 5, 5, '1231', '2023-05-11 16:06:11', '2023-05-11 16:06:11'),
+(96, 6, 4, '555', '2023-05-11 16:27:47', '2023-05-11 16:27:47'),
+(97, 6, 4, 'tui cũng là hacker nè', '2023-05-11 16:29:02', '2023-05-11 16:29:02'),
+(98, 6, 5, 'Ok tui là trùm hacker', '2023-05-11 16:30:08', '2023-05-11 16:30:08'),
+(99, 6, 4, 'tao là hacker mũ lỏ', '2023-05-11 16:31:19', '2023-05-11 16:31:19'),
+(100, 6, 5, 'tui chào hacker mũ lỏ', '2023-05-11 16:32:27', '2023-05-11 16:32:27'),
+(111, 7, 4, 'hacker mủ lõ', '2023-05-11 16:54:41', '2023-05-11 16:54:41');
 
 -- --------------------------------------------------------
 
@@ -974,7 +1033,23 @@ INSERT INTO `post_comment_reply` (`id`, `comment_id`, `users_id_1`, `users_id_2`
 (52, 8, 5, 3, 'áda', '2023-05-10 17:16:55', '2023-05-10 17:16:55'),
 (53, 7, 5, 5, 'ok', '2023-05-10 17:16:59', '2023-05-10 17:16:59'),
 (54, 7, 4, 4, 'ok', '2023-05-10 17:17:26', '2023-05-10 17:17:26'),
-(55, 7, 5, 4, 'ok', '2023-05-10 17:17:38', '2023-05-10 17:17:38');
+(55, 7, 5, 4, 'ok', '2023-05-10 17:17:38', '2023-05-10 17:17:38'),
+(56, 1, 5, 4, 'zxczxc', '2023-05-11 07:16:39', '2023-05-11 07:16:39'),
+(62, 6, 5, 3, 'em', '2023-05-11 07:34:19', '2023-05-11 07:34:19'),
+(64, 8, 5, 3, 'asdasd', '2023-05-11 07:37:57', '2023-05-11 07:37:57'),
+(67, 30, 5, 5, 'zxvzxvzxv', '2023-05-11 10:06:37', '2023-05-11 10:06:37'),
+(68, 27, 5, 5, 'zxczxczx', '2023-05-11 10:06:40', '2023-05-11 10:06:40'),
+(77, 77, 5, 4, 'zxczxczxc', '2023-05-11 15:35:15', '2023-05-11 15:35:15'),
+(78, 77, 5, 4, 'asdasda', '2023-05-11 15:41:00', '2023-05-11 15:41:00'),
+(79, 77, 5, 4, 'xcvxcvxv', '2023-05-11 15:41:14', '2023-05-11 15:41:14'),
+(80, 77, 5, 4, 'zxczxczc', '2023-05-11 15:42:09', '2023-05-11 15:42:09'),
+(81, 77, 5, 4, 'zxczxczcz', '2023-05-11 15:42:35', '2023-05-11 15:42:35'),
+(82, 77, 5, 4, 'z213123', '2023-05-11 15:43:06', '2023-05-11 15:43:06'),
+(85, 77, 5, 5, '123', '2023-05-11 15:46:36', '2023-05-11 15:46:36'),
+(86, 77, 5, 4, '5555', '2023-05-11 15:47:04', '2023-05-11 15:47:04'),
+(87, 77, 5, 5, '124', '2023-05-11 15:48:02', '2023-05-11 15:48:02'),
+(89, 41, 5, 4, '1515', '2023-05-11 15:48:18', '2023-05-11 15:48:18'),
+(90, 100, 4, 5, 'ok hacker mủ lỏ', '2023-05-11 16:32:37', '2023-05-11 16:32:37');
 
 -- --------------------------------------------------------
 
@@ -997,8 +1072,12 @@ CREATE TABLE `post_favorite` (
 INSERT INTO `post_favorite` (`id`, `post_id`, `user_id`, `created_at`, `updated_at`) VALUES
 (1, 2, 3, '2023-05-10 10:25:12', '2023-05-10 10:25:12'),
 (3, 1, 3, '2023-05-10 15:28:39', '2023-05-10 15:28:39'),
-(4, 2, 5, '2023-05-10 17:18:18', '2023-05-10 17:18:18'),
-(5, 2, 4, '2023-05-10 17:18:22', '2023-05-10 17:18:22');
+(5, 2, 4, '2023-05-10 17:18:22', '2023-05-10 17:18:22'),
+(9, 3, 5, '2023-05-11 10:08:09', '2023-05-11 10:08:09'),
+(10, 1, 5, '2023-05-11 10:10:18', '2023-05-11 10:10:18'),
+(12, 5, 4, '2023-05-11 11:20:20', '2023-05-11 11:20:20'),
+(13, 4, 5, '2023-05-11 15:48:21', '2023-05-11 15:48:21'),
+(14, 6, 4, '2023-05-11 16:27:39', '2023-05-11 16:27:39');
 
 -- --------------------------------------------------------
 
@@ -1019,7 +1098,8 @@ CREATE TABLE `post_picture` (
 --
 
 INSERT INTO `post_picture` (`id`, `post_id`, `images`, `created_at`, `updated_at`) VALUES
-(1, 1, 'mFI3WlrueCCmUl498uDX.1683713316.jpg', NULL, NULL);
+(1, 1, 'mFI3WlrueCCmUl498uDX.1683713316.jpg', NULL, NULL),
+(2, 7, 't26GtVZQbAK1dabrOu7d.1683822836.jpg', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -11931,6 +12011,45 @@ CREATE TABLE `users_connect` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Đang đổ dữ liệu cho bảng `users_connect`
+--
+
+INSERT INTO `users_connect` (`id`, `user_1_id`, `user_2_id`, `chat_user_1`, `chat_user_2`, `created_at`, `updated_at`) VALUES
+(3, 5, 2, 'tui nè', NULL, NULL, NULL),
+(4, 5, 1, NULL, 'ok', NULL, NULL),
+(5, 3, 5, 'chào bạn 5', NULL, NULL, NULL),
+(6, 1, 5, 'chao ban 2', NULL, NULL, NULL),
+(7, 5, 4, NULL, NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(8, 2, 3, NULL, NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `users_relationship`
+--
+
+CREATE TABLE `users_relationship` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_1_id` int(10) UNSIGNED NOT NULL,
+  `user_2_id` int(10) UNSIGNED NOT NULL,
+  `status` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `users_relationship`
+--
+
+INSERT INTO `users_relationship` (`id`, `user_1_id`, `user_2_id`, `status`, `created_at`, `updated_at`) VALUES
+(1, 5, 1, 'Bạn bè', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(2, 5, 3, 'Bạn bè', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(3, 5, 2, 'Bạn bè', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(4, 5, 4, 'Bạn bè', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(5, 2, 5, 'Bạn bè', '2023-05-14 18:00:32', '2023-05-14 18:00:32'),
+(6, 2, 3, 'Bạn bè', '2023-05-14 18:00:34', '2023-05-14 18:00:34');
+
 -- --------------------------------------------------------
 
 --
@@ -11947,6 +12066,7 @@ CREATE TABLE `user_information` (
   `phone` varchar(13) DEFAULT NULL,
   `education` varchar(200) DEFAULT NULL,
   `image` text DEFAULT NULL,
+  `is_login` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -11955,12 +12075,12 @@ CREATE TABLE `user_information` (
 -- Đang đổ dữ liệu cho bảng `user_information`
 --
 
-INSERT INTO `user_information` (`id`, `user_id`, `name`, `birth_date`, `gender`, `address`, `phone`, `education`, `image`, `created_at`, `updated_at`) VALUES
-(1, 3, 'quoc anh', '0000-00-00', NULL, NULL, NULL, NULL, 'default.png', NULL, NULL),
-(2, 4, 'quoc em', '2002-03-11', NULL, NULL, NULL, NULL, 'default.png', NULL, NULL),
-(3, 5, 'quoc em', '2002-03-11', NULL, NULL, NULL, NULL, 'default.png', NULL, NULL),
-(4, 6, 'quoc anh', '2002-03-11', NULL, NULL, NULL, NULL, 'default.png', NULL, NULL),
-(5, 7, 'Đạt nè', '2002-09-11', NULL, NULL, NULL, NULL, 'default.png', NULL, NULL);
+INSERT INTO `user_information` (`id`, `user_id`, `name`, `birth_date`, `gender`, `address`, `phone`, `education`, `image`, `is_login`, `created_at`, `updated_at`) VALUES
+(1, 3, 'quoc  sa', '0000-00-00', NULL, NULL, NULL, NULL, 'default.png', 1, NULL, NULL),
+(2, 6, 'quoc em', '2002-03-11', NULL, NULL, NULL, NULL, 'default.png', 1, NULL, '2023-05-14 18:00:39'),
+(3, 5, 'quoc dat', '2002-03-11', NULL, NULL, NULL, NULL, 'default.png', 1, NULL, NULL),
+(4, 4, 'quoc anh', '2002-03-11', NULL, NULL, NULL, NULL, 'default.png', 0, NULL, NULL),
+(5, 7, 'Đạt nè', '2002-09-11', NULL, NULL, NULL, NULL, 'default.png', 0, NULL, '2023-05-14 17:59:32');
 
 -- --------------------------------------------------------
 
@@ -12161,6 +12281,14 @@ ALTER TABLE `users_connect`
   ADD KEY `users_connect_ibfk_2` (`user_2_id`);
 
 --
+-- Chỉ mục cho bảng `users_relationship`
+--
+ALTER TABLE `users_relationship`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id_1` (`user_1_id`),
+  ADD KEY `user_id_2` (`user_2_id`);
+
+--
 -- Chỉ mục cho bảng `user_information`
 --
 ALTER TABLE `user_information`
@@ -12199,43 +12327,43 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT cho bảng `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=239;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=240;
 
 --
 -- AUTO_INCREMENT cho bảng `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT cho bảng `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT cho bảng `post_comments`
 --
 ALTER TABLE `post_comments`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=112;
 
 --
 -- AUTO_INCREMENT cho bảng `post_comment_reply`
 --
 ALTER TABLE `post_comment_reply`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100;
 
 --
 -- AUTO_INCREMENT cho bảng `post_favorite`
 --
 ALTER TABLE `post_favorite`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT cho bảng `post_picture`
 --
 ALTER TABLE `post_picture`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT cho bảng `roles`
@@ -12301,7 +12429,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT cho bảng `users_connect`
 --
 ALTER TABLE `users_connect`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT cho bảng `users_relationship`
+--
+ALTER TABLE `users_relationship`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT cho bảng `user_information`
@@ -12416,6 +12550,13 @@ ALTER TABLE `users`
 ALTER TABLE `users_connect`
   ADD CONSTRAINT `users_connect_ibfk_1` FOREIGN KEY (`user_1_id`) REFERENCES `user_information` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `users_connect_ibfk_2` FOREIGN KEY (`user_2_id`) REFERENCES `user_information` (`id`) ON DELETE CASCADE;
+
+--
+-- Các ràng buộc cho bảng `users_relationship`
+--
+ALTER TABLE `users_relationship`
+  ADD CONSTRAINT `users_relationship_ibfk_1` FOREIGN KEY (`user_1_id`) REFERENCES `user_information` (`id`),
+  ADD CONSTRAINT `users_relationship_ibfk_2` FOREIGN KEY (`user_2_id`) REFERENCES `user_information` (`id`);
 
 --
 -- Các ràng buộc cho bảng `user_information`

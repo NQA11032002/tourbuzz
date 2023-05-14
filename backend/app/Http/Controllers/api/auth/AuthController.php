@@ -5,6 +5,8 @@ namespace App\Http\Controllers\api\auth;
 use App\Http\Controllers\Controller;
 use App\Models\auth\roles;
 use App\Models\auth\user_image;
+use App\Models\auth\user_information;
+use App\Models\users;
 use Carbon\Carbon;
 use DB;
 use Illuminate\Foundation\Auth\User;
@@ -47,6 +49,11 @@ class AuthController extends Controller
             }
 
             $user = Auth::user();
+
+            //update status is login
+            $user_update = user_information::where('user_id', $user->id)->first();
+            $user_update->is_login = 1;
+            $user_update->save();
 
             //create new token for user
             $token = $user->createToken('auth_token', ["*"], Carbon::now()->addHours(3))->plainTextToken;
@@ -131,6 +138,11 @@ class AuthController extends Controller
     //log out account user
     public function logout()
     {
+        $user = Auth::user();
+        $user_update = user_information::where('user_id', $user->id)->first();
+        $user_update->is_login = 0;
+        $user_update->save();
+
         Auth::user()->tokens()->delete();
 
         return response()->json(['message' => 'Logout successfully', 'status' => 200]);
