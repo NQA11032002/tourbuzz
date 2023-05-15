@@ -23,9 +23,17 @@ export class HomeComponent {
     this.getVehicles();
     this.getPosts();
     this.getTours();
-
   }
 
+  ngOnInit(){
+    setInterval(() => {
+      let lists = document.querySelectorAll('.item');
+      let slides = document.getElementById('slide');
+      (slides as HTMLElement).prepend(lists[lists.length - 1]);
+    }, 5000);
+  }
+
+  //get list city
   getCities(){
     let token = sessionStorage.getItem("token_user");
 
@@ -36,6 +44,7 @@ export class HomeComponent {
     }
   }
 
+  //get list type travel
   typeTravels(){
     let token = sessionStorage.getItem("token_user");
 
@@ -46,6 +55,7 @@ export class HomeComponent {
     }
   }
 
+  //get list vehicle
   getVehicles(){
     let token = sessionStorage.getItem("token_user");
 
@@ -66,6 +76,7 @@ export class HomeComponent {
     }
   }
 
+  //get list post
   getTours(){
     let token = sessionStorage.getItem("token_user");
 
@@ -76,4 +87,18 @@ export class HomeComponent {
     }
   }
 
+  //next slide image show on home
+  nextSlide(){
+    let lists = document.querySelectorAll('.item');
+    let slides = document.getElementById('slide');
+    (slides as HTMLElement).appendChild(lists[0])
+  }
+
+  //previous slide image show on home
+  previousSlide(){
+    let lists = document.querySelectorAll('.item');
+    let slides = document.getElementById('slide');
+    
+    (slides as HTMLElement).prepend(lists[lists.length - 1]);
+  }
 }

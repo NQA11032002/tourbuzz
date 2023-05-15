@@ -2,7 +2,60 @@
 
 <section>
   <div class="container_home">
-    <div class="home_header">
+    <div class=" position-relative container_slide">
+      <div class="container">
+        <div id="slide">
+          <div class="item" style="background-image: url('assets/images/home/1.jpg');">
+            <div class="content">
+              <div class="name">POPULAR WORLD SCENE</div>
+              <div class="des">PERFECT WORLD TRAVEL AGENCY</div>
+              <button>Booking Now!</button>
+            </div>
+          </div>
+          <div class="item" style="background-image: url('assets/images/home/2.jpg');">
+            <div class="content">
+              <div class="name">POPULAR WORLD SCENE</div>
+              <div class="des">PERFECT WORLD TRAVEL AGENCY</div>
+              <button>Booking Now!</button>
+            </div>
+          </div>
+          <div class="item" style="background-image: url('assets/images/home/3.jpg');">
+            <div class="content">
+              <div class="name">POPULAR WORLD SCENE</div>
+              <div class="des">PERFECT WORLD TRAVEL AGENCY</div>
+              <button>Booking Now!</button>
+            </div>
+          </div>
+          <div class="item" style="background-image: url('assets/images/home/4.jpg');">
+            <div class="content">
+              <div class="name">POPULAR WORLD SCENE</div>
+              <div class="des">PERFECT WORLD TRAVEL AGENCY</div>
+              <button>Booking Now!</button>
+            </div>
+          </div>
+          <div class="item" style="background-image: url('assets/images/home/5.jpg');">
+            <div class="content">
+              <div class="name">POPULAR WORLD SCENE</div>
+              <div class="des">PERFECT WORLD TRAVEL AGENCY</div>
+              <button>Booking Now!</button>
+            </div>
+          </div>
+          <div class="item" style="background-image: url('assets/images/home/6.jpg');">
+            <div class="content">
+              <div class="name">POPULAR WORLD SCENE</div>
+              <div class="des">PERFECT WORLD TRAVEL AGENCY</div>
+              <button>Booking Now!</button>
+            </div>
+          </div>
+        </div>
+        <div class="buttons">
+          <button id="prev" (click)="nextSlide()"><i class="fa-solid fa-angle-left"></i></button>
+          <button id="next" (click)="previousSlide()"><i class="fa-solid fa-angle-right"></i></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- <div class="home_header">
       <div class="home_header-banner">
         <img
           src="https://cdn.pixabay.com/photo/2013/04/11/19/46/building-102840_960_720.jpg"
@@ -71,7 +124,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
     <div class="spaceline">
 
     </div>
@@ -81,9 +134,8 @@
       </div>
       <div class="home_tour-details">
         <div class="home_tour-details-img">
-          <img
-            src="https://dulichfun.com/wp-content/uploads/2019/01/Kinh-nghiem-phuot-Ky-Co-Quy-Nhon-tu-tuc.jpg"
-            alt="" class="img-tour">
+          <img src="https://dulichfun.com/wp-content/uploads/2019/01/Kinh-nghiem-phuot-Ky-Co-Quy-Nhon-tu-tuc.jpg" alt=""
+            class="img-tour">
         </div>
         <div class="home_tour-details-desc">
           <div class="home_tour-details-desc-title">
@@ -110,8 +162,7 @@
     </div>
     <div class="home_discount">
       <div class="home_discount-bg">
-        <img src="https://cdn.pixabay.com/photo/2013/10/09/02/27/lake-192990_960_720.jpg"
-          alt="">
+        <img src="https://cdn.pixabay.com/photo/2013/10/09/02/27/lake-192990_960_720.jpg" alt="">
       </div>
       <div class="home_discount-title">
         <h5 class="title">GET DISCOUNT 10-20% OFF ANY TOUR PACKAGE</h5>
@@ -142,7 +193,8 @@
               <h5 class="post-title pt-3 flex-shrink-0">{{ item.title }}</h5>
               <p class="home_social-content flex-1">{{ item.content }}</p>
               <div class="home_social-desc-img flex-shrink-0">
-                <img *ngIf="item.post_picture.length > 0" src="{{ item.post_picture[0].images  }}" alt="" class="img-tour">
+                <img *ngIf="item.post_picture.length > 0" src="{{ item.post_picture[0].images  }}" alt=""
+                  class="img-tour">
                 <img *ngIf="item.post_picture.length == 0" src="" alt="" class="img-tour">
               </div>
             </div>
@@ -156,9 +208,7 @@
 
     <div class="home_discount">
       <div class="home_discount-bg">
-        <img
-          src="https://cdn.pixabay.com/photo/2018/04/25/09/26/eiffel-tower-3349075_960_720.jpg"
-          alt="">
+        <img src="https://cdn.pixabay.com/photo/2018/04/25/09/26/eiffel-tower-3349075_960_720.jpg" alt="">
       </div>
       <div class="home_discount-title">
         <h5 class="title">DISCOUNT UP TO 70%</h5>
@@ -176,9 +226,7 @@
       <div class="home_popular-list">
         <div class="home_popular-item" *ngFor="let item of tours">
           <div class="home_popular-item-img">
-            <img
-              src="{{ item.images }}"
-              alt="">
+            <img src="{{ item.images }}" alt="">
           </div>
           <div class="home_popular-item-title">
             <span>{{ item.title }}</span>
@@ -199,5 +247,3 @@
 </section>
 
 <app-footer></app-footer>
-
-
