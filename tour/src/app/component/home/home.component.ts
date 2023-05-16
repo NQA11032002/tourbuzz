@@ -26,11 +26,7 @@ export class HomeComponent {
   }
 
   ngOnInit(){
-    setInterval(() => {
-      let lists = document.querySelectorAll('.item');
-      let slides = document.getElementById('slide');
-      (slides as HTMLElement).prepend(lists[lists.length - 1]);
-    }, 5000);
+
   }
 
   //get list city

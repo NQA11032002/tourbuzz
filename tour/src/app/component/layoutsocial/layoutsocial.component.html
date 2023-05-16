@@ -11,18 +11,20 @@
     <div class="container_navbar">
       <div class="navbar-list">
         <h3 class="navbar-item-breadscrumb">Home</h3>
-  
+
         <h6 class="navbar-item-title">Friends (10)</h6>
-        <div class="navbar-item"  *ngFor="let item of friends">
+        <div class="navbar-item" *ngFor="let item of friends">
           <div class="navbar-infor" (click)="messenger(item.user_information.id)">
-              <div class="navbar-infor-image position-relative">
-                <img src="assets/images/avatar/{{ item.user_information.image }}" alt="logo">
-                <i class="status-info fa-solid fa-circle position-absolute bottom-0 right-0" *ngIf="item.user_information.is_login === 1"></i>
-                <i class="status-info fa-solid fa-circle position-absolute bottom-0 right-0 status_offine" *ngIf="item.user_information.is_login === 0"></i>
-              </div>
-              <div class="navbar-infor-name">
-                <span>{{ item.user_information.name }}</span>
-              </div>
+            <div class="navbar-infor-image position-relative">
+              <img src="assets/images/avatar/{{ item.user_information.image }}" alt="logo">
+              <i class="status-info fa-solid fa-circle position-absolute bottom-0 right-0"
+                *ngIf="item.user_information.is_login === 1"></i>
+              <i class="status-info fa-solid fa-circle position-absolute bottom-0 right-0 status_offine"
+                *ngIf="item.user_information.is_login === 0"></i>
+            </div>
+            <div class="navbar-infor-name">
+              <span>{{ item.user_information.name }}</span>
+            </div>
           </div>
         </div>
       </div>
@@ -30,7 +32,4 @@
   </div>
 </div>
 
-
-<div class="messengers d-flex position-fixed bottom-0">
-
-</div>
+<app-messenger></app-messenger>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\api\social;
 
 use App\Http\Controllers\Controller;
+use App\Models\auth\user_information;
 use App\Models\auth\users_connect;
 use App\Models\auth\users_relationship;
 use Illuminate\Http\Request;
@@ -48,13 +49,16 @@ class User_ConnectController extends Controller
             $query->where('user_1_id', $myUser)->where("user_2_id", $user_id);
         })->orWhere(function ($query) use ($myUser, $user_id) {
             $query->where('user_2_id', $myUser)->where("user_1_id", $user_id);
-        })->orderBy('id')->with('user_information')->get();
+        })->orderBy('id')->get();
+
+        $friend = user_information::where('id', $user_id)->first();
 
         if ($messenger->count() > 0) {
             $response = [
                 'title' => 'list messenger of the user with friend',
                 'status' => 200,
                 'data' => $messenger,
+                'friend' => $friend,
                 'detail' => 'success'
             ];
         } else {
@@ -74,11 +78,26 @@ class User_ConnectController extends Controller
     {
         $myUser = Auth::user()->user_information->id;
 
-        users_connect::create([
+        $message = users_connect::create([
             "user_1_id" => $myUser,
-            "user_2_id" => $request->user_2,
-            "chat_user_1" => $request->chat_user_1,
-            "chat_user_2" => $request->chat_user_2,
+            "user_2_id" => $request->user_friend,
+            "chat_user" => $request->chat_user,
         ]);
+
+        if ($message) {
+            $response = [
+                'title' => 'Send message to friend',
+                'status' => 200,
+                'detail' => 'success'
+            ];
+        } else {
+            $response = [
+                'title' => 'Send message to friend',
+                'status' => 500,
+                'detail' => 'fail'
+            ];
+        }
+
+        return $response;
     }
 }

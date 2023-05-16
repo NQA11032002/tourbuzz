@@ -1,0 +1,40 @@
+<div class="messengers d-flex position-fixed bottom-0">
+  <div class="messenger" *ngFor="let item of user.messenger">
+    <div class="messenger_header d-flex justify-content-between">
+      <div class="messenger_left d-flex">
+        <img class="messenger_avatar" src="assets/images/avatar/{{item.friend.image}}" alt="">
+        <div class="messenger_info">
+          <h6 class="messenger_name">{{item.friend.name}}</h6>
+          <p class="messenger_status" *ngIf="item.friend.is_login === 1">Đang hoạt động</p>
+          <p class="messenger_status" *ngIf="item.friend.is_login === 0">Người dùng hiện không có mặt</p>
+        </div>
+      </div>
+      <div class="messenger_window d-flex">
+        <i class="fa-solid fa-xmark close_messenger" (click)="closeMessenger(item.friend.id)"></i>
+      </div>
+    </div>
+    <div class="messenger_content d-flex flex-column">
+      <div *ngFor="let messenger of item.data">
+        <div class="messenger_user_2 d-flex align-items-center"
+          *ngIf="userLogin.id !== messenger.user_1_id && messenger.chat_user">
+          <img class="messenger_user_2--avatar" src="assets/images/avatar/{{item.friend.image}}" alt="">
+          <p class="messenger_user_2--content">{{ messenger.chat_user }}</p>
+        </div>
+        <div class="messenger_user_1" *ngIf="userLogin.id === messenger.user_1_id && messenger.chat_user">
+          <p class="messenger_user_1--content">{{ messenger.chat_user }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="messenger_insert">
+      <form [formGroup]="formSendMessage" action="" class="form-control form_messenger d-flex justify-content-between"
+        method="post" (submit)="sendMessenger(item.friend.id)">
+        <input formControlName="message" type="text" (click)="resetMessage()" class="messenger_input shadow-none w-100"
+          placeholder="Nhập tin nhắn bạn muốn gửi">
+
+        <button [disabled]="formSendMessage.invalid" type="submit" class="messenger_submit">
+          <i class="fa-regular fa-paper-plane"></i>
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
