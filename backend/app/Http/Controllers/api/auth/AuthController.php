@@ -231,4 +231,26 @@ class AuthController extends Controller
 
         return $response;
     }
+
+    //get information user
+    public function getUserInformation($id)
+    {
+        $user = user_information::where('id', $id)->first();
+
+        if (!empty($user)) {
+            $response = [
+                'title' => 'Get user information',
+                'status' => 200,
+                'data' => $user,
+                'detail' => 'success'
+            ];
+        } else {
+            $response = [
+                'title' => 'Get user information',
+                'status' => '203',
+            ];
+        }
+
+        return $response;
+    }
 }

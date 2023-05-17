@@ -7,7 +7,8 @@ import { Observable, Subject } from 'rxjs';
 })
 export class UsersService {
   public messenger:Array<any> = [];
-  
+  public messages: Observable<any> = new Observable<any>;
+
   constructor(private http:HttpClient){}
 
   private api = "http://localhost:8000/api/auth/";
@@ -60,5 +61,13 @@ export class UsersService {
     let urlApi = `${this.apiUser}friends?bearer=${token}`;
 
     return this.http.post<any>(urlApi, para, {headers});
+  }
+
+  //get user information
+  getUserInformation(user_id:any, token:string){
+    let headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
+    let urlApi = `${this.api}${user_id}`;
+
+    return this.http.get<any>(urlApi, {headers});
   }
 }

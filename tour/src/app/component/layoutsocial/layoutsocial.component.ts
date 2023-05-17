@@ -1,6 +1,6 @@
-import { Component, Input } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component } from '@angular/core';
 import { UsersService } from 'src/app/services/users.service';
+import { Firestore, collection, collectionData } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-layoutsocial',
@@ -11,7 +11,7 @@ export class LayoutsocialComponent {
 
   public friends:Array<any> = new Array<any>();
 
-  constructor(private user:UsersService){
+  constructor(private user:UsersService, private firestore:Firestore){
     this.getFriends();
   }
 
@@ -29,19 +29,24 @@ export class LayoutsocialComponent {
   //get messenger with friend 
   public messenger(user_id:any){
      let token = sessionStorage.getItem("token_user");
+
     if(token != null){
-      this.user.getMessenger(user_id,token).subscribe(p => {
+      this.user.getUserInformation(user_id,token).subscribe(p => {
           let checkMess = undefined;
 
           //if messenger is opening, that can't open.
           if(this.user.messenger.length > 0){
-            checkMess = this.user.messenger.find(p => p.friend.id === user_id);
+            checkMess = this.user.messenger.find(p => p.id === user_id);
           }
-
           if(checkMess == undefined){
-            this.user.messenger.push(p);
+            this.user.messenger.push(p.data);
           }
       });
+    
+      const collectionInstance = collection(this.firestore, 'messenger');
+
+      this.user.messages = collectionData(collectionInstance);
+      
     }
   }
 

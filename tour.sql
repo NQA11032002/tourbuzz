@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th5 14, 2023 lúc 08:06 PM
+-- Thời gian đã tạo: Th5 17, 2023 lúc 09:18 AM
 -- Phiên bản máy phục vụ: 10.4.28-MariaDB
 -- Phiên bản PHP: 8.1.17
 
@@ -879,7 +879,8 @@ CREATE TABLE `personal_access_tokens` (
 
 INSERT INTO `personal_access_tokens` (`id`, `tokenable_type`, `tokenable_id`, `name`, `token`, `abilities`, `last_used_at`, `expires_at`, `created_at`, `updated_at`) VALUES
 (17, 'App\\Models\\auth\\user', 5, 'auth_token', '838ab1132cd1dd8e6e1d9605a0c06b78a16c3c948a8988e2f53b838dceadfbb8', '[\"*\"]', '2023-05-11 14:26:09', '2023-05-11 17:25:37', '2023-05-11 14:25:37', '2023-05-11 14:26:09'),
-(28, 'App\\Models\\auth\\user', 6, 'auth_token', '7181ac5c9398dfd510c861bfea3ad771913eaf7a8a79ad710fb5c33ebb9b61b0', '[\"*\"]', '2023-05-14 18:02:23', '2023-05-14 21:00:39', '2023-05-14 18:00:39', '2023-05-14 18:02:23');
+(39, 'App\\Models\\auth\\user', 7, 'auth_token', 'd2a6ef8daf0e4a4d6ed7fae928e714a5bc16b3e50f6feda2646ece48cd2c21ee', '[\"*\"]', '2023-05-17 07:18:15', '2023-05-17 08:03:51', '2023-05-17 05:03:51', '2023-05-17 07:18:15'),
+(40, 'App\\Models\\auth\\user', 6, 'auth_token', '47855dd562351dea24ce2a1d29f2edcece32b2457c571affee434cd97a5099fd', '[\"*\"]', '2023-05-17 07:14:54', '2023-05-17 09:11:20', '2023-05-17 06:11:20', '2023-05-17 07:14:54');
 
 -- --------------------------------------------------------
 
@@ -12005,8 +12006,7 @@ CREATE TABLE `users_connect` (
   `id` int(10) UNSIGNED NOT NULL,
   `user_1_id` int(10) UNSIGNED NOT NULL,
   `user_2_id` int(10) UNSIGNED NOT NULL,
-  `chat_user_1` text DEFAULT NULL,
-  `chat_user_2` text DEFAULT NULL,
+  `chat_user` text DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -12015,13 +12015,27 @@ CREATE TABLE `users_connect` (
 -- Đang đổ dữ liệu cho bảng `users_connect`
 --
 
-INSERT INTO `users_connect` (`id`, `user_1_id`, `user_2_id`, `chat_user_1`, `chat_user_2`, `created_at`, `updated_at`) VALUES
-(3, 5, 2, 'tui nè', NULL, NULL, NULL),
-(4, 5, 1, NULL, 'ok', NULL, NULL),
-(5, 3, 5, 'chào bạn 5', NULL, NULL, NULL),
-(6, 1, 5, 'chao ban 2', NULL, NULL, NULL),
-(7, 5, 4, NULL, NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(8, 2, 3, NULL, NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00');
+INSERT INTO `users_connect` (`id`, `user_1_id`, `user_2_id`, `chat_user`, `created_at`, `updated_at`) VALUES
+(3, 5, 2, 'Tui là Đạt ', NULL, NULL),
+(4, 5, 1, NULL, NULL, NULL),
+(5, 2, 5, NULL, NULL, NULL),
+(7, 5, 4, NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(8, 2, 3, NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(11, 5, 2, 'Chào bạn 1', '2023-05-15 14:56:22', '2023-05-15 14:56:22'),
+(59, 5, 2, 'ee', '2023-05-16 10:33:19', '2023-05-16 10:33:19'),
+(60, 2, 5, 'e cu', '2023-05-16 10:50:13', '2023-05-16 10:50:13'),
+(61, 2, 3, 'e cu', '2023-05-16 10:50:19', '2023-05-16 10:50:19'),
+(62, 2, 3, '234234', '2023-05-16 10:50:24', '2023-05-16 10:50:24'),
+(63, 2, 3, '123', '2023-05-16 10:56:12', '2023-05-16 10:56:12'),
+(64, 2, 5, '55', '2023-05-16 10:56:14', '2023-05-16 10:56:14'),
+(65, 2, 3, 'ádasdasdadad', '2023-05-16 10:56:22', '2023-05-16 10:56:22'),
+(66, 2, 5, 'ád', '2023-05-16 10:56:26', '2023-05-16 10:56:26'),
+(67, 2, 3, 'cấcc', '2023-05-16 10:58:39', '2023-05-16 10:58:39'),
+(68, 2, 5, 'zxc', '2023-05-16 11:00:38', '2023-05-16 11:00:38'),
+(69, 5, 1, 'xzc', '2023-05-16 17:50:39', '2023-05-16 17:50:39'),
+(70, 5, 2, '123', '2023-05-17 05:25:15', '2023-05-17 05:25:15'),
+(71, 5, 2, '123', '2023-05-17 05:25:35', '2023-05-17 05:25:35'),
+(72, 5, 2, '5', '2023-05-17 05:26:31', '2023-05-17 05:26:31');
 
 -- --------------------------------------------------------
 
@@ -12033,6 +12047,8 @@ CREATE TABLE `users_relationship` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `user_1_id` int(10) UNSIGNED NOT NULL,
   `user_2_id` int(10) UNSIGNED NOT NULL,
+  `status_user_1` int(11) NOT NULL,
+  `status_user_2` int(11) NOT NULL,
   `status` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp(),
   `updated_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp()
@@ -12042,13 +12058,13 @@ CREATE TABLE `users_relationship` (
 -- Đang đổ dữ liệu cho bảng `users_relationship`
 --
 
-INSERT INTO `users_relationship` (`id`, `user_1_id`, `user_2_id`, `status`, `created_at`, `updated_at`) VALUES
-(1, 5, 1, 'Bạn bè', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(2, 5, 3, 'Bạn bè', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(3, 5, 2, 'Bạn bè', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(4, 5, 4, 'Bạn bè', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(5, 2, 5, 'Bạn bè', '2023-05-14 18:00:32', '2023-05-14 18:00:32'),
-(6, 2, 3, 'Bạn bè', '2023-05-14 18:00:34', '2023-05-14 18:00:34');
+INSERT INTO `users_relationship` (`id`, `user_1_id`, `user_2_id`, `status_user_1`, `status_user_2`, `status`, `created_at`, `updated_at`) VALUES
+(1, 5, 1, 1, 1, 'Bạn bè', '2023-05-15 12:39:39', '2023-05-15 12:39:39'),
+(2, 5, 3, 1, 0, 'Chờ xác nhận', '2023-05-15 12:39:54', '2023-05-15 12:39:54'),
+(3, 5, 2, 1, 1, 'Bạn bè', '2023-05-15 12:40:03', '2023-05-15 12:40:03'),
+(4, 5, 4, 1, 1, 'Bạn bè', '2023-05-15 12:40:05', '2023-05-15 12:40:05'),
+(5, 2, 5, 1, 1, 'Bạn bè', '2023-05-15 12:40:07', '2023-05-15 12:40:07'),
+(6, 2, 3, 1, 1, 'Bạn bè', '2023-05-15 12:40:10', '2023-05-15 12:40:10');
 
 -- --------------------------------------------------------
 
@@ -12077,10 +12093,10 @@ CREATE TABLE `user_information` (
 
 INSERT INTO `user_information` (`id`, `user_id`, `name`, `birth_date`, `gender`, `address`, `phone`, `education`, `image`, `is_login`, `created_at`, `updated_at`) VALUES
 (1, 3, 'quoc  sa', '0000-00-00', NULL, NULL, NULL, NULL, 'default.png', 1, NULL, NULL),
-(2, 6, 'quoc em', '2002-03-11', NULL, NULL, NULL, NULL, 'default.png', 1, NULL, '2023-05-14 18:00:39'),
+(2, 6, 'quoc em', '2002-03-11', NULL, NULL, NULL, NULL, 'default.png', 1, NULL, '2023-05-17 06:11:20'),
 (3, 5, 'quoc dat', '2002-03-11', NULL, NULL, NULL, NULL, 'default.png', 1, NULL, NULL),
 (4, 4, 'quoc anh', '2002-03-11', NULL, NULL, NULL, NULL, 'default.png', 0, NULL, NULL),
-(5, 7, 'Đạt nè', '2002-09-11', NULL, NULL, NULL, NULL, 'default.png', 0, NULL, '2023-05-14 17:59:32');
+(5, 7, 'Đạt nè', '2002-09-11', NULL, NULL, NULL, NULL, 'default.png', 1, NULL, '2023-05-15 15:28:23');
 
 -- --------------------------------------------------------
 
@@ -12333,7 +12349,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT cho bảng `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT cho bảng `posts`
@@ -12429,7 +12445,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT cho bảng `users_connect`
 --
 ALTER TABLE `users_connect`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
 
 --
 -- AUTO_INCREMENT cho bảng `users_relationship`

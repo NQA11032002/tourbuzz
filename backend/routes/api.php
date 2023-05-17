@@ -99,6 +99,7 @@ Route::prefix('address')->name('address.')->middleware('auth:sanctum')->group(fu
 Route::prefix('auth')->name('auth.')->group(function () {
     Route::post('login', [AuthController::class, "login"])->name('login');
     Route::get('roles', [AuthController::class, "roles"])->name('roles');
+    Route::get('/{id}', [AuthController::class, "getUserInformation"])->name('information');
     Route::post('register', [AuthController::class, "register"])->name('register');
     Route::get('logout', [AuthController::class, "logout"])->name('logout')->middleware('auth:sanctum');
     Route::patch('reset-password', [AuthController::class, "resetPassword"])->name('reset-password')->middleware('auth:sanctum');

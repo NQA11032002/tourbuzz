@@ -1,7 +1,10 @@
-import { Component, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Observable } from 'rxjs';
 import { UsersService } from 'src/app/services/users.service';
+
+import { Component } from '@angular/core';
+import { Firestore, collection, collectionData, addDoc } from '@angular/fire/firestore';
+import { DatePipe } from '@angular/common';
+
 
 @Component({
   selector: 'app-messenger',
@@ -13,7 +16,7 @@ export class MessengerComponent {
   public userLogin:any;
   formSendMessage:FormGroup;
 
-  constructor(public user:UsersService, private fb:FormBuilder ){
+  constructor(public user:UsersService, private fb:FormBuilder, private firestore: Firestore ){
     let userLogin = sessionStorage.getItem("user_information");
 
     if(userLogin != null){
@@ -34,24 +37,22 @@ export class MessengerComponent {
   //close messenger
   closeMessenger(friend_id:any){
     this.user.messenger = this.user.messenger.filter((p) => {
-      return p.friend.id !== friend_id;
+      return p.id !== friend_id;
     });
   }
 
   //send message to friend
   sendMessenger(friend_id:any){
     let message = this.formSendMessage.get('message')?.value;
+    let user_1_id = this.userLogin.id;
+    let today = new Date();
 
     if(this.token != null){
       //send request message to sever
-      this.user.sendMessenger(friend_id, message, this.token).subscribe(p => {
-        //get new message after send message
-        this.user.getMessenger(friend_id, this.token).subscribe(obj => {
-          //update message
-          let messUpdate = this.user.messenger.find(message => message.friend.id === friend_id)
-          messUpdate.data = obj.data;
-        })
-      })
+      let messenger = {"user_1_id":user_1_id, "user_2_id":friend_id, "chat_user":message, "created_at":today.toLocaleString()}
+      const collectionInstance = collection(this.firestore, 'messenger');
+      addDoc(collectionInstance, messenger).then(() => { })
+      .catch((error) => { })
 
       //delete message after send
       this.resetMessage();
