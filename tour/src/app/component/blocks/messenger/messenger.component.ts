@@ -1,9 +1,7 @@
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UsersService } from 'src/app/services/users.service';
-
 import { Component } from '@angular/core';
-import { Firestore, collection, collectionData, addDoc } from '@angular/fire/firestore';
-import { DatePipe } from '@angular/common';
+import { Firestore, collection, addDoc } from '@angular/fire/firestore';
 
 
 @Component({
@@ -50,6 +48,8 @@ export class MessengerComponent {
     if(this.token != null){
       //send request message to sever
       let messenger = {"user_1_id":user_1_id, "user_2_id":friend_id, "chat_user":message, "created_at":today.toLocaleString()}
+
+      //get message from firebase
       const collectionInstance = collection(this.firestore, 'messenger');
       addDoc(collectionInstance, messenger).then(() => { })
       .catch((error) => { })
@@ -59,6 +59,7 @@ export class MessengerComponent {
     }
   }
 
+  //reset message
   resetMessage(){
     this.formSendMessage.get('message')?.setValue("");
   }

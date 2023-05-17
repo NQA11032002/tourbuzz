@@ -13,7 +13,7 @@
         <i class="fa-solid fa-xmark close_messenger" (click)="closeMessenger(item.id)"></i>
       </div>
     </div>
-    <div class="messenger_content d-flex flex-column">
+    <div class="messenger_content d-flex flex-column" #scrollMe [scrollTop]="scrollMe.scrollHeight">
       <div *ngFor="let message of user.messages | async">
         <div class="messenger_user_2 d-flex align-items-center"
           *ngIf="item.id === message.user_1_id && userLogin.id === message.user_2_id">
