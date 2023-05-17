@@ -26,6 +26,14 @@ export class PostComponent{
     this.commentForm = this.fb.group({
       content: ['', Validators.required],
     })
+
+    let user =  sessionStorage.getItem("user_information");
+
+    if(user != null)
+    {
+      let objUser = JSON.parse(user);
+      this.user_id = objUser.id;
+    }
   }
 
   ngOnInit() {
@@ -43,19 +51,11 @@ export class PostComponent{
   //get list post
   getPosts(){
     let token = sessionStorage.getItem("token_user");
-    let user =  sessionStorage.getItem("user_information");
-
-    if(user != null)
-    {
-      let objUser = JSON.parse(user);
-      this.user_id = objUser.id;
-    }
 
     if(token != null){
       this.social.getPosts(token).subscribe(p => {
         this.posts = p.data;
       });
-
     }
   }
 
@@ -151,31 +151,35 @@ export class PostComponent{
 
     if(token != null){
       this.post_id_change = item.id;
-      //if status_comment == 0 the user is commenting or status_comment different 0 the user is reply comment
-      if(this.status_comment == 0)
-      {
-        this.social.comment(item.id, content, token).subscribe(p => {
-          if(p.status === 200){
-            item.post_comments.push(p.data);
-            this.comments.push(p.data);
-            this.commentForm.get('content')?.setValue("");
-          }
-        })
-      }
-      else
-      {
-        let index = content.indexOf(':');
-        content = content.slice(index + 2);
 
-          this.social.replyComment(this.comment_id, this.info_user.id, content, token).subscribe(p => {
-            this.commentsReply.push(p.data);
-
-            this.status_comment = 0;
-            this.info_user = null;
-            this.comment_id = null;
-            this.commentForm.get('content')?.setValue("");
+        //if status_comment == 0 the user is commenting or status_comment different 0 the user is reply comment
+        if(this.status_comment == 0)
+        { 
+          let data = {"id":1, "content":content, "user_id":this.user_id, "post_id":item.id}
+          
+          this.social.comment(item.id, content, token).subscribe(p => {
+            if(p.status === 200){
+              item.post_comments.push(p.data);
+              this.comments.push(p.data);
+              this.resetComment();
+              console.log(this.comments);
+            }
           })
-      }
+        }
+        else
+        {
+          let index = content.indexOf(':');
+          content = content.slice(index + 2);
+
+            this.social.replyComment(this.comment_id, this.info_user.id, content, token).subscribe(p => {
+              this.commentsReply.push(p.data);
+
+              this.status_comment = 0;
+              this.info_user = null;
+              this.comment_id = null;
+              this.resetComment();
+            })
+        }
     }
   }
 
@@ -201,5 +205,10 @@ export class PostComponent{
     this.status_comment = 1;
     this.comment_id = comment_id;
     this.info_user = user;
+  }
+
+  //reset content comment
+  resetComment(){
+    this.commentForm.get('content')?.setValue("");
   }
 }

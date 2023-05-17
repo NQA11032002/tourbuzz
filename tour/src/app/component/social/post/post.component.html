@@ -8,32 +8,32 @@
     <div class="post_item" *ngFor="let item of posts">
       <div *ngIf="item.status != 0">
         <div class="post_top d-flex align-items-center">
-          <img
-            src="assets/images/avatar/{{item.user_information.image}}"
-          alt=""  data-bs-toggle="modal" data-bs-target="#shortinformodal">
-  
+          <img src="assets/images/avatar/{{item.user_information.image}}" alt="" data-bs-toggle="modal"
+            data-bs-target="#shortinformodal">
+
           <div class="post_top--info">
             <h5 class="post_name">{{item.user_information.name}}</h5>
-            <p class="post_time">{{item.created_at | date: 'dd-MM-yyyy'}} <i *ngIf="item.status == 1" class="fa-solid fa-earth-asia"></i> <i *ngIf="item.status == 2" class="fa-solid fa-user-group"></i> <i *ngIf="item.status == 0" class="fa-solid fa-lock"></i></p>
+            <p class="post_time">{{item.created_at | date: 'dd-MM-yyyy'}} <i *ngIf="item.status == 1"
+                class="fa-solid fa-earth-asia"></i> <i *ngIf="item.status == 2" class="fa-solid fa-user-group"></i> <i
+                *ngIf="item.status == 0" class="fa-solid fa-lock"></i></p>
           </div>
         </div>
-  
+
         <div class="post_content">
           <h5 class="title">Tiêu đề: {{item.title}}</h5>
           <p class="content">{{item.content}}</p>
         </div>
-  
+
         <div class="post_images d-grid overflow-auto">
           <div class="post_image" *ngFor="let picture of item.post_picture">
-            <img
-              src="assets/images/social/{{picture.images}}"
-              alt="">
+            <img src="assets/images/social/{{picture.images}}" alt="">
           </div>
         </div>
-  
+
         <div class="likes mt-2 d-flex">
           <span>
-            <i (click)="favorite(item)" [class]="isFavorite(item.post_favorite) == true ? 'fa-solid fa-heart favorite' : 'fa-regular fa-heart unfavorite'"></i>
+            <i (click)="favorite(item)"
+              [class]="isFavorite(item.post_favorite) == true ? 'fa-solid fa-heart favorite' : 'fa-regular fa-heart unfavorite'"></i>
 
             <p>{{item.post_favorite.length}}</p>
           </span>
@@ -42,41 +42,42 @@
             <p>{{item.post_comments.length}}</p>
           </span>
         </div>
-        
+
         <input type="checkbox" name="" hidden class="show_comment" id="show_comments_{{item.id}}">
-        <label for="show_comments_{{item.id}}" class="amount-comment show-comment" *ngIf="getComments(item.id).length > 0" >Có tất cả {{getComments(item.id).length}} bình luận</label>
+        <label for="show_comments_{{item.id}}" class="amount-comment show-comment"
+          *ngIf="getComments(item.id).length > 0">Có tất cả {{getComments(item.id).length}} bình luận</label>
         <label for="show_comments_{{item.id}}" class="amount-comment collapse-comment ">Thu gọn bình luận</label>
 
         <div class="comments d-grid">
           <div class="comment" *ngFor="let comment of getComments(item.id)">
             <div class="comment_item d-flex align-items-center">
-              <img
-                src="assets/images/avatar/{{ comment.user_information[0].image }}"
-                alt="">
-  
+              <img src="assets/images/avatar/{{ comment.user_information[0].image }}" alt="">
+
               <div class="comment__item--content">
                 <p class="reply_content"><b>{{ comment.user_information[0].name }}:</b> {{ comment.content }}
                 </p>
-  
+
                 <div class="d-flex reply_container align-items-center">
                   <span class="reply_time">{{ comment.created_at | date:'dd-MM-yyyy' }}</span>
-                  <button class="reply_choose" value="" (click)="replyComment(comment.id, comment.user_information[0])">Trả lời</button>
-                  <button class="btn btn-popup btn-delete" (click)="deleteComment(comment)" *ngIf="comment.user_id === user_id">Xóa</button>
+                  <button class="reply_choose" value=""
+                    (click)="replyComment(comment.id, comment.user_information[0])">Trả lời</button>
+                  <button class="btn btn-popup btn-delete" (click)="deleteComment(comment)"
+                    *ngIf="comment.user_id === user_id">Xóa</button>
                 </div>
 
                 <div class="comment comment_reply mt-2" *ngFor="let reply of getCommentsReply(comment.id)">
                   <div class="comment_item d-flex align-items-center">
-                    <img
-                      src="assets/images/avatar/{{ reply.user_information[0].image }}"
-                      alt="">
-        
+                    <img src="assets/images/avatar/{{ reply.user_information[0].image }}" alt="">
+
                     <div class="comment__item--content">
                       <p class="reply_content"><b>{{ reply.user_information[0].name }}:</b> </p>
-                      <a class="reply_comment d-flex">@{{reply.user_information_2[0].name}} <p class="reply_comment--content">{{ reply.content }}</p></a>
-        
+                      <a class="reply_comment d-flex">@{{reply.user_information_2[0].name}} <p
+                          class="reply_comment--content">{{ reply.content }}</p></a>
+
                       <div class="d-flex reply_container align-items-center">
                         <span class="reply_time">{{ comment.created_at | date:'dd-MM-yyyy' }}</span>
-                        <button class="reply_choose" value="" (click)="replyComment(reply.comment_id, reply.user_information[0])">Trả lời</button>
+                        <button class="reply_choose" value=""
+                          (click)="replyComment(reply.comment_id, reply.user_information[0])">Trả lời</button>
                       </div>
                     </div>
                   </div>
@@ -85,15 +86,14 @@
             </div>
           </div>
         </div>
-  
+
         <form [formGroup]="commentForm" (submit)="comment(item)" action="" class="d-flex form-control form-comment">
           <input formControlName="content" type="text" class="comment_insert w-100 shadow-none"
             placeholder="Thêm bình luận">
-  
+
           <button [disabled]="commentForm.invalid" type="submit" class="btn btn-comment shadow-none">Đăng</button>
         </form>
       </div>
     </div>
   </div>
 </section>
-
