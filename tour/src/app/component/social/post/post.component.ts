@@ -1,7 +1,9 @@
 import { Component} from '@angular/core';
 import { SocialService } from 'src/app/services/social.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Comments } from 'src/app/models/Comments.model';
+import { Firestore, collection, addDoc, query, where, orderBy, collectionData, deleteDoc } from '@angular/fire/firestore';
+import { doc, getDocs } from 'firebase/firestore';
+import { UsersService } from 'src/app/services/users.service';
 
 @Component({
   selector: 'app-post',
@@ -11,17 +13,15 @@ import { Comments } from 'src/app/models/Comments.model';
 export class PostComponent{
   public posts:Array<any> = new Array<any>();
   public comments:Array<any> = new Array<any>();
-  public commentsReply:Array<any> = new Array<any>();
 
-  public user_id = "";
+  public user_id:any;
   public commentForm:FormGroup;
   public status_comment = 0;
   public comment_id = null;
   public info_user:any;
   public post_id_change = null;
-  public setIntervalComment:any = undefined;
 
-  constructor(private social:SocialService, private fb:FormBuilder){
+  constructor(public social:SocialService, private fb:FormBuilder, private firestore: Firestore, private userService:UsersService){
     
     this.commentForm = this.fb.group({
       content: ['', Validators.required],
@@ -32,7 +32,7 @@ export class PostComponent{
     if(user != null)
     {
       let objUser = JSON.parse(user);
-      this.user_id = objUser.id;
+      this.user_id = objUser;
     }
   }
 
@@ -42,10 +42,10 @@ export class PostComponent{
     this.getListCommentsReply();
 
     //refresh api comment and reply comment 5s/1
-    this.setIntervalComment = setInterval(() => {
-      this.getListComments();
-      this.getListCommentsReply();
-    }, 3000);
+    // this.setIntervalComment = setInterval(() => {
+    //   this.getListComments();
+    //   this.getListCommentsReply();
+    // }, 3000);
   }
 
   //get list post
@@ -56,6 +56,7 @@ export class PostComponent{
       this.social.getPosts(token).subscribe(p => {
         this.posts = p.data;
       });
+
     }
   }
 
@@ -66,7 +67,7 @@ export class PostComponent{
     {
       //post favorite by user is return true
       for(let i = 0; i < favorites.length; i++){
-        if(favorites[i].user_id === this.user_id){
+        if(favorites[i].user_id === this.user_id.id){
 
           return true;
         }  
@@ -105,97 +106,128 @@ export class PostComponent{
 
   //get list comment of the post
   getListComments(){
-    let token = sessionStorage.getItem("token_user");
+    // let token = sessionStorage.getItem("token_user");
     
-    if(token != null){
-      this.social.getComments(token).subscribe((p:any) => {
-        this.comments = p.data;
-      })
-    }
+    // if(token != null){
+    //   this.social.getComments(token).subscribe((p:any) => {
+    //     this.comments = p.data;
+    //   })
+    // }
+
+    const collectionInstance = collection(this.firestore, 'comments');
+    const q = query(collectionInstance, orderBy("created_at", "asc") );
+    this.social.comments = collectionData(q, {idField : "id"});
   }
 
-  //get Comment of the post
-  getComments(post_id:any){
-    let comments = this.comments.filter((p:Comments) => {
-      return p.post_id == post_id;
-    })
-    
-    return comments;
-  }
 
   //get list comment of the post
   getListCommentsReply(){
-    let token = sessionStorage.getItem("token_user");
+    // let token = sessionStorage.getItem("token_user");
   
-    if(token != null){
-      this.social.getCommentsReply(token).subscribe((p:any) => {
-        this.commentsReply = p.data;
-      })
-    }
+    // if(token != null){
+    //   this.social.getCommentsReply(token).subscribe((p:any) => {
+    //     this.commentsReply = p.data;
+    //   })
+    // }
+
+    const collectionInstance = collection(this.firestore, 'comments_reply');
+    const q = query(collectionInstance, orderBy("created_at", "asc") );
+    this.social.comments_reply = collectionData(q, {idField : "id"});
   }
 
-  //get Comment reply of the comment
-  getCommentsReply(comment_id:any){
-    let comments = this.commentsReply.filter((p:any) => {
-      return p.comment_id == comment_id;
-    })
-      
-    return comments;
-  }
-
+  
   //comment the post
-  comment(item:any)
+  async comment(post:any)
   {
     let token = sessionStorage.getItem("token_user");
     let content = this.commentForm.get('content')?.value;
+    let today = new Date();
 
     if(token != null){
-      this.post_id_change = item.id;
+      this.post_id_change = post.id;
+      //if status_comment == 0 the user is commenting or status_comment different 0 the user is reply comment
+      if(this.status_comment == 0)
+      {
+        //get length comments of the post
+        const collectionInstances = collection(this.firestore, 'comments');
+        const q = query(collectionInstances);
+        const commentsSnapshot = await getDocs(q);
+        let commentsLength = commentsSnapshot.docs.length;
 
-        //if status_comment == 0 the user is commenting or status_comment different 0 the user is reply comment
-        if(this.status_comment == 0)
-        { 
-          let data = {"id":1, "content":content, "user_id":this.user_id, "post_id":item.id}
-          
-          this.social.comment(item.id, content, token).subscribe(p => {
-            if(p.status === 200){
-              item.post_comments.push(p.data);
-              this.comments.push(p.data);
-              this.resetComment();
-              console.log(this.comments);
-            }
-          })
-        }
-        else
-        {
-          let index = content.indexOf(':');
-          content = content.slice(index + 2);
+        let data = {"id":commentsLength, "post_id":post.id, "user_id":this.user_id.id, "content":content, "created_at":today.toLocaleString(), "user":this.user_id, "length":commentsLength}
 
-            this.social.replyComment(this.comment_id, this.info_user.id, content, token).subscribe(p => {
-              this.commentsReply.push(p.data);
+        //add comments to firebase
+        const collectionInstance = collection(this.firestore, 'comments');
+        addDoc(collectionInstance, data).then(() => { })
+        .catch((error) => { })
 
-              this.status_comment = 0;
-              this.info_user = null;
-              this.comment_id = null;
-              this.resetComment();
-            })
-        }
+        //insert comment into mysql purpose get total comment of the post
+        this.social.comment(post.id, content, token).subscribe(p => {
+          if(p.status === 200){
+            post.post_comments.push(p.data);
+          }
+        })
+
+        this.resetComment();
+      }
+      else
+      {
+        let index = content.indexOf(':');
+        content = content.slice(index + 2);
+
+          // this.social.replyComment(this.comment_id, this.info_user.id, content, token).subscribe(p => {
+          //   this.commentsReply.push(p.data);
+
+          //   this.status_comment = 0;
+          //   this.info_user = null;
+          //   this.comment_id = null;
+          //   this.commentForm.get('content')?.setValue("");
+          // })
+
+        //get length comments_reply of the post
+        const collectionInstances = collection(this.firestore, 'comments_reply');
+        const q = query(collectionInstances);
+        const commentsSnapshot = await getDocs(q);
+        let commentsLength = commentsSnapshot.docs.length;
+
+        //get user information reply comment
+        // this.getCommentsReply(this.info_user.id);
+
+
+      this.userService.getUserInformation(this.info_user.id, token).subscribe(p => {
+        let data = {"id":commentsLength, "comment_id":this.comment_id, "user_id_1":this.user_id.id, "user_id_2": this.info_user.id, "content":content, "created_at":today.toLocaleString(), "user_1":this.user_id, "user_2":p.data, "length":commentsLength}
+
+        //add comments to firebase
+        const collectionInstance = collection(this.firestore, 'comments_reply');
+        addDoc(collectionInstance, data).then(() => { })
+        .catch((error) => { })
+
+        this.resetComment();
+      })
+      }
     }
   }
 
-  //The user deletes them comment a post
-  deleteComment(comment:any):void{
-    let token = sessionStorage.getItem("token_user");
 
-    if(token != null){
-      this.social.deleteComment(comment.id, token).subscribe(p => {
-        if(p.status === 200){
-          this.comments = this.comments.filter((item:any) => {
-            return item.id != comment.id;
-          });
-        }
-      })
-    }
+  //The user deletes them comment a post
+  deleteComment(id:any):void{
+    // let token = sessionStorage.getItem("token_user");
+
+    // if(token != null){
+    //   this.social.deleteComment(comment.id, token).subscribe(p => {
+    //     if(p.status === 200){
+    //       this.comments = this.comments.filter((item:any) => {
+    //         return item.id != comment.id;
+    //       });
+    //     }
+    //   })
+    // }
+
+    
+    const docInstance = doc(this.firestore, 'comments', id);
+    deleteDoc(docInstance).then(() => {
+      console.log("comment deleted");
+    })
   }
 
   //The user reply comment other user of the post
@@ -207,8 +239,9 @@ export class PostComponent{
     this.info_user = user;
   }
 
-  //reset content comment
+  //reset comment
   resetComment(){
+    this.status_comment = 0;
     this.commentForm.get('content')?.setValue("");
   }
 }

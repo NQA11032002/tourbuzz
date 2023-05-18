@@ -136,13 +136,12 @@
     grid-template-rows: auto;
     grid-auto-flow: row;
     grid-row: auto;
-    row-gap: 10px;
     transition: all 0.25s linear;
     .comment
     {
-
       .comment_item
       {
+        padding: 5px 0;
         img
         {
           height: 30px;

@@ -64,7 +64,7 @@ export class UsersService {
   }
 
   //get user information
-  getUserInformation(user_id:any, token:string){
+  getUserInformation(user_id:any, token:string):Observable<any>{
     let headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
     let urlApi = `${this.api}${user_id}`;
 

@@ -8,6 +8,9 @@ import { Comments } from './../models/Comments.model';
   providedIn: 'root'
 })
 export class SocialService {
+  public comments: Observable<any> = new Observable<any>;
+  public comments_reply: Observable<any> = new Observable<any>;
+
   constructor(private http: HttpClient) { }
 
   private api = "http://localhost:8000/api/social/";

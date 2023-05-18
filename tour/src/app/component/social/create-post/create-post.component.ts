@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Posts } from 'src/app/models/Post.model';
 import { SocialService } from 'src/app/services/social.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { delay } from 'rxjs/operators';
 
 @Component({
   selector: 'app-create-post',
@@ -114,10 +115,6 @@ export class CreatePostComponent {
         if(this.imagesUpload.length > 0){
           this.onUpload(p.data);
         }
-        else
-        {
-          location.reload();
-        }
       });
     }
 
@@ -137,9 +134,8 @@ export class CreatePostComponent {
     
       this.http.post('http://localhost:8000/api/upload', formData, { headers: headers }).subscribe(
         (response) => {
-          // location.reload();
-          console.log(response);
-
+          delay(5000)
+          location.reload();
         },
         (error) => {
           console.log(error);

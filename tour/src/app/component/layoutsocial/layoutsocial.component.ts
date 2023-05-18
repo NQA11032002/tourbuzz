@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { UsersService } from 'src/app/services/users.service';
-import { Firestore, collection, collectionData, query, where, orderBy  } from '@angular/fire/firestore';
+import { Firestore, collection, collectionData, query, orderBy  } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-layoutsocial',
@@ -46,7 +46,6 @@ export class LayoutsocialComponent {
       const collectionInstance = collection(this.firestore, 'messenger');
       const q = query(collectionInstance, orderBy("created_at", "asc") );
       this.user.messages = collectionData(q);
-      console.log(q)
     }
   }
 

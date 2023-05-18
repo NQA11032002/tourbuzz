@@ -49,7 +49,7 @@ export class MessengerComponent {
       //send request message to sever
       let messenger = {"user_1_id":user_1_id, "user_2_id":friend_id, "chat_user":message, "created_at":today.toLocaleString()}
 
-      //get message from firebase
+      //add message to firebase
       const collectionInstance = collection(this.firestore, 'messenger');
       addDoc(collectionInstance, messenger).then(() => { })
       .catch((error) => { })
