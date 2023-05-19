@@ -81,13 +81,13 @@
       {
         font-size: 22px;
       }
-
-      p
-      {
-        font-size: 13px;
-        text-align: center;
-        color: var(--color-sub-text);
-      }
+    }
+    
+    p
+    {
+      font-size: 13px;
+      text-align: left;
+      margin-bottom: unset;
     }
     .favorite
     {
@@ -117,7 +117,7 @@
   {
     font-size: 13px;
     cursor: grab;
-    margin-bottom: 10px;
+    margin: 5px 0;
     color: var(--color-content);
     font-weight: 500;
   }
@@ -248,7 +248,15 @@
     border: unset;
     border-bottom: 1px solid var(--color-border);
     padding: unset;
-    .comment_insert
+    .name-input__comment
+    {
+      display: none;
+      font-size: 14px;
+      line-height: 33px;
+      color: #512ce7;
+      margin-bottom: unset;
+    }
+    .comment_insert,.name-input__comment
     {
       outline: none;
       border: unset;

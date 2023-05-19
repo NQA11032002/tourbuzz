@@ -30,22 +30,24 @@
           </div>
         </div>
 
-        <div class="likes mt-2 d-flex">
-          <span>
-            <i (click)="favorite(item)"
-              [class]="isFavorite(item.post_favorite) == true ? 'fa-solid fa-heart favorite' : 'fa-regular fa-heart unfavorite'"></i>
+        <div class="likes mt-2 d-flex flex-column">
+          <div class="d-flex">
+            <span>
+              <i (click)="favorite(item)"
+                [class]="isFavorite(item.post_favorite) == true ? 'fa-solid fa-heart favorite' : 'fa-regular fa-heart unfavorite'"></i>
+            </span>
 
-            <p>{{item.post_favorite.length}}</p>
-          </span>
-          <span class="comment">
-            <i class="fa-regular fa-comment"></i>
-            <p>{{item.post_comments.length}}</p>
-          </span>
+            <span class="comment">
+              <i class="fa-regular fa-comment"></i>
+            </span>
+          </div>
+
+          <p>{{item.post_favorite.length}} lượt thích</p>
         </div>
 
         <input type="checkbox" name="" hidden class="show_comment" id="show_comments_{{item.id}}">
         <label for="show_comments_{{item.id}}" class="amount-comment show-comment">Xem tất cả bình luận</label>
-        <label for="show_comments_{{item.id}}" class="amount-comment collapse-comment ">Thu gọn bình luận</label>
+        <label for="show_comments_{{item.id}}" class="amount-comment collapse-comment">Thu gọn bình luận</label>
 
         <div class="comments d-grid">
           <div class="comment" *ngFor="let comment of social.comments | async">
@@ -58,9 +60,9 @@
 
                 <div class="d-flex reply_container align-items-center">
                   <span class="reply_time">{{ comment.created_at }}</span>
-                  <button class="reply_choose" value="" (click)="replyComment(comment.id, comment.user)">Trả
+                  <button class="reply_choose" value="" (click)="replyComment(comment.id, comment.user, item.id)">Trả
                     lời</button>
-                  <button class="btn btn-popup btn-delete" (click)="deleteComment(comment.id)"
+                  <button class="btn btn-popup btn-delete" (click)="deleteComment(comment.id, item)"
                     *ngIf="comment.user.id === user_id.id">Xóa</button>
                 </div>
 
@@ -75,7 +77,8 @@
 
                       <div class="d-flex reply_container align-items-center">
                         <span class="reply_time">{{ comment.created_at}}</span>
-                        <button class="reply_choose" value="" (click)="replyComment(reply.comment_id, reply.user_1)">Trả
+                        <button class="reply_choose" value=""
+                          (click)="replyComment(reply.comment_id, reply.user_1, item.id)">Trả
                           lời</button>
                       </div>
                     </div>
@@ -87,8 +90,9 @@
         </div>
 
         <form [formGroup]="commentForm" (submit)="comment(item)" action="" class="d-flex form-control form-comment">
+          <input type="text" class="name-input_{{item.id}} name-input__comment">
           <input formControlName="content" type="text" class="comment_insert w-100 shadow-none"
-            placeholder="Thêm bình luận">
+            (ngModelChange)="changeComment()" placeholder="Thêm bình luận">
 
           <button [disabled]="commentForm.invalid" type="submit" class="btn btn-comment shadow-none">Đăng</button>
         </form>

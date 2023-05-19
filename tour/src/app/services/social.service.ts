@@ -10,6 +10,7 @@ import { Comments } from './../models/Comments.model';
 export class SocialService {
   public comments: Observable<any> = new Observable<any>;
   public comments_reply: Observable<any> = new Observable<any>;
+  public comments_total: Array<any> = [];
 
   constructor(private http: HttpClient) { }
 

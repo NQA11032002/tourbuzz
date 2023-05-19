@@ -20,6 +20,7 @@ export class PostComponent{
   public comment_id = null;
   public info_user:any;
   public post_id_change = null;
+  public count = 0;
 
   constructor(public social:SocialService, private fb:FormBuilder, private firestore: Firestore, private userService:UsersService){
     
@@ -115,8 +116,9 @@ export class PostComponent{
     // }
 
     const collectionInstance = collection(this.firestore, 'comments');
-    const q = query(collectionInstance, orderBy("created_at", "asc") );
+    const q = query(collectionInstance, orderBy("created_at", "desc") );
     this.social.comments = collectionData(q, {idField : "id"});
+
   }
 
 
@@ -161,12 +163,16 @@ export class PostComponent{
         addDoc(collectionInstance, data).then(() => { })
         .catch((error) => { })
 
+      
         //insert comment into mysql purpose get total comment of the post
-        this.social.comment(post.id, content, token).subscribe(p => {
-          if(p.status === 200){
-            post.post_comments.push(p.data);
-          }
-        })
+        // this.social.comment(post.id, content, token).subscribe(p => {
+        //   if(p.status === 200){
+        //     post.post_comments.push(p.data);
+        //   }
+        // })
+
+        //add comments total of the post to firebase
+ 
 
         this.resetComment();
       }
@@ -210,14 +216,14 @@ export class PostComponent{
 
 
   //The user deletes them comment a post
-  deleteComment(id:any):void{
+  deleteComment(id:any, post:any):void{
     // let token = sessionStorage.getItem("token_user");
 
     // if(token != null){
-    //   this.social.deleteComment(comment.id, token).subscribe(p => {
+    //   this.social.deleteComment(id, token).subscribe(p => {
     //     if(p.status === 200){
-    //       this.comments = this.comments.filter((item:any) => {
-    //         return item.id != comment.id;
+    //       post.post_comments = this.comments.filter((item:any) => {
+    //         return item.id != id;
     //       });
     //     }
     //   })
@@ -231,17 +237,43 @@ export class PostComponent{
   }
 
   //The user reply comment other user of the post
-  replyComment(comment_id:any, user:any){
+  replyComment(comment_id:any, user:any, post:any){
     //show name of the user reply comment
-    this.commentForm.get('content')?.setValue("@" + user.name + ": ");
-    this.status_comment = 1;
-    this.comment_id = comment_id;
-    this.info_user = user;
+      // this.commentForm.get('content')?.setValue("@" + user.name + ": ");
+      this.status_comment = 1;
+      this.comment_id = comment_id;
+      this.info_user = user;
+
+      let inputComment = document.querySelector('.name-input_'+post);
+      (inputComment as HTMLElement).style.display = "block";
+      (inputComment as HTMLInputElement).value = "@" + user.name + ": ";
+      (inputComment as HTMLElement).style.width = (inputComment as HTMLInputElement).value.length + "ch";
+      
+      inputComment?.addEventListener("keyup", (p) => {
+        let value = (p.target as HTMLInputElement).value;
+        if(value.length === 0)
+        {
+          (inputComment as HTMLElement).style.display = "none";
+        }
+      })
+  }
+
+  changeComment(){
+    if(this.commentForm.get('content')?.value == "")
+    {
+      this.status_comment = 0;
+    }
   }
 
   //reset comment
   resetComment(){
     this.status_comment = 0;
     this.commentForm.get('content')?.setValue("");
+
+    let inputComments = document.querySelectorAll('.name-input__comment');
+
+    inputComments.forEach(p => {
+      (p as HTMLElement).style.display = "none";
+    })
   }
 }

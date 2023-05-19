@@ -51,7 +51,7 @@ Route::prefix('social')->name('social.')->middleware('auth:sanctum')->group(func
     Route::prefix('comments')->name('comments.')->group(function () {
         Route::get('/', [PostsController::class, "getComments"])->name('getComments');
         Route::post('/', [PostsController::class, "comment"])->name('comment');
-        Route::delete('/{id}', [User_ConnectController::class, "deleteComment"])->name('deleteComment');
+        Route::delete('/{id}', [PostsController::class, "deleteComment"])->name('deleteComment');
     });
 
     Route::prefix('comment-reply')->name('comments.')->group(function () {
