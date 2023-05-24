@@ -18,7 +18,7 @@ class Tour_evaluationSeeder extends Seeder
 
         DB::table('tour_evaluation')->insert([
             "user_id" => 3,
-            "tour_id" => 2,
+            "tour_id" => 9,
             "rate" => random_int(1, 10),
         ]);
     }

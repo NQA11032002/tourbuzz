@@ -55,76 +55,6 @@
       </div>
     </div>
 
-    <!-- <div class="home_header">
-      <div class="home_header-banner">
-        <img
-          src="https://cdn.pixabay.com/photo/2013/04/11/19/46/building-102840_960_720.jpg"
-          alt="" class="banner">
-      </div>
-      <div class="home_header-title">
-        <h3 class="title-main">POPULAR WORLD SCENE</h3>
-        <h5 class="title-2">PERFECT WORLD TRAVEL AGENCY</h5>
-        <div class="btn-booking">
-          <button>Booking Now!</button>
-        </div>
-
-      </div>
-      <div class="home_header-search">
-        <div class="home_header-search-title">
-          <h3>SEARCH NOW</h3>
-        </div>
-        <div class="home_header-search-list">
-          <div class="home_header-search-item d-flex align-items-center">
-            <i class="icon-loca fa-solid fa-location-dot"></i>
-            <span>Location</span>
-            <select name="" id="" class="w-100">
-              <option *ngFor="let item of cities" value="{{ item.matp }}">{{ item.name }}
-              </option>
-            </select>
-          </div>
-
-          <div class="home_header-search-item d-flex align-items-center">
-            <i class="fa-solid fa-plane icon-loca"></i>
-            <span>Type Travel</span>
-            <select name="" id="" class="w-100">
-              <option *ngFor="let item of travels" value="{{ item.id }}">{{ item.name }}
-              </option>
-            </select>
-          </div>
-
-          <div class="home_header-search-item d-flex align-items-center">
-            <i class="icon-trans fa-solid fa-car-side"></i>
-            <Span>Transition</Span>
-            <select name="" id="" class="w-100">
-              <option *ngFor="let item of vehicles" value="{{ item.id }}" value="">
-                {{ item.name }}</option>
-            </select>
-          </div>
-
-          <div class="home_header-search-item d-flex align-items-center">
-            <i class="fa-regular fa-calendar-days icon-loca"></i>
-            <span>Date</span>
-            <input class="shadow-none border-0 w-100" type="date">
-          </div>
-
-
-          <div class="home_header-search-item d-flex align-items-center">
-            <i class="icon-price fa-solid fa-dollar-sign"></i>
-            <span>Price</span>
-            <select name="" id="" class="w-100">
-              <option value="499999">Dưới 500.000VNĐ</option>
-              <option value="500000">Từ 500.000 - 1.500.000VNĐ</option>
-              <option value="1500000">Từ 1.500.000 - 2.500.000VNĐ</option>
-              <option value="2500000">Trên 2.500.000VNĐ</option>
-            </select>
-          </div>
-
-          <div class="home_header-search-btn">
-            <button class="btn_search">Search</button>
-          </div>
-        </div>
-      </div>
-    </div> -->
     <div class="spaceline">
 
     </div>
@@ -178,25 +108,70 @@
         <h3>SOCIAL NETWORK</h3>
       </div>
       <div class="home_social-list multiple-items">
-        <div *ngFor="let item of posts; let i = index">
-          <div class="home_social-details" *ngIf="i < 3">
-            <div class="home_social-details-img">
-              <img src="{{ item.user_information.image }}" alt="">
+        <div class="home_social-details">
+          <div class="home_social-details-img">
+            <img src="assets/images/avatar/home_1.jfif" alt="">
+          </div>
+          <div class="home_social-details-name">
+            <span>Straight Brawn</span>
+          </div>
+          <div class="home_social-details-time">
+            <span>19/03/1998</span>
+          </div>
+          <div class="home_social-details-desc d-flex flex-column">
+            <h5 class="post-title pt-3 flex-shrink-0">Du lịch cùng tôi</h5>
+            <p class="home_social-content flex-1">Chuyến đi khám phá Châu Á tiếp theo của bạn sẽ như thế nào? Đắm mình
+              vào địa danh với giá trị lịch sử phong phú hay tận hưởng thiên nhiên hùng vĩ đẹp kinh ngạc, Châu Á hứa
+              hẹn mang đến cho bạn trải nghiệm thoả mãn đa giác quan từ cảnh quan, âm thanh cho đến hương vị. Lên kế
+              hoạch cho chuyến đi khó quên cùng ALL - Accor Live Limitless và khám phá sức quyến rũ khiến Châu Á cùng
+              lí do khiến nơi đây luôn sống động trong tâm trí du khách.
+              Các thành viên của ALL - Accor Live Limitless được hưởng mức giá độc quyền trong thời gian lưu trú, cùng
+              điểm thưởng và các lợi ích thành viên đặc biệt. Đăng ký miễn phí và đặt chuyến đi tiếp theo ngay hôm
+              nay.</p>
+            <div class="home_social-desc-img flex-shrink-0">
+              <img src="assets/images/social/home_1.jpg" alt="" class="img-tour">
             </div>
-            <div class="home_social-details-name">
-              <span>{{ item.user_information.name }}</span>
+          </div>
+        </div>
+
+        <div class="home_social-details">
+          <div class="home_social-details-img">
+            <img src="assets/images/avatar/home_2.jfif" alt="">
+          </div>
+          <div class="home_social-details-name">
+            <span>Lincon Born</span>
+          </div>
+          <div class="home_social-details-time">
+            <span>19/03/2004</span>
+          </div>
+          <div class="home_social-details-desc d-flex flex-column">
+            <h5 class="post-title pt-3 flex-shrink-0">Floral Festivals</h5>
+            <p class="home_social-content flex-1">Embark on a captivating journey through the flower gardens and
+              festivals in Japan. Explore breathtaking landscapes, vibrant colors, and immersive celebrations of
+              nature's floral wonders. Prepare to be inspired by the enchanting splendor of Floral Paradise!.</p>
+            <div class="home_social-desc-img flex-shrink-0">
+              <img src="assets/images/social/home_2.jpg" alt="" class="img-tour">
             </div>
-            <div class="home_social-details-time">
-              <span>{{ item.user_information.birth_date }}</span>
-            </div>
-            <div class="home_social-details-desc d-flex flex-column">
-              <h5 class="post-title pt-3 flex-shrink-0">{{ item.title }}</h5>
-              <p class="home_social-content flex-1">{{ item.content }}</p>
-              <div class="home_social-desc-img flex-shrink-0">
-                <img *ngIf="item.post_picture.length > 0" src="{{ item.post_picture[0].images  }}" alt=""
-                  class="img-tour">
-                <img *ngIf="item.post_picture.length == 0" src="" alt="" class="img-tour">
-              </div>
+          </div>
+        </div>
+
+        <div class="home_social-details">
+          <div class="home_social-details-img">
+            <img src="assets/images/avatar/home_3.jfif" alt="">
+          </div>
+          <div class="home_social-details-name">
+            <span>Straight Brawn</span>
+          </div>
+          <div class="home_social-details-time">
+            <span>19/03/19998</span>
+          </div>
+          <div class="home_social-details-desc d-flex flex-column">
+            <h5 class="post-title pt-3 flex-shrink-0">Hòa mình cùng các chuyến đi</h5>
+            <p class="home_social-content flex-1">Còn gì bằng khi được đắm mình giữa bãi biển HuaHin xinh đẹp, một bên
+              là nắng vàng và trời xanh? Tại @Mövenpick Asara Resort & Spa Hua Hin, bạn không chỉ được tận hưởng cảm
+              giác đó mà còn được tận hưởng tối đa sự thư giãn như Maysa Traveller!</p>
+            <div class="home_social-desc-img flex-shrink-0">
+              <img src="assets/images/social/home_3.jpg" alt="" class="img-tour">
             </div>
           </div>
         </div>

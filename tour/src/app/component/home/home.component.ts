@@ -21,7 +21,6 @@ export class HomeComponent {
     this.getCities();
     this.typeTravels();
     this.getVehicles();
-    this.getPosts();
     this.getTours();
   }
 
@@ -79,6 +78,8 @@ export class HomeComponent {
     if(token != null){
       this.tour.getTourPopular(token).subscribe(p => {
         this.tours = p.data;
+
+        console.log(this.tours);
       });
     }
   }

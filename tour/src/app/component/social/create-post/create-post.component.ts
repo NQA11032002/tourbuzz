@@ -115,6 +115,10 @@ export class CreatePostComponent {
         if(this.imagesUpload.length > 0){
           this.onUpload(p.data);
         }
+        else
+        {
+          location.reload();
+        }
       });
     }
 

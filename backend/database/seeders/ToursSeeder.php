@@ -18,8 +18,8 @@ class ToursSeeder extends Seeder
         $fake  = Faker\Factory::create();
 
         DB::table('tours')->insert([
-            "user_id" => 4,
-            "vehicle_id" => 3,
+            "user_id" => 3,
+            "vehicle_id" => 2,
             "title" => $fake->title(),
             "description" => $fake->text(),
             "address_start" => $fake->address(),

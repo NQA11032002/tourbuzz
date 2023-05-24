@@ -13,7 +13,7 @@ export class TourService {
     //get list tour popular
     getTourPopular(token:string){
       let headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
-      let urlApi = `${this.api}/popular?bearer=${token}`;
+      let urlApi = `${this.api}/popular`;
 
       return this.http.get<any>(urlApi, {headers});
     }

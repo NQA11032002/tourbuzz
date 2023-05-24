@@ -10,9 +10,17 @@
   <div class="sidebar">
     <div class="container_navbar">
       <div class="navbar-list">
-        <h3 class="navbar-item-breadscrumb">Home</h3>
+        <h3 class="navbar-item-breadscrumb navbar-item-title">Bạn bè ({{friends.length}})</h3>
 
-        <h6 class="navbar-item-title">Friends (10)</h6>
+        <div class="form-search position-relative">
+          <input class="search" type="text" [(ngModel)]="searchFriend" (keyup.enter)="searchFriends()" name="key_word"
+            id="" placeholder="Tìm kiếm bạn bè..." autocomplete="off">
+
+          <button type="button" class="btn-search position-absolute right-0">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+        </div>
+
         <div class="navbar-item" *ngFor="let item of friends">
           <div class="navbar-infor" (click)="messenger(item.user_information.id)">
             <div class="navbar-infor-image position-relative">

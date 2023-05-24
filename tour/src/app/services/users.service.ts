@@ -33,15 +33,15 @@ export class UsersService {
   //when user logout call api to perform logout application
   logout(token:string){
     let headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
-    let urlApi = `${this.api}logout?bearer=${token}`;
-
+    let urlApi = `${this.api}logout`;
+    console.log(urlApi);
     return this.http.get<any>(urlApi, {headers});
   }
 
   //get list friend of user login
   getFriends(token:string):Observable<any>{
     let headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
-    let urlApi = `${this.apiUser}friends?bearer=${token}`;
+    let urlApi = `${this.apiUser}friends`;
 
     return this.http.get<any>(urlApi, {headers});
   }
@@ -49,7 +49,7 @@ export class UsersService {
   //get messenger with friend
   getMessenger(user_id:any, token:string):Observable<any>{
     let headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
-    let urlApi = `${this.apiUser}friends/${user_id}?bearer=${token}`;
+    let urlApi = `${this.apiUser}friends/${user_id}`;
 
     return this.http.get<any>(urlApi, {headers});
   }
@@ -58,7 +58,7 @@ export class UsersService {
   sendMessenger(user_friend:any, chat_user:string ,token:string):Observable<any>{
     let headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
     let para = {"user_friend":user_friend, "chat_user":chat_user};
-    let urlApi = `${this.apiUser}friends?bearer=${token}`;
+    let urlApi = `${this.apiUser}friends`;
 
     return this.http.post<any>(urlApi, para, {headers});
   }

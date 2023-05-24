@@ -20,7 +20,7 @@ export class SocialService {
   //get list vehicle
   getVehicles(token: string) {
     let headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
-    let urlApi = `${this.api}vehicles?bearer=${token}`;
+    let urlApi = `${this.api}vehicles`;
 
     return this.http.get<any>(urlApi, { headers });
   }
@@ -28,7 +28,7 @@ export class SocialService {
   //get list post social
   getPosts(token: string) {
     let headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
-    let urlApi = `${this.api}posts?bearer=${token}`;
+    let urlApi = `${this.api}posts`;
 
     return this.http.get<any>(urlApi, { headers });
   }
@@ -36,7 +36,7 @@ export class SocialService {
   //get list tour
   getTours(token: string) {
     let headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
-    let urlApi = `${this.apiTour}?bearer=${token}`;
+    let urlApi = `${this.apiTour}`;
 
     return this.http.get<any>(urlApi, { headers });
   }
@@ -45,7 +45,7 @@ export class SocialService {
   createPost(post:Posts,token:string):Observable<any>{
     let headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
     let para = {"address_travel_id" : post.address_travel_id, "type_travel_id" : post.type_travel_id, "title" : post.title, "content":post.content, "status":post.status};
-    let urlApi = `${this.api}posts?bearer=${token}`;
+    let urlApi = `${this.api}posts`;
 
     return this.http.post<any>(urlApi, para,{ headers });
   }
@@ -54,7 +54,7 @@ export class SocialService {
   favorite(post_id:any, token:string):Observable<any>{
     let headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
     let para = {"post_id" : post_id};
-    let urlApi = `${this.api}posts/favorite?bearer=${token}`;
+    let urlApi = `${this.api}posts/favorite`;
 
     return this.http.post<any>(urlApi, para, {headers});
   }
@@ -63,7 +63,7 @@ export class SocialService {
   getComments(token:string):Observable<any>
   {
     let headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
-    let urlApi = `${this.api}comments?bearer=${token}`;
+    let urlApi = `${this.api}comments`;
 
     return this.http.get<Comments>(urlApi, {headers});
   }
@@ -72,7 +72,7 @@ export class SocialService {
   comment(post_id:any, content:string, token:string):Observable<any>{
     let headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
     let para = {"post_id" : post_id, "content" : content};
-    let urlApi = `${this.api}comments?bearer=${token}`;
+    let urlApi = `${this.api}comments`;
 
     return this.http.post<any>(urlApi, para, {headers});
   }
@@ -80,7 +80,7 @@ export class SocialService {
   //comment the post
   deleteComment(id:any, token:string):Observable<any>{
     let headers = new HttpHeaders().set('Authorization', 'Bearer ' + token).set('Content-Type', 'application/json');
-    let urlApi = `${this.api}comments/${id}?bearer=${token}`;
+    let urlApi = `${this.api}comments/${id}`;
   
     return this.http.delete<any>(urlApi, {headers});
   }
@@ -89,7 +89,7 @@ export class SocialService {
   getCommentsReply(token:string):Observable<Comments>
   {
     let headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
-    let urlApi = `${this.api}comment-reply?bearer=${token}`;
+    let urlApi = `${this.api}comment-reply`;
   
     return this.http.get<Comments>(urlApi, {headers});
   }
@@ -98,7 +98,7 @@ export class SocialService {
   replyComment(comment_id:any, user_id:any, content:string, token:string):Observable<any>{
     let headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
     let para = {"comment_id" : comment_id, "user_id_2" : user_id, "content" : content};
-    let urlApi = `${this.api}comment-reply?bearer=${token}`;
+    let urlApi = `${this.api}comment-reply`;
 
     return this.http.post<any>(urlApi, para ,{headers});
   }

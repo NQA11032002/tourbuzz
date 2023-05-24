@@ -1,7 +1,7 @@
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UsersService } from 'src/app/services/users.service';
 import { Component } from '@angular/core';
-import { Firestore, collection, addDoc } from '@angular/fire/firestore';
+import { Firestore, collection, addDoc, query, getDocs, where } from '@angular/fire/firestore';
 
 
 @Component({
@@ -40,14 +40,19 @@ export class MessengerComponent {
   }
 
   //send message to friend
-  sendMessenger(friend_id:any){
+  async sendMessenger(friend_id:any){
     let message = this.formSendMessage.get('message')?.value;
     let user_1_id = this.userLogin.id;
     let today = new Date();
 
     if(this.token != null){
+      const collectionInstances = collection(this.firestore, 'messenger');
+      const q = query(collectionInstances);
+      const commentsSnapshot = await getDocs(q);
+      let commentsLength = commentsSnapshot.docs.length;
+      
       //send request message to sever
-      let messenger = {"user_1_id":user_1_id, "user_2_id":friend_id, "chat_user":message, "created_at":today.toLocaleString()}
+      let messenger = {"stt":commentsLength,"user_1_id":user_1_id, "user_2_id":friend_id, "chat_user":message, "created_at":today.toLocaleString()}
 
       //add message to firebase
       const collectionInstance = collection(this.firestore, 'messenger');

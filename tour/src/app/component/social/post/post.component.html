@@ -13,9 +13,9 @@
 
           <div class="post_top--info">
             <h5 class="post_name">{{item.user_information.name}}</h5>
-            <p class="post_time">{{item.created_at | date: 'dd-MM-yyyy'}} <i *ngIf="item.status == 1"
-                class="fa-solid fa-earth-asia"></i> <i *ngIf="item.status == 2" class="fa-solid fa-user-group"></i> <i
-                *ngIf="item.status == 0" class="fa-solid fa-lock"></i></p>
+            <p class="post_time">{{item.created_at | date: 'dd-MM-yyyy'}}
+              <i class="fa-solid fa-earth-asia"></i>
+            </p>
           </div>
         </div>
 

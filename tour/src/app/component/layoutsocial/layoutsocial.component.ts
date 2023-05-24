@@ -8,6 +8,7 @@ import { Firestore, collection, collectionData, query, orderBy  } from '@angular
   styleUrls: ['./layoutsocial.component.scss']
 })
 export class LayoutsocialComponent {
+  public searchFriend:string = "";
 
   public friends:Array<any> = new Array<any>();
 
@@ -39,13 +40,37 @@ export class LayoutsocialComponent {
             checkMess = this.user.messenger.find(p => p.id === user_id);
           }
           if(checkMess == undefined){
+            if(this.user.messenger.length >= 4)
+            {
+              this.user.messenger.shift();
+            }
+            
             this.user.messenger.push(p.data);
+            this.getFriends();
           }
       });
     
       const collectionInstance = collection(this.firestore, 'messenger');
-      const q = query(collectionInstance, orderBy("created_at", "asc") );
-      this.user.messages = collectionData(q);
+      const q = query(collectionInstance, orderBy("stt", "asc") );
+      this.user.messages = collectionData(q, {idField: 'id'});  
+    }
+  }
+  
+  //search list name friend 
+  searchFriends(){
+    if(this.searchFriend.length > 0 && this.searchFriend != ""){
+
+      let object = this.friends.filter(p => 
+        p.user_information.name === this.searchFriend
+      )
+
+      if(object.length > 0){
+        this.friends = object;
+        this.searchFriend = "";
+      }
+    }else
+    {
+      this.getFriends();
     }
   }
 

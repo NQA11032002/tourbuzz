@@ -57,7 +57,6 @@ export class PostComponent{
       this.social.getPosts(token).subscribe(p => {
         this.posts = p.data;
       });
-
     }
   }
 
@@ -116,7 +115,7 @@ export class PostComponent{
     // }
 
     const collectionInstance = collection(this.firestore, 'comments');
-    const q = query(collectionInstance, orderBy("created_at", "desc") );
+    const q = query(collectionInstance, orderBy("id", "desc") );
     this.social.comments = collectionData(q, {idField : "id"});
 
   }
@@ -133,7 +132,7 @@ export class PostComponent{
     // }
 
     const collectionInstance = collection(this.firestore, 'comments_reply');
-    const q = query(collectionInstance, orderBy("created_at", "asc") );
+    const q = query(collectionInstance, orderBy("id", "asc") );
     this.social.comments_reply = collectionData(q, {idField : "id"});
   }
 
@@ -179,8 +178,8 @@ export class PostComponent{
       else
       {
         let index = content.indexOf(':');
-        content = content.slice(index + 2);
-
+        content = content.slice(index + 1);
+        console.log(content);
           // this.social.replyComment(this.comment_id, this.info_user.id, content, token).subscribe(p => {
           //   this.commentsReply.push(p.data);
 
