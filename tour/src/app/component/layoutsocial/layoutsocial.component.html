@@ -13,7 +13,7 @@
         <h3 class="navbar-item-breadscrumb navbar-item-title">Bạn bè ({{friends.length}})</h3>
 
         <div class="form-search position-relative">
-          <input class="search" type="text" [(ngModel)]="searchFriend" (keyup.enter)="searchFriends()" name="key_word"
+          <input class="search" type="text" [(ngModel)]="searchFriend" (ngModelChange)="searchFriends()" name="key_word"
             id="" placeholder="Tìm kiếm bạn bè..." autocomplete="off">
 
           <button type="button" class="btn-search position-absolute right-0">

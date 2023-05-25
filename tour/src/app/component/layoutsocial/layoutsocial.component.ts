@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { UsersService } from 'src/app/services/users.service';
 import { Firestore, collection, collectionData, query, orderBy  } from '@angular/fire/firestore';
+import { delay } from 'rxjs';
 
 @Component({
   selector: 'app-layoutsocial',
@@ -17,13 +18,21 @@ export class LayoutsocialComponent {
   }
 
   //get list friend of the user login
-  getFriends(){
+  getFriends(keyword:any = ""){
     let token = sessionStorage.getItem("token_user");
 
     if(token != null){
-      this.user.getFriends(token).subscribe(p => {
-        this.friends = p.data;
-      });
+      if(keyword !== ""){
+        this.user.getFriends(keyword, token).subscribe(p => {
+          this.friends = p.data;
+        });
+      }
+      else
+      {
+        this.user.getFriends("", token).subscribe(p => {
+          this.friends = p.data;
+        }); 
+      }
     }
   }
 
@@ -46,6 +55,7 @@ export class LayoutsocialComponent {
             }
             
             this.user.messenger.push(p.data);
+            this.searchFriend = "";
             this.getFriends();
           }
       });
@@ -58,20 +68,6 @@ export class LayoutsocialComponent {
   
   //search list name friend 
   searchFriends(){
-    if(this.searchFriend.length > 0 && this.searchFriend != ""){
-
-      let object = this.friends.filter(p => 
-        p.user_information.name === this.searchFriend
-      )
-
-      if(object.length > 0){
-        this.friends = object;
-        this.searchFriend = "";
-      }
-    }else
-    {
-      this.getFriends();
-    }
+    this.getFriends(this.searchFriend);
   }
-
 }

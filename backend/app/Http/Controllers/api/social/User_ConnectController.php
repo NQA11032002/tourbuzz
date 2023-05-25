@@ -10,14 +10,20 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
+use function PHPUnit\Framework\isNull;
+
 class User_ConnectController extends Controller
 {
     //get list friend of the user
-    public function getFriends()
+    public function getFriends(Request $request)
     {
         $myUser = Auth::user()->user_information->id;
 
-        $friends = users_relationship::where('user_1_id', $myUser)->whereHas('user_information', function ($query) {
+        $friends = users_relationship::where('user_1_id', $myUser)->whereHas('user_information', function ($query) use ($request) {
+            if (!empty($request->keyword)) {
+                $query = $query->where("name", "like", "%" . $request->keyword . "%");
+            }
+
             $query = $query->orderByDesc('is_login');
         })->groupBy('user_2_id')->with('user_information')->get();
 
@@ -31,9 +37,9 @@ class User_ConnectController extends Controller
         } else {
             $response = [
                 'title' => 'list friends of the user',
-                'status' => 200,
+                'status' => 203,
                 'data' => $friends,
-                'detail' => 'fail'
+                'detail' => 'empty'
             ];
         }
 

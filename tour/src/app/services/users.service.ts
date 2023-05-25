@@ -39,11 +39,12 @@ export class UsersService {
   }
 
   //get list friend of user login
-  getFriends(token:string):Observable<any>{
+  getFriends(keyword:any ,token:string):Observable<any>{
     let headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
+    let params = new HttpParams().set("keyword", keyword);
     let urlApi = `${this.apiUser}friends`;
 
-    return this.http.get<any>(urlApi, {headers});
+    return this.http.get<any>(urlApi, {headers:headers, params: params});
   }
 
   //get messenger with friend
