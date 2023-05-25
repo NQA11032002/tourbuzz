@@ -5,8 +5,7 @@
       src="https://99designs-blog.imgix.net/blog/wp-content/uploads/2019/05/attachment_98891896-e1557890804541.jpg?auto=format&q=60&fit=max&w=930"
       alt="">
     <form action="" method="POST" class="form-search my-4 mx-2 position-relative">
-      <input class="search" type="text" name="key_word" id="" placeholder="Search"
-        autocomplete="off">
+      <input class="search" type="text" name="key_word" id="" placeholder="Search" autocomplete="off">
 
       <button type="submit" class="btn-search position-absolute right-0">
         <i class="fa-solid fa-magnifying-glass"></i>
@@ -15,35 +14,28 @@
   </div>
 
   <div class="toolbar d-flex align-items-center">
-    <a [routerLink]="['/home']" class="home btn"
-      routerLinkActive="router-link-active">Home</a>
-    <a [routerLink]="['/social']" class="home btn"
-      routerLinkActive="router-link-active">Social</a>
-    <a [routerLink]="['/tour']" class="tour btn"
-      routerLinkActive="router-link-active">Tour</a>
+    <a [routerLink]="['/home']" class="home btn" routerLinkActive="router-link-active">Home</a>
+    <a [routerLink]="['/social']" class="home btn" routerLinkActive="router-link-active">Social</a>
+    <a [routerLink]="['/tour']" class="tour btn" routerLinkActive="router-link-active">Tour</a>
 
   </div>
 
   <div class="group d-flex align-items-center">
-    <div class="nofica"><a href=""><i class="fa-solid fa-bell"></i></a></div>
-    <div class="message"><a href=""><i class="fa-regular fa-comment"></i></a></div>
     <div class="dropdown d-flex">
-      <button class="btn btn-secondary dropdown-toggle btn-logined shadow-none"
-        type="button" id="dropdownMenuLink" data-bs-toggle="dropdown"
-        aria-expanded="false">
-        <img
-          src="{{ this.image }}"
-          alt="">
+      <button class="btn btn-secondary dropdown-toggle btn-logined shadow-none" type="button" id="dropdownMenuLink"
+        data-bs-toggle="dropdown" aria-expanded="false">
+        <img src="assets/images/avatar/{{ this.image }}" alt="">
         {{ this.name }}
       </button>
 
       <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-        <li><a class="dropdown-item" [routerLink]="['/profile']"
-            routerLinkActive="router-link-active"><i class="fa-solid fa-user"></i>
+        <li><a class="dropdown-item" [routerLink]="['/profile']" routerLinkActive="router-link-active"><i
+              class="fa-solid fa-user"></i>
             profile</a>
         </li>
-        <li><a class="dropdown-item" [routerLink]="['/change-password']"
-            routerLinkActive="router-link-active" data-bs-toggle="modal" data-bs-target="#resetpass"><i data-bs-toggle="modal" data-bs-target="#resetpass" class="fa-solid fa-pen"></i> Password
+        <li><a class="dropdown-item" [routerLink]="['/change-password']" routerLinkActive="router-link-active"
+            data-bs-toggle="modal" data-bs-target="#resetpass"><i data-bs-toggle="modal" data-bs-target="#resetpass"
+              class="fa-solid fa-pen"></i> Password
             Change</a>
         </li>
         <li><a class="dropdown-item" (click)="logout()"><i class="fa-solid fa-door-open"></i>

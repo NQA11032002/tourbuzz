@@ -8,6 +8,36 @@
   </div>
 
   <div class="sidebar">
-    <app-navbar></app-navbar>
+    <div class="container_navbar">
+      <div class="navbar-list">
+        <h3 class="navbar-item-breadscrumb navbar-item-title">Bạn bè ({{friends.length}})</h3>
+
+        <div class="form-search position-relative">
+          <input class="search" type="text" [(ngModel)]="searchFriend" (ngModelChange)="searchFriends()" name="key_word"
+            id="" placeholder="Tìm kiếm bạn bè..." autocomplete="off">
+
+          <button type="button" class="btn-search position-absolute right-0">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+        </div>
+
+        <div class="navbar-item" *ngFor="let item of friends">
+          <div class="navbar-infor" (click)="messenger(item.user_information.id)">
+            <div class="navbar-infor-image position-relative">
+              <img src="assets/images/avatar/{{ item.user_information.image }}" alt="logo">
+              <i class="status-info fa-solid fa-circle position-absolute bottom-0 right-0"
+                *ngIf="item.user_information.is_login === 1"></i>
+              <i class="status-info fa-solid fa-circle position-absolute bottom-0 right-0 status_offine"
+                *ngIf="item.user_information.is_login === 0"></i>
+            </div>
+            <div class="navbar-infor-name">
+              <span>{{ item.user_information.name }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
+
+<app-messenger></app-messenger>

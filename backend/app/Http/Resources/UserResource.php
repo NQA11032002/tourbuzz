@@ -24,6 +24,7 @@ class UserResource extends JsonResource
             'address' => $this->address,
             "phone" => $this->phone,
             "education" => $this->education,
+            "image" => $this->image,
             "created_at" => $this->created_at,
             "updated_at" => $this->updated_at,
             'posts' => PostResource::collection($this->whenLoaded('posts')),

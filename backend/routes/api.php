@@ -8,6 +8,7 @@ use App\Http\Controllers\api\common\TownController;
 use App\Http\Controllers\api\common\Type_travelController;
 use App\Http\Controllers\api\common\VehiclesController;
 use App\Http\Controllers\api\social\PostsController;
+use App\Http\Controllers\api\social\User_ConnectController;
 use App\Models\vehicles;
 use App\Http\Controllers\api\social\UserController;
 use App\Http\Controllers\api\tour\Tour_bookingController;
@@ -15,6 +16,7 @@ use App\Http\Controllers\api\tour\ToursController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -41,12 +43,33 @@ Route::prefix('social')->name('social.')->middleware('auth:sanctum')->group(func
         Route::get('/', [PostsController::class, "index"])->name('index');
         Route::get('/{name}', [PostsController::class, "index"])->name('search');
         Route::post('/', [PostsController::class, "create"])->name('create');
+        Route::post('/favorite', [PostsController::class, "favorite"])->name('favorite');
         Route::patch('/{id}', [PostsController::class, "update"])->name('update');
         Route::delete('/{id}', [PostsController::class, "destroy"])->name('destroy');
     });
 
+    Route::prefix('comments')->name('comments.')->group(function () {
+        Route::get('/', [PostsController::class, "getComments"])->name('getComments');
+        Route::post('/', [PostsController::class, "comment"])->name('comment');
+        Route::delete('/{id}', [PostsController::class, "deleteComment"])->name('deleteComment');
+    });
+
+    Route::prefix('comment-reply')->name('comments.')->group(function () {
+        Route::get('/', [PostsController::class, 'getCommentReply'])->name('getCommentReply');
+        Route::post('/', [PostsController::class, 'commentReply'])->name('commentReply');
+    });
+
+    Route::prefix('friends')->name('friends.')->group(function () {
+        Route::get('/', [User_ConnectController::class, "getFriends"])->name('getFriends');
+        Route::get('/{user_id}', [User_ConnectController::class, "getMessenger"])->name('getMessenger');
+        Route::post('/', [User_ConnectController::class, "insertMessenger"])->name('insertMessenger');
+    });
+
     Route::get('vehicles', [VehiclesController::class, "index"])->name('vehicles');
 });
+
+Route::post('/upload', [PostsController::class, "uploadImages"])->name('upload-images');
+
 
 Route::prefix('tour')->name('tour.')->middleware('auth:sanctum')->group(function () {
     Route::get('/', [ToursController::class, "index"])->name('index');
@@ -77,7 +100,8 @@ Route::prefix('address')->name('address.')->middleware('auth:sanctum')->group(fu
 Route::prefix('auth')->name('auth.')->group(function () {
     Route::post('login', [AuthController::class, "login"])->name('login');
     Route::get('roles', [AuthController::class, "roles"])->name('roles');
+    Route::get('/logout', [AuthController::class, "logout"])->name('logout')->middleware('auth:sanctum');
+    Route::get('/{id}', [AuthController::class, "getUserInformation"])->name('information');
     Route::post('register', [AuthController::class, "register"])->name('register');
-    Route::get('logout', [AuthController::class, "logout"])->name('logout')->middleware('auth:sanctum');
     Route::patch('reset-password', [AuthController::class, "resetPassword"])->name('reset-password')->middleware('auth:sanctum');
 });

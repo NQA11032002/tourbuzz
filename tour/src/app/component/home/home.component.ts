@@ -22,10 +22,12 @@ export class HomeComponent{
     this.getCities();
     this.typeTravels();
     this.getVehicles();
-    this.getPosts();
     this.getTours();
   }
 
+
+  ngOnInit(){
+  }
 
   checkAmount(amount_customer_present: number, amount_customer_maximum: number): Boolean{
     if(amount_customer_present < amount_customer_maximum){
@@ -34,6 +36,7 @@ export class HomeComponent{
     return true;
   }
 
+  //get list city
   getCities(){
     let token = sessionStorage.getItem("token_user");
 
@@ -44,6 +47,7 @@ export class HomeComponent{
     }
   }
 
+  //get list type travel
   typeTravels(){
     let token = sessionStorage.getItem("token_user");
 
@@ -54,6 +58,7 @@ export class HomeComponent{
     }
   }
 
+  //get list vehicle
   getVehicles(){
     let token = sessionStorage.getItem("token_user");
 
@@ -74,14 +79,31 @@ export class HomeComponent{
     }
   }
 
+  //get list post
   getTours(){
     let token = sessionStorage.getItem("token_user");
 
     if(token != null){
       this.tour.getTourPopular(token).subscribe(p => {
         this.tours = p.data;
+
+        console.log(this.tours);
       });
     }
   }
 
+  //next slide image show on home
+  nextSlide(){
+    let lists = document.querySelectorAll('.item');
+    let slides = document.getElementById('slide');
+    (slides as HTMLElement).appendChild(lists[0])
+  }
+
+  //previous slide image show on home
+  previousSlide(){
+    let lists = document.querySelectorAll('.item');
+    let slides = document.getElementById('slide');
+    
+    (slides as HTMLElement).prepend(lists[lists.length - 1]);
+  }
 }

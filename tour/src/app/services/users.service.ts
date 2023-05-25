@@ -1,14 +1,18 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsersService {
+  public messenger:Array<any> = [];
+  public messages: Observable<any> = new Observable<any>;
 
   constructor(private http:HttpClient){}
 
   private api = "http://localhost:8000/api/auth/";
+  private apiUser = "http://localhost:8000/api/social/";
 
   //when user login call api to perform application
   login(email:string, password:string){
@@ -29,7 +33,41 @@ export class UsersService {
   //when user logout call api to perform logout application
   logout(token:string){
     let headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
-    let urlApi = `${this.api}logout?bearer=${token}`;
+    let urlApi = `${this.api}logout`;
+    console.log(urlApi);
+    return this.http.get<any>(urlApi, {headers});
+  }
+
+  //get list friend of user login
+  getFriends(keyword:any ,token:string):Observable<any>{
+    let headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
+    let params = new HttpParams().set("keyword", keyword);
+    let urlApi = `${this.apiUser}friends`;
+
+    return this.http.get<any>(urlApi, {headers:headers, params: params});
+  }
+
+  //get messenger with friend
+  getMessenger(user_id:any, token:string):Observable<any>{
+    let headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
+    let urlApi = `${this.apiUser}friends/${user_id}`;
+
+    return this.http.get<any>(urlApi, {headers});
+  }
+  
+  //send message to friend
+  sendMessenger(user_friend:any, chat_user:string ,token:string):Observable<any>{
+    let headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
+    let para = {"user_friend":user_friend, "chat_user":chat_user};
+    let urlApi = `${this.apiUser}friends`;
+
+    return this.http.post<any>(urlApi, para, {headers});
+  }
+
+  //get user information
+  getUserInformation(user_id:any, token:string):Observable<any>{
+    let headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
+    let urlApi = `${this.api}${user_id}`;
 
     return this.http.get<any>(urlApi, {headers});
   }

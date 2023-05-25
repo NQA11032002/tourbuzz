@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit{
 
 
   ngAfterViewInit() {
-    if(this.Cookieemail){
+    if(this.Cookieemail && this.Cookiepassword){
       this.loginForm.controls['email'].setValue(this.Cookieemail);
       this.loginForm.controls['password'].setValue(this.Cookiepassword);
     }
@@ -49,18 +49,14 @@ export class LoginComponent implements OnInit{
     if(this.loginForm.controls['remember'].value){
       this.cookie.set('email', emailcookie);
       this.cookie.set('password', passwordcookie);
-      console.log("Da tich");
     }else{
-      console.log("Chua tich");
     }
   }
-
-
 
   submitLogin(){
 
     this.user.login(this.loginForm.get('email')?.value, this.loginForm.get('password')?.value).subscribe(p => {
-
+      console.log(p);
       if(p.status === 401)
       {
         this.loginFail = "Tài khoản hoặc mật khẩu không chính xác";

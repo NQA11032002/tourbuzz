@@ -28,7 +28,7 @@ export class HeaderComponent{
 
     if(token != null){
       this.user.logout(token).subscribe(p => {
-
+        console.log(p);
         if(p.status === 200){
           sessionStorage.removeItem("token_user");
           sessionStorage.removeItem("user_information");
