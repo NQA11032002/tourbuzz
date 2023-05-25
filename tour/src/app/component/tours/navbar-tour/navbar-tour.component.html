@@ -5,27 +5,24 @@
     <div>
       <label for="customRange1" class="form-label">
         Giá tour:
-        <span class="price_start price"> 50000 </span>
-        -
-        <span class="price_end price"> 100000</span>
+        <span class="price">{{ rangeValue }}</span><span>$</span>
       </label>
 
-      <input type="range" class="form-range shadow-none" id="customRange1">
+      <input type="range" class="form-range shadow-none" id="customRange1" min="500000" max="10000000" step="10000"
+        [value]="rangeValue" (input)="onRangeValueChange($event)">
     </div>
 
     <div>
       <label for="tour" class="form-label">Địa điểm bắt đầu</label>
       <select id="city" class="form-select shadow-none">
-        <option value="">Phù Mỹ</option>
-        <option value="">An Nhơn</option>
+        <option *ngFor="let item of data" value="{{item.matp}}">{{item.name}}</option>
       </select>
     </div>
 
     <div>
       <label for="tour" class="form-label">Địa điểm đến</label>
       <select id="city" class="form-select shadow-none">
-        <option value="">Phù Mỹ</option>
-        <option value="">An Nhơn</option>
+        <option *ngFor="let item of data" value="{{item.matp}}">{{item.name}}</option>
       </select>
     </div>
 
@@ -74,7 +71,5 @@
         </label>
       </div>
     </div>
-
-    <input type="submit" name="" id="filter" class="btn mt-2" value="Duyệt">
   </form>
 </div>

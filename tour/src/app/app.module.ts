@@ -8,7 +8,6 @@ import { PostComponent } from './component/social/post/post.component';
 import { LoginComponent } from './component/auth/login/login.component';
 import { RegisterComponent } from './component/auth/register/register.component';
 import { ForgotpassComponent } from './component/auth/forgotpass/forgotpass.component';
-import { NavbarTourComponent } from './component/tours/navbar-tour/navbar-tour.component';
 import { MessengerComponent } from './component/blocks/messenger/messenger.component';
 import { ShortinfoComponent } from './component/social/shortinfo/shortinfo.component';
 import { FullinfoComponent } from './component/social/fullinfo/fullinfo.component';
@@ -28,6 +27,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { provideFirebaseApp, getApp, initializeApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { environment } from 'src/environments/environment';
+import { NavbarTourComponent } from './component/tours/navbar-tour/navbar-tour.component';
 
 @NgModule({
   declarations: [

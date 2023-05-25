@@ -6,8 +6,7 @@
   <meta name="author" content="Kodinger">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>My Login Page</title>
-  <link rel="stylesheet"
-    href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
   <link href="assets/css/style.css">
 </head>
 
@@ -22,26 +21,35 @@
           <div class="card fat">
             <div class="card-body">
               <h4 class="card-title">Login</h4>
-              <form [formGroup]="loginForm"  method="post" class="my-login-validation"
-                (ngSubmit)="submitLogin()" action="#">
+              <form [formGroup]="loginForm" method="post" class="my-login-validation" (ngSubmit)="submitLogin()"
+                action="#">
                 <div class="form-group">
                   <label for="email">E-Mail Address</label>
-                  <input id="email" #inputemail formControlName="email" type="email" class="form-control shadow-none" [value]="loginForm.controls['email'].value"
-                    name="email">
+                  <input id="email" #inputemail formControlName="email" type="email" class="form-control shadow-none"
+                    [value]="loginForm.controls['email'].value" name="email">
 
-                    <div class="errors" *ngIf="loginForm.controls['email'].invalid && (loginForm.controls['email'].dirty || loginForm.controls['email'].touched)">
-                      <p *ngIf="loginForm.get('email')?.hasError('required')">Email không được để trống</p>
-                      <p *ngIf="loginForm.get('email')?.hasError('email')">Email không đúng định dạng</p>
-                    </div>
+
+                  <div class="errors"
+                    *ngIf="loginForm.controls['email'].invalid && (loginForm.controls['email'].dirty || loginForm.controls['email'].touched)">
+                    <p *ngIf="loginForm.get('email')?.hasError('required')">Email không được để
+                      trống</p>
+                    <p *ngIf="loginForm.get('email')?.hasError('email')">Email không đúng định dạng
+                    </p>
+                  </div>
                 </div>
 
                 <div class="form-group">
                   <label for="email">Password</label>
-                  <input id="password" #inputpassword formControlName="password" type="password" class="form-control shadow-none" name="password" required data-eye>
+                  <input id="password" #inputpassword formControlName="password" type="password"
+                    class="form-control shadow-none" name="password" required data-eye>
 
-                  <div class="errors" *ngIf="loginForm.controls['password'].invalid && (loginForm.controls['password'].dirty || loginForm.controls['password'].touched)">
-                    <p *ngIf="loginForm.get('password')?.hasError('required')">Password không được để trống</p>
-                    <p *ngIf="loginForm.get('password')?.hasError('min')">Password từ 6 ký tự trở lên</p>
+
+                  <div class="errors"
+                    *ngIf="loginForm.controls['password'].invalid && (loginForm.controls['password'].dirty || loginForm.controls['password'].touched)">
+                    <p *ngIf="loginForm.get('password')?.hasError('required')">Password không được
+                      để trống</p>
+                    <p *ngIf="loginForm.get('password')?.hasError('min')">Password từ 6 ký tự trở
+                      lên</p>
                   </div>
                 </div>
 
@@ -52,7 +60,9 @@
                 <div class="form-group">
                   <div class="custom-checkbox d-flex justify-content-between align-items-center">
                     <label for="remember" class="d-flex align-items-center">
-                      <input type="checkbox" name="remember" id="remember" class="mr-1 shadow-none" formControlName="remember">Remember Me</label>
+                      <input type="checkbox" name="remember" id="remember" class="mr-1 shadow-none"
+                        formControlName="remember">Remember Me</label>
+
 
                     <label for="password">
                       <a [routerLink]="['/forgot-password']" class="float-right">
@@ -82,14 +92,14 @@
   </section>
 
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-    crossorigin="anonymous"></script>
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+  </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-    crossorigin="anonymous"></script>
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+  </script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-    crossorigin="anonymous"></script>
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+  </script>
   <script src="assets/js/my-login.js"></script>
 </body>
 
