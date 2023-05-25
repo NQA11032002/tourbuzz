@@ -1,4 +1,5 @@
 import { Component, ElementRef, Input, OnInit,   } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-detailstour',
@@ -6,7 +7,9 @@ import { Component, ElementRef, Input, OnInit,   } from '@angular/core';
   styleUrls: ['./detailstour.component.scss']
 })
 export class DetailstourComponent implements OnInit{
-  constructor(private elementRef: ElementRef) { }
+  private tour_id:any;
+
+  constructor(private elementRef: ElementRef, private router: ActivatedRoute) { }
 
   ngOnInit(): void {
       const imageContainer = this.elementRef.nativeElement.querySelector('#image-container');
@@ -43,5 +46,10 @@ export class DetailstourComponent implements OnInit{
         imageContainer.style.gridTemplateColumns  = 'auto auto auto';
         imageContainer.style.rowGap  = '10px';
       }
-  }
+
+      this.router.queryParams.subscribe((params:any) => {
+        // Use the params object to access query parameters
+        this.tour_id = params.id;
+      });  
+    }
 }

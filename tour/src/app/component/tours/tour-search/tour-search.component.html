@@ -26,75 +26,40 @@
     </div>
 
     <div class="tour-items-holder">
-      <div class="tours-items-list">
-        <div class="d-flex mx-2">
+      <div class="tours-items-list" *ngFor="let item of tour.tours">
+        <div class="tour_item">
           <div class="thumbnail-tour">
-            <img
-              src="https://q-xx.bstatic.com/xdata/images/xphoto/300x320/130104902.jpg?k=8c85cf8238572ef0bbca2d846a9070b2c9844ec7e16f5ca01089cd1fa45cd265&amp;o="
-              class="img-fluid" alt="">
+            <img src="{{ item.tour_picture[0].images }}" class="img-fluid" alt="">
           </div>
 
-          <div class="tour-content d-flex clearfix">
+          <div class="tour-content clearfix d-flex flex-column">
             <div class="tour-content-left">
-              <h5 class="tour-title"><a href="" class="text-decoration-none">Tour du Mont
-                  Blanc Express</a></h5>
+              <h5 class="tour-title"><a href=""
+                  class="text-decoration-none">{{item.title}}</a></h5>
               <div class="tour-info-wrap">
-                <div class="tour-info-duration">9 Days / 8 Nights </div>
-                <div class="tour-info-availablity">Availability : Jan 18’ - Dec 19’ </div>
+                <p class="tour-info-duration"><b>Thời gian:</b> {{item.date_start | date}}
+                  -
+                  {{ item.date_end | date}}
+                </p>
+                <p class="tour-info-availablity"><b>Địa điểm:</b> {{ item.address_start }}
+                  -
+                  {{ item.address_end }}</p>
               </div>
               <div class="tour-description">
-                <p>Donec id elit non mi porta gravida at eget metus. Nulla vitae elit
-                  libero, […]</p>
+                <p><b>Mô tả: </b>{{item.description}}</p>
               </div>
-            </div>
-            <div class="tour-content-right">
               <div class="tour-price">
-                <span class="fw-bold">Price:</span>
-                <span>600000</span>
-              </div>
-              <div class="rating">
-                <p class="mx-1 text-dark"><i
-                    class="fa-regular fa-thumbs-up my-1 mx-1"></i>97%</p>
-                <p class="review text-secondary mx-1">(30 review)</p>
-              </div>
-              <a href="" class="btn">View Detail</a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="tours-items-list my-3">
-        <div class="d-flex mx-2">
-          <div class="thumbnail-tour">
-            <img
-              src="https://q-xx.bstatic.com/xdata/images/xphoto/300x320/130104902.jpg?k=8c85cf8238572ef0bbca2d846a9070b2c9844ec7e16f5ca01089cd1fa45cd265&amp;o="
-              class="img-fluid" alt="">
-          </div>
-
-          <div class="tour-content d-flex clearfix">
-            <div class="tour-content-left">
-              <h5 class="tour-title"><a href="" class="text-decoration-none">Tour du Mont
-                  Blanc Express</a></h5>
-              <div class="tour-info-wrap">
-                <div class="tour-info-duration">9 Days / 8 Nights </div>
-                <div class="tour-info-availablity">Availability : Jan 18’ - Dec 19’ </div>
-              </div>
-              <div class="tour-description">
-                <p>Donec id elit non mi porta gravida at eget metus. Nulla vitae elit
-                  libero, […]</p>
+                <p class="d-flex">
+                  <span class="fw-bold">Price: </span>
+                  <span class="price">{{item.price_tour | currency}}</span>
+                  <span class="review text-secondary">(30 review)</span>
+                </p>
               </div>
             </div>
+
             <div class="tour-content-right">
-              <div class="tour-price">
-                <span class="fw-bold">Price:</span>
-                <span>600000</span>
-              </div>
-              <div class="rating">
-                <p class="mx-1 text-dark"><i
-                    class="fa-regular fa-thumbs-up my-1 mx-1"></i>97%</p>
-                <p class="review text-secondary mx-1">(30 review)</p>
-              </div>
-              <a href="" class="btn">View Detail</a>
+              <a [routerLink]="['/tour-detail']" [queryParams]="{id: item.id}"
+                routerLinkActive="router-link-active" class="btn">View Detail</a>
             </div>
           </div>
         </div>
