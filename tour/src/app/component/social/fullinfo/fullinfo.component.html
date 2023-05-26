@@ -7,7 +7,7 @@
               
           </div>
           <div class="full-infor-name">
-              <span *ngFor="let item of data">>{{item[0]?.name }}</span>
+              <span  *ngIf="data">{{data?.name }}</span>
           </div>
           <div class="full-infor-changed">
             <a href="" data-bs-toggle="modal" data-bs-target="#changedinfomodal">
@@ -24,14 +24,14 @@
           </div> -->
           <div class="full-infor-container">
             <div class="full-infor-sex">
-                <span class="sex">Gender: Male</span>
+                <span class="sex" *ngIf="data">Gender: {{data?.gender }}</span>
               </div>
               <div class="full-infor-phonenumber">
-                <span class="phonenumbe">Phone: 0345728000</span>
+                <span class="phonenumbe" *ngIf="data">Phone: {{data?.phone }}</span>
               </div>
-              <div class="full-infor-dateofbirth">
-                <span class="dateofbir">September 06, 2002</span>
-              </div>
+              <!-- <div class="full-infor-dateofbirth">
+                <span class="dateofbir" *ngIf="data">Date of birth: {{data?.birth_date }}</span>
+              </div> -->
           </div>
       </div>
       <div class="full-infor-desc">
@@ -48,11 +48,11 @@
           </div>
           <div class="full-infor-desc-location">
               <i class="fa-solid fa-location-dot"></i>
-              <span>Binh Dinh, Viet Nam</span>
+              <span *ngIf="data">{{data?.address}}</span>
           </div>
           <div class="full-infor-desc-membersince">
               <i class="fa-regular fa-calendar"></i>
-              <span>September 06, 2020</span>
+              <span *ngIf="data">{{data?.birth_date }}</span>
           </div>
           <div class="full-infor-desc-social-list">
               <h6 class="full-infor-desc-social-list-title">Social</h6>
@@ -73,7 +73,7 @@
             <h6 class="full-infor-edu-title">Education</h6>
             <div class="full-infor-edu-item">
                 <i class="fa-solid fa-school"></i>    
-                <span class="edu">Đang học tại Đại Học Quy Nhơn</span>
+                <span class="edu" *ngIf="data">{{data?.education }}</span>
               </div>
           </div>
           

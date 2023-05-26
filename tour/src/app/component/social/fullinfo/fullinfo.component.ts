@@ -7,8 +7,7 @@ import { UsersService } from 'src/app/services/users.service';
   styleUrls: ['./fullinfo.component.scss']
 })
 export class FullinfoComponent {
-  public data: Array<any> = new Array<any>();
-  public name: string = '';
+  public data: any = null;
   constructor(private userinfor : UsersService){
   
   }
