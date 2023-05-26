@@ -30,6 +30,15 @@ export class UsersService {
     return this.http.post<any>(urlApi, para);
   }
 
+  //when user BookTour call api to perform TourBooking
+
+  book(user_id:any, tour_id:any, amount_customer:number ,status_booking:boolean){
+    let params = {"user_id":user_id, "tour_id":tour_id, "amount_customer":amount_customer, "status_booking":status_booking};
+    let urlApi =`${this.api}booking?user_id=${user_id}&tour_id=${tour_id}&amount_customer=${amount_customer}&status_booking=${status_booking}`;
+
+    return this.http.post<any>(urlApi, params);
+  }
+
   //when user logout call api to perform logout application
   logout(token:string){
     let headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);

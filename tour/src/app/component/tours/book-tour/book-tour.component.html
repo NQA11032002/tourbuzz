@@ -1,20 +1,35 @@
-<div action="" class="resgit_Tour">
-    <h4 class="text-center">Đăng kí Tour</h4>
-    <form action="" class="mx-3 my-3 border rounded">
-        <div class="m-3">
-            <p class="TourId"><b>Mã tour:</b> B12</p>
-            <p class="TourName"><b>Tên tour:</b>Tour Bà Nà Hills trọn ngày với bữa trưa buffet</p>
-            <a href="https://www.tugo.com.vn/wp-content/uploads/7d-18903675-4265-4c48-a6dd-e1c2d13bb7e2.jpg" data-toggle="lightbox">
-                <img src="https://www.tugo.com.vn/wp-content/uploads/7d-18903675-4265-4c48-a6dd-e1c2d13bb7e2.jpg" alt="" class="img-fluid">
-            </a>
-            <label for="Full_Name">Họ và Tên</label>
-            <input type="text" class="form-control" name="Full_Name" id="Full_Name">
-            <label for="Amount_Crew">Số Lượng Thành Viên</label>
-            <input type="number" class="form-control" name="Amount_Crew" id="Amount_Crew">
-            <label for="cccd">Căn cước công dân </label>
-            <input type="text" class="form-control" name="cccd" id="cccd">
+<app-header></app-header>
+<div class="wp-content d-grid">
+    <div class="sidebar_fill">
+        <app-navbar-tour></app-navbar-tour>
+    </div>
+
+    <div class="content">
+        <div action="" class="resgit_Tour">
+            <h4 class="text-center">Đăng kí Tour</h4>
+            <form action="" class="mx-3 my-3 border rounded" [formGroup]="bookTour" (ngSubmit)="submitBook()">
+                <div class="m-3">
+                    <p class="TourId"><b>Mã tour:</b> B12</p>
+                    <p class="TourName"><b>Tên tour:</b>Tour Bà Nà Hills trọn ngày với bữa trưa buffet</p>
+                    <img src="https://i.guim.co.uk/img/media/6088d89032f8673c3473567a91157080840a7bb8/0_567_3840_2304/master/3840.jpg?width=1300&quality=45&dpr=2&s=none"
+                        class="w-100" alt="">
+                    <label for="AmountCrew">Số Lượng Thành Viên</label>
+                    <input type="number" class="form-control" name="AmountCrew" id="AmountCrew">
+                    <div class="errors"
+                        *ngIf="bookTour.controls['AmountCrew'].invalid && (bookTour.controls['AmountCrew'].dirty || bookTour.controls['AmountCrew'].touched)">
+                        <p *ngIf="bookTour.get('AmountCrew')?.hasError('required')">Vui lòng nhập số lượng thành viên
+                        </p>
+                    </div>
+                </div>
+
+                <div class="errors" *ngIf="bookFail">
+                    <p>{{ this.bookFail }}</p>
+                </div>
+
+                <div class="d-flex justify-content-center"><input type="submit" class="btn btn-primary w-50 my-3"
+                        value="submit"></div>
+            </form>
         </div>
-        <div class="d-flex justify-content-center"><input type="submit" class="btn btn-primary w-50 my-3"
-                value="submit"></div>
-    </form>
+    </div>
 </div>
+<app-footer></app-footer>
