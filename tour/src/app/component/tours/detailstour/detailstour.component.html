@@ -198,7 +198,9 @@
                         <i class="fa-solid fa-phone"></i>Phone: 0345728000
                     </span>
                 </div>
-                <button class="btn-booking" [routerLink]="['/booking']" routerLinkActive="router-link-active">
+
+                <!-- [queryParams]="{ chỗ này truyền id của tour vào } -->
+                <button class="btn-booking" [routerLink]="['/booking']" [queryParams]="{ id: 10 }" routerLinkActive="router-link-active">
                     Booking Now!
                 </button>
             </div>

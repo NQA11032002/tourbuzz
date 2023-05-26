@@ -6,10 +6,11 @@
     display: flex;
     height: 60px;
     width: 100%;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     justify-content: space-between;
     position: fixed;
     background-color: #ffffff;
-    z-index: 9;
+    z-index: 99999;
     padding: 0 10px;
     .form-search
     {
@@ -104,6 +105,7 @@
             right: 0 !important;
             box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
             border: unset;
+            width: 175px;
             .dropdown-item
             {
               font-size: 14px;

@@ -13,35 +13,35 @@ export class AddressService {
 
   getCities(token:string){
     let headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
-    let urlApi = `${this.api}city?bearer=${token}`;
+    let urlApi = `${this.api}city`;
 
     return this.http.get<any>(urlApi, {headers});
   }
 
   getDistrict(token:string){
     let headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
-    let urlApi = `${this.api}district?bearer=${token}`;
+    let urlApi = `${this.api}district`;
 
     return this.http.get<any>(urlApi, {headers});
   }
 
   getTown(token:string){
     let headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
-    let urlApi = `${this.api}town?bearer=${token}`;
+    let urlApi = `${this.api}town`;
 
     return this.http.get<any>(urlApi, {headers});
   }
 
   getAddressTravel(token:string){
     let headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
-    let urlApi = `${this.api}address-travel?bearer=${token}`;
+    let urlApi = `${this.api}address-travel`;
 
     return this.http.get<any>(urlApi, {headers});
   }
 
   getTypeTravel(token:string){
     let headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
-    let urlApi = `${this.api}type-travel?bearer=${token}`;
+    let urlApi = `${this.api}type-travel`;
 
     return this.http.get<any>(urlApi, {headers});
   }

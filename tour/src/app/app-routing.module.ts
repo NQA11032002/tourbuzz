@@ -20,7 +20,8 @@ const routes: Routes = [
   {path:'register', component: RegisterComponent},
   {path:'forgot-password', component: ForgotpassComponent},
   {path:'profile', component: FullinfoComponent},
-  {path:'detail',component:DetailstourComponent},
+  {path: 'detail', component:DetailstourComponent},
+
   {path:'booking',component: BookTourComponent},
 
   {path:'**', component: HomeComponent},

@@ -19,5 +19,114 @@
     .sidebar
     {
       border-radius: 5px;
+
+      .form-search
+      {
+        margin: 10px;
+        .search
+        {
+          border: 1px solid var(--color-border);
+          border-radius: 5px;
+          font-size: 13px;
+          height: 30px;
+          outline: none;
+          padding-left: 5px;
+          width: 100%;
+        }
+        .btn-search
+        {
+          background-color: transparent;
+          border: unset;
+          outline: none;
+          top: 50%;
+          transform: translateY(-50%);
+          right: 5px;
+          transition: all 0.25s ease;
+          i {
+            color: #d9d9d9;
+          }
+        }
+      }
+    }
+}
+
+  .contain-messenger
+  {
+    right: 13%;
+  }
+
+.container_navbar{
+    position: fixed;
+    .navbar-list{
+      height: 100vh;
+      width: 250px;
+      color: var(--color-sub-text);
+      overflow-y: auto;
+      border-left: 1px solid var(--color-border);
+      background-color: white;
+    }
+  
+    .navbar-linespace{
+      border-bottom: 1px solid var(--color-border);
+      width: 100%;
+    }
+  
+    .navbar-item-breadscrumb{
+      text-align: left;
+      font-size: 20px;
+      font-weight: 600;
+      border-bottom: 1px solid var(--color-border);
+      padding-top: 80px;
+    }
+  
+    .navbar-item-title{
+      margin: 0 5px;
+      font-size: 16px;
+      font-weight: 600;
+      padding-bottom: 5px;
+    }
+  
+    .navbar-item{
+      padding: 8px 0;
+
+      
+    .navbar-infor{
+      display: flex;
+      margin-left: 10px;
+      cursor: grab;
+      .navbar-infor-image{
+
+        img 
+        {
+          height: 30px;
+          width: 30px;
+          border-radius: 50%;
+          object-fit: cover;
+        }
+
+        .status_offine
+        {
+          color: var(--color-border);
+        }
+      }
+  
+      .navbar-infor-name{
+        display: inline-flex;
+        align-items: center;
+        margin-left: 10px;
+        width: auto;
+        span
+        {
+          font-size: 13px;
+          font-weight: 500;
+        }
+      }
     }
   }
+  
+  .status-info{
+    color: #51cb51;
+    font-size: 10px;
+    right: -3px;
+  }
+}

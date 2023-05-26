@@ -1,4 +1,4 @@
-export class UsersModel
+export class User_InformationModel
 {
   public id:number;
   public user_id:number;
@@ -8,10 +8,11 @@ export class UsersModel
   public address:string;
   public phone:string;
   public education:string;
+  public image:string;
   public created_at:Date;
   public updated_at:Date;
 
-  public constructor(id:number, user_id:number, name:string, birth_date:Date, gender:number, address:string, phone:string, education:string, created_at:Date, updated_at:Date){
+  public constructor(id:number, user_id:number, name:string, birth_date:Date, gender:number, address:string, phone:string, education:string, image:string,created_at:Date, updated_at:Date){
     this.id = id;
     this.user_id = user_id;
     this.name = name;
@@ -20,6 +21,7 @@ export class UsersModel
     this.address = address;
     this.phone = phone;
     this.education = education;
+    this.image = image;
     this.created_at = created_at;
     this.updated_at = updated_at;
   }

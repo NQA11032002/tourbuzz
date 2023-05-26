@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Http\Resources\UserCollection;
 use App\Http\Resources\UserResource;
 use App\Models\auth\user_information;
+use App\Models\auth\users_connect;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
@@ -22,8 +23,14 @@ class UserController extends Controller
 
     public function index()
     {
-        $users = user_information::with('posts')->with('users_connect')->get();
+        $users = user_information::with('posts')->with('users_connect')->where('id', Auth::user()->user_information->id)->get();
         // $users = PostResource::collection($users);
+
+        foreach ($users as $user) {
+            foreach ($user->users_connect as $connect) {
+                $connect->user_information;
+            }
+        }
 
         if ($users->count() > 0) {
             $title = 'success';
@@ -35,7 +42,6 @@ class UserController extends Controller
             $status = 500;
             $detail = '';
         }
-
 
         $response = [
             'title' => $title,

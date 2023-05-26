@@ -2,75 +2,59 @@
 
 <section>
   <div class="container_home">
-    <div class="home_header">
-      <div class="home_header-banner">
-        <img
-          src="https://cdn.pixabay.com/photo/2013/04/11/19/46/building-102840_960_720.jpg"
-          alt="" class="banner">
-      </div>
-      <div class="home_header-title">
-        <h3 class="title-main">POPULAR WORLD SCENE</h3>
-        <h5 class="title-2">PERFECT WORLD TRAVEL AGENCY</h5>
-        <div class="btn-booking">
-          <button>Booking Now!</button>
-        </div>
-
-      </div>
-      <div class="home_header-search">
-        <div class="home_header-search-title">
-          <h3>SEARCH NOW</h3>
-        </div>
-        <div class="home_header-search-list">
-          <div class="home_header-search-item d-flex align-items-center">
-            <i class="icon-loca fa-solid fa-location-dot"></i>
-            <span>Location</span>
-            <select name="" id="">
-              <option *ngFor="let item of data" value="{{ item.matp }}">{{ item.name }}
-              </option>
-            </select>
+    <div class=" position-relative container_slide">
+      <div class="container">
+        <div id="slide">
+          <div class="item" style="background-image: url('assets/images/home/1.jpg');">
+            <div class="content">
+              <div class="name">POPULAR WORLD SCENE</div>
+              <div class="des">PERFECT WORLD TRAVEL AGENCY</div>
+              <button>Booking Now!</button>
+            </div>
           </div>
-
-          <div class="home_header-search-item d-flex align-items-center">
-            <i class="fa-solid fa-plane icon-loca"></i>
-            <span>Type Travel</span>
-            <select name="" id="">
-              <option value="">Quy Nhơn</option>
-              <option value="">Kỳ Co</option>
-              <option value="">Tam Đảo</option>
-            </select>
+          <div class="item" style="background-image: url('assets/images/home/2.jpg');">
+            <div class="content">
+              <div class="name">POPULAR WORLD SCENE</div>
+              <div class="des">PERFECT WORLD TRAVEL AGENCY</div>
+              <button>Booking Now!</button>
+            </div>
           </div>
-
-          <div class="home_header-search-item d-flex align-items-center">
-            <i class="fa-regular fa-calendar-days icon-loca"></i>
-            <span>Date</span>
-            <input class="shadow-none border-0" type="date">
+          <div class="item" style="background-image: url('assets/images/home/3.jpg');">
+            <div class="content">
+              <div class="name">POPULAR WORLD SCENE</div>
+              <div class="des">PERFECT WORLD TRAVEL AGENCY</div>
+              <button>Booking Now!</button>
+            </div>
           </div>
-
-
-          <div class="home_header-search-item d-flex align-items-center">
-            <i class="icon-trans fa-solid fa-car-side"></i>
-            <Span>Transition</Span>
-            <select name="" id="">
-              <option value="">Xe Máy</option>
-              <option value="">Xe ô tô</option>
-              <option value="">Xe khách</option>
-            </select>
+          <div class="item" style="background-image: url('assets/images/home/4.jpg');">
+            <div class="content">
+              <div class="name">POPULAR WORLD SCENE</div>
+              <div class="des">PERFECT WORLD TRAVEL AGENCY</div>
+              <button>Booking Now!</button>
+            </div>
           </div>
-          <div class="home_header-search-item d-flex align-items-center">
-            <i class="icon-price fa-solid fa-dollar-sign"></i>
-            <span>Price</span>
-            <select name="" id="">
-              <option value="">500000</option>
-              <option value="">1000000</option>
-              <option value="">2000000</option>
-            </select>
+          <div class="item" style="background-image: url('assets/images/home/5.jpg');">
+            <div class="content">
+              <div class="name">POPULAR WORLD SCENE</div>
+              <div class="des">PERFECT WORLD TRAVEL AGENCY</div>
+              <button>Booking Now!</button>
+            </div>
+          </div>
+          <div class="item" style="background-image: url('assets/images/home/6.jpg');">
+            <div class="content">
+              <div class="name">POPULAR WORLD SCENE</div>
+              <div class="des">PERFECT WORLD TRAVEL AGENCY</div>
+              <button>Booking Now!</button>
+            </div>
           </div>
         </div>
-        <div class="home_header-search-btn">
-          <button class="btn_search">Search</button>
+        <div class="buttons">
+          <button id="prev" (click)="nextSlide()"><i class="fa-solid fa-angle-left"></i></button>
+          <button id="next" (click)="previousSlide()"><i class="fa-solid fa-angle-right"></i></button>
         </div>
       </div>
     </div>
+
     <div class="spaceline">
 
     </div>
@@ -80,9 +64,8 @@
       </div>
       <div class="home_tour-details">
         <div class="home_tour-details-img">
-          <img
-            src="https://dulichfun.com/wp-content/uploads/2019/01/Kinh-nghiem-phuot-Ky-Co-Quy-Nhon-tu-tuc.jpg"
-            alt="" class="img-tour">
+          <img src="https://dulichfun.com/wp-content/uploads/2019/01/Kinh-nghiem-phuot-Ky-Co-Quy-Nhon-tu-tuc.jpg" alt=""
+            class="img-tour">
         </div>
         <div class="home_tour-details-desc">
           <div class="home_tour-details-desc-title">
@@ -109,13 +92,12 @@
     </div>
     <div class="home_discount">
       <div class="home_discount-bg">
-        <img src="https://cdn.pixabay.com/photo/2013/10/09/02/27/lake-192990_960_720.jpg"
-          alt="">
+        <img src="https://cdn.pixabay.com/photo/2013/10/09/02/27/lake-192990_960_720.jpg" alt="">
       </div>
       <div class="home_discount-title">
         <h5 class="title">GET DISCOUNT 10-20% OFF ANY TOUR PACKAGE</h5>
         <h6 class="subtitle">WHEN YOU PURCHASE ANY PACKAGE & GET NEXT TOUR</h6>
-        <button>Start your trip now!</button>
+        <a [routerLink]="['/social']">Start your trip now!</a>
       </div>
     </div>
     <div class="spaceline">
@@ -125,86 +107,88 @@
       <div class="home_social-title">
         <h3>SOCIAL NETWORK</h3>
       </div>
-      <div class="home_social-list">
+      <div class="home_social-list multiple-items">
         <div class="home_social-details">
           <div class="home_social-details-img">
-            <img src="assets/img/Dat.jpg" alt="">
+            <img src="assets/images/avatar/home_1.jfif" alt="">
           </div>
           <div class="home_social-details-name">
-            <span>Hồ Quang Đạt</span>
+            <span>Straight Brawn</span>
           </div>
           <div class="home_social-details-time">
-            <span>15/5/2023</span>
+            <span>19/03/1998</span>
           </div>
-          <div class="home_social-details-desc">
-            <div class="home_social-desc">
-              Kỳ Co đẹp vl đáng để trải nghiệm!
-            </div>
-            <div class="home_social-desc-img">
-              <img
-                src="https://dulichfun.com/wp-content/uploads/2019/01/Kinh-nghiem-phuot-Ky-Co-Quy-Nhon-tu-tuc.jpg"
-                alt="" class="img-tour">
+          <div class="home_social-details-desc d-flex flex-column">
+            <h5 class="post-title pt-3 flex-shrink-0">Du lịch cùng tôi</h5>
+            <p class="home_social-content flex-1">Chuyến đi khám phá Châu Á tiếp theo của bạn sẽ như thế nào? Đắm mình
+              vào địa danh với giá trị lịch sử phong phú hay tận hưởng thiên nhiên hùng vĩ đẹp kinh ngạc, Châu Á hứa
+              hẹn mang đến cho bạn trải nghiệm thoả mãn đa giác quan từ cảnh quan, âm thanh cho đến hương vị. Lên kế
+              hoạch cho chuyến đi khó quên cùng ALL - Accor Live Limitless và khám phá sức quyến rũ khiến Châu Á cùng
+              lí do khiến nơi đây luôn sống động trong tâm trí du khách.
+              Các thành viên của ALL - Accor Live Limitless được hưởng mức giá độc quyền trong thời gian lưu trú, cùng
+              điểm thưởng và các lợi ích thành viên đặc biệt. Đăng ký miễn phí và đặt chuyến đi tiếp theo ngay hôm
+              nay.</p>
+            <div class="home_social-desc-img flex-shrink-0">
+              <img src="assets/images/social/home_1.jpg" alt="" class="img-tour">
             </div>
           </div>
         </div>
+
         <div class="home_social-details">
           <div class="home_social-details-img">
-            <img src="assets/img/Dat.jpg" alt="">
+            <img src="assets/images/avatar/home_2.jfif" alt="">
           </div>
           <div class="home_social-details-name">
-            <span>Hồ Quang Đạt</span>
+            <span>Lincon Born</span>
           </div>
           <div class="home_social-details-time">
-            <span>15/5/2023</span>
+            <span>19/03/2004</span>
           </div>
-          <div class="home_social-details-desc">
-            <div class="home_social-desc">
-              Kỳ Co đẹp vl đáng để trải nghiệm!
-            </div>
-            <div class="home_social-desc-img">
-              <img
-                src="https://dulichfun.com/wp-content/uploads/2019/01/Kinh-nghiem-phuot-Ky-Co-Quy-Nhon-tu-tuc.jpg"
-                alt="" class="img-tour">
+          <div class="home_social-details-desc d-flex flex-column">
+            <h5 class="post-title pt-3 flex-shrink-0">Floral Festivals</h5>
+            <p class="home_social-content flex-1">Embark on a captivating journey through the flower gardens and
+              festivals in Japan. Explore breathtaking landscapes, vibrant colors, and immersive celebrations of
+              nature's floral wonders. Prepare to be inspired by the enchanting splendor of Floral Paradise!.</p>
+            <div class="home_social-desc-img flex-shrink-0">
+              <img src="assets/images/social/home_2.jpg" alt="" class="img-tour">
             </div>
           </div>
         </div>
+
         <div class="home_social-details">
           <div class="home_social-details-img">
-            <img src="assets/img/Dat.jpg" alt="">
+            <img src="assets/images/avatar/home_3.jfif" alt="">
           </div>
           <div class="home_social-details-name">
-            <span>Hồ Quang Đạt</span>
+            <span>Straight Brawn</span>
           </div>
           <div class="home_social-details-time">
-            <span>15/5/2023</span>
+            <span>19/03/19998</span>
           </div>
-          <div class="home_social-details-desc">
-            <div class="home_social-desc">
-              Kỳ Co đẹp vl đáng để trải nghiệm!
-            </div>
-            <div class="home_social-desc-img">
-              <img
-                src="https://dulichfun.com/wp-content/uploads/2019/01/Kinh-nghiem-phuot-Ky-Co-Quy-Nhon-tu-tuc.jpg"
-                alt="" class="img-tour">
+          <div class="home_social-details-desc d-flex flex-column">
+            <h5 class="post-title pt-3 flex-shrink-0">Hòa mình cùng các chuyến đi</h5>
+            <p class="home_social-content flex-1">Còn gì bằng khi được đắm mình giữa bãi biển HuaHin xinh đẹp, một bên
+              là nắng vàng và trời xanh? Tại @Mövenpick Asara Resort & Spa Hua Hin, bạn không chỉ được tận hưởng cảm
+              giác đó mà còn được tận hưởng tối đa sự thư giãn như Maysa Traveller!</p>
+            <div class="home_social-desc-img flex-shrink-0">
+              <img src="assets/images/social/home_3.jpg" alt="" class="img-tour">
             </div>
           </div>
         </div>
       </div>
       <div class="home_social-btn">
-        <button>Join with us!</button>
+        <a [routerLink]="['/social']">Join with us!</a>
       </div>
     </div>
 
     <div class="home_discount">
       <div class="home_discount-bg">
-        <img
-          src="https://cdn.pixabay.com/photo/2018/04/25/09/26/eiffel-tower-3349075_960_720.jpg"
-          alt="">
+        <img src="https://cdn.pixabay.com/photo/2018/04/25/09/26/eiffel-tower-3349075_960_720.jpg" alt="">
       </div>
       <div class="home_discount-title">
         <h5 class="title">DISCOUNT UP TO 70%</h5>
         <h6 class="subtitle">WHEN YOU GO WITH YOUR FAMILY OR YOUR FRIEND</h6>
-        <button>Booking now!</button>
+        <a [routerLink]="['/social']">Booking now!</a>
       </div>
     </div>
     <div class="spaceline">
@@ -215,86 +199,26 @@
         <h3>POPULAR PLACE</h3>
       </div>
       <div class="home_popular-list">
-        <div class="home_popular-item">
+        <div class="home_popular-item" *ngFor="let item of tours">
           <div class="home_popular-item-img">
-            <img
-              src="https://cdn.pixabay.com/photo/2013/04/11/19/46/building-102840_960_720.jpg"
-              alt="">
+            <img src="{{ item.images }}" alt="">
           </div>
           <div class="home_popular-item-title">
-            <span>Lourve Museum France</span>
+            <span>{{ item.title }}</span>
           </div>
           <div class="home_popular-item-price">
-            <span>$5000</span>
+            <span>{{ item.price_tour | number: '1.0-0' }} VNĐ</span>
           </div>
           <div class="home_popular-item-desc">
-            <span>Victoria Falls, 5 Days, 4 Night Tour</span>
+            <span>{{ item.description }}</span>
           </div>
           <div class="home_popular-item-btn">
-            <button>Views Details</button>
-          </div>
-        </div>
-        <div class="home_popular-item">
-          <div class="home_popular-item-img">
-            <img
-              src="https://cdn.pixabay.com/photo/2013/04/11/19/46/building-102840_960_720.jpg"
-              alt="">
-          </div>
-          <div class="home_popular-item-title">
-            <span>Lourve Museum France</span>
-          </div>
-          <div class="home_popular-item-price">
-            <span>$5000</span>
-          </div>
-          <div class="home_popular-item-desc">
-            <span>Victoria Falls, 5 Days, 4 Night Tour</span>
-          </div>
-          <div class="home_popular-item-btn">
-            <button>Views Details</button>
-          </div>
-        </div>
-        <div class="home_popular-item">
-          <div class="home_popular-item-img">
-            <img
-              src="https://cdn.pixabay.com/photo/2013/04/11/19/46/building-102840_960_720.jpg"
-              alt="">
-          </div>
-          <div class="home_popular-item-title">
-            <span>Lourve Museum France</span>
-          </div>
-          <div class="home_popular-item-price">
-            <span>$5000</span>
-          </div>
-          <div class="home_popular-item-desc">
-            <span>Victoria Falls, 5 Days, 4 Night Tour</span>
-          </div>
-          <div class="home_popular-item-btn">
-            <button>Views Details</button>
-          </div>
-        </div>
-        <div class="home_popular-item">
-          <div class="home_popular-item-img">
-            <img
-              src="https://cdn.pixabay.com/photo/2013/04/11/19/46/building-102840_960_720.jpg"
-              alt="">
-          </div>
-          <div class="home_popular-item-title">
-            <span>Lourve Museum France</span>
-          </div>
-          <div class="home_popular-item-price">
-            <span>$5000</span>
-          </div>
-          <div class="home_popular-item-desc">
-            <span>Victoria Falls, 5 Days, 4 Night Tour Victoria Falls, 5 Days, 4 Night
-              Tour Victoria Falls, 5 Days, 4 Night Tour Victoria Falls, 5 Days, 4 Night
-              Tour</span>
-          </div>
-          <div class="home_popular-item-btn">
-            <button>Views Details</button>
+            <a>Views Details</a>
           </div>
         </div>
       </div>
     </div>
   </div>
 </section>
+
 <app-footer></app-footer>

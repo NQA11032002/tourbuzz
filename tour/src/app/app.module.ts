@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './component/blocks/header/header.component';
 import { FooterComponent } from './component/blocks/footer/footer.component';
-import { NavbarComponent } from './component/social/navbar/navbar.component';
 import { CreatePostComponent } from './component/social/create-post/create-post.component';
 import { PostComponent } from './component/social/post/post.component';
 import { LoginComponent } from './component/auth/login/login.component';
@@ -24,6 +23,10 @@ import { TourSearchComponent } from './component/tours/tour-search/tour-search.c
 import { HomeComponent } from './component/home/home.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+
+import { provideFirebaseApp, getApp, initializeApp } from '@angular/fire/app';
+import { getFirestore, provideFirestore } from '@angular/fire/firestore';
+import { environment } from 'src/environments/environment';
 import { NavbarTourComponent } from './component/tours/navbar-tour/navbar-tour.component';
 
 @NgModule({
@@ -37,7 +40,6 @@ import { NavbarTourComponent } from './component/tours/navbar-tour/navbar-tour.c
     LoginComponent,
     RegisterComponent,
     ForgotpassComponent,
-    NavbarComponent,
     NavbarTourComponent,
     MessengerComponent,
     ShortinfoComponent,
@@ -57,7 +59,9 @@ import { NavbarTourComponent } from './component/tours/navbar-tour/navbar-tour.c
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
+    provideFirestore(() => getFirestore()),
   ],
   providers: [],
   bootstrap: [AppComponent]

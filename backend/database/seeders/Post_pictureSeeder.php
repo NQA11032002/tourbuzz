@@ -15,8 +15,8 @@ class Post_pictureSeeder extends Seeder
     public function run(): void
     {
         DB::table('post_picture')->insert([
-            "post_id" => 3,
-            "images" => "https://znews-photo.zingcdn.me/w860/Uploaded/qhj_yvobvhfwbv/2018_07_18/Nguyen_Huy_Binh1.jpg",
+            "post_id" => 2,
+            "images" => "https://i.pinimg.com/564x/b5/85/11/b58511cfc2f13627fafa33118f70bead.jpg",
         ]);
     }
 }
