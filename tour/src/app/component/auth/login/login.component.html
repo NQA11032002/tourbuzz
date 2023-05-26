@@ -28,7 +28,6 @@
                   <input id="email" #inputemail formControlName="email" type="email" class="form-control shadow-none"
                     [value]="loginForm.controls['email'].value" name="email">
 
-
                   <div class="errors"
                     *ngIf="loginForm.controls['email'].invalid && (loginForm.controls['email'].dirty || loginForm.controls['email'].touched)">
                     <p *ngIf="loginForm.get('email')?.hasError('required')">Email không được để

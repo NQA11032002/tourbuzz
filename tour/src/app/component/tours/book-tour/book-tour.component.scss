@@ -1,12 +1,99 @@
-label{
-    margin-top: 10px;
+.resgit_Tour
+{
+    margin-top: 30px;
+
+    label{
+        margin-top: 10px;
+        font-size: 14px;
+        margin-bottom: 5px;
+        cursor: default;
+        color: #555863;
+    }
+    
+    a{
+        margin: 0 5px;
+    }
+    
+    .btn{
+        background-color: #212529;
+        color: #f7f9fa;
+    }
+
+    form 
+    {
+        .information_another
+        {
+            resize: none;
+        }
+        .form-control
+        {
+            font-size: 13px;
+        }
+        .booking_error
+        {
+            font-size: 13px;
+            color: #CD1818;
+            margin-top: 5px;
+        }
+        .select-pay
+        {
+            font-size: 13px;
+        }
+    }
 }
 
-a{
-    margin: 0 5px;
+.lb_notify
+{
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 99;
+    background-color: rgba(0, 0, 0, 0.6);
 }
 
-.btn{
-    background-color: #212529;
-    color: #f7f9fa;
+.notify
+{
+    display: none;
+    background-color: #ffff;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 450px;
+    height: 200px;
+    border-radius: 5px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+
+    .notify_info
+    {
+        i 
+        {
+            padding-top: 10px;
+            font-size: 70px;
+            color: #1bc70c;
+            
+        }
+
+        .info
+        {
+            font-size: 15px;
+            color: #555863;
+            text-align: center;
+            margin-top: 20px;
+        }
+    }
+}
+
+#cb_notify:checked ~ .lb_notify
+{
+    display: block;
+}
+
+#cb_notify:checked ~ .notify
+{
+    display: block;
 }

@@ -71,9 +71,12 @@
       {{ tour.tour_detail[0].amount_customer_maximum }}
     </span>
   </div>
-  <button class="btn-booking">
+
+  <app-book-tour></app-book-tour>
+
+  <!-- <button class="btn-booking">
     Booking Now!
-  </button>
+  </button> -->
 
   <div class="details_linespace"></div>
 
@@ -89,79 +92,43 @@
       <i class="fa-solid fa-star"></i>
       <div class="details_count-cmt">
         <span class="rate">5/5 <b>Excellent</b></span>
-        <span class="count">({{ tour.tour_detail[0].tour_comments.length }} reviews)</span>
-      </div>
-    </div>
-    <div class="details_linespace"></div>
-    <div class="details_reviews-infor">
-      <div class="details_reviews-infor-container">
-        <div class="details_reviews-infor-img">
-          <img src="assets/img/Dat.jpg" alt="">
-        </div>
-        <div class="details_reviews-infor-name">
-          <span>Customer</span>
-        </div>
-        <div class="details_reviews-infor-daypost">
-          <span>06/01/2023</span>
-        </div>
-      </div>
-      <div class="details_reviews-infor-desc">
-        <p>
-          Very nice sea view hotel, very clean room with basic kitchen with cooking
-          facility . Good sleeping quality, will definitely come back again. You need to
-          have a car.
-        </p>
-      </div>
-    </div>
-    <div class="details_linespace"></div>
-    <div class="details_reviews-infor">
-      <div class="details_reviews-infor-container">
-        <div class="details_reviews-infor-img">
-          <img src="assets/img/Dat.jpg" alt="">
-        </div>
-        <div class="details_reviews-infor-name">
-          <span>Customer</span>
-        </div>
-        <div class="details_reviews-infor-daypost">
-          <span>06/01/2023</span>
-        </div>
-      </div>
-      <div class="details_reviews-infor-desc">
-        <p>
-          Very nice sea view hotel, very clean room with basic kitchen with cooking
-          facility . Good sleeping quality, will definitely come back again. You need to
-          have a car.
-        </p>
+        <span class="count">({{ lengthComment }} reviews)</span>
       </div>
     </div>
 
-    <div class="details_linespace"></div>
+    <form [formGroup]="commentGroup" class="form_comment-tour d-flex justify-between w-100" (submit)="commentTour()">
+      <input formControlName="content" class="comment_tour border" type="text" placeholder="Bình luận về tour...">
+      <button [disabled]="commentGroup.invalid" class="submit_comment_tour" type="submit">Bình luận</button>
+    </form>
 
-    <div class="details_reviews-infor">
-      <div class="details_reviews-infor-container">
-        <div class="details_reviews-infor-img">
-          <img src="assets/img/Dat.jpg" alt="">
-        </div>
-        <div class="details_reviews-infor-name">
-          <span>Customer</span>
-        </div>
-        <div class="details_reviews-infor-daypost">
-          <span>06/01/2023</span>
+    <div class="comments_container">
+      <div class="details_reviews-infor d-flex" *ngFor="let item of tour.tour_comments | async">
+        <div class=" details_reviews-infor-container">
+          <div class="details_reviews-infor-img">
+            <img src="assets/images/avatar/{{ item.user.image }}" alt="">
+          </div>
         </div>
 
+        <div>
+          <div class="details_reviews-infor-name">
+            <span class="name_customer_comment">{{ item.user.name }}</span>
+          </div>
+          <div class="details_reviews-infor-daypost">
+            <span>{{ item.created_at}}</span>
+          </div>
+          <div class="details_reviews-infor-desc">
+            <p class="content_comment">{{ item.content }} </p>
+          </div>
+        </div>
       </div>
-      <div class="details_reviews-infor-desc">
-        <p>
-          Very nice sea view hotel, very clean room with basic kitchen with cooking
-          facility . Good sleeping quality, will definitely come back again. You need to
-          have a car.
-        </p>
-      </div>
-
     </div>
-    <button class="btn_more">
+
+    <button class="btn_more btn_comments" *ngIf="lengthComment > 3" (click)="moreComments()">
       More comments <i class="fa-solid fa-chevron-down"></i>
     </button>
 
+    <button class="btn_less btn_comments" *ngIf="lengthComment > 3" (click)="lessComments()">
+      Less comments <i class="fa-solid fa-chevron-up"></i>
+    </button>
   </div>
 </div>

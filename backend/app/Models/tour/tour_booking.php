@@ -11,7 +11,7 @@ class tour_booking extends Model
 {
     use HasFactory;
     protected $table = "tour_booking";
-    protected $fillable = ["tour_id", "user_id", "amount_customer", "status_booking_id"];
+    protected $fillable = ["name_user", "phone", "email", "amount_crew", "tour_id", "description", "status_booking"];
 
     public function status_booking()
     {
@@ -23,10 +23,6 @@ class tour_booking extends Model
         return $this->belongsTo(tours::class, "tour_id", "id");
     }
 
-    public function user_information()
-    {
-        return $this->hasOne(user_information::class, "id", "user_id");
-    }
 
     public function tour_pay()
     {

@@ -207,13 +207,15 @@
             <span>{{ item.title }}</span>
           </div>
           <div class="home_popular-item-price">
-            <span>{{ item.price_tour | number: '1.0-0' }} VNĐ</span>
+            <span>{{ item.price_tour  | currency }}</span>
           </div>
           <div class="home_popular-item-desc">
             <span>{{ item.description }}</span>
           </div>
           <div class="home_popular-item-btn">
-            <a>Views Details</a>
+            <a class="text-decoration-none" [routerLink]="['/tour-detail']" [queryParams]="{id: item.id}"
+              routerLinkActive="router-link-active">Views
+              Details</a>
           </div>
         </div>
       </div>

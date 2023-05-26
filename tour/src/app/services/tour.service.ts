@@ -7,11 +7,15 @@ import { Observable } from 'rxjs';
 })
 export class TourService {
   public tours: Array<any> = new Array<any>();
+  public categoryPay: Array<any> = new Array<any>();
   public tour_detail:any;
+  public tour_comments: Observable<any> = new Observable<any>;
 
   constructor(private http: HttpClient) { }
 
   private api = "http://localhost:8000/api/tour";
+  private apiBooking = "http://localhost:8000/api/booking";
+  private apiTourComment = "http://localhost:8000/api/tour-comment";
 
     //get list tour popular
     getTourPopular(token:string):Observable<any>{
@@ -36,4 +40,28 @@ export class TourService {
 
       return this.http.get<any>(urlApi, {headers});
     }
+
+    //booking tour
+    bookingTour(data:any, token:string):Observable<any>{
+      let headers = new HttpHeaders().set('Authorization', 'Bearer '+ token);
+      let urlApi = `${this.apiBooking}`;
+
+      return this.http.post<any>(urlApi, data ,{headers});
+    }
+
+    //get list categories pay
+    getCategoriesPay(token:string){
+      let headers = new HttpHeaders().set('Authorization', 'Bearer '+ token);
+      let urlApi = `${this.apiBooking}/categories-pay`;
+
+      return this.http.get<any>(urlApi, {headers});
+    }
+
+    // //comment tour 
+    // commentTour(data:any, token:string){
+    //   let headers = new HttpHeaders().set('Authorization', 'Bearer '+ token);
+    //   let urlApi = `${this.apiTourComment}`;
+
+    //   return this.http.post<any>(urlApi, data ,{headers});
+    // }
 }
