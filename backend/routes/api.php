@@ -65,13 +65,13 @@ Route::prefix('social')->name('social.')->middleware('auth:sanctum')->group(func
         Route::post('/', [User_ConnectController::class, "insertMessenger"])->name('insertMessenger');
     });
 
-    Route::get('vehicles', [VehiclesController::class, "index"])->name('vehicles');
+    Route::get('/vehicles', [VehiclesController::class, "index"])->name('vehicles');
 });
 
 Route::post('/upload', [PostsController::class, "uploadImages"])->name('upload-images');
 
 
-Route::prefix('tour')->name('tour.')->middleware('auth:sanctum')->group(function () {
+Route::prefix('tour')->name('tour.')->group(function () {
     Route::get('/', [ToursController::class, "index"])->name('index');
     Route::get('/popular', [ToursController::class, "toursPopular"])->name('popular');
     Route::get('/{id}', [ToursController::class, "index"])->name('index');

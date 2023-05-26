@@ -10,8 +10,21 @@
       grid-template-rows: 1fr;
       row-gap: 15px;
 
+      .filter_price-tour
+      {
+        label 
+        {
+          p 
+          {
+            font-size: 13px;
+            margin-bottom: unset;
+            margin-left: 5px;
+          }
+        }
+      }
       .title_search
       {
+        margin-bottom: unset;
         label{
           font-size: 16px;
           color: var(--color-sub-text);
@@ -32,6 +45,7 @@
         .form-select, .form-control
         {
             border-color: var(--color-border);
+            font-size: 13px;
         }
 
         .form-select:focus, .form-control:focus
@@ -41,13 +55,23 @@
 
         .form-label
         {
-          font-size: 16px;
-          color: var(--color-sub-text);
+          font-size: 14px;
+          color: #0f0f0f;
+          font-weight: 550;
         }
         .vehicle_items
         {
           grid-template-columns: 1fr 1fr;
           column-gap: 10px;
+          row-gap: 10px;
+          label 
+          {
+            font-size: 13px;
+            input 
+            {
+              margin-right: 5px;
+            }
+          }
         }
     }
     #filter{

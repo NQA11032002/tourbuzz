@@ -19,36 +19,76 @@ class ToursController extends Controller
     public function index(Request $request, $id = null)
     {
         date_default_timezone_set("Asia/Ho_Chi_Minh");
-
         $tours = tours::orderByDesc('id');
 
         if (!empty($id)) {
             $tours = $tours->where('id', $id);
         }
 
-        if ($request->address_start) {
-            $tours = $tours->where('address_start', 'like', $request->address_start);
+        if (!empty($request->title) && $request->title != "undefined") {
+            $tours = $tours->where('title', 'like', '%' . $request->title . '%');
         }
 
-        if ($request->address_end) {
-            $tours = $tours->where('address_end', 'like', $request->address_end);
+        if (!empty($request->order)) {
+            switch ($request->order) {
+                case "1":
+                    $tours = $tours->whereDate('date_start', '=', date('Y-m-d'));
+                    break;
+                case "2":
+                    $tours = $tours->whereRaw('amount_customer_maximum > amount_customer_present');
+                    break;
+                case "3":
+                    $tours = $tours->whereHas('tour_evaluation', function ($query) {
+                        $query = $query->groupBy('tour_evaluation.tour_id');
+                        $query = $query->havingRaw('AVG(tour_evaluation.rate) >= ?', [8]);
+                    });
+                    break;
+            }
         }
 
-        if ($request->date_start) {
+        if (!empty($request->price)) {
+            switch ($request->price) {
+                case "49":
+                    $tours = $tours->whereBetween('price_tour', [1, 49]);
+                    break;
+                case "50":
+                    $tours = $tours->whereBetween('price_tour', [50, 249]);
+                    break;
+                case "250":
+                    $tours = $tours->whereBetween('price_tour', [250, 500]);
+                    break;
+                case "501":
+                    $tours = $tours->where('price_tour', '>=', 501);
+                    break;
+                default:
+                    $tours = $tours->where('price_tour', '>=', 1);
+                    break;
+            }
+        }
+
+
+        if (!empty($request->address_start) && $request->address_start != "all") {
+            $tours = $tours->where('address_start', 'like', '%' . $request->address_start);
+        }
+
+        if (!empty($request->address_end) && $request->address_end != "all") {
+            $tours = $tours->where('address_end', 'like', '%' . $request->address_end);
+        }
+
+        if (!empty($request->date_start) && $request->date_start != "all" && $request->date_start != "undefined") {
             $tours = $tours->whereDate('date_start',  $request->date_start);
         }
 
-        if ($request->date_end) {
+        if (!empty($request->date_end) && $request->date_end != "all" && $request->date_end != "undefined") {
             $tours = $tours->whereDate('date_end',  $request->date_end);
         }
 
-        if ($request->price_tour) {
-            $tours = $tours->where('price_tour', $request->price_tour);
-        }
+        $arr = explode(",", $request->vehicles);
 
-        if ($request->status) {
-            $tours = $tours->where('status', $request->status);
+        if (!empty($request->vehicles)) {
+            $tours = $tours->whereIn('vehicle_id', $arr);
         }
+        $sql = $tours->toSql();
 
         $tours = $tours->with('tour_picture')->with('tour_evaluation')->with('tour_comments')->with('vehicles')->with('user_information')->get();
 
@@ -57,6 +97,9 @@ class ToursController extends Controller
                 'title' => 'get list tours',
                 'data' => $tours,
                 'status' => 200,
+                'sql' => $sql,
+                'address_end' => $request->address_end,
+                "address_start" => $request->address_start,
                 'detail' => 'get list tours success'
             ];
         } else {
@@ -64,6 +107,10 @@ class ToursController extends Controller
                 'title' => 'get list tours',
                 'data' => [],
                 'status' => 503,
+                'sql' => $sql,
+                'address_end' => $request->address_end,
+                "address_start" => $request->address_start,
+                'date' => date('Y-m-d'),
                 'detail' => 'get list tours error'
             ];
         }

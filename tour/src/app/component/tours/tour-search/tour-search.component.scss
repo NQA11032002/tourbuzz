@@ -13,11 +13,12 @@
             .sub_title
             {
               width: 120px;
+              font-size: 14px;
               color: var(--color-content);
             }
 
             .sort_item{
-              font-size: 14px;
+              font-size: 13px;
               border: 1px solid var(--color-border);
             }
 
@@ -33,13 +34,13 @@
     .tour-items-holder
     {
       margin-top: 25px;
-      display: grid;
-      grid-template-rows: repeat(auto-fit, minmax(289px,1fr));
+      display: flex;
+      flex-direction: column;
       row-gap: 15px;
 
       .tours-items-list {
         width: 100%;
-        height: 250px;
+        height: 260px;
         background-color: #ffff;
         border-radius: 5px;
         box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
@@ -86,6 +87,11 @@
                       -webkit-box-orient: vertical;
                       overflow: hidden;
                       -webkit-line-clamp: 1;
+                      font-size: 14px;
+                      b 
+                      {
+                        font-size: 15px;
+                      }
                     }
                   }
 
@@ -93,6 +99,10 @@
                   {
                     p{
                       -webkit-line-clamp: 3 !important;
+                      b
+                      {
+                        font-size: 15px;
+                      }
                     }
                   }
                   .tour-price
@@ -113,17 +123,38 @@
                   }
               }
               .tour-content-right{
-                  a{
+                  .btn-detail{
                       background-color: #212529;
                       color: #f7f9fa;
-                      font-size: 14px;
+                      font-size: 13px;
                       padding: 10px 25px;
                       transition: all 0.25s ease;
                   }
-                  a:hover{
+                  .btn-detail:hover{
                     opacity: 80%
                   }
-
+                  .status_tour
+                  {
+                    i 
+                    {
+                      font-size: 13px;
+                    }
+                    .status_ok
+                    {
+                      color: #49FF00;
+                    }
+                    .status_full
+                    {
+                      color: #FF0000;
+                    }
+                    .status_tour-info
+                    {
+                      font-size: 13px;
+                      color: #6c757d;
+                      margin-bottom: unset;
+                      margin-left: 5px;
+                    }
+                  }
               }
           }
         }

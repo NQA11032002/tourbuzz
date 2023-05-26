@@ -1,28 +1,24 @@
 <div class="tour_search">
   <div class="search-item">
     <div class="soft">
-      <form action=""
-        class="d-flex align-items-center search_form justify-content-between">
-
+      <div class="d-flex align-items-center search_form justify-content-between">
         <div class="d-flex align-items-center">
           <label for="" class="sub_title">Tìm kiếm: </label>
-          <input type="text" class="form-control sort_item shadow-none"
+          <input type="text" (input)="searchTour()" [(ngModel)]="keyword" class="form-control sort_item shadow-none"
             placeholder="Nhập tiêu đề tour cần tìm...">
         </div>
 
         <div class="d-flex align-items-center">
           <div>
-            <select id="orderBy" class="sort_item form-select shadow-none">
-              <option value="" selected>Tất cả</option>
-              <option value="">Ngày hiện tại</option>
-              <option value="">Đánh giá cao</option>
-              <option value="">Giá giảm</option>
-              <option value="">Giá tăng</option>
-              <option value="">Sắp xếp từ A-Z</option>
+            <select id="orderBy" (change)="onSelectOrderByChange($event)" class="sort_item form-select shadow-none">
+              <option value="0" selected>Tất cả</option>
+              <option value="1">Tour hôm nay</option>
+              <option value="2">Tour còn chỗ</option>
+              <option value="3">Tour nổi tiếng</option>
             </select>
           </div>
         </div>
-      </form>
+      </div>
     </div>
 
     <div class="tour-items-holder">
@@ -34,8 +30,7 @@
 
           <div class="tour-content clearfix d-flex flex-column">
             <div class="tour-content-left">
-              <h5 class="tour-title"><a href=""
-                  class="text-decoration-none">{{item.title}}</a></h5>
+              <h5 class="tour-title"><a href="" class="text-decoration-none">{{item.title}}</a></h5>
               <div class="tour-info-wrap">
                 <p class="tour-info-duration"><b>Thời gian:</b> {{item.date_start | date}}
                   -
@@ -52,14 +47,21 @@
                 <p class="d-flex">
                   <span class="fw-bold">Price: </span>
                   <span class="price">{{item.price_tour | currency}}</span>
-                  <span class="review text-secondary">(30 review)</span>
+                  <span class="review text-secondary">({{ item.tour_comments.length }} review)</span>
                 </p>
               </div>
             </div>
 
-            <div class="tour-content-right">
-              <a [routerLink]="['/tour-detail']" [queryParams]="{id: item.id}"
-                routerLinkActive="router-link-active" class="btn">View Detail</a>
+            <div class="tour-content-right d-flex justify-content-between">
+              <a [routerLink]="['/tour-detail']" [queryParams]="{id: item.id}" routerLinkActive="router-link-active"
+                class="btn btn-detail">View Detail</a>
+              <div class="d-flex align-items-center status_tour">
+                <i class="fa-solid fa-circle status_ok"
+                  *ngIf="item.amount_customer_present < item.amount_customer_maximum"></i>
+                <i class="fa-solid fa-circle status_full"
+                  *ngIf="item.amount_customer_present > item.amount_customer_maximum"></i>
+                <p class="status_tour-info">{{ item.amount_customer_present }} / {{ item.amount_customer_maximum }}</p>
+              </div>
             </div>
           </div>
         </div>

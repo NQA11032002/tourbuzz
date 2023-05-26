@@ -7,13 +7,14 @@ import { Observable } from 'rxjs';
 })
 export class TourService {
   public tours: Array<any> = new Array<any>();
+  public tour_detail:any;
 
   constructor(private http: HttpClient) { }
 
   private api = "http://localhost:8000/api/tour";
 
     //get list tour popular
-    getTourPopular(token:string){
+    getTourPopular(token:string):Observable<any>{
       let headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
       let urlApi = `${this.api}/popular`;
 
@@ -21,9 +22,17 @@ export class TourService {
     }
 
     //get list tour
-    getTours(token:string){
+    getTours(data:any, token:string):Observable<any>{
       let headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
       let urlApi = `${this.api}`;
+
+      return this.http.get<any>(urlApi, {headers:headers, params:data});
+    }
+
+    //get detail tour
+    getDetail(tour_id:any, token:string):Observable<any>{
+      let headers = new HttpHeaders().set('Authorization', 'Bearer '+ token);
+      let urlApi = `${this.api}/${tour_id}`;
 
       return this.http.get<any>(urlApi, {headers});
     }
