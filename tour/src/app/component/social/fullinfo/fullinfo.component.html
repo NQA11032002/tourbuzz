@@ -7,7 +7,7 @@
               
           </div>
           <div class="full-infor-name">
-              <span>Hồ Quang Đạt</span>
+              <span *ngFor="let item of data">>{{item[0]?.name }}</span>
           </div>
           <div class="full-infor-changed">
             <a href="" data-bs-toggle="modal" data-bs-target="#changedinfomodal">

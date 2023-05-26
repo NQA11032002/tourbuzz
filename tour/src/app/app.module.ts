@@ -23,6 +23,7 @@ import { TourSearchComponent } from './component/tours/tour-search/tour-search.c
 import { HomeComponent } from './component/home/home.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
 
 import { provideFirebaseApp, getApp, initializeApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
@@ -60,6 +61,7 @@ import { NavbarTourComponent } from './component/tours/navbar-tour/navbar-tour.c
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    RouterModule,
     provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
     provideFirestore(() => getFirestore()),
   ],

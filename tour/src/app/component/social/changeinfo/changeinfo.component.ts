@@ -1,5 +1,4 @@
-import { Component } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { Component} from '@angular/core';
 import { ChangeinforService } from 'src/app/services/changeinfor.service';
 @Component({
   selector: 'app-changeinfo',
@@ -7,43 +6,43 @@ import { ChangeinforService } from 'src/app/services/changeinfor.service';
   styleUrls: ['./changeinfo.component.scss']
 })
 export class ChangeinfoComponent{
+
+  name: string = "";
+  gender: string = "";
+  phonenumber: string = "";
+  date: string = "";
+  address: string = "";
+  education: string = "";
+
   imgInfo!: HTMLImageElement;
   input!: HTMLInputElement;
-  changeInforForm:FormGroup;
 
-  constructor(private fb:FormBuilder, private changeinfor:ChangeinforService) { 
-    this.changeInforForm = new FormGroup({
-      name: new FormControl(''),
-      birth_date: new FormControl(''),
-      phone: new FormControl(''),
-      gender: new FormControl(''),
-      education: new FormControl(''),
-      address: new FormControl('')
-    });
+  constructor(private changeinfor:ChangeinforService) { 
+    
   }
 
   changeInfor(){
     let token = sessionStorage.getItem("token_user");
-    let id_user = sessionStorage.getItem("id_user");
+    let id = sessionStorage.getItem("id");
+    console.log(id);
 
-    let name = this.changeInforForm.get('name')?.value;
-    let birth_date = this.changeInforForm.get('birth_date')?.value;
-    let gender = this.changeInforForm.get('gender')?.value;
-    let address = this.changeInforForm.get('address')?.value;
-    let phone = this.changeInforForm.get('phone')?.value;
-    let education = this.changeInforForm.get('education')?.value;
     let data = {
-      name: name,
-      birth_date: birth_date,
-      gender: gender,
-      address: address,
-      phone: phone,
-      education: education
+      'name': this.name,
+      'birth_date': this.date,
+      'gender': this.gender,
+      'address': this.address,
+      'phone': this.phonenumber,
+      'education': this.education
     }
     
-    if(token != null && id_user != null){
-      this.changeinfor.updateInfor(token,"18",data).subscribe(p => {
-        
+    if(token != null && id != null){
+      this.changeinfor.updateInfor(token,id,data).subscribe(p => {
+        console.log(p);
+        if(p.status === 200){
+          alert("Cập nhật thông tin thành công!");
+        }else{
+          alert("Vui lòng nhập đầy đủ thông tin hoặc đủ kí tự");
+        }
       });
     }
   }

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { UsersService } from 'src/app/services/users.service';
 
 @Component({
   selector: 'app-fullinfo',
@@ -6,5 +7,24 @@ import { Component } from '@angular/core';
   styleUrls: ['./fullinfo.component.scss']
 })
 export class FullinfoComponent {
+  public data: Array<any> = new Array<any>();
+  public name: string = '';
+  constructor(private userinfor : UsersService){
+  
+  }
 
+  ngOnInit(): void {
+    this.getInfor();
+  }
+  getInfor(){
+    let token = sessionStorage.getItem('token_user');
+    let id = sessionStorage.getItem("id");
+    
+    if(token != null){
+      this.userinfor.getUserInformation(id,token).subscribe(p=>{
+        this.data = p.data;
+        console.log(this.data);
+      })
+    }
+  }
 }

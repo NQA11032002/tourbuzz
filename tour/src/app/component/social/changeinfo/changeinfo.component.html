@@ -1,7 +1,7 @@
 <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#changedinfomodal">
     Launch demo modal
   </button> -->
-  <form action="" method="post" [formGroup]="changeInforForm"  (ngSubmit)="saveChange()">
+  <form action="" method="post" (ngSubmit)="saveChange()">
       <div class="modal fade" id="changedinfomodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable">
           <div class="modal-content">
@@ -14,7 +14,7 @@
                 <div class="modal-body">
                     <div class="change_infor-img position-relative">
                         <i class="fa-solid fa-camera position-absolute">
-                            <input type="file" id="changed_img" formControlName="name">
+                            <input type="file" id="changed_img" >
                         </i>
                         
                         <img src="assets/img/Dat.jpg" alt="" id="img_info">
@@ -23,11 +23,11 @@
                         
                         <div class="change_infor-name">
                             <span>Full name</span>
-                            <input class="name">
+                            <input class="name" [(ngModel)]="name" name="name">
                         </div>
                         <div class="change_infor-gender">
                             <span>Gender</span>
-                            <select name="" id="" formControlName="gender">
+                            <select name="" id="" [(ngModel)]="gender" name="gender">
                                 <option value="1">Nam</option>
                                 <option value="0">Nữ</option>
                             </select>
@@ -35,11 +35,11 @@
                         
                         <div class="change_infor-phonenumber">
                             <span>Phone number</span>
-                            <input type="text" class="phone" formControlName="phone">
+                            <input type="text" class="phone" [(ngModel)]="phonenumber" name="phonenumber">
                         </div>
                         <div class="change_infor-dateofbirth">
                             <span>Date of birth</span>
-                            <input type="date" class="dob" formControlName="birth_date">
+                            <input type="date" class="dob" [(ngModel)]="date" name="date">
                         </div>
     
                         <div class="change_infor-biography">
@@ -49,7 +49,7 @@
                             </div>
                             <div class="change_infor-biography-location">
                                 <span>Address</span>
-                                <input type="text" value="Binh Dinh, Viet Nam" formControlName="address">
+                                <input type="text" value="Binh Dinh, Viet Nam" [(ngModel)]="address" name="address">
                             </div>
                         </div>
                         <div class="change_infor-social">
@@ -68,13 +68,13 @@
                         </div>
                         <div class="change_infor-edu">
                             <span>School</span>
-                            <input type="text" formControlName="education">
+                            <input type="text" [(ngModel)]="education" name="education">
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                  <button type="submit" class="btn-save btn btn-primary"  >Save Change</button>
+                  <button type="submit" class="btn-save btn btn-primary" >Save Change</button>
                 </div>
               </div>
             </div>

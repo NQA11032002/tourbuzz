@@ -10,10 +10,18 @@ export class ChangeinforService {
   constructor(private http:HttpClient) { }
 
   private api = "http://localhost:8000/api/social/";
+  private apiRsPass = "http://localhost:8000/api/auth/reset-password"
 
-  updateInfor(token:string, id:string, data:any){
+  updateInfor(token:string, id:any, data:any){
     let headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
-    let urlApi = `${this.api}user/${id}`;
+    let urlApi = `${this.api}users/${id}`;
+
+    return this.http.patch<any>(urlApi,data,{headers});
+  }
+
+  updatePassword(token:string , data:any){
+    let headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
+    let urlApi = `${this.apiRsPass}`;
 
     return this.http.patch<any>(urlApi,data,{headers});
   }
