@@ -43,12 +43,12 @@ class AuthController extends Controller
         ];
 
         $checkLogin = Auth::attempt($arr);
-        if ($checkLogin) {
+        $user = Auth::user();
+
+        if ($checkLogin && $user->role_id == 2) {
             if (auth('sanctum')->check()) {
                 auth()->user()->tokens()->delete();
             }
-
-            $user = Auth::user();
 
             if ($user->status != 0) {
                 //update status is login
