@@ -1,0 +1,46 @@
+<app-header></app-header>
+<form action="">
+    <div class="container_historybooking-tour">
+        <div class="historybooking-tour">
+            <div class="hbt-header">
+                <h3>Lịch Sử Đặt Tour</h3>
+            </div>
+            <div class="hbt-content">
+                 <table class="hbt-table table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">STT</th>
+                            <th scope="col">Người đặt</th>
+                            <th scope="col">Tên Tour</th>
+                            <th>Phương tiện</th>
+                            <th>Nơi bắt đầu</th>
+                            <th>Nơi kết thúc</th>
+                            <th>Ngày bắt đầu</th>
+                            <th>Ngày kết thúc</th>
+                            <th>Trạng thái</th>
+                            <th>Giá tiền</th>
+                            <th></th>
+                            <th></th>
+                          </tr>
+                    </thead>
+                    <tbody *ngFor="let item of data, let i = index">
+                        <tr>
+                            <th scope="row">{{i+1}}</th>
+                            <td>{{ item.user_information.name }}</td>
+                            <td>{{ item.tours.title }}</td>
+                            <td>{{ item.tours.vehicle_id }}</td>
+                            <td>{{ item.tours.address_start }}</td>
+                            <td>{{ item.tours.address_end }}</td>
+                            <td>{{ item.tours.date_start }}</td>
+                            <td>{{ item.tours.date_end }}</td>
+                            <td>{{ item.status_booking.name }}</td>
+                            <td>{{ item.tours.price_tour }}</td>
+                            <td><a href="">Chi tiết</a></td>
+                            <td><button type="submit" (click)="deleteHistoryTour(item.id)">Hủy</button></td>
+                          </tr>
+                    </tbody>
+                </table> 
+            </div>
+        </div>
+    </div>
+</form>

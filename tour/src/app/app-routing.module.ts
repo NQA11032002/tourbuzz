@@ -8,6 +8,8 @@ import { LayouttourComponent } from './component/layouttour/layouttour.component
 import { HomeComponent } from './component/home/home.component';
 import { FullinfoComponent } from './component/social/fullinfo/fullinfo.component';
 import { ResetpassComponent } from './component/social/resetpass/resetpass.component';
+import { HistorybookingTourComponent } from './component/tours/historybooking-tour/historybooking-tour.component';
+import { HistorypostTourComponent } from './component/tours/historypost-tour/historypost-tour.component';
 
 const routes: Routes = [
   {path:'', component: HomeComponent},
@@ -18,7 +20,8 @@ const routes: Routes = [
   {path:'register', component: RegisterComponent},
   {path:'forgot-password', component: ForgotpassComponent},
   {path:'profile', component: FullinfoComponent},
-
+  {path:'historybooking', component: HistorybookingTourComponent},
+  {path:'historyposttour', component: HistorypostTourComponent},
   {path:'**', component: HomeComponent},
 
 ];

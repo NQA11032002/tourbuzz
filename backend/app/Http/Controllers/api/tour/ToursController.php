@@ -25,6 +25,9 @@ class ToursController extends Controller
         if (!empty($id)) {
             $tours = $tours->where('id', $id);
         }
+        if ($request->user_id) {
+            $tours = $tours->where('user_id', $request->user_id);
+        }
 
         if ($request->address_start) {
             $tours = $tours->where('address_start', 'like', $request->address_start);

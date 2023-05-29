@@ -29,6 +29,8 @@ import { provideFirebaseApp, getApp, initializeApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { environment } from 'src/environments/environment';
 import { NavbarTourComponent } from './component/tours/navbar-tour/navbar-tour.component';
+import { HistorybookingTourComponent } from './component/tours/historybooking-tour/historybooking-tour.component';
+import { HistorypostTourComponent } from './component/tours/historypost-tour/historypost-tour.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +56,8 @@ import { NavbarTourComponent } from './component/tours/navbar-tour/navbar-tour.c
     LayoutsocialComponent,
     TourSearchComponent,
     HomeComponent,
+    HistorybookingTourComponent,
+    HistorypostTourComponent,
   ],
   imports: [
     BrowserModule,
