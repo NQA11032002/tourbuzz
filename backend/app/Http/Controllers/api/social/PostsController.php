@@ -26,7 +26,7 @@ class PostsController extends Controller
             if (!empty($keyWork)) {
                 $query->where('name', 'like', '%' . $keyWork . '%')->orWhere('address', 'like', '%' . $keyWork  . '%');
             }
-        })->orderByDesc('id')->with('post_picture')->with('post_comments')->with('user_information')->with('post_favorite')->with('type_travel')->with('address_travel')->get();
+        })->where('status', '!=', 2)->orderByDesc('id')->with('post_picture')->with('post_comments')->with('user_information')->with('post_favorite')->with('type_travel')->with('address_travel')->get();
 
         if ($posts->count() > 0) {
             $response = [

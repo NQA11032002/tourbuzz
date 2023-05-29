@@ -6,7 +6,7 @@
 
   <div class="posts">
     <div class="post_item" *ngFor="let item of posts">
-      <div *ngIf="item.status != 0">
+      <div *ngIf="item.status != 0 && item.status != 2">
         <div class="post_top d-flex align-items-center">
           <img src="assets/images/avatar/{{item.user_information.image}}" alt="" data-bs-toggle="modal"
             data-bs-target="#shortinformodal">

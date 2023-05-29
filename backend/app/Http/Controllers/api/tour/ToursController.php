@@ -37,12 +37,6 @@ class ToursController extends Controller
                 case "2":
                     $tours = $tours->whereRaw('amount_customer_maximum > amount_customer_present');
                     break;
-                case "3":
-                    $tours = $tours->whereHas('tour_evaluation', function ($query) {
-                        $query = $query->groupBy('tour_evaluation.tour_id');
-                        $query = $query->havingRaw('AVG(tour_evaluation.rate) >= ?', [8]);
-                    });
-                    break;
             }
         }
 
@@ -88,16 +82,14 @@ class ToursController extends Controller
         if (!empty($request->vehicles)) {
             $tours = $tours->whereIn('vehicle_id', $arr);
         }
-        $sql = $tours->toSql();
 
-        $tours = $tours->with('tour_picture')->with('tour_evaluation')->with('tour_comments')->with('vehicles')->with('user_information')->get();
+        $tours = $tours->where('status', 1)->with('tour_picture')->with('tour_comments')->with('vehicles')->with('user_information')->get();
 
         if ($tours->count() > 0) {
             $response = [
                 'title' => 'get list tours',
                 'data' => $tours,
                 'status' => 200,
-                'sql' => $sql,
                 'address_end' => $request->address_end,
                 "address_start" => $request->address_start,
                 'detail' => 'get list tours success'
@@ -107,7 +99,6 @@ class ToursController extends Controller
                 'title' => 'get list tours',
                 'data' => [],
                 'status' => 503,
-                'sql' => $sql,
                 'address_end' => $request->address_end,
                 "address_start" => $request->address_start,
                 'date' => date('Y-m-d'),
