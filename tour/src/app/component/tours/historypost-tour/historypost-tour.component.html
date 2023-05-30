@@ -1,0 +1,43 @@
+<div class="container_historybooking-tour">
+  <div class="historybooking-tour">
+    <div class="hbt-header">
+      <h3>Lịch Sử Đăng Tour</h3>
+    </div>
+    <div class="hbt-content">
+      <table class="hbt-table table">
+        <thead class="thead-dark">
+          <tr>
+            <th>STT</th>
+            <th>Người đăng</th>
+            <th>Tên Tour</th>
+            <th>Phương tiện</th>
+            <th>Nơi bắt đầu</th>
+            <th>Nơi kết thúc</th>
+            <th>Ngày bắt đầu</th>
+            <th>Ngày kết thúc</th>
+            <th>Trạng thái</th>
+            <th>Giá tiền</th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let item of data, let i = index">
+          <tr>
+            <th scope="row">{{ i+1 }}</th>
+            <td>{{ item.user_information.name }}</td>
+            <td>{{ item.title }}</td>
+            <td>{{ item.vehicles.name }}</td>
+            <td>{{ item.address_start }}</td>
+            <td>{{ item.address_end }}</td>
+            <td>{{ item.date_end }}</td>
+            <td>{{ item.date_start }}</td>
+            <td>{{ item.status }}</td>
+            <td>{{ item.price_tour }}</td>
+            <td><a href="">Chi tiết</a></td>
+            <td><button type="submit" (click)="deleteHistoryPostTour(item.id)">Hủy</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

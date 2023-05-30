@@ -1,4 +1,5 @@
 <app-resetpass></app-resetpass>
+
 <div class="header align-items-center">
   <div class="top d-flex align-items-center">
     <img class="Logo"
@@ -31,12 +32,19 @@
       <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
         <li><a class="dropdown-item" [routerLink]="['/profile']" routerLinkActive="router-link-active"><i
               class="fa-solid fa-user"></i>
-            profile</a>
+            Profile</a>
         </li>
-        <li><a class="dropdown-item" [routerLink]="['/change-password']" routerLinkActive="router-link-active"
-            data-bs-toggle="modal" data-bs-target="#resetpass"><i data-bs-toggle="modal" data-bs-target="#resetpass"
-              class="fa-solid fa-pen"></i> Password
+        <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#resetpass"><i class="fa-solid fa-pen"></i>
+            Password
             Change</a>
+        </li>
+        <li><a class="dropdown-item" [routerLink]="['/historyposttour']" routerLinkActive="router-link-active"><i
+              class="fa-solid fa-clock-rotate-left"></i>
+            Lịch sử đăng Tour</a>
+        </li>
+        <li><a class="dropdown-item" [routerLink]="['/historybooking']" routerLinkActive="router-link-active"><i
+              class="fa-solid fa-clock"></i>
+            Lịch sử đặt Tour</a>
         </li>
         <li><a class="dropdown-item" (click)="logout()"><i class="fa-solid fa-door-open"></i>
             Logout</a></li>

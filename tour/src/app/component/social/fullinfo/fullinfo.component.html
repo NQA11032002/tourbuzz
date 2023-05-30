@@ -1,46 +1,50 @@
 <app-changeinfo></app-changeinfo>
+
 <div class="full-body">
-    <div class="full-infor">
-      <div class="full-infor-header">
-          <div class="full-infor-img">
-              <img src="assets/img/Dat.jpg" alt="" class="full-avatar">
-              
-          </div>
-          <div class="full-infor-name">
-              <span>Hồ Quang Đạt</span>
-          </div>
-          <div class="full-infor-changed">
-            <a href="" data-bs-toggle="modal" data-bs-target="#changedinfomodal">
-              <i class="fa-solid fa-pencil"></i>
-              <span class="changed-infor" >Thay đổi thông tin</span>
-            </a>
-            
-          </div>
-          <!-- <div class="full-infor-addfriend">
+  <div class="full-infor">
+    <div class="full-infor-header">
+      <div class="full-infor-img">
+        <img src="assets/images/avatar/avatar.jfif" alt="" class="full-avatar">
+
+      </div>
+      <div class="full-infor-name">
+        <span *ngIf="data">{{data?.name }}</span>
+      </div>
+      <div class="full-infor-changed">
+        <a href="" data-bs-toggle="modal" data-bs-target="#changedinfomodal">
+          <i class="fa-solid fa-pencil"></i>
+          <span class="changed-infor">Thay đổi thông tin</span>
+        </a>
+
+      </div>
+      <!-- <div class="full-infor-addfriend">
             icon ket ban
             <i class="fa-solid fa-user-plus"></i>
             icon da ket ban
             <i class="fa-solid fa-user-check"></i>
           </div> -->
-          <div class="full-infor-container">
-            <div class="full-infor-sex">
-                <span class="sex">Gender: Male</span>
-              </div>
-              <div class="full-infor-phonenumber">
-                <span class="phonenumbe">Phone: 0345728000</span>
-              </div>
-              <div class="full-infor-dateofbirth">
-                <span class="dateofbir">September 06, 2002</span>
-              </div>
-          </div>
+      <div class="full-infor-container">
+        <div class="full-infor-sex">
+          <span class="sex" *ngIf="data">Gender: {{data?.gender }}</span>
+        </div>
+        <div class="full-infor-phonenumber">
+          <span class="phonenumbe" *ngIf="data">Phone: {{data?.phone }}</span>
+        </div>
+        <!-- <div class="full-infor-dateofbirth">
+                <span class="dateofbir" *ngIf="data">Date of birth: {{data?.birth_date }}</span>
+              </div> -->
       </div>
-      <div class="full-infor-desc">
-          <div class="full-infor-desc-title">
-            <h5 class="about">About</h5>
-            <h5 class="post">Post (3)</h5>
-            <h5 class="image">Images</h5>
-          </div>
-          <div class="full-infor-desc-biography">
+    </div>
+    <div class="full-infor-desc">
+      <div class="full-infor-desc-title">
+        <h5 [class]="isProfilePath() == true ? 'about_border' : 'about'"><a href="" [routerLink]="['/profile']"
+            routerLinkActive="router-link-active">About</a></h5>
+        <h5 [class]="isProfilePath() == false ? 'post_border' : 'post'">
+          <a href="" class="d-flex align-items-center" [routerLink]="['/profile/post']"
+            routerLinkActive="router-link-active">Post <p class="history_pagination_social">(Bài viết đã đăng)</p>
+          </a></h5>
+      </div>
+      <!-- <div class="full-infor-desc-biography">
               <h6 class="full-infor-desc-biography-title">Biography</h6>
               <span class="full-infor-desc-biography-content">
                   Đẹp trai không ai sánh bằng!
@@ -48,11 +52,11 @@
           </div>
           <div class="full-infor-desc-location">
               <i class="fa-solid fa-location-dot"></i>
-              <span>Binh Dinh, Viet Nam</span>
+              <span *ngIf="data">{{data?.address}}</span>
           </div>
           <div class="full-infor-desc-membersince">
               <i class="fa-regular fa-calendar"></i>
-              <span>September 06, 2020</span>
+              <span *ngIf="data">{{data?.birth_date }}</span>
           </div>
           <div class="full-infor-desc-social-list">
               <h6 class="full-infor-desc-social-list-title">Social</h6>
@@ -72,12 +76,12 @@
           <div class="full-infor-edu">
             <h6 class="full-infor-edu-title">Education</h6>
             <div class="full-infor-edu-item">
-                <i class="fa-solid fa-school"></i>    
-                <span class="edu">Đang học tại Đại Học Quy Nhơn</span>
+                <i class="fa-solid fa-school"></i>
+                <span class="edu" *ngIf="data">{{data?.education }}</span>
               </div>
-          </div>
-          
-      </div>
-      
+          </div> -->
+
     </div>
+
   </div>
+</div>

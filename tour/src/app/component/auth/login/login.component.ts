@@ -66,16 +66,20 @@ export class LoginComponent implements OnInit{
       else if(p.status === 200)
       {
         let token = p.token;
+        let id = p.data.id;
         let data = {"id":p.data.id, "name":p.data.name, "birth_date":p.data.birth_date, "gender":p.data.gender, "address":p.data.address, "phone":p.data.phone, "education":p.data.education, "image":p.data.image};
         this.cookieLogin();
+        
         if(token)
         {
           sessionStorage.setItem('token_user', token);
           sessionStorage.setItem('user_information', JSON.stringify(data));
+          sessionStorage.setItem('id', id);
         }
 
         this.router.navigate(['/', 'home'])
       }
     })
+    
   }
 }

@@ -1,0 +1,41 @@
+.container_historybooking-tour{
+    padding-top: 100px;
+    // margin-left: 50%;
+    // transform: translateX(-50%);
+    .historybooking-tour{
+        .hbt-header{
+            text-align: center;
+            padding-bottom: 20px;
+            margin: 0;
+        }
+        .hbt-content{
+            padding: 0 40px;
+            .hbt-table{
+                .thead-dark{
+                    background-color: #212529;
+                    color: white;
+                    tr{
+                        th{
+                            width: 150px;
+                        }
+                    }
+                }
+                tbody{
+                    tr{
+                        background: white;
+                        a{
+                            text-decoration: none;
+                        }
+                        button{
+                            border: none;
+                            color: white;
+                            background-color: #5bb8fe;
+                            width: 65px;
+                            border-radius: 5px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

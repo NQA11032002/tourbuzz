@@ -25,8 +25,10 @@ export class HomeComponent{
     this.getTours();
   }
 
-  ngOnInit(){}
 
+
+  ngOnInit(){
+  }
 
   checkAmount(amount_customer_present: number, amount_customer_maximum: number): Boolean{
     if(amount_customer_present < amount_customer_maximum){

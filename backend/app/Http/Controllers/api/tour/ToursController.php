@@ -24,6 +24,9 @@ class ToursController extends Controller
         if (!empty($id)) {
             $tours = $tours->where('id', $id);
         }
+        if ($request->user_id) {
+            $tours = $tours->where('user_id', $request->user_id);
+        }
 
         if (!empty($request->title) && $request->title != "undefined") {
             $tours = $tours->where('title', 'like', '%' . $request->title . '%');
@@ -114,8 +117,7 @@ class ToursController extends Controller
         $tours = DB::table("tours as t")
             ->join('tour_picture as p', 'p.tour_id', '=', 't.id')
             ->selectRaw("t.id, t.title, t.description, t.address_start, t.address_end, t.date_start, t.date_end, t.price_tour, t.amount_customer_maximum, t.amount_customer_present, t.status, p.images")
-            ->groupBy('t.id')
-            ->orderByDesc(DB::raw("sum(e.rate)"))->limit(6)->get();
+            ->groupBy('t.id')->limit(6)->get();
 
         if ($tours->count() > 0) {
             $response = [
