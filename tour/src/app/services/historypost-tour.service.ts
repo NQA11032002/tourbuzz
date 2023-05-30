@@ -14,6 +14,13 @@ export class HistorypostTourService {
     let headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
     let urlApi = `${this.api}`;
 
-    return this.http.get<any>(urlApi, {headers: headers, params: data});  
+    return this.http.get<any>(urlApi, {headers: headers, params: data});
+  }
+  
+  deleteHistoryPostTour(token:string, id: any){
+    let headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
+    let urlApi = `${this.api}/${id}`;
+
+    return this.http.delete<any>(urlApi, {headers}); 
   }
 }

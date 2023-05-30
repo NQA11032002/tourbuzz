@@ -3,7 +3,7 @@
     <div class="full-infor">
       <div class="full-infor-header">
           <div class="full-infor-img">
-              <img src="assets/img/Dat.jpg" alt="" class="full-avatar">
+              <img src="assets/images/avatar/avatar.jfif" alt="" class="full-avatar">
               
           </div>
           <div class="full-infor-name">
@@ -36,11 +36,10 @@
       </div>
       <div class="full-infor-desc">
           <div class="full-infor-desc-title">
-            <h5 class="about">About</h5>
-            <h5 class="post">Post (3)</h5>
-            <h5 class="image">Images</h5>
+            <h5 [class]="isProfilePath() == true ? 'about_border' : 'about'"><a href="" [routerLink]="['/profile']" routerLinkActive="router-link-active">About</a></h5>
+            <h5 [class]="isProfilePath() == false ? 'post_border' : 'post'"><a href="" [routerLink]="['/profile/post']" routerLinkActive="router-link-active">Post</a></h5>
           </div>
-          <div class="full-infor-desc-biography">
+          <!-- <div class="full-infor-desc-biography">
               <h6 class="full-infor-desc-biography-title">Biography</h6>
               <span class="full-infor-desc-biography-content">
                   Đẹp trai không ai sánh bằng!
@@ -75,7 +74,7 @@
                 <i class="fa-solid fa-school"></i>    
                 <span class="edu" *ngIf="data">{{data?.education }}</span>
               </div>
-          </div>
+          </div> -->
           
       </div>
       

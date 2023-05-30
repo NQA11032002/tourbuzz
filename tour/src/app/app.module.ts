@@ -31,6 +31,8 @@ import { environment } from 'src/environments/environment';
 import { NavbarTourComponent } from './component/tours/navbar-tour/navbar-tour.component';
 import { HistorybookingTourComponent } from './component/tours/historybooking-tour/historybooking-tour.component';
 import { HistorypostTourComponent } from './component/tours/historypost-tour/historypost-tour.component';
+import { AboutInforComponent } from './component/social/about-infor/about-infor.component';
+import { PostPersonalComponent } from './component/social/post-personal/post-personal.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +60,8 @@ import { HistorypostTourComponent } from './component/tours/historypost-tour/his
     HomeComponent,
     HistorybookingTourComponent,
     HistorypostTourComponent,
+    AboutInforComponent,
+    PostPersonalComponent,
   ],
   imports: [
     BrowserModule,

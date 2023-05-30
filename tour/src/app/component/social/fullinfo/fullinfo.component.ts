@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { UsersService } from 'src/app/services/users.service';
+import { Location } from '@angular/common';
+
 
 @Component({
   selector: 'app-fullinfo',
@@ -8,7 +10,7 @@ import { UsersService } from 'src/app/services/users.service';
 })
 export class FullinfoComponent {
   public data: any = null;
-  constructor(private userinfor : UsersService){
+  constructor(private userinfor : UsersService, private location: Location){
   
   }
 
@@ -25,5 +27,13 @@ export class FullinfoComponent {
         console.log(this.data);
       })
     }
+  }
+
+  isProfilePath(): boolean {
+    const path = this.location.path();
+    console.log(path);
+    if(path === '/profile')
+    return true;
+      return false;
   }
 }

@@ -35,7 +35,7 @@
                         <td>{{ item.status }}</td>
                         <td>{{ item.price_tour }}</td>
                         <td><a href="">Chi tiết</a></td>
-                        <td><button type="submit">Hủy</button></td>
+                        <td><button type="submit" (click)="deleteHistoryPostTour(item.id)">Hủy</button></td>
                       </tr>
                 </tbody>
             </table> 
