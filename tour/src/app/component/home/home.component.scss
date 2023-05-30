@@ -459,9 +459,10 @@
             column-gap: 150px;
             .home_popular-item{
                 display: grid;
-                grid-template-columns: 160px 250px 150px;
-                width: 570px;
-                height: 150px;
+                grid-template-columns: 160px 275px 165px;
+                grid-template-rows: 50px 50px auto;
+                width: 600px;
+                height: 200px;
                 background-color: white;
 
                 .home_popular-item-img{
@@ -469,7 +470,7 @@
                     grid-row-end: 4;
                     img{
                         width: 150px;
-                        height: 150px;
+                        height: 200px;
                         object-fit: cover;
                     }
 
@@ -478,6 +479,36 @@
                     padding: 10px 0;
                     font-size: 20px;
                     font-weight: 600;
+                    span{
+                        display: -webkit-box;
+                        -webkit-box-orient: vertical;
+                        overflow: hidden;
+                        -webkit-line-clamp: 1;
+                    }
+                }
+                .home_popular-item-amount{
+                    grid-column-start: 3;
+                    grid-row-start: 3;
+                    font-size: 14px;
+                    font-weight: 500;
+                    color: #f9676a;
+                    text-align: right;
+                    padding-top: 65px;
+                    padding-right: 15px;
+                    i{
+                        padding-right: 5px;
+                    }
+                    .icongreen{
+                        color: green;
+                    }
+                    .iconred{
+                        color: red;
+                    }
+                }
+                .home_popular-item-date{
+                    font-size: 14px;
+                    grid-column-start: 2;
+                    grid-row-start: 2;
                 }
                 .home_popular-item-price{
 
@@ -488,6 +519,8 @@
 
                 }
                 .home_popular-item-desc{
+                    grid-row-start: 3;
+                    grid-row-end: 4;
                     span{
                         display: -webkit-box;
                         -webkit-box-orient: vertical;
@@ -496,6 +529,9 @@
                     }
                 }
                 .home_popular-item-btn{
+                    text-align: center;
+                    grid-column-start: 3;
+                    cursor: pointer;
                     a{
                         width: 150px;
                         height: 40px;

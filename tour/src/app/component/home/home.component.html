@@ -206,6 +206,10 @@
           <div class="home_popular-item-title">
             <span>{{ item.title }}</span>
           </div>
+          <div class="home_popular-item-date">
+            <span>{{item.date_start}} to {{ item.date_end }} </span>
+          </div>
+
           <div class="home_popular-item-price">
             <span>{{ item.price_tour  | currency }}</span>
           </div>
@@ -216,6 +220,11 @@
             <a class="text-decoration-none" [routerLink]="['/tour-detail']" [queryParams]="{id: item.id}"
               routerLinkActive="router-link-active">Views
               Details</a>
+          </div>
+          <div class="home_popular-item-amount">
+            <i [class]="checkAmount(item.amount_customer_present,item.amount_customer_maximum) ? 'iconred' : 'icongreen'"
+              class="fa-solid fa-circle"></i>
+            <span>{{item.amount_customer_present}} / {{ item.amount_customer_maximum}} </span>
           </div>
         </div>
       </div>
