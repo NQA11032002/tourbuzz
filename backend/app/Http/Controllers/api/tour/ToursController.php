@@ -114,7 +114,7 @@ class ToursController extends Controller
         $urlDisk = public_path('assets');
 
         //replace url disk current backend change to url disk tour
-        $directory = str_replace("backend\\public\\assets", "tourbuzz\tour\src\assets\tours", $urlDisk);
+        $directory = str_replace("backend\\public\\assets", "tourbuzz/tour/src/assets/images/tours", $urlDisk);
         $directory = str_replace("\\", "/", $directory);
 
         //di chuyển file vào thư mực avatar
@@ -124,8 +124,8 @@ class ToursController extends Controller
 
         //images will create with a new post if user is chooses images
 
-        DB::table('post_picture')->insert([
-            "post_id" => $request->post,
+        DB::table('tour_picture')->insert([
+            "tour_id" => $request->post,
             "images" => $image,
         ]);
 
