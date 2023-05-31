@@ -97,6 +97,46 @@ class ToursController extends Controller
         return $response;
     }
 
+    public function uploadImages(Request $request){
+        $file = $request->file('file');
+
+        //upload file
+        //lấy ra file
+        $file = $request->file;
+
+        //lấy ra đuôi file
+        $ext = $file->extension();
+
+        //đổi tên file gán với đuôi
+        $file_name = Str::random(20) . '.' . time() . '.' . $ext;
+
+        //get current url disk backend
+        $urlDisk = public_path('assets');
+
+        //replace url disk current backend change to url disk tour
+        $directory = str_replace("backend\\public\\assets", "tourbuzz\tour\src\assets\tours", $urlDisk);
+        $directory = str_replace("\\", "/", $directory);
+
+        //di chuyển file vào thư mực avatar
+        $file->move($directory, $file_name);
+
+        $image = $file_name;
+
+        //images will create with a new post if user is chooses images
+
+        DB::table('post_picture')->insert([
+            "post_id" => $request->post,
+            "images" => $image,
+        ]);
+
+        $response = [
+            'title' => 'create a new post',
+            'status' => 200,
+            'detail' => 'post was create with the images',
+        ];
+
+        return $response;
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -141,7 +181,7 @@ class ToursController extends Controller
         }
 
         $tour = DB::table('tours')->insertGetId([
-            "user_id" => Auth::user()->id,
+            "user_id" => Auth::user()->user_information->id,
             "vehicle_id" => $request->vehicle_id,
             "title" => $request->title,
             "description" => $request->description,

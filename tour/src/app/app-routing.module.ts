@@ -11,6 +11,7 @@ import { ResetpassComponent } from './component/social/resetpass/resetpass.compo
 import { DetailstourComponent } from './component/tours/detailstour/detailstour.component';
 import { BookTourComponent } from './component/tours/book-tour/book-tour.component';
 
+
 const routes: Routes = [
   {path:'', component: HomeComponent},
   {path:'social', component: LayoutsocialComponent},
@@ -23,6 +24,7 @@ const routes: Routes = [
   {path: 'detail', component:DetailstourComponent},
 
   {path:'booking',component: BookTourComponent},
+
 
   {path:'**', component: HomeComponent},
 
