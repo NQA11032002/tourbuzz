@@ -10,6 +10,7 @@ use DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 class ToursController extends Controller
 {
@@ -384,7 +385,7 @@ class ToursController extends Controller
         $urlDisk = public_path('assets');
 
         //replace url disk current backend change to url disk tour
-        $directory = str_replace("backend\\public\\assets", "tourbuzz/tour/src/assets/images/tours", $urlDisk);
+        $directory = str_replace("backend\\public\\assets", "tour/src/assets/images/tours", $urlDisk);
         $directory = str_replace("\\", "/", $directory);
 
         //di chuyển file vào thư mực avatar
@@ -394,11 +395,29 @@ class ToursController extends Controller
 
         //images will create with a new post if user is chooses images
 
-        DB::table('tour_picture')->insert([
-            "tour_id" => $request->post,
-            "images" => $image,
+        $tourId = DB::table('tours')->insertGetId([
+            "user_id" => Auth::user()->user_information->id,
+            "vehicle_id" => $request->vehicle_id,
+            "title" => $request->title,
+            "description" => $request->description,
+            "address_start" => $request->address_start,
+            "address_end" => $request->address_end,
+            "date_start" => $request->date_start,
+            "date_end" => $request->date_end,
+            "price_tour" => $request->price_tour,
+            "detail_price_tour" => $request->detail_price_tour,
+            "amount_customer_maximum" => $request->amount_customer_maximum,
+            "amount_customer_present" => $request->amount_customer_present,
+            "status" => 0
         ]);
 
+        if ($tourId !== null) {
+            // Lưu ảnh với tourId đã lấy được
+            DB::table('tour_picture')->insert([
+                "tour_id" => $tourId,
+                "images" => $image,
+            ]);
+        }
         $response = [
             'title' => 'create a new post',
             'status' => 200,

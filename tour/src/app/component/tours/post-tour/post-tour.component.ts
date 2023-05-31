@@ -97,7 +97,7 @@ export class PostTourComponent {
       const headers = new HttpHeaders();
       headers.set('Content-Type', 'multipart/form-data');
     
-      this.http.post('http://localhost:8000/api/upload', formData, { headers: headers }).subscribe(
+      this.http.post('http://localhost:8000/api/uploadTour', formData, { headers: headers }).subscribe(
         (response) => {
           delay(5000)
           location.reload();

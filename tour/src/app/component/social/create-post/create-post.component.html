@@ -1,0 +1,63 @@
+<div class="create_post">
+    <form class="d-flex align-items-center flex-column" [formGroup]="postForm" (ngSubmit)="createPost()" method="post"
+        enctype="multipart/form-data">
+        <div class="d-flex align-items-center create_top">
+            <img class="avatar_login" src="assets/images/avatar/{{ image }}" alt="">
+
+            <div class="top_name">
+                <h6>{{ name }}</h6>
+
+                <div class="d-flex create_post_input">
+                    <select formControlName="status" class="form-select btn btn-secondary scope_post shadow-none"
+                        aria-label="Default select example">
+                        <option class="dropdown-item" value="1"><i class="fa-solid fa-earth-americas"></i> Công
+                            khai
+                        </option>
+                        <option class="dropdown-item" value="0">Riêng tư</option>
+                    </select>
+
+                    <select formControlName="address_travel_id"
+                        class="form-select btn btn-secondary scope_post shadow-none select_address_travel">
+                        <option value="{{ item.id }}" class="dropdown-item" *ngFor="let item of addressTravel">
+                            {{ item.name_travel }}</option>
+                    </select>
+
+                    <select formControlName="type_travel_id"
+                        class="form-select btn btn-secondary scope_post shadow-none select_type_travel">
+                        <option value="{{ item.id }}" class="dropdown-item" *ngFor="let item of typeTravel">{{ item.name
+                            }}</option>
+                    </select>
+
+                    <div class="icon_post">
+                        <label for="post_image"><i class="fa-solid fa-image"></i></label>
+                        <input formControlName="images" multiple (change)="onFileSelected($event)" type="file"
+                            name="post_image" id="post_image" hidden>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="create_content overflow-auto">
+            <input formControlName="title" type="text" class="form-control create_content-title shadow-none"
+                placeholder="Nhập tiêu đề bài viết của bạn...">
+            <textarea formControlName="content" name="create_content" class="shadow-none content w-100" id=""
+                rows="auto" placeholder="Bạn muốn chia sẽ về điều gì ?"></textarea>
+            <p *ngIf="error" class="error_create-post">{{error}}</p>
+
+            <div class="create_content--image">
+                <div class="image_item position-relative" *ngFor="let image of imageUrl">
+                    <i class="fa-solid fa-xmark position-absolute top-0 icon-close-image"
+                        (click)="deleteImage(image)"></i>
+                    <img [src]="image" *ngIf="imageUrl"
+                        src="https://scontent.fsgn2-6.fna.fbcdn.net/v/t39.30808-6/342465710_689054042978202_8041600419988950985_n.jpg?stp=dst-jpg_s600x600&_nc_cat=110&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=x6k3WZl-9QEAX_OSXRg&_nc_ht=scontent.fsgn2-6.fna&oh=00_AfD0xBmtMh4X6PeQ_3W4TuQaLq-yPdrvQnhWQFVA2r3-Rg&oe=64456E2E"
+                        alt="">
+                </div>
+            </div>
+
+            <button [disabled]="postForm.invalid" class="btn btn-primary btn-post w-100 shadow-none" type="submit">Đăng
+                bài</button>
+
+        </div>
+    </form>
+</div>

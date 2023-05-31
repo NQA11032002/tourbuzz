@@ -9,6 +9,7 @@ import { HomeComponent } from './component/home/home.component';
 import { FullinfoComponent } from './component/social/fullinfo/fullinfo.component';
 import { ResetpassComponent } from './component/social/resetpass/resetpass.component';
 import { DetailstourComponent } from './component/tours/detailstour/detailstour.component';
+import { PostTourComponent } from './component/tours/post-tour/post-tour.component';
 
 const routes: Routes = [
   {path:'', component: HomeComponent},
@@ -20,6 +21,7 @@ const routes: Routes = [
   {path:'register', component: RegisterComponent},
   {path:'forgot-password', component: ForgotpassComponent},
   {path:'profile', component: FullinfoComponent},
+  {path:'postTour',component: PostTourComponent},
 
   {path:'**', component: HomeComponent},
 
