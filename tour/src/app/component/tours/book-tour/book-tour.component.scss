@@ -1,31 +1,12 @@
-label {
+label{
     margin-top: 10px;
 }
 
-a {
+a{
     margin: 0 5px;
 }
 
-.btn {
+.btn{
     background-color: #212529;
     color: #f7f9fa;
-}
-
-.wp-content {
-    height: 100%;
-    grid-template-columns: 300px 1fr;
-    column-gap: 40px;
-    margin-top: 100px;
-    max-width: 1280px;
-    margin: 100px auto;
-
-    .content {
-        width: 100%;
-        margin: 0 auto;
-        border-radius: 5px;
-    }
-
-    .sidebar_fill {
-        height: auto;
-    }
 }

@@ -35,7 +35,6 @@ export class LoginComponent implements OnInit{
       this.Cookiepassword = this.cookie.get('password');
   }
 
-
   ngAfterViewInit() {
     if(this.Cookieemail && this.Cookiepassword){
       this.loginForm.controls['email'].setValue(this.Cookieemail);
@@ -56,24 +55,31 @@ export class LoginComponent implements OnInit{
   submitLogin(){
 
     this.user.login(this.loginForm.get('email')?.value, this.loginForm.get('password')?.value).subscribe(p => {
-      console.log(p);
       if(p.status === 401)
       {
         this.loginFail = "Tài khoản hoặc mật khẩu không chính xác";
       }
+      else if(p.status === 203)
+      {
+        this.loginFail = p.data;
+      }
       else if(p.status === 200)
       {
         let token = p.token;
+        let id = p.data.id;
         let data = {"id":p.data.id, "name":p.data.name, "birth_date":p.data.birth_date, "gender":p.data.gender, "address":p.data.address, "phone":p.data.phone, "education":p.data.education, "image":p.data.image};
         this.cookieLogin();
+        
         if(token)
         {
           sessionStorage.setItem('token_user', token);
           sessionStorage.setItem('user_information', JSON.stringify(data));
+          sessionStorage.setItem('id', id);
         }
 
         this.router.navigate(['/', 'home'])
       }
     })
+    
   }
 }

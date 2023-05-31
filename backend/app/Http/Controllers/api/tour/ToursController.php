@@ -19,44 +19,82 @@ class ToursController extends Controller
     public function index(Request $request, $id = null)
     {
         date_default_timezone_set("Asia/Ho_Chi_Minh");
-
         $tours = tours::orderByDesc('id');
 
         if (!empty($id)) {
             $tours = $tours->where('id', $id);
         }
-
-        if ($request->address_start) {
-            $tours = $tours->where('address_start', 'like', $request->address_start);
+        if ($request->user_id) {
+            $tours = $tours->where('user_id', $request->user_id);
         }
 
-        if ($request->address_end) {
-            $tours = $tours->where('address_end', 'like', $request->address_end);
+        if (!empty($request->title) && $request->title != "undefined") {
+            $tours = $tours->where('title', 'like', '%' . $request->title . '%');
         }
 
-        if ($request->date_start) {
+        if (!empty($request->order)) {
+            switch ($request->order) {
+                case "1":
+                    $tours = $tours->whereDate('date_start', '=', date('Y-m-d'));
+                    break;
+                case "2":
+                    $tours = $tours->whereRaw('amount_customer_maximum > amount_customer_present');
+                    break;
+            }
+        }
+
+        if (!empty($request->price)) {
+            switch ($request->price) {
+                case "49":
+                    $tours = $tours->whereBetween('price_tour', [1, 49]);
+                    break;
+                case "50":
+                    $tours = $tours->whereBetween('price_tour', [50, 249]);
+                    break;
+                case "250":
+                    $tours = $tours->whereBetween('price_tour', [250, 500]);
+                    break;
+                case "501":
+                    $tours = $tours->where('price_tour', '>=', 501);
+                    break;
+                default:
+                    $tours = $tours->where('price_tour', '>=', 1);
+                    break;
+            }
+        }
+
+
+        if (!empty($request->address_start) && $request->address_start != "all") {
+            $tours = $tours->where('address_start', 'like', '%' . $request->address_start);
+        }
+
+        if (!empty($request->address_end) && $request->address_end != "all") {
+            $tours = $tours->where('address_end', 'like', '%' . $request->address_end);
+        }
+
+        if (!empty($request->date_start) && $request->date_start != "all" && $request->date_start != "undefined") {
             $tours = $tours->whereDate('date_start',  $request->date_start);
         }
 
-        if ($request->date_end) {
+        if (!empty($request->date_end) && $request->date_end != "all" && $request->date_end != "undefined") {
             $tours = $tours->whereDate('date_end',  $request->date_end);
         }
 
-        if ($request->price_tour) {
-            $tours = $tours->where('price_tour', $request->price_tour);
+        $arr = explode(",", $request->vehicles);
+
+        if (!empty($request->vehicles)) {
+            $tours = $tours->whereIn('vehicle_id', $arr);
         }
 
-        if ($request->status) {
-            $tours = $tours->where('status', $request->status);
-        }
-
-        $tours = $tours->with('tour_picture')->with('tour_evaluation')->with('tour_comments')->with('vehicles')->with('user_information')->get();
+        $tours = $tours->where('status', 1)->with('tour_picture')->with('tour_comments')->with('vehicles')->with('user_information')->get();
 
         if ($tours->count() > 0) {
             $response = [
                 'title' => 'get list tours',
                 'data' => $tours,
                 'status' => 200,
+                'address_end' => $request->address_end,
+                "address_start" => $request->address_start,
                 'detail' => 'get list tours success'
             ];
         } else {
@@ -64,6 +102,9 @@ class ToursController extends Controller
                 'title' => 'get list tours',
                 'data' => [],
                 'status' => 503,
+                'address_end' => $request->address_end,
+                "address_start" => $request->address_start,
+                'date' => date('Y-m-d'),
                 'detail' => 'get list tours error'
             ];
         }
@@ -73,10 +114,10 @@ class ToursController extends Controller
 
     public function toursPopular()
     {
-        $tours = DB::table("tours as t")->join('tour_evaluation as e', 'e.tour_id', '=', 't.id')
+        $tours = DB::table("tours as t")
             ->join('tour_picture as p', 'p.tour_id', '=', 't.id')
             ->selectRaw("t.id, t.title, t.description, t.address_start, t.address_end, t.date_start, t.date_end, t.price_tour, t.amount_customer_maximum, t.amount_customer_present, t.status, p.images")
-            ->groupBy('t.id')->orderByDesc(DB::raw("sum(e.rate)"))->limit(6)->get();
+            ->groupBy('t.id')->limit(6)->get();
 
         if ($tours->count() > 0) {
             $response = [
@@ -96,48 +137,6 @@ class ToursController extends Controller
 
         return $response;
     }
-
-    public function uploadImages(Request $request){
-        $file = $request->file('file');
-
-        //upload file
-        //lấy ra file
-        $file = $request->file;
-
-        //lấy ra đuôi file
-        $ext = $file->extension();
-
-        //đổi tên file gán với đuôi
-        $file_name = Str::random(20) . '.' . time() . '.' . $ext;
-
-        //get current url disk backend
-        $urlDisk = public_path('assets');
-
-        //replace url disk current backend change to url disk tour
-        $directory = str_replace("backend\\public\\assets", "tourbuzz/tour/src/assets/images/tours", $urlDisk);
-        $directory = str_replace("\\", "/", $directory);
-
-        //di chuyển file vào thư mực avatar
-        $file->move($directory, $file_name);
-
-        $image = $file_name;
-
-        //images will create with a new post if user is chooses images
-
-        DB::table('tour_picture')->insert([
-            "tour_id" => $request->post,
-            "images" => $image,
-        ]);
-
-        $response = [
-            'title' => 'create a new post',
-            'status' => 200,
-            'detail' => 'post was create with the images',
-        ];
-
-        return $response;
-    }
-
     /**
      * Show the form for creating a new resource.
      */
@@ -367,4 +366,46 @@ class ToursController extends Controller
 
         return $response;
     }
+
+    public function uploadImages(Request $request){
+        $file = $request->file('file');
+
+        //upload file
+        //lấy ra file
+        $file = $request->file;
+
+        //lấy ra đuôi file
+        $ext = $file->extension();
+
+        //đổi tên file gán với đuôi
+        $file_name = Str::random(20) . '.' . time() . '.' . $ext;
+
+        //get current url disk backend
+        $urlDisk = public_path('assets');
+
+        //replace url disk current backend change to url disk tour
+        $directory = str_replace("backend\\public\\assets", "tourbuzz/tour/src/assets/images/tours", $urlDisk);
+        $directory = str_replace("\\", "/", $directory);
+
+        //di chuyển file vào thư mực avatar
+        $file->move($directory, $file_name);
+
+        $image = $file_name;
+
+        //images will create with a new post if user is chooses images
+
+        DB::table('tour_picture')->insert([
+            "tour_id" => $request->post,
+            "images" => $image,
+        ]);
+
+        $response = [
+            'title' => 'create a new post',
+            'status' => 200,
+            'detail' => 'post was create with the images',
+        ];
+
+        return $response;
+    }
+
 }

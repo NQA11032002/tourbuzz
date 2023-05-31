@@ -1,0 +1,117 @@
+.profile
+{
+  background-color: #ffff;
+  margin: 0 auto;
+  max-width: 50%;
+  height: calc(100vh - 100px);
+  margin-top: 80px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+
+  .full-infor-desc{
+    padding: 10px;
+    .full-infor-desc-biography{
+        .full-infor-desc-biography-title{
+            margin: 0;
+            padding: 10px 0;
+        }
+        span{
+            color: var(--color-content);
+            font-size: 14px;
+            color: #6c757d;
+        }
+    }
+
+    .full-infor-desc-location{
+        display: grid;
+        grid-template-columns: 25px auto;
+        column-gap: 10px;
+        i{
+            text-align: center;
+            padding-top: 5px;
+            color: red;
+        }
+        span{
+            padding: 5px 0;
+            color: var(--color-content);
+            font-size: 14px;
+            color: #6c757d;
+        }
+
+    }
+    .full-infor-desc-membersince{
+        display: grid;
+        grid-template-columns: 25px auto;
+        column-gap: 10px;
+
+        span{
+            padding: 5px 0;
+            color: var(--color-content);
+            font-size: 14px;
+            color: #6c757d;
+
+        }
+        i{
+            text-align: center;
+            padding-top: 6px;
+            color: rgb(89, 89, 210);
+        }
+    }
+    .full-infor-desc-social-list{
+        .full-infor-desc-social-list-title{
+            margin: 0;
+            padding: 10px 0;
+
+        }
+        .full-infor-desc-social-item{
+            display: grid;
+            grid-template-columns: 25px auto;
+            color: var(--color-content);
+            column-gap: 10px;
+            span{
+                padding: 5px 0;
+                font-size: 14px;
+                color: #6c757d;
+            }
+            .facebook{
+                text-align: center;
+                padding-top: 6px;
+                color: rgb(24, 119, 242);
+            }
+            .ins{
+                text-align: center;
+                padding-top: 6px;
+                color: rgb(225, 48, 108);
+            }
+            .twt{
+                text-align: center;
+                padding-top: 6px;
+                color: rgb(29, 161, 242);
+            }
+        }
+    }
+
+    .full-infor-edu{
+
+        .full-infor-edu-title{
+            margin: 0;
+            padding: 10px 0;
+        }
+        .full-infor-edu-item{
+            display: grid;
+            grid-template-columns: 25px auto;
+            column-gap: 10px;
+            .edu{
+                color: var(--color-content);
+                font-size: 14px;
+            }
+            i{
+                text-align: center;
+
+                color: teal;
+            }
+       }
+    }
+  }
+}

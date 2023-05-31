@@ -1,4 +1,5 @@
-  <div class="modal fade" id="resetpass" tabindex="-1" aria-labelledby="exampleModalLabel"
+  <form action="" method="post" (ngSubmit)="changePassword()">
+    <div class="modal fade" id="resetpass" tabindex="-1" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable">
       <div class="modal-content position-absolute bottom-50 right-50">
@@ -12,24 +13,27 @@
             <div class="modal-body">
               <div class="resetpass_oldpass">
                 <span class="oldpass">Password</span>
-                <input type="password">
+                <input type="password" [(ngModel)]="password" name="password">
               </div>
               <div class="resetpass_newpass">
                 <span class="newpass">New password</span>
-                <input type="password">
+                <input type="password" [(ngModel)]="newpass" name="newpass">
               </div>
               <div class="resetpass_renewpass">
                 <span class="renewpass">Confirm password</span>
-                <input type="password">
+                <input type="password" [(ngModel)]="renewpass" name="renewpass">
               </div>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary"
                 data-bs-dismiss="modal">Close</button>
-              <button type="button" class="btn-save btn btn-primary">Save Change</button>
+              <button type="submit" class="btn-save btn btn-primary">Save Change</button>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+
+  </form>
+  

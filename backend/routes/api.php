@@ -9,13 +9,13 @@ use App\Http\Controllers\api\common\Type_travelController;
 use App\Http\Controllers\api\common\VehiclesController;
 use App\Http\Controllers\api\social\PostsController;
 use App\Http\Controllers\api\social\User_ConnectController;
-use App\Models\vehicles;
 use App\Http\Controllers\api\social\UserController;
 use App\Http\Controllers\api\tour\Tour_bookingController;
 use App\Http\Controllers\api\tour\ToursController;
+use App\Http\Controllers\api\tour\Tour_commentsController;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -65,7 +65,7 @@ Route::prefix('social')->name('social.')->middleware('auth:sanctum')->group(func
         Route::post('/', [User_ConnectController::class, "insertMessenger"])->name('insertMessenger');
     });
 
-    Route::get('vehicles', [VehiclesController::class, "index"])->name('vehicles');
+    Route::get('/vehicles', [VehiclesController::class, "index"])->name('vehicles');
 });
 
 Route::post('/upload', [PostsController::class, "uploadImages"])->name('upload-images');
@@ -80,12 +80,15 @@ Route::prefix('tour')->name('tour.')->middleware('auth:sanctum')->group(function
     Route::delete('/{id}', [ToursController::class, "destroy"])->name('destroy');
 });
 
+Route::prefix('tour-comment')->name('tour-comment.')->middleware('auth:sanctum')->group(function () {
+    Route::post('/', [Tour_commentsController::class, "comments"])->name('comments');
+});
+
 Route::prefix('booking')->name('booking.')->middleware('auth:sanctum')->group(function () {
     Route::get('/', [Tour_bookingController::class, "index"])->name('index');
     Route::post('/', [Tour_bookingController::class, "create"])->name('create');
     Route::patch('/{id}', [Tour_bookingController::class, "update"])->name('update');
     Route::delete('/{id}', [Tour_bookingController::class, "destroy"])->name('destroy');
-    Route::get('/status-booking', [Tour_bookingController::class, "status_booking"])->name('status_booking');
     Route::get('/categories-pay', [Tour_bookingController::class, "categories_pay"])->name('categories_pay');
 });
 

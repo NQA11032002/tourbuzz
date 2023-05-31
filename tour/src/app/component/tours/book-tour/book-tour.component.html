@@ -1,35 +1,70 @@
-<app-header></app-header>
-<div class="wp-content d-grid">
-    <div class="sidebar_fill">
-        <app-navbar-tour></app-navbar-tour>
-    </div>
+<input type="checkbox" hidden name="" id="cb_notify">
+<label for="cb_notify" class="lb_notify" (click)="closeNotify()"></label>
 
-    <div class="content">
-        <div action="" class="resgit_Tour">
-            <h4 class="text-center">Đăng kí Tour</h4>
-            <form action="" class="mx-3 my-3 border rounded" [formGroup]="bookTour" (ngSubmit)="submitBook()">
-                <div class="m-3">
-                    <p class="TourId"><b>Mã tour:</b> B12</p>
-                    <p class="TourName"><b>Tên tour:</b>Tour Bà Nà Hills trọn ngày với bữa trưa buffet</p>
-                    <img src="https://i.guim.co.uk/img/media/6088d89032f8673c3473567a91157080840a7bb8/0_567_3840_2304/master/3840.jpg?width=1300&quality=45&dpr=2&s=none"
-                        class="w-100" alt="">
-                    <label for="AmountCrew">Số Lượng Thành Viên</label>
-                    <input type="number" class="form-control" name="AmountCrew" id="AmountCrew">
-                    <div class="errors"
-                        *ngIf="bookTour.controls['AmountCrew'].invalid && (bookTour.controls['AmountCrew'].dirty || bookTour.controls['AmountCrew'].touched)">
-                        <p *ngIf="bookTour.get('AmountCrew')?.hasError('required')">Vui lòng nhập số lượng thành viên
-                        </p>
-                    </div>
-                </div>
-
-                <div class="errors" *ngIf="bookFail">
-                    <p>{{ this.bookFail }}</p>
-                </div>
-                
-                <div class="d-flex justify-content-center"><input type="submit" class="btn btn-primary w-50 my-3"
-                        value="submit"></div>
-            </form>
-        </div>
+<div class="notify">
+    <div class="notify_info m-3">
+        <i class="fa-solid fa-circle-check d-flex justify-content-center"></i>
+        <p class="info">Đăng ký tour thành công!. Vui lòng chờ người hướng dẫn tour liên hệ với bạn</p>
     </div>
 </div>
-<app-footer></app-footer>
+
+<div action="" class="resgit_Tour">
+    <h4 class="text-center">Booking Now</h4>
+
+    <form [formGroup]="bookingTour" action="" class="rounded" (ngSubmit)="submitBookingTour()">
+        <div>
+            <label for="">Họ tên</label>
+            <input formControlName="user_name" placeholder="Nhập tên của bạn..." type="text"
+                class="form-control shadow-none" name="user_name">
+            <div class="errors"
+                *ngIf="bookingTour.controls['user_name'].invalid && (bookingTour.controls['email'].dirty || bookingTour.controls['email'].touched)">
+                <label class="booking_error d-block" *ngIf="bookingTour.get('user_name')?.hasError('required')">Vui lòng
+                    nhập
+                    tên
+                    của bạn</label>
+            </div>
+
+            <label for="">Số điện thoại</label>
+            <input formControlName="phone" type="text" placeholder="Nhập số điện thoại liên hệ..." maxlength="13"
+                class="form-control shadow-none" name="phone" id="phone">
+            <div class="errors"
+                *ngIf="bookingTour.controls['phone'].invalid && (bookingTour.controls['phone'].dirty || bookingTour.controls['phone'].touched)">
+                <label class="booking_error d-block" *ngIf="bookingTour.get('phone')?.hasError('required')">Vui lòng
+                    nhập
+                    số điện thoại liên hệ</label>
+            </div>
+
+            <label for="">Email (nếu có)</label>
+            <input formControlName="email" type="email" placeholder="Nhập email liên hệ (nếu có)..."
+                class="form-control shadow-none" name="email">
+
+            <label for="Amount_Crew">Số Lượng Thành Viên</label>
+            <input formControlName="amount_crew" placeholder="Nhập số lượng thành viên cần đặt..." type="number" min="1"
+                max="55" class="form-control shadow-none" name="Amount_Crew">
+
+            <div class="errors"
+                *ngIf="bookingTour.controls['amount_crew'].invalid && (bookingTour.controls['amount_crew'].dirty || bookingTour.controls['amount_crew'].touched)">
+                <label class="booking_error d-block" *ngIf="bookingTour.get('amount_crew')?.hasError('required')">Vui
+                    lòng nhập
+                    số
+                    lượng thành viên đặt tour</label>
+            </div>
+
+            <label for="information_another">Thông tin thêm (nếu có)</label>
+            <textarea formControlName="description" type="text"
+                placeholder="Thêm thông tin các thành viên khác. Họ tên, tuổi, số điện thoại,..."
+                class="form-control shadow-none information_another" rows="7" name="information_another"
+                id="information_another"></textarea>
+
+            <label for="information_another" class="categories-pay">Hình thức thanh toán</label>
+            <select name="" id="" class="form-select select-pay shadow-none" (change)="onSelectPayChange($event)">
+                <option value="{{ item.id }}" *ngFor="let item of tour.categoryPay">{{ item.name }}</option>
+            </select>
+        </div>
+
+        <div class="d-flex justify-content-center">
+            <input type="submit" class="btn btn-primary my-3 border-0 shadow-none" value="Booking"
+                [disabled]="bookingTour.invalid">
+        </div>
+    </form>
+</div>

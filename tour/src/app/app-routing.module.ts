@@ -9,22 +9,17 @@ import { HomeComponent } from './component/home/home.component';
 import { FullinfoComponent } from './component/social/fullinfo/fullinfo.component';
 import { ResetpassComponent } from './component/social/resetpass/resetpass.component';
 import { DetailstourComponent } from './component/tours/detailstour/detailstour.component';
-import { BookTourComponent } from './component/tours/book-tour/book-tour.component';
-
 
 const routes: Routes = [
   {path:'', component: HomeComponent},
   {path:'social', component: LayoutsocialComponent},
   {path:'tour', component: LayouttourComponent},
+  {path:'tour-detail', component: DetailstourComponent},
   {path:'home', component: HomeComponent},
   {path:'login', component: LoginComponent},
   {path:'register', component: RegisterComponent},
   {path:'forgot-password', component: ForgotpassComponent},
   {path:'profile', component: FullinfoComponent},
-  {path: 'detail', component:DetailstourComponent},
-
-  {path:'booking',component: BookTourComponent},
-
 
   {path:'**', component: HomeComponent},
 

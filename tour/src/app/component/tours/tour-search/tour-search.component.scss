@@ -13,11 +13,12 @@
             .sub_title
             {
               width: 120px;
+              font-size: 14px;
               color: var(--color-content);
             }
 
             .sort_item{
-              font-size: 14px;
+              font-size: 13px;
               border: 1px solid var(--color-border);
             }
 
@@ -29,58 +30,134 @@
         }
     }
 
+    
     .tour-items-holder
     {
       margin-top: 25px;
-      display: grid;
-      grid-template-rows: repeat(auto-fit, minmax(289px,1fr));
+      display: flex;
+      flex-direction: column;
       row-gap: 15px;
 
       .tours-items-list {
         width: 100%;
-        height: 289px;
+        height: 260px;
         background-color: #ffff;
         border-radius: 5px;
         box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 
-        .thumbnail-tour {
-            padding-top: 19px;
-            width: 268px;
-            height: 289px;
+        .tour_item
+        {
+          display: grid;
+          grid-template-columns: 30% calc(70% - 20px);
+          column-gap: 20px;
+          padding: 10px;
+          height: 100%;
+
+          .thumbnail-tour {
+            height: 100%;
             overflow: hidden;
-        }
+          }
 
-        .thumbnail-tour img{
+          .thumbnail-tour img{
+            object-fit: cover;
+            height: 100%;
             transition: all 1.3s ease;
-        }
+          }
 
-        .thumbnail-tour:hover img{
+          .thumbnail-tour:hover img{
             transform: scale(1.2);
-        }
+          }
 
-        .tour-content {
-            padding: 35px;
+          .tour-content {
+              .tour-content-left {
+                flex: 1;
+                  .tour-title {
+                      a {
+                          font-weight: 800;
+                          color: #191b1f;
+                      }
+                  }
 
-            .tour-content-left {
-                border-right:1px solid #cfcccf;
-                .tour-title {
-                    a {
-                        font-weight: 800;
-                        color: #191b1f;
+                  div 
+                  {
+                    p 
+                    {
+                      margin-bottom: 5px;
+                      display: -webkit-box;
+                      -webkit-box-orient: vertical;
+                      overflow: hidden;
+                      -webkit-line-clamp: 1;
+                      font-size: 14px;
+                      b 
+                      {
+                        font-size: 15px;
+                      }
                     }
-                }
-            }
-            .tour-content-right{
-                padding-left: 10px;
-                a{
-                    background-color: #212529;
-                    color: #f7f9fa;
-                    font-size: 14px;
-                }
-            }
+                  }
 
+                  .tour-description
+                  {
+                    p{
+                      -webkit-line-clamp: 3 !important;
+                      b
+                      {
+                        font-size: 15px;
+                      }
+                    }
+                  }
+                  .tour-price
+                  {
+                    p 
+                    {
+                      margin-bottom: unset;
+                    }
+                    .review 
+                    {
+                      margin-bottom: 5px;
+                      padding-left: 10px;
+                    }
+                    .price
+                    {
+                      padding-left: 5px;
+                    }
+                  }
+              }
+              .tour-content-right{
+                  .btn-detail{
+                      background-color: #212529;
+                      color: #f7f9fa;
+                      font-size: 13px;
+                      padding: 10px 25px;
+                      transition: all 0.25s ease;
+                  }
+                  .btn-detail:hover{
+                    opacity: 80%
+                  }
+                  .status_tour
+                  {
+                    i 
+                    {
+                      font-size: 13px;
+                    }
+                    .status_ok
+                    {
+                      color: #49FF00;
+                    }
+                    .status_full
+                    {
+                      color: #FF0000;
+                    }
+                    .status_tour-info
+                    {
+                      font-size: 13px;
+                      color: #6c757d;
+                      margin-bottom: unset;
+                      margin-left: 5px;
+                    }
+                  }
+              }
+          }
         }
+      }
     }
-    }
-
 }

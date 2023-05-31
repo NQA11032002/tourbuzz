@@ -4,70 +4,71 @@
 
     <div>
       <label for="customRange1" class="form-label">
-        Giá tour:
-        <span>$</span><span class="price">{{ rangeValue }}</span>
+        Giá tour
       </label>
 
-      <input type="range" class="form-range shadow-none" id="customRange1" min="500000" max="10000000" step="10000"
-        [value]="rangeValue" (input)="onRangeValueChange($event)">
+      <!-- <input type="range" class="form-range shadow-none" id="customRange1" min="1" max="100000" step="1"
+        [value]="rangeValue" (input)="onRangeValueChange($event)"> -->
+      <div class="filter_price-tour">
+        <label for="filter_price_0" class="d-flex align-items-center">
+          <input type="radio" checked (change)="onRadioPriceChange($event)" value="1" name="filter_price"
+            id="filter_price_0">
+          <p>Tất cả</p>
+        </label>
+        <label for="filter_price_1" class="d-flex align-items-center">
+          <input type="radio" (change)="onRadioPriceChange($event)" value="49" name="filter_price" id="filter_price_1">
+          <p>Giá dưới $50</p>
+        </label>
+        <label for="filter_price_2" class="d-flex align-items-center">
+          <input type="radio" (change)="onRadioPriceChange($event)" value="50" name="filter_price" id="filter_price_2">
+          <p>Giá từ $50 - $250</p>
+        </label>
+        <label for="filter_price_3" class="d-flex align-items-center">
+          <input type="radio" (change)="onRadioPriceChange($event)" value="250" name="filter_price" id="filter_price_3">
+          <p>Giá từ 250$ - 500$</p>
+        </label>
+        <label for="filter_price_4" class="d-flex align-items-center">
+          <input type="radio" (change)="onRadioPriceChange($event)" value="501" name="filter_price" id="filter_price_4">
+          <p>Giá trên $500</p>
+        </label>
+      </div>
     </div>
 
     <div>
       <label for="tour" class="form-label">Địa điểm bắt đầu</label>
-      <select id="city" class="form-select shadow-none">
-        <option *ngFor="let item of data" value="{{item.matp}}">{{item.name}}</option>
+      <select id="city" class="form-select shadow-none" (change)="onSelectAddressStartChange($event)">
+        <option selected value="all">Tất cả</option>
+        <option *ngFor="let item of data" value="{{item.name}}">{{item.name}}</option>
       </select>
     </div>
 
     <div>
       <label for="tour" class="form-label">Địa điểm đến</label>
-      <select id="city" class="form-select shadow-none">
-        <option *ngFor="let item of data" value="{{item.matp}}">{{item.name}}</option>
+      <select id="city" class="form-select shadow-none" (change)="onSelectAddressEndChange($event)">
+        <option selected value="all">Tất cả</option>
+        <option *ngFor="let item of data" value="{{item.name}}">{{item.name}}</option>
       </select>
     </div>
 
     <div>
       <label for="sDay" class="form-label">Ngày khởi hành</label>
-      <input type="date" name="startDay" id="sDay" class="form-control shadow-none">
+      <input type="date" name="startDay" (change)="onSelectDateStartChange($event)" id="sDay"
+        class="form-control shadow-none">
     </div>
 
     <div>
       <label for="sDay" class="form-label">Ngày kết thúc</label>
-      <input type="date" name="endDay" id="eDay" class="form-control shadow-none">
+      <input type="date" name="endDay" (change)="onSelectDateEndChange($event)" id="eDay"
+        class="form-control shadow-none">
     </div>
 
     <div>
       <label for="vehical" class="form-label">Phương tiện: </label>
 
       <div class="vehicle_items d-grid">
-        <label>
-          <input type="checkbox" name="vehicle[]" id="">
-          Xe đạp
-        </label>
-
-        <label>
-          <input type="checkbox" name="vehicle[]" id="">
-          Xe máy
-        </label>
-
-        <label>
-          <input type="checkbox" name="vehicle[]" id="">
-          Xích lô
-        </label>
-
-        <label>
-          <input type="checkbox" name="vehicle[]" id="">
-          Cưỡi ngựa
-        </label>
-
-        <label>
-          <input type="checkbox" name="vehicle[]" id="">
-          Cưỡi voi
-        </label>
-
-        <label>
-          <input type="checkbox" name="vehicle[]" id="">
-          Xe điện
+        <label class="d-flex align-items-center" *ngFor="let item of vehicles.vehicles">
+          <input type="checkbox" value="{{ item.id }}" name="vehicle[]" (change)="onSelectVehiclesChange($event)" id="">
+          {{ item.name }}
         </label>
       </div>
     </div>

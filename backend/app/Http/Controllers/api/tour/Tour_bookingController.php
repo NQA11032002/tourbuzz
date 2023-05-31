@@ -54,30 +54,6 @@ class Tour_bookingController extends Controller
         return $response;
     }
 
-    public function status_booking()
-    {
-        $status_booking = status_booking::all();
-
-        if ($status_booking->count() > 0) {
-            $response = [
-                'title' => 'list status_booking',
-                'status' => 200,
-                'data' => $status_booking,
-                'detail' => 'get list status_booking success'
-            ];
-        } else {
-            $response = [
-                'title' => 'list status_booking',
-                'status' => 500,
-                'data' => [],
-                'detail' => 'error'
-            ];
-        }
-
-        return $response;
-    }
-
-
     public function categories_pay()
     {
         $categories_pay = categories_pay::all();
@@ -106,31 +82,18 @@ class Tour_bookingController extends Controller
      */
     public function create(Request $request)
     {
-        $rules = [
-            "amount_customer" => "required|max:30",
-        ];
-
-        $messenger = [
-            "amount_customer.required" => "Số lượng đặt chỗ không được để trống",
-            "amount_customer.max" => "Số lượng đặt chỗ tối đa 25 người",
-        ];
-
-        $validator = Validator::make($request->all(), $rules, $messenger);
-
-        if ($validator->fails()) {
-            return $validator->errors();
-        }
-
         $booking = DB::table("tour_booking")->insertGetId([
             "tour_id" => $request->tour_id,
-            "user_id" => Auth::user()->id,
-            "amount_customer" => $request->amount_customer,
-            "status_booking_id" => $request->status_booking_id,
+            "name_user" => $request->user_name,
+            "phone" => $request->phone,
+            "email" => $request->email,
+            "amount_crew" => $request->amount_crew,
+            "description" => $request->description,
+            "status_booking" => "đặt tour thành công",
         ]);
 
         if ($booking) {
             tour_pay::insert([
-                "user_id" => Auth::user()->id,
                 "tour_booking_id" => $booking,
                 "category_pay_id" => $request->category_pay_id,
                 "total_price" => 0,

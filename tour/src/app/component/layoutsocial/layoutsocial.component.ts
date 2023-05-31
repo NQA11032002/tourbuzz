@@ -22,17 +22,9 @@ export class LayoutsocialComponent {
     let token = sessionStorage.getItem("token_user");
 
     if(token != null){
-      if(keyword !== ""){
-        this.user.getFriends(keyword, token).subscribe(p => {
-          this.friends = p.data;
-        });
-      }
-      else
-      {
-        this.user.getFriends("", token).subscribe(p => {
-          this.friends = p.data;
-        }); 
-      }
+      this.user.getFriends(keyword, token).subscribe(p => {
+        this.friends = p.data;
+      });
     }
   }
 
