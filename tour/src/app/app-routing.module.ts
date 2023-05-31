@@ -13,6 +13,7 @@ import { HistorybookingTourComponent } from './component/tours/historybooking-to
 import { HistorypostTourComponent } from './component/tours/historypost-tour/historypost-tour.component';
 import { AboutInforComponent } from './component/social/about-infor/about-infor.component';
 import { PostPersonalComponent } from './component/social/post-personal/post-personal.component';
+import { PostTourComponent } from './component/tours/post-tour/post-tour.component';
 
 const routes: Routes = [
   {path:'', component: HomeComponent},
@@ -27,6 +28,7 @@ const routes: Routes = [
   {path:'historybooking', component: HistorybookingTourComponent},
   {path:'historyposttour', component: HistorypostTourComponent},
   {path:'profile/post', component: PostPersonalComponent},
+  {path:'postTour', component: PostTourComponent},
   {path:'**', component: HomeComponent},
 
 ];

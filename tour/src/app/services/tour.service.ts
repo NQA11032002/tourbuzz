@@ -16,6 +16,7 @@ export class TourService {
   private api = "http://localhost:8000/api/tour";
   private apiBooking = "http://localhost:8000/api/booking";
   private apiTourComment = "http://localhost:8000/api/tour-comment";
+  private vehi = "http://localhost:8000/api/social/vehicles";
 
     //get list tour popular
     getTourPopular(token:string):Observable<any>{
@@ -64,4 +65,18 @@ export class TourService {
 
     //   return this.http.post<any>(urlApi, data ,{headers});
     // }
+
+    getVehicle(token:string){
+      let headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
+      let urlApi = `${this.vehi}`;
+
+      return this.http.get<any>(urlApi, {headers});
+    }
+
+    postTour(data: any,token:string) {
+      let headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
+      let urlApi = `${this.api}`;
+  
+      return this.http.post<any>(urlApi,data,{headers});
+    }
 }
