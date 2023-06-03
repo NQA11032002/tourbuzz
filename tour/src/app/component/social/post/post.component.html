@@ -1,0 +1,102 @@
+<section class="container">
+  <div class="create_post">
+    <app-create-post></app-create-post>
+  </div>
+  <hr>
+
+  <div class="posts">
+    <div class="post_item" *ngFor="let item of posts">
+      <div *ngIf="item.status != 0">
+        <div class="post_top d-flex align-items-center">
+          <img src="assets/images/avatar/{{item.user_information.image}}" alt="" data-bs-toggle="modal"
+            data-bs-target="#shortinformodal">
+
+          <div class="post_top--info">
+            <h5 class="post_name">{{item.user_information.name}}</h5>
+            <p class="post_time">{{item.created_at | date: 'dd-MM-yyyy'}}
+              <i class="fa-solid fa-earth-asia"></i>
+            </p>
+          </div>
+        </div>
+
+        <div class="post_content">
+          <h5 class="title">Tiêu đề: {{item.title}}</h5>
+          <p class="content">{{item.content}}</p>
+        </div>
+
+        <div class="post_images d-grid overflow-auto">
+          <div class="post_image" *ngFor="let picture of item.post_picture">
+            <img src="assets/images/social/{{picture.images}}" alt="">
+          </div>
+        </div>
+
+        <div class="likes mt-2 d-flex flex-column">
+          <div class="d-flex">
+            <span>
+              <i (click)="favorite(item)"
+                [class]="isFavorite(item.post_favorite) == true ? 'fa-solid fa-heart favorite' : 'fa-regular fa-heart unfavorite'"></i>
+            </span>
+
+            <span class="comment">
+              <i class="fa-regular fa-comment"></i>
+            </span>
+          </div>
+
+          <p>{{item.post_favorite.length}} lượt thích</p>
+        </div>
+
+        <input type="checkbox" name="" hidden class="show_comment" id="show_comments_{{item.id}}">
+        <label for="show_comments_{{item.id}}" class="amount-comment show-comment">Xem tất cả bình luận</label>
+        <label for="show_comments_{{item.id}}" class="amount-comment collapse-comment">Thu gọn bình luận</label>
+
+        <div class="comments d-grid">
+          <div class="comment" *ngFor="let comment of social.comments | async">
+            <div class="comment_item d-flex align-items-center" *ngIf="item.id === comment.post_id">
+              <img src="assets/images/avatar/{{ comment.user.image }}" alt="">
+
+              <div class="comment__item--content">
+                <p class="reply_content"><b>{{ comment.user.name }}:</b> {{ comment.content }}
+                </p>
+
+                <div class="d-flex reply_container align-items-center">
+                  <span class="reply_time">{{ comment.created_at }}</span>
+                  <button class="reply_choose" value="" (click)="replyComment(comment.id, comment.user, item.id)">Trả
+                    lời</button>
+                  <button class="btn btn-popup btn-delete" (click)="deleteComment(comment.id, item)"
+                    *ngIf="comment.user.id === user_id.id">Xóa</button>
+                </div>
+
+                <div class="comment comment_reply" *ngFor="let reply of social.comments_reply | async">
+                  <div class="comment_item d-flex align-items-center" *ngIf="reply.comment_id === comment.id">
+                    <img src="assets/images/avatar/{{ reply.user_1.image }}" alt="">
+
+                    <div class="comment__item--content">
+                      <p class="reply_content"><b>{{ reply.user_1.name }}:</b> </p>
+                      <a class="reply_comment d-flex">@{{reply.user_2.name}} <p class="reply_comment--content">
+                          {{ reply.content }}</p></a>
+
+                      <div class="d-flex reply_container align-items-center">
+                        <span class="reply_time">{{ comment.created_at}}</span>
+                        <button class="reply_choose" value=""
+                          (click)="replyComment(reply.comment_id, reply.user_1, item.id)">Trả
+                          lời</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <form [formGroup]="commentForm" (submit)="comment(item)" action="" class="d-flex form-control form-comment">
+          <input type="text" class="name-input_{{item.id}} name-input__comment">
+          <input formControlName="content" type="text" class="comment_insert w-100 shadow-none"
+            (ngModelChange)="changeComment()" placeholder="Thêm bình luận">
+
+          <button [disabled]="commentForm.invalid" type="submit" class="btn btn-comment shadow-none">Đăng</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

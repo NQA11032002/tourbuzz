@@ -1,0 +1,44 @@
+<div class="messengers d-flex position-fixed bottom-0">
+  <div class="messenger" *ngFor="let item of user.messenger">
+    <div class="messenger_header d-flex justify-content-between">
+      <div class="messenger_left d-flex">
+        <img class="messenger_avatar" src="assets/images/avatar/{{item.image}}" alt="">
+        <div class="messenger_info">
+          <h6 class="messenger_name">{{item.name}}</h6>
+          <p class="messenger_status" *ngIf="item.is_login === 1">Đang hoạt động</p>
+          <p class="messenger_status" *ngIf="item.is_login === 0">Người dùng hiện không có mặt</p>
+        </div>
+      </div>
+      <div class="messenger_window d-flex">
+        <i class="fa-solid fa-xmark close_messenger" (click)="closeMessenger(item.id)"></i>
+      </div>
+    </div>
+    <div class="messenger_content d-flex flex-column" #scrollMe [scrollTop]="scrollMe.scrollHeight">
+      <div *ngFor="let message of user.messages | async">
+        <div class="messenger_user_2 d-flex align-items-center"
+          *ngIf="item.id === message.user_1_id && userLogin.id === message.user_2_id">
+          <img class="messenger_user_2--avatar" src="assets/images/avatar/{{item.image}}" alt="">
+          <p class="messenger_user_2--content">
+            {{message.chat_user}}
+          </p>
+        </div>
+        <div class="messenger_user_1" *ngIf="item.id === message.user_2_id && userLogin.id === message.user_1_id">
+          <p class="messenger_user_1--content">
+            {{message.chat_user}}
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="messenger_insert">
+      <form [formGroup]="formSendMessage" action="" class="form-control form_messenger d-flex justify-content-between"
+        method="post" (ngSubmit)="sendMessenger(item.id)">
+        <input formControlName="message" type="text" (click)="resetMessage()" class="messenger_input shadow-none w-100"
+          placeholder="Nhập tin nhắn bạn muốn gửi">
+
+        <button [disabled]="formSendMessage.invalid" type="submit" class="messenger_submit">
+          <i class="fa-regular fa-paper-plane"></i>
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
