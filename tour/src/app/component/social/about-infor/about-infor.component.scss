@@ -1,82 +1,7 @@
-.full-infor{
-    padding: 20px;
-    .full-infor-img{
-        img{
-            width: 6rem;
-            height: 6rem;
-            border-radius: 50%;
-            object-fit: cover;
-        }
-    }
-    .full-infor-name{
-        span{
-            font-weight: 500;
-            font-size: 20px;
-
-        }
-    }
-    .full-infor-changed{
-        margin-top: 6px;
-        font-size: 12px;
-        a{
-            text-decoration: none;
-        }
-        i{
-            margin-left: 7px;
-
-        }
-        span{
-            margin-left: 5px;
-        }
-
-    }
-    .full-infor-addfriend{
-        i{
-            margin-left: 10px;
-            border: 1px solid var(--color-border);
-            padding: 5px;
-            border-radius: 10px;
-            cursor: pointer;
-        }
-    }
-    .full-infor-container{
-        color: var(--color-content);
-        font-size: 14px;
-    }
-  }
-
-  .full-infor-header{
-    display: grid;
-    grid-template-columns: 120px auto 1fr;
-    grid-template-rows: 30px auto;
-    .full-infor-img{
-        grid-row-start: 1;
-        grid-row-end: 3;
-    }
-  }
 
   .full-infor-desc{
-    .full-infor-desc-title{
-        border-bottom: 1px solid var(--color-border);
-        margin-top: 30px;
-        h5{
-            margin: 0;
-            padding: 10px 0 2px 0;
-            font-size: 18px;
-            font-weight: 500;
-            display: inline-block;
-            cursor: pointer;
-        }
-        .about{
-            border-bottom: 2px solid black;
-        }
-        .post{
-            padding-left: 20px;
-        }
-        .image{
-            padding-left: 20px;
-        }
-    }
+    margin-left: 50%;
+    transform: translateX(-50%);
     .full-infor-desc-biography{
         .full-infor-desc-biography-title{
             margin: 0;
@@ -84,7 +9,7 @@
         }
         span{
             color: var(--color-content);
-            font-weight: 300;
+            font-weight: 300;   
             font-size: 15px;
         }
     }
@@ -99,10 +24,10 @@
         span{
             padding: 5px 0;
             color: var(--color-content);
-            font-weight: 300;
+            font-weight: 300;   
             font-size: 15px;
         }
-
+        
     }
     .full-infor-desc-membersince{
         display: grid;
@@ -110,10 +35,10 @@
         span{
             padding: 5px 0;
             color: var(--color-content);
-            font-weight: 300;
+            font-weight: 300;   
             font-size: 15px;
-
-        }
+            
+        } 
         i{
             text-align: center;
             padding-top: 6px;
@@ -124,7 +49,7 @@
         .full-infor-desc-social-list-title{
             margin: 0;
             padding: 10px 0;
-
+            
         }
         .full-infor-desc-social-item{
             display: grid;
@@ -132,7 +57,7 @@
             color: var(--color-content);
             span{
                 padding: 5px 0;
-                font-weight: 300;
+                font-weight: 300;   
                 font-size: 15px;
             }
             .facebook{
@@ -154,7 +79,7 @@
     }
 
     .full-infor-edu{
-
+        
         .full-infor-edu-title{
             margin: 0;
             padding: 10px 0;
@@ -164,18 +89,14 @@
             grid-template-columns: 25px auto;
             .edu{
                 color: var(--color-content);
-                font-weight: 300;
+                font-weight: 300;   
                 font-size: 15px;
             }
             i{
                 text-align: center;
-
+                
                 color: teal;
             }
-       }
+       }         
     }
-  }
-
-  .full-body{
-    min-height: 500px;
   }

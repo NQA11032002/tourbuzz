@@ -57,7 +57,7 @@ export class TourService {
       return this.http.get<any>(urlApi, {headers});
     }
 
-    // //comment tour 
+    // //comment tour
     // commentTour(data:any, token:string){
     //   let headers = new HttpHeaders().set('Authorization', 'Bearer '+ token);
     //   let urlApi = `${this.apiTourComment}`;

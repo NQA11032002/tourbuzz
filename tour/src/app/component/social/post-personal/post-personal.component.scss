@@ -1,0 +1,280 @@
+.posts
+{
+  display: grid;
+  grid-template-rows: auto;
+  row-gap: 20px;
+  .post_top
+  {
+
+    img
+    {
+      border-radius: 50px;
+      height: 40px;
+      width: 40px;
+      object-fit: cover;
+    }
+  }
+
+  .post_top--info
+  {
+    margin-left: 10px;
+    h5, p
+    {
+      margin-bottom: unset;
+    }
+
+    h5
+    {
+      font-size: 16px;
+    }
+
+    p
+    {
+      color: var(--color-sub-text);
+      font-size: 13px;
+    }
+  }
+
+  .post_content
+  {
+    margin: 15px 0;
+    .title
+    {
+      font-size: 15px;
+    }
+
+    .content
+    {
+      font-size: 13px;
+    }
+  }
+
+  .post_images
+  {
+    display: flex !important;
+    grid-gap: 10px;
+    .post_image
+    {
+      border-radius: 5px;
+      border: 1px solid var(--color-border);
+      overflow: hidden;
+      flex: 1;
+      img
+      {
+        width: 100%;
+        height: 679px;
+        object-fit: cover;
+      }
+    }
+  }
+
+
+  .likes
+  {
+    span
+    {
+      transition: all 0.25s ease;
+      margin-right: 15px;
+      cursor: grab;
+
+      i
+      {
+        font-size: 22px;
+      }
+    }
+    
+    p
+    {
+      font-size: 13px;
+      text-align: left;
+      margin-bottom: unset;
+    }
+    .favorite
+    {
+      color: rgb(212, 28, 28);
+    }
+    .favorite:hover
+    {
+      color: black;
+    }
+
+    .unfavorite
+    {
+      color: black;
+    }
+    .unfavorite:hover
+    {
+      color: rgb(212, 28, 28);
+    }
+
+    .comment:hover
+    {
+      opacity: 80%;
+    }
+  }
+
+  .amount-comment
+  {
+    font-size: 13px;
+    cursor: grab;
+    margin: 5px 0;
+    color: var(--color-content);
+    font-weight: 500;
+  }
+  
+  .collapse-comment
+  {
+    display: none;
+  }
+
+  .comments
+  {
+    transform-origin: top left;
+    transform: scaleY(0);
+    height: 0px;
+    overflow-y: hidden;
+    grid-template-rows: auto;
+    grid-auto-flow: row;
+    grid-row: auto;
+    transition: all 0.25s linear;
+    .comment
+    {
+      .comment_item
+      {
+        padding: 5px 0;
+        img
+        {
+          height: 30px;
+          width: 30px;
+          flex-shrink: 0;
+          margin-bottom: auto;
+          object-fit: cover;
+          border-radius: 50%;
+        }
+      }
+      .comment__item--content
+      {
+        margin-left: 10px;
+        .reply_content
+        {
+          font-size: 14px;
+          color: var(--color-content);
+          word-wrap: break-word;
+          width: 700px;
+          margin-bottom: unset;
+          cursor: default;
+          b
+          {
+            color: var(--color-main);
+          }
+        }
+
+        .comment_reply
+        {
+          .comment_item
+          {
+            img
+            {
+              height: 25px;
+              width: 25px;
+            }
+          }
+          .reply_comment
+          {
+            text-decoration: none;
+            cursor: grab;
+            font-size: 14px;
+            color: #512ce7;
+            .reply_comment--content
+            {
+              padding-left: 5px;
+              color: var(--color-content);
+              margin-bottom: unset;
+            }
+          }
+        }
+
+        .reply_container
+        {
+          .reply_time
+          {
+            color: var(--color-sub-text);
+            font-size: 12px;
+
+          }
+
+          .reply_choose,.btn-delete
+          {
+            background-color: transparent;
+            outline: none;
+            border: unset;
+            color: var(--color-sub-text);
+            font-size: 13px;
+            margin: 0 10px;
+            padding: unset;
+            box-shadow: unset;
+          }
+
+          .reply_choose:hover, .btn-delete:hover
+          {
+            opacity: 80%;
+          }
+
+          .btn-delete{
+            margin: unset;
+          }
+        }
+      }
+    }
+  }
+
+  .show_comment:checked ~ .comments
+  {
+    height: auto;
+    transform: scaleY(1);  
+  }
+
+  .show_comment:checked ~ .collapse-comment
+  {
+    display: block;
+  }
+  .show_comment:checked ~ .show-comment
+  {
+    display: none;
+  }
+
+  .form-comment
+  {
+    border: unset;
+    border-bottom: 1px solid var(--color-border);
+    padding: unset;
+    .name-input__comment
+    {
+      display: none;
+      font-size: 14px;
+      line-height: 33px;
+      color: #512ce7;
+      margin-bottom: unset;
+    }
+    .comment_insert,.name-input__comment
+    {
+      outline: none;
+      border: unset;
+      font-size: 14px;
+    }
+
+    .btn-comment
+    {
+      font-size: 14px;
+      font-weight: 600;
+    }
+  }
+}
+
+.messenger_container
+{
+  right: 14%;
+}
+
+
+
