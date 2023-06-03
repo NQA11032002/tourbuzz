@@ -41,6 +41,12 @@
           .full-infor-desc-biography-title{
             font-weight: bold;
             font-size: 19px;
+            .amount-images
+            {
+              font-weight: 500;
+              font-size: 14px;
+              color: gray;
+            }
           }
 
           .full-infor-desc-biography-content{
@@ -77,7 +83,7 @@
         .full-infor-desc-social-images, .full-infor-desc-social-friends
         {
           height: auto;
-          max-height: 427px;
+          max-height: 550px;
           overflow-y: hidden;
           .full-infor-title
           {
@@ -111,8 +117,8 @@
               img
               {
                 border-radius: 5px;
-                height: 119px;
-                width: 119px;
+                height: 116px;
+                width: 116px;
                 object-fit: cover;
               }
             }
@@ -123,7 +129,7 @@
 
             .friend
             {
-              width: 119px;
+              width: 116px;
               overflow: hidden;
 
               .friend_name
