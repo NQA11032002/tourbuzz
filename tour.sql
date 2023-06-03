@@ -3,7 +3,11 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
+<<<<<<< HEAD
 -- Thời gian đã tạo: Th5 25, 2023 lúc 01:31 PM
+=======
+-- Thời gian đã tạo: Th5 17, 2023 lúc 09:18 AM
+>>>>>>> dat
 -- Phiên bản máy phục vụ: 10.4.28-MariaDB
 -- Phiên bản PHP: 8.1.17
 
@@ -878,8 +882,14 @@ CREATE TABLE `personal_access_tokens` (
 --
 
 INSERT INTO `personal_access_tokens` (`id`, `tokenable_type`, `tokenable_id`, `name`, `token`, `abilities`, `last_used_at`, `expires_at`, `created_at`, `updated_at`) VALUES
+<<<<<<< HEAD
 (73, 'App\\Models\\auth\\user', 5, 'auth_token', 'a32c96dbd596db1f479ec46f1b921db2920eead54fd2de21b60043e4178b6af3', '[\"*\"]', '2023-05-25 03:14:30', '2023-05-25 06:13:43', '2023-05-25 03:13:43', '2023-05-25 03:14:30'),
 (74, 'App\\Models\\auth\\user', 7, 'auth_token', '7ebee7cfafdd8484e434e256b802ab03bcda0878e457409606e91222b9d4852b', '[\"*\"]', '2023-05-25 03:49:53', '2023-05-25 06:22:38', '2023-05-25 03:22:38', '2023-05-25 03:49:53');
+=======
+(17, 'App\\Models\\auth\\user', 5, 'auth_token', '838ab1132cd1dd8e6e1d9605a0c06b78a16c3c948a8988e2f53b838dceadfbb8', '[\"*\"]', '2023-05-11 14:26:09', '2023-05-11 17:25:37', '2023-05-11 14:25:37', '2023-05-11 14:26:09'),
+(39, 'App\\Models\\auth\\user', 7, 'auth_token', 'd2a6ef8daf0e4a4d6ed7fae928e714a5bc16b3e50f6feda2646ece48cd2c21ee', '[\"*\"]', '2023-05-17 07:18:15', '2023-05-17 08:03:51', '2023-05-17 05:03:51', '2023-05-17 07:18:15'),
+(40, 'App\\Models\\auth\\user', 6, 'auth_token', '47855dd562351dea24ce2a1d29f2edcece32b2457c571affee434cd97a5099fd', '[\"*\"]', '2023-05-17 07:14:54', '2023-05-17 09:11:20', '2023-05-17 06:11:20', '2023-05-17 07:14:54');
+>>>>>>> dat
 
 -- --------------------------------------------------------
 
@@ -895,7 +905,11 @@ CREATE TABLE `posts` (
   `title` varchar(70) NOT NULL,
   `content` text NOT NULL,
   `status` varchar(30) NOT NULL,
+<<<<<<< HEAD
   `created_at` timestamp NULL DEFAULT current_timestamp(),
+=======
+  `created_at` timestamp NULL DEFAULT NULL,
+>>>>>>> dat
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -904,9 +918,19 @@ CREATE TABLE `posts` (
 --
 
 INSERT INTO `posts` (`id`, `user_id`, `address_travel_id`, `type_travel_id`, `title`, `content`, `status`, `created_at`, `updated_at`) VALUES
+<<<<<<< HEAD
 (32, 5, 2, 1, 'Travel Memorable', 'The best way to store your travel memories is organise them together and make something that allows your memorabilia to thrive. By doing so, you’ll never forget all the wonderful adventures you’ve been on. Today we’d like to share various ideas on how to keep your memories alive!', '1', '2023-05-24 14:22:37', NULL),
 (33, 5, 2, 1, 'TIMELESS', 'Turquoise seas and white sand beaches are a perfect weekend upgrade and where else better to go than Premier Village Phu Quoc Resort! Leave your stressful days behind and live life to the fullest just like @_aswewander', '2', '2023-05-24 14:23:59', NULL),
 (34, 5, 2, 1, 'UNIQUE Travel', 'Give yourself the chance to experience a unique and memorable trip, whether you’ve come visit alone or with your loved ones, the tranquil atmosphere and inspiring landscape of Vietnam will be remembered.', '2', '2023-05-24 14:25:32', NULL);
+=======
+(1, 3, 2, 1, 'xcvxcv', 'cxv', '2', NULL, NULL),
+(2, 3, 2, 1, 'zxc', 'zzxczx', '1', NULL, NULL),
+(3, 5, 2, 1, 'ád', 'áda', '2', NULL, NULL),
+(4, 4, 2, 1, 'zxc', 'zxc', '2', NULL, NULL),
+(5, 4, 2, 1, 'alo tui là hacker lỏ', 'tui sẽ trở thành hacker', '1', NULL, NULL),
+(6, 4, 2, 1, 'Tui là hacker nè', 'tui sẽ hack tất cả', '1', NULL, NULL),
+(7, 4, 2, 1, 'Xin chào toàn thể đồng bào tui là hacker mũ lỏ', 'Ai có bồ tui hack bay nick', '1', NULL, NULL);
+>>>>>>> dat
 
 -- --------------------------------------------------------
 
@@ -923,6 +947,75 @@ CREATE TABLE `post_comments` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+<<<<<<< HEAD
+=======
+--
+-- Đang đổ dữ liệu cho bảng `post_comments`
+--
+
+INSERT INTO `post_comments` (`id`, `post_id`, `user_id`, `content`, `created_at`, `updated_at`) VALUES
+(1, 2, 3, 'zxczxczxc', '2023-05-10 10:25:29', '2023-05-10 10:25:29'),
+(3, 1, 3, 'zxczxc', '2023-05-10 15:28:41', '2023-05-10 15:28:41'),
+(6, 2, 4, 'asd', '2023-05-10 16:14:18', '2023-05-10 16:14:18'),
+(7, 2, 3, 'anh', '2023-05-10 16:17:04', '2023-05-10 16:17:04'),
+(8, 2, 3, 'zxczxc', '2023-05-10 16:31:51', '2023-05-10 16:31:51'),
+(27, 3, 5, 'zxczxczxc', '2023-05-11 08:32:26', '2023-05-11 08:32:26'),
+(28, 2, 5, 'zxczxc', '2023-05-11 08:32:29', '2023-05-11 08:32:29'),
+(29, 3, 5, 'zxczcz', '2023-05-11 09:45:47', '2023-05-11 09:45:47'),
+(30, 3, 5, 'zxcxzc', '2023-05-11 10:06:34', '2023-05-11 10:06:34'),
+(31, 3, 5, 'zxczxc', '2023-05-11 10:06:49', '2023-05-11 10:06:49'),
+(32, 3, 5, 'zxczx', '2023-05-11 10:07:45', '2023-05-11 10:07:45'),
+(33, 3, 5, 'zxczxc', '2023-05-11 10:23:06', '2023-05-11 10:23:06'),
+(34, 3, 4, 'zxczxc', '2023-05-11 10:23:44', '2023-05-11 10:23:44'),
+(35, 3, 4, 'anh', '2023-05-11 10:25:20', '2023-05-11 10:25:20'),
+(36, 3, 4, 'em', '2023-05-11 10:25:43', '2023-05-11 10:25:43'),
+(37, 3, 4, 'bi', '2023-05-11 10:26:16', '2023-05-11 10:26:16'),
+(38, 3, 5, 'zxczxc', '2023-05-11 10:32:59', '2023-05-11 10:32:59'),
+(39, 3, 5, 'anhanh', '2023-05-11 10:33:08', '2023-05-11 10:33:08'),
+(40, 3, 5, 'em', '2023-05-11 10:34:20', '2023-05-11 10:34:20'),
+(41, 3, 4, 'zxczxc', '2023-05-11 10:37:48', '2023-05-11 10:37:48'),
+(43, 4, 5, 'zxczxczx', '2023-05-11 10:40:03', '2023-05-11 10:40:03'),
+(44, 4, 4, 'ádsad', '2023-05-11 10:40:21', '2023-05-11 10:40:21'),
+(45, 4, 5, 'zxczxczxc', '2023-05-11 10:41:03', '2023-05-11 10:41:03'),
+(46, 4, 4, 'zxczxc', '2023-05-11 10:41:21', '2023-05-11 10:41:21'),
+(47, 4, 4, 'qưeqwe', '2023-05-11 10:42:12', '2023-05-11 10:42:12'),
+(48, 4, 4, 'ád213', '2023-05-11 10:42:37', '2023-05-11 10:42:37'),
+(49, 4, 4, '242342342', '2023-05-11 10:42:48', '2023-05-11 10:42:48'),
+(50, 4, 4, '235253', '2023-05-11 10:43:18', '2023-05-11 10:43:18'),
+(51, 4, 4, 'zxczxc', '2023-05-11 10:43:59', '2023-05-11 10:43:59'),
+(52, 4, 4, 'anh', '2023-05-11 10:44:36', '2023-05-11 10:44:36'),
+(54, 4, 4, 'zxczxc', '2023-05-11 10:46:53', '2023-05-11 10:46:53'),
+(55, 4, 4, 'em', '2023-05-11 10:47:43', '2023-05-11 10:47:43'),
+(56, 4, 4, 'anh', '2023-05-11 10:49:33', '2023-05-11 10:49:33'),
+(57, 4, 4, 'zxcz', '2023-05-11 10:50:34', '2023-05-11 10:50:34'),
+(58, 4, 4, '213123', '2023-05-11 10:52:55', '2023-05-11 10:52:55'),
+(59, 4, 4, 'ấccs', '2023-05-11 10:53:36', '2023-05-11 10:53:36'),
+(60, 4, 4, '123123', '2023-05-11 10:54:09', '2023-05-11 10:54:09'),
+(61, 4, 4, '5555', '2023-05-11 10:55:25', '2023-05-11 10:55:25'),
+(62, 4, 4, 'zxczxc', '2023-05-11 10:56:26', '2023-05-11 10:56:26'),
+(63, 4, 4, '555555', '2023-05-11 10:56:41', '2023-05-11 10:56:41'),
+(64, 4, 4, 'ấcc', '2023-05-11 10:57:51', '2023-05-11 10:57:51'),
+(65, 4, 4, '12233', '2023-05-11 10:58:25', '2023-05-11 10:58:25'),
+(66, 4, 4, 'anh', '2023-05-11 11:00:29', '2023-05-11 11:00:29'),
+(77, 5, 4, 'zxczxc', '2023-05-11 11:20:31', '2023-05-11 11:20:31'),
+(86, 5, 4, '1234', '2023-05-11 15:57:31', '2023-05-11 15:57:31'),
+(87, 5, 4, '555', '2023-05-11 15:57:57', '2023-05-11 15:57:57'),
+(88, 5, 5, '124', '2023-05-11 16:00:08', '2023-05-11 16:00:08'),
+(89, 5, 4, '1555', '2023-05-11 16:01:15', '2023-05-11 16:01:15'),
+(90, 5, 4, '1222', '2023-05-11 16:01:37', '2023-05-11 16:01:37'),
+(91, 5, 4, '123123', '2023-05-11 16:02:38', '2023-05-11 16:02:38'),
+(92, 5, 4, '155', '2023-05-11 16:02:59', '2023-05-11 16:02:59'),
+(93, 5, 4, 'ssss', '2023-05-11 16:04:42', '2023-05-11 16:04:42'),
+(94, 5, 4, '555555', '2023-05-11 16:06:03', '2023-05-11 16:06:03'),
+(95, 5, 5, '1231', '2023-05-11 16:06:11', '2023-05-11 16:06:11'),
+(96, 6, 4, '555', '2023-05-11 16:27:47', '2023-05-11 16:27:47'),
+(97, 6, 4, 'tui cũng là hacker nè', '2023-05-11 16:29:02', '2023-05-11 16:29:02'),
+(98, 6, 5, 'Ok tui là trùm hacker', '2023-05-11 16:30:08', '2023-05-11 16:30:08'),
+(99, 6, 4, 'tao là hacker mũ lỏ', '2023-05-11 16:31:19', '2023-05-11 16:31:19'),
+(100, 6, 5, 'tui chào hacker mũ lỏ', '2023-05-11 16:32:27', '2023-05-11 16:32:27'),
+(111, 7, 4, 'hacker mủ lõ', '2023-05-11 16:54:41', '2023-05-11 16:54:41');
+
+>>>>>>> dat
 -- --------------------------------------------------------
 
 --
@@ -939,6 +1032,51 @@ CREATE TABLE `post_comment_reply` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+<<<<<<< HEAD
+=======
+--
+-- Đang đổ dữ liệu cho bảng `post_comment_reply`
+--
+
+INSERT INTO `post_comment_reply` (`id`, `comment_id`, `users_id_1`, `users_id_2`, `content`, `created_at`, `updated_at`) VALUES
+(1, 1, 4, 3, 'zxczxczx', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(22, 6, 3, 4, '@quoc anh anh', '2023-05-10 16:31:46', '2023-05-10 16:31:46'),
+(23, 7, 3, 3, '@quoc em adsa', '2023-05-10 16:31:58', '2023-05-10 16:31:58'),
+(24, 8, 3, 3, '@quoc em asdad', '2023-05-10 16:32:01', '2023-05-10 16:32:01'),
+(25, 6, 4, 4, '@quoc anh asdasd', '2023-05-10 16:46:05', '2023-05-10 16:46:05'),
+(26, 1, 4, 3, ': zxczxczxc', '2023-05-10 16:52:28', '2023-05-10 16:52:28'),
+(27, 1, 4, 3, ': zxczxc', '2023-05-10 16:52:47', '2023-05-10 16:52:47'),
+(28, 1, 4, 3, 'zxczxc', '2023-05-10 16:53:07', '2023-05-10 16:53:07'),
+(29, 1, 4, 3, 'anh', '2023-05-10 16:53:19', '2023-05-10 16:53:19'),
+(30, 1, 4, 3, 'anh:em', '2023-05-10 16:53:31', '2023-05-10 16:53:31'),
+(42, 3, 4, 3, 'alo', '2023-05-10 17:10:00', '2023-05-10 17:10:00'),
+(43, 3, 4, 3, 'hmmm', '2023-05-10 17:10:05', '2023-05-10 17:10:05'),
+(48, 6, 4, 4, 'asdada', '2023-05-10 17:15:02', '2023-05-10 17:15:02'),
+(49, 7, 5, 3, 'đạt nè', '2023-05-10 17:15:57', '2023-05-10 17:15:57'),
+(50, 7, 5, 3, 'hé lô quốc em', '2023-05-10 17:16:07', '2023-05-10 17:16:07'),
+(51, 7, 4, 5, 'ok đạt', '2023-05-10 17:16:20', '2023-05-10 17:16:20'),
+(52, 8, 5, 3, 'áda', '2023-05-10 17:16:55', '2023-05-10 17:16:55'),
+(53, 7, 5, 5, 'ok', '2023-05-10 17:16:59', '2023-05-10 17:16:59'),
+(54, 7, 4, 4, 'ok', '2023-05-10 17:17:26', '2023-05-10 17:17:26'),
+(55, 7, 5, 4, 'ok', '2023-05-10 17:17:38', '2023-05-10 17:17:38'),
+(56, 1, 5, 4, 'zxczxc', '2023-05-11 07:16:39', '2023-05-11 07:16:39'),
+(62, 6, 5, 3, 'em', '2023-05-11 07:34:19', '2023-05-11 07:34:19'),
+(64, 8, 5, 3, 'asdasd', '2023-05-11 07:37:57', '2023-05-11 07:37:57'),
+(67, 30, 5, 5, 'zxvzxvzxv', '2023-05-11 10:06:37', '2023-05-11 10:06:37'),
+(68, 27, 5, 5, 'zxczxczx', '2023-05-11 10:06:40', '2023-05-11 10:06:40'),
+(77, 77, 5, 4, 'zxczxczxc', '2023-05-11 15:35:15', '2023-05-11 15:35:15'),
+(78, 77, 5, 4, 'asdasda', '2023-05-11 15:41:00', '2023-05-11 15:41:00'),
+(79, 77, 5, 4, 'xcvxcvxv', '2023-05-11 15:41:14', '2023-05-11 15:41:14'),
+(80, 77, 5, 4, 'zxczxczc', '2023-05-11 15:42:09', '2023-05-11 15:42:09'),
+(81, 77, 5, 4, 'zxczxczcz', '2023-05-11 15:42:35', '2023-05-11 15:42:35'),
+(82, 77, 5, 4, 'z213123', '2023-05-11 15:43:06', '2023-05-11 15:43:06'),
+(85, 77, 5, 5, '123', '2023-05-11 15:46:36', '2023-05-11 15:46:36'),
+(86, 77, 5, 4, '5555', '2023-05-11 15:47:04', '2023-05-11 15:47:04'),
+(87, 77, 5, 5, '124', '2023-05-11 15:48:02', '2023-05-11 15:48:02'),
+(89, 41, 5, 4, '1515', '2023-05-11 15:48:18', '2023-05-11 15:48:18'),
+(90, 100, 4, 5, 'ok hacker mủ lỏ', '2023-05-11 16:32:37', '2023-05-11 16:32:37');
+
+>>>>>>> dat
 -- --------------------------------------------------------
 
 --
@@ -958,8 +1096,19 @@ CREATE TABLE `post_favorite` (
 --
 
 INSERT INTO `post_favorite` (`id`, `post_id`, `user_id`, `created_at`, `updated_at`) VALUES
+<<<<<<< HEAD
 (33, 34, 5, '2023-05-24 14:25:38', '2023-05-24 14:25:38'),
 (34, 33, 5, '2023-05-24 16:32:22', '2023-05-24 16:32:22');
+=======
+(1, 2, 3, '2023-05-10 10:25:12', '2023-05-10 10:25:12'),
+(3, 1, 3, '2023-05-10 15:28:39', '2023-05-10 15:28:39'),
+(5, 2, 4, '2023-05-10 17:18:22', '2023-05-10 17:18:22'),
+(9, 3, 5, '2023-05-11 10:08:09', '2023-05-11 10:08:09'),
+(10, 1, 5, '2023-05-11 10:10:18', '2023-05-11 10:10:18'),
+(12, 5, 4, '2023-05-11 11:20:20', '2023-05-11 11:20:20'),
+(13, 4, 5, '2023-05-11 15:48:21', '2023-05-11 15:48:21'),
+(14, 6, 4, '2023-05-11 16:27:39', '2023-05-11 16:27:39');
+>>>>>>> dat
 
 -- --------------------------------------------------------
 
@@ -980,12 +1129,17 @@ CREATE TABLE `post_picture` (
 --
 
 INSERT INTO `post_picture` (`id`, `post_id`, `images`, `created_at`, `updated_at`) VALUES
+<<<<<<< HEAD
 (29, 32, 'kevkELvuw0ixygctPHvv.1684938157.jpg', NULL, NULL),
 (30, 33, 'nOe6z5DrffXhDWQR0wjL.1684938240.jpg', NULL, NULL),
 (31, 33, '1fREwyyYuAUOK368abNq.1684938240.jpg', NULL, NULL),
 (32, 34, 'xumOjcWPQIn8NylMS24x.1684938332.jpg', NULL, NULL),
 (33, 34, 'yfOnj9VDIscHzt9qhMzu.1684938332.jpg', NULL, NULL),
 (34, 34, 'gb3vxJgtUvbUU9ezWXUS.1684938332.jpg', NULL, NULL);
+=======
+(1, 1, 'mFI3WlrueCCmUl498uDX.1683713316.jpg', NULL, NULL),
+(2, 7, 't26GtVZQbAK1dabrOu7d.1683822836.jpg', NULL, NULL);
+>>>>>>> dat
 
 -- --------------------------------------------------------
 
@@ -1128,6 +1282,7 @@ CREATE TABLE `tours` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+<<<<<<< HEAD
 --
 -- Đang đổ dữ liệu cho bảng `tours`
 --
@@ -1141,6 +1296,8 @@ INSERT INTO `tours` (`id`, `user_id`, `vehicle_id`, `title`, `description`, `add
 (8, 3, 2, 'Miss', 'Quasi alias quia error. Distinctio doloremque possimus consequatur quis nostrum. Est porro aut eos iure commodi. Aut a esse qui.', '26389 Lera Station Apt. 556\nPort Andreanne, NV 17475', '2285 Taylor Villages Apt. 224\nRaynorville, WI 99604-2442', '2019-11-01', '1989-05-25', 381668, 'Quia facilis cupiditate qui quis iure voluptatibus ipsam. Et alias corporis nisi tempora. Et libero consequatur asperiores sed praesentium. Adipisci et iste iusto reiciendis.', 25, 2, 1, NULL, NULL),
 (9, 3, 2, 'Prof.', 'Minus et in voluptatem ipsa. Ea voluptates consequatur et est magnam. Sed ratione sint distinctio dolores minus corrupti ut autem. Numquam rerum saepe ex similique iste aut.', '10596 Asia Camp\nEast Sydni, NC 18415-6642', '8262 King Courts Suite 891\nBoganside, TN 53712', '1973-11-27', '1993-07-13', 911559, 'Nam qui sint expedita nobis eius. Quibusdam delectus suscipit ducimus soluta magnam id quia reiciendis. Rerum dolorem quia et. Numquam nulla velit sit exercitationem dolor.', 25, 2, 1, NULL, NULL);
 
+=======
+>>>>>>> dat
 -- --------------------------------------------------------
 
 --
@@ -1187,6 +1344,7 @@ CREATE TABLE `tour_evaluation` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+<<<<<<< HEAD
 --
 -- Đang đổ dữ liệu cho bảng `tour_evaluation`
 --
@@ -1200,6 +1358,8 @@ INSERT INTO `tour_evaluation` (`id`, `user_id`, `tour_id`, `rate`, `created_at`,
 (6, 3, 8, 1.00, NULL, NULL),
 (7, 3, 9, 6.00, NULL, NULL);
 
+=======
+>>>>>>> dat
 -- --------------------------------------------------------
 
 --
@@ -1230,6 +1390,7 @@ CREATE TABLE `tour_picture` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+<<<<<<< HEAD
 --
 -- Đang đổ dữ liệu cho bảng `tour_picture`
 --
@@ -1243,6 +1404,8 @@ INSERT INTO `tour_picture` (`id`, `tour_id`, `images`, `created_at`, `updated_at
 (7, 8, 'https://images.pexels.com/photos/3381105/pexels-photo-3381105.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1', NULL, NULL),
 (8, 9, 'https://images.pexels.com/photos/3432323/pexels-photo-3432323.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1', NULL, NULL);
 
+=======
+>>>>>>> dat
 -- --------------------------------------------------------
 
 --
@@ -11918,8 +12081,12 @@ INSERT INTO `users` (`id`, `role_id`, `email`, `password`, `status`, `created_at
 (4, 2, 'user@gmail.com', '$2y$10$137ZCxmc', 1, NULL, NULL),
 (5, 2, 'user1@gmail.com', '$2y$10$xZM0fLVX9HnioeFXl50fYuLjCWSYJxefY9Yk5gsv/1hgT7VUE1C/C', 1, NULL, NULL),
 (6, 2, 'user2@gmail.com', '$2y$10$fkD3EMDCQILMK6Ugrwy3p.YV1ewsPnH1HvXbfx2AWR5Dei5GX63im', 1, NULL, NULL),
+<<<<<<< HEAD
 (7, 2, 'dat@gmail.com', '$2y$10$7YZwkPdS2tZ0uABqHBh6lO0uNLpxOSb.ytSIDkuk3xeiY7I.3TJzC', 1, NULL, NULL),
 (8, 2, 'user3@gmail.com', '$2y$10$C9rNZbsc.nhhD0mGOurp.Obu1InMyCZYKZsIzpuIlydxIQlSSwgva', 1, NULL, NULL);
+=======
+(7, 2, 'dat@gmail.com', '$2y$10$7YZwkPdS2tZ0uABqHBh6lO0uNLpxOSb.ytSIDkuk3xeiY7I.3TJzC', 1, NULL, NULL);
+>>>>>>> dat
 
 -- --------------------------------------------------------
 
@@ -11989,7 +12156,11 @@ INSERT INTO `users_relationship` (`id`, `user_1_id`, `user_2_id`, `status_user_1
 (3, 5, 2, 1, 1, 'Bạn bè', '2023-05-15 12:40:03', '2023-05-15 12:40:03'),
 (4, 5, 4, 1, 1, 'Bạn bè', '2023-05-15 12:40:05', '2023-05-15 12:40:05'),
 (5, 2, 5, 1, 1, 'Bạn bè', '2023-05-15 12:40:07', '2023-05-15 12:40:07'),
+<<<<<<< HEAD
 (6, 5, 6, 1, 1, 'Bạn bè', '2023-05-24 13:10:09', '2023-05-24 13:10:09');
+=======
+(6, 2, 3, 1, 1, 'Bạn bè', '2023-05-15 12:40:10', '2023-05-15 12:40:10');
+>>>>>>> dat
 
 -- --------------------------------------------------------
 
@@ -12018,11 +12189,18 @@ CREATE TABLE `user_information` (
 
 INSERT INTO `user_information` (`id`, `user_id`, `name`, `birth_date`, `gender`, `address`, `phone`, `education`, `image`, `is_login`, `created_at`, `updated_at`) VALUES
 (1, 3, 'quoc  sa', '0000-00-00', NULL, NULL, NULL, NULL, 'default.png', 1, NULL, NULL),
+<<<<<<< HEAD
 (2, 6, 'quoc em', '2002-03-11', NULL, NULL, NULL, NULL, 'default.png', 0, NULL, '2023-05-25 03:22:35'),
 (3, 5, 'quoc dat', '2002-03-11', NULL, NULL, NULL, NULL, 'default.png', 1, NULL, NULL),
 (4, 4, 'quoc anh', '2002-03-11', NULL, NULL, NULL, NULL, 'default.png', 0, NULL, NULL),
 (5, 7, 'Đạt nè', '2002-09-11', NULL, NULL, NULL, NULL, 'default.png', 1, NULL, '2023-05-15 15:28:23'),
 (6, 8, 'quoc e', '2002-03-11', NULL, NULL, NULL, NULL, 'default.png', 0, NULL, '2023-05-24 13:09:12');
+=======
+(2, 6, 'quoc em', '2002-03-11', NULL, NULL, NULL, NULL, 'default.png', 1, NULL, '2023-05-17 06:11:20'),
+(3, 5, 'quoc dat', '2002-03-11', NULL, NULL, NULL, NULL, 'default.png', 1, NULL, NULL),
+(4, 4, 'quoc anh', '2002-03-11', NULL, NULL, NULL, NULL, 'default.png', 0, NULL, NULL),
+(5, 7, 'Đạt nè', '2002-09-11', NULL, NULL, NULL, NULL, 'default.png', 1, NULL, '2023-05-15 15:28:23');
+>>>>>>> dat
 
 -- --------------------------------------------------------
 
@@ -12038,6 +12216,7 @@ CREATE TABLE `vehicles` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
+<<<<<<< HEAD
 -- Đang đổ dữ liệu cho bảng `vehicles`
 --
 
@@ -12052,6 +12231,8 @@ INSERT INTO `vehicles` (`id`, `name`, `created_at`, `updated_at`) VALUES
 (8, 'CÁP TREO', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
 
 --
+=======
+>>>>>>> dat
 -- Chỉ mục cho các bảng đã đổ
 --
 
@@ -12289,19 +12470,31 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT cho bảng `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
+<<<<<<< HEAD
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
+=======
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+>>>>>>> dat
 
 --
 -- AUTO_INCREMENT cho bảng `posts`
 --
 ALTER TABLE `posts`
+<<<<<<< HEAD
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+=======
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+>>>>>>> dat
 
 --
 -- AUTO_INCREMENT cho bảng `post_comments`
 --
 ALTER TABLE `post_comments`
+<<<<<<< HEAD
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=148;
+=======
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=112;
+>>>>>>> dat
 
 --
 -- AUTO_INCREMENT cho bảng `post_comment_reply`
@@ -12313,13 +12506,21 @@ ALTER TABLE `post_comment_reply`
 -- AUTO_INCREMENT cho bảng `post_favorite`
 --
 ALTER TABLE `post_favorite`
+<<<<<<< HEAD
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+=======
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+>>>>>>> dat
 
 --
 -- AUTO_INCREMENT cho bảng `post_picture`
 --
 ALTER TABLE `post_picture`
+<<<<<<< HEAD
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+=======
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+>>>>>>> dat
 
 --
 -- AUTO_INCREMENT cho bảng `roles`
@@ -12337,7 +12538,11 @@ ALTER TABLE `status_booking`
 -- AUTO_INCREMENT cho bảng `tours`
 --
 ALTER TABLE `tours`
+<<<<<<< HEAD
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+=======
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+>>>>>>> dat
 
 --
 -- AUTO_INCREMENT cho bảng `tour_booking`
@@ -12355,7 +12560,11 @@ ALTER TABLE `tour_comments`
 -- AUTO_INCREMENT cho bảng `tour_evaluation`
 --
 ALTER TABLE `tour_evaluation`
+<<<<<<< HEAD
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+=======
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+>>>>>>> dat
 
 --
 -- AUTO_INCREMENT cho bảng `tour_pay`
@@ -12367,7 +12576,11 @@ ALTER TABLE `tour_pay`
 -- AUTO_INCREMENT cho bảng `tour_picture`
 --
 ALTER TABLE `tour_picture`
+<<<<<<< HEAD
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+=======
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+>>>>>>> dat
 
 --
 -- AUTO_INCREMENT cho bảng `type_travel`
@@ -12379,7 +12592,11 @@ ALTER TABLE `type_travel`
 -- AUTO_INCREMENT cho bảng `users`
 --
 ALTER TABLE `users`
+<<<<<<< HEAD
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+=======
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+>>>>>>> dat
 
 --
 -- AUTO_INCREMENT cho bảng `users_connect`
@@ -12397,13 +12614,21 @@ ALTER TABLE `users_relationship`
 -- AUTO_INCREMENT cho bảng `user_information`
 --
 ALTER TABLE `user_information`
+<<<<<<< HEAD
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+=======
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+>>>>>>> dat
 
 --
 -- AUTO_INCREMENT cho bảng `vehicles`
 --
 ALTER TABLE `vehicles`
+<<<<<<< HEAD
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+=======
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+>>>>>>> dat
 
 --
 -- Các ràng buộc cho các bảng đã đổ

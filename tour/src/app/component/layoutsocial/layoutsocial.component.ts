@@ -28,7 +28,7 @@ export class LayoutsocialComponent {
     }
   }
 
-  //get messenger with friend 
+  //get messenger with friend
   public messenger(user_id:any){
      let token = sessionStorage.getItem("token_user");
 
@@ -45,20 +45,20 @@ export class LayoutsocialComponent {
             {
               this.user.messenger.shift();
             }
-            
+
             this.user.messenger.push(p.data);
             this.searchFriend = "";
             this.getFriends();
           }
       });
-    
+
       const collectionInstance = collection(this.firestore, 'messenger');
       const q = query(collectionInstance, orderBy("stt", "asc") );
-      this.user.messages = collectionData(q, {idField: 'id'});  
+      this.user.messages = collectionData(q, {idField: 'id'});
     }
   }
-  
-  //search list name friend 
+
+  //search list name friend
   searchFriends(){
     this.getFriends(this.searchFriend);
   }

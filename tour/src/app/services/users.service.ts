@@ -34,7 +34,6 @@ export class UsersService {
   logout(token:string){
     let headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
     let urlApi = `${this.api}logout`;
-    console.log(urlApi);
     return this.http.get<any>(urlApi, {headers});
   }
 
@@ -54,7 +53,7 @@ export class UsersService {
 
     return this.http.get<any>(urlApi, {headers});
   }
-  
+
   //send message to friend
   sendMessenger(user_friend:any, chat_user:string ,token:string):Observable<any>{
     let headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);

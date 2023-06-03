@@ -58,7 +58,7 @@ export class BookTourComponent {
     this.router.queryParams.subscribe((params:any) => {
         // Use the params object to access query parameters
         this.tour_id = params.id;
-    });  
+    });
 
     let data = {"user_name": user_name, "phone": phone, "email": email, "amount_crew": amount_crew, "description": description, "tour_id": this.tour_id, "category_pay_id" : this.pay_id};
 

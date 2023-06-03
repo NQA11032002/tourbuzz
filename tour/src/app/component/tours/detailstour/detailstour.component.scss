@@ -17,7 +17,7 @@
     {
         display: flex;
         align-items: center;
-        i 
+        i
         {
             width: 15px;
             flex-shrink: 1;
@@ -50,7 +50,7 @@
     }
     .details_img{
         display: flex;
-        
+
         .details_img-item{
             padding: 0;
             img{
@@ -75,10 +75,10 @@
                 padding-right: 10px;
                 font-size: 14px;
                 line-height: 2.2;
-            }   
+            }
         }
     }
-    
+
     .details_service-title{
         padding-top: 30px;
 
@@ -142,19 +142,19 @@
         {
             overflow-y: hidden;
             transform-origin: top;
-            height: 300px;            
+            height: 300px;
             transform-origin: top;
             transition: all 0.25s linear;
 
             .details_reviews-infor{
                 margin-top: 15px;
                 border-bottom: 1px solid #f2f2f2;
-    
+
                 .details_reviews-infor-container{
                     display: grid;
                     grid-template-columns: 60px auto;
                     grid-template-rows: 20px auto;
-    
+
                 }
                 .details_reviews-infor-img{
                     grid-row-start: 1;
@@ -167,7 +167,7 @@
                 }
                 .details_reviews-infor-name{
                     font-weight: 600;
-                    span 
+                    span
                     {
                         font-size: 14px;
                     }
@@ -179,12 +179,12 @@
                         font-size: 13px;
                         color: #555863;
                     }
-                } 
+                }
                 .details_reviews-infor-desc{
                     color: var(--color-content);
                     font-size: 16px;
                     padding-top: 5px;
-                    p 
+                    p
                     {
                         font-size: 14px;
                     }
@@ -193,7 +193,7 @@
             .details_reviews-infor:last-child
             {
                 border-bottom: unset !important;
-                
+
             }
         }
 
@@ -225,34 +225,31 @@
         .price{
             display: grid;
             grid-template-columns: 25px auto;
-
         }
         .transport{
             display: grid;
             grid-template-columns: 25px auto;
-         
+
         }
         .time-start{
             display: grid;
             grid-template-columns: 25px auto;
-
         }
         .time-end{
             display: grid;
             grid-template-columns: 25px auto;
-
         }
         .email{
             display: grid;
             grid-template-columns: 25px auto;
-   
+
         }
         .phone{
             display: grid;
             grid-template-columns: 25px auto;
 
         }
-        
+
     }
     .btn_comments
     {

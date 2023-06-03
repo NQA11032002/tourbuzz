@@ -95,7 +95,7 @@ export class HomeComponent {
   previousSlide(){
     let lists = document.querySelectorAll('.item');
     let slides = document.getElementById('slide');
-    
+
     (slides as HTMLElement).prepend(lists[lists.length - 1]);
   }
 }

@@ -1,5 +1,5 @@
-.full-infor{
-    padding: 20px;
+
+  .full-infor{
     .full-infor-img{
         img{
             width: 6rem;
@@ -12,7 +12,20 @@
         span{
             font-weight: 500;
             font-size: 20px;
-            
+        }
+
+        .connect-friend
+        {
+          background-color: #E4E6EB;
+          border: unset;
+          color: #050505;
+          font-size: 13px;
+          font-weight: 500;
+          width: 100px;
+          i
+          {
+            margin-right: 10px;
+          }
         }
     }
     .full-infor-changed{
@@ -23,11 +36,11 @@
         }
         i{
             margin-left: 7px;
-            
+
         }
         span{
             margin-left: 5px;
-        } 
+        }
 
     }
     .full-infor-addfriend{
@@ -54,128 +67,38 @@
         grid-row-end: 3;
     }
   }
-  
+
   .full-infor-desc{
     .full-infor-desc-title{
         border-bottom: 1px solid var(--color-border);
-        margin-top: 30px;
+        margin-top: 10px;
         h5{
             margin: 0;
             padding: 10px 0 2px 0;
-            font-size: 18px;
-            font-weight: 500;
+            font-size: 16px;
             display: inline-block;
             cursor: pointer;
+
+            a{
+                text-decoration: none;
+                color: var(--color-main);
+            }
         }
         .about{
+            padding-right: 20px;
+            border: none;
+        }
+        .about_border{
+            border-bottom: 2px solid black;
+        }
+        .post_border{
             border-bottom: 2px solid black;
         }
         .post{
             padding-left: 20px;
+            border: none;
         }
-        .image{
-            padding-left: 20px;
-        }
-    }
-    .full-infor-desc-biography{
-        .full-infor-desc-biography-title{
-            margin: 0;
-            padding: 10px 0;
-        }
-        span{
-            color: var(--color-content);
-            font-weight: 300;   
-            font-size: 15px;
-        }
-    }
-    .full-infor-desc-location{
-        display: grid;
-        grid-template-columns: 25px auto;
-        i{
-            text-align: center;
-            padding-top: 5px;
-            color: red;
-        }
-        span{
-            padding: 5px 0;
-            color: var(--color-content);
-            font-weight: 300;   
-            font-size: 15px;
-        }
-        
-    }
-    .full-infor-desc-membersince{
-        display: grid;
-        grid-template-columns: 25px auto;
-        span{
-            padding: 5px 0;
-            color: var(--color-content);
-            font-weight: 300;   
-            font-size: 15px;
-            
-        } 
-        i{
-            text-align: center;
-            padding-top: 6px;
-            color: rgb(89, 89, 210);
-        }
-    }
-    .full-infor-desc-social-list{
-        .full-infor-desc-social-list-title{
-            margin: 0;
-            padding: 10px 0;
-            
-        }
-        .full-infor-desc-social-item{
-            display: grid;
-            grid-template-columns: 25px auto;
-            color: var(--color-content);
-            span{
-                padding: 5px 0;
-                font-weight: 300;   
-                font-size: 15px;
-            }
-            .facebook{
-                text-align: center;
-                padding-top: 6px;
-                color: rgb(24, 119, 242);
-            }
-            .ins{
-                text-align: center;
-                padding-top: 6px;
-                color: rgb(225, 48, 108);
-            }
-            .twt{
-                text-align: center;
-                padding-top: 6px;
-                color: rgb(29, 161, 242);
-            }
-        }
-    }
-
-    .full-infor-edu{
-        
-        .full-infor-edu-title{
-            margin: 0;
-            padding: 10px 0;
-        }
-        .full-infor-edu-item{
-            display: grid;
-            grid-template-columns: 25px auto;
-            .edu{
-                color: var(--color-content);
-                font-weight: 300;   
-                font-size: 15px;
-            }
-            i{
-                text-align: center;
-                
-                color: teal;
-            }
-       }         
     }
   }
 
-  .full-body{
-    min-height: 500px;
-  }
+

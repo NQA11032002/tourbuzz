@@ -12,7 +12,7 @@ export class SocialService {
   public comments_reply: Observable<any> = new Observable<any>;
   public comments_total: Array<any> = [];
   public vehicles: Array<any> = [];
-  
+
   constructor(private http: HttpClient) { }
 
   private api = "http://localhost:8000/api/social/";
@@ -82,7 +82,7 @@ export class SocialService {
   deleteComment(id:any, token:string):Observable<any>{
     let headers = new HttpHeaders().set('Authorization', 'Bearer ' + token).set('Content-Type', 'application/json');
     let urlApi = `${this.api}comments/${id}`;
-  
+
     return this.http.delete<any>(urlApi, {headers});
   }
 
@@ -91,7 +91,7 @@ export class SocialService {
   {
     let headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
     let urlApi = `${this.api}comment-reply`;
-  
+
     return this.http.get<Comments>(urlApi, {headers});
   }
 

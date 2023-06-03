@@ -91,9 +91,6 @@ class ToursController extends Controller
                 'title' => 'get list tours',
                 'data' => $tours,
                 'status' => 200,
-                'sql' => $sql,
-                'address_end' => $request->address_end,
-                "address_start" => $request->address_start,
                 'detail' => 'get list tours success'
             ];
         } else {
@@ -101,10 +98,6 @@ class ToursController extends Controller
                 'title' => 'get list tours',
                 'data' => [],
                 'status' => 503,
-                'sql' => $sql,
-                'address_end' => $request->address_end,
-                "address_start" => $request->address_start,
-                'date' => date('Y-m-d'),
                 'detail' => 'get list tours error'
             ];
         }

@@ -44,7 +44,7 @@ export class TourSearchComponent {
     this.getTours();
   }
 
-  //select order by 
+  //select order by
   onSelectOrderByChange(event:any){
     const selectedValue = event.target.value;
     this.orderBy = selectedValue;
