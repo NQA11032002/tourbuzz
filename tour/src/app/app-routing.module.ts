@@ -21,10 +21,10 @@ const routes: Routes = [
   {path:'login', component: LoginComponent},
   {path:'register', component: RegisterComponent},
   {path:'forgot-password', component: ForgotpassComponent},
-  {path:'profile', component: AboutInforComponent},
+  {path:'profile/:id_user', component: AboutInforComponent},
   {path:'historybooking', component: HistorybookingTourComponent},
   {path:'historyposttour', component: HistorypostTourComponent},
-  {path:'profile/post', component: PostPersonalComponent},
+  {path:'profile/post/:id_user', component: PostPersonalComponent},
   {path:'**', component: HomeComponent},
 
 ];

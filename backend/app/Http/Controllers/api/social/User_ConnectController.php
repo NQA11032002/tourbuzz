@@ -106,4 +106,29 @@ class User_ConnectController extends Controller
 
         return $response;
     }
+
+    // Check Friend
+    public function checkFriend(Request $request)
+    {
+        $user_1_id = Auth::user()->user_information->id;
+
+        $friends = users_relationship::where('user_1_id', $user_1_id)->where('user_2_id', $request->user_2_id)->get();
+        
+        if ($friends->count() > 0) {
+            $response = [
+                'title' => 'You are friend',
+                'status' => 200,
+                'data' => $friends,
+                'detail' => 'Friend'
+            ];
+        } else {
+            $response = [
+                'title' => 'You are not friend yet',
+                'status' => 203,
+                'data' => $friends,
+                'detail' => 'Not Friend yet'
+            ];
+        }
+        return $response;
+    }
 }

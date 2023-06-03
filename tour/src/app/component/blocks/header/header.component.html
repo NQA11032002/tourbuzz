@@ -29,7 +29,7 @@
       </button>
 
       <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-        <li><a class="dropdown-item" [routerLink]="['/profile']" routerLinkActive="router-link-active"><i
+        <li><a class="dropdown-item" *ngIf="id_user" [routerLink]="['/profile',id_user]" routerLinkActive="router-link-active"><i
               class="fa-solid fa-user"></i>
             Profile</a>
         </li>

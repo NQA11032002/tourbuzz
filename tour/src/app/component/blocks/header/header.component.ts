@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 export class HeaderComponent{
   public name:string = "";
   public image:string = "";
+  public id_user: string = "";
 
   public constructor(private user:UsersService, private router:Router){
     let data = sessionStorage.getItem("user_information");
@@ -21,6 +22,10 @@ export class HeaderComponent{
       this.name = obj.name;
       this.image = obj.image;
     }
+  }
+
+  ngOnInit() {
+    this.getID();
   }
 
   logout(){
@@ -36,6 +41,13 @@ export class HeaderComponent{
           this.router.navigate(['/', 'login'])
         }
       });
+    }
+  }
+
+  getID(){
+    let id = sessionStorage.getItem("id");
+    if(id){
+      this.id_user = id;
     }
   }
 }

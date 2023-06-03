@@ -1,7 +1,7 @@
 <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#changedinfomodal">
     Launch demo modal
   </button> -->
-  <form action="" method="post" (ngSubmit)="saveChange()">
+  <form [formGroup]="changeInforForm" action="" method="post" (ngSubmit)="changeInfor()">
       <div class="modal fade" id="changedinfomodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable">
           <div class="modal-content">
@@ -23,11 +23,11 @@
                         
                         <div class="change_infor-name">
                             <span>Full name</span>
-                            <input class="name" [(ngModel)]="name" name="name">
+                            <input class="name" [(ngModel)]="name" name="name" formControlName="name" [value]="changeInforForm.controls['name'].value">
                         </div>
                         <div class="change_infor-gender">
                             <span>Gender</span>
-                            <select name="" id="" [(ngModel)]="gender" name="gender">
+                            <select name="" id="" [(ngModel)]="gender" name="gender" formControlName="gender" [value]="changeInforForm.controls['gender'].value">
                                 <option value="1">Nam</option>
                                 <option value="0">Nữ</option>
                             </select>
@@ -35,11 +35,11 @@
                         
                         <div class="change_infor-phonenumber">
                             <span>Phone number</span>
-                            <input type="text" class="phone" [(ngModel)]="phonenumber" name="phonenumber">
+                            <input type="text" class="phone" [(ngModel)]="phonenumber" name="phonenumber" formControlName="phone" [value]="changeInforForm.controls['phone'].value">
                         </div>
                         <div class="change_infor-dateofbirth">
                             <span>Date of birth</span>
-                            <input type="date" class="dob" [(ngModel)]="date" name="date">
+                            <input type="date" class="dob" [(ngModel)]="date" name="date" formControlName="birth_date" [value]="changeInforForm.controls['birth_date'].value">
                         </div>
     
                         <div class="change_infor-biography">
@@ -49,7 +49,7 @@
                             </div>
                             <div class="change_infor-biography-location">
                                 <span>Address</span>
-                                <input type="text" value="Binh Dinh, Viet Nam" [(ngModel)]="address" name="address">
+                                <input type="text" value="Binh Dinh, Viet Nam" [(ngModel)]="address" name="address" formControlName="address" [value]="changeInforForm.controls['address'].value">
                             </div>
                         </div>
                         <div class="change_infor-social">
@@ -68,7 +68,7 @@
                         </div>
                         <div class="change_infor-edu">
                             <span>School</span>
-                            <input type="text" [(ngModel)]="education" name="education">
+                            <input type="text" [(ngModel)]="education" name="education" formControlName="education" [value]="changeInforForm.controls['education'].value">
                         </div>
                     </div>
                 </div>

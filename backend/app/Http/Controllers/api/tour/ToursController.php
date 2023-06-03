@@ -76,10 +76,10 @@ class ToursController extends Controller
 
     public function toursPopular()
     {
-        $tours = DB::table("tours as t")->join('tour_evaluation as e', 'e.tour_id', '=', 't.id')
+        $tours = DB::table("tours as t")
             ->join('tour_picture as p', 'p.tour_id', '=', 't.id')
             ->selectRaw("t.id, t.title, t.description, t.address_start, t.address_end, t.date_start, t.date_end, t.price_tour, t.amount_customer_maximum, t.amount_customer_present, t.status, p.images")
-            ->groupBy('t.id')->orderByDesc(DB::raw("sum(e.rate)"))->limit(6)->get();
+            ->groupBy('t.id')->limit(6)->get();
 
         if ($tours->count() > 0) {
             $response = [

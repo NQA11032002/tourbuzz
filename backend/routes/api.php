@@ -63,7 +63,12 @@ Route::prefix('social')->name('social.')->middleware('auth:sanctum')->group(func
         Route::get('/', [User_ConnectController::class, "getFriends"])->name('getFriends');
         Route::get('/{user_id}', [User_ConnectController::class, "getMessenger"])->name('getMessenger');
         Route::post('/', [User_ConnectController::class, "insertMessenger"])->name('insertMessenger');
+
     });
+    Route::prefix('profile')->name('profile.')->group(function () {
+        Route::get('/', [User_ConnectController::class, "checkFriend"])->name('checkFriend');
+    });
+
 
     Route::get('vehicles', [VehiclesController::class, "index"])->name('vehicles');
 });

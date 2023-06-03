@@ -23,6 +23,9 @@ class PostsController extends Controller
     public function index($keyWork = null)
     {
         $posts = posts::whereHas('user_information', function ($query) use ($keyWork) {
+            // if ($query->id && $query->id != 0) {
+            //     $query = $query->where('id', $query->id);
+            // }
             if (!empty($keyWork)) {
                 $query->where('name', 'like', '%' . $keyWork . '%')->orWhere('address', 'like', '%' . $keyWork  . '%');
             }

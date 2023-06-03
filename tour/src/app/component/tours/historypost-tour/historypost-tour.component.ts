@@ -43,6 +43,5 @@ export class HistorypostTourComponent {
     }else{
       console.log("Hủy xóa");
     }
-    
   }
 }

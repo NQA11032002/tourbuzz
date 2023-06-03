@@ -30,8 +30,17 @@ export class SocialService {
     let headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
     let urlApi = `${this.api}posts`;
 
-    return this.http.get<any>(urlApi, { headers });
+    return this.http.get<any>(urlApi, { headers});
   }
+
+  getPostsPersonal(token: string, data:any) {
+    let headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
+    let urlApi = `${this.api}posts`;
+
+    return this.http.get<any>(urlApi, { headers: headers, params: data });
+  }
+
+
 
   //get list tour
   getTours(token: string) {
