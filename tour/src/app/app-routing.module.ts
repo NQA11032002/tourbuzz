@@ -9,18 +9,23 @@ import { HomeComponent } from './component/home/home.component';
 import { FullinfoComponent } from './component/social/fullinfo/fullinfo.component';
 import { ResetpassComponent } from './component/social/resetpass/resetpass.component';
 import { DetailstourComponent } from './component/tours/detailstour/detailstour.component';
+import { AboutInforComponent } from './component/social/about-infor/about-infor.component';
+import { HistorybookingTourComponent } from './component/tours/historybooking-tour/historybooking-tour.component';
+import { HistorypostTourComponent } from './component/tours/historypost-tour/historypost-tour.component';
+import { PostPersonalComponent } from './component/social/post-personal/post-personal.component';
 
 const routes: Routes = [
   {path:'', component: HomeComponent},
   {path:'social', component: LayoutsocialComponent},
   {path:'tour', component: LayouttourComponent},
-  {path:'tour-detail', component: DetailstourComponent},
   {path:'home', component: HomeComponent},
   {path:'login', component: LoginComponent},
   {path:'register', component: RegisterComponent},
   {path:'forgot-password', component: ForgotpassComponent},
-  {path:'profile', component: FullinfoComponent},
-
+  {path:'profile', component: AboutInforComponent},
+  {path:'historybooking', component: HistorybookingTourComponent},
+  {path:'historyposttour', component: HistorypostTourComponent},
+  {path:'profile/post', component: PostPersonalComponent},
   {path:'**', component: HomeComponent},
 
 ];

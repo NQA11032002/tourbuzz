@@ -17,7 +17,7 @@ class Tour_pictureSeeder extends Seeder
         $fake  = Faker\Factory::create();
 
         DB::table('tour_picture')->insert([
-            "tour_id" => 9,
+            "tour_id" => 21,
             "images" => $fake->imageUrl(),
         ]);
     }

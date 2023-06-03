@@ -1,13 +1,10 @@
-<app-header></app-header>
-<app-fullinfo></app-fullinfo>
-<section class="container">
-    <div class="posts">
+  <section class="posts">
+    <div class="post">
       <div class="post_item">
         <div>
           <div class="post_top d-flex align-items-center">
-            <img src="assets/images/avatar/avatar.jfif" alt="" data-bs-toggle="modal"
-              data-bs-target="#shortinformodal">
-  
+            <img src="assets/images/avatar/avatar.jfif" alt="" data-bs-toggle="modal" data-bs-target="#shortinformodal">
+
             <div class="post_top--info">
               <h5 class="post_name">Ho Quang Dat</h5>
               <p class="post_time">20/3/2023
@@ -15,61 +12,61 @@
               </p>
             </div>
           </div>
-  
+
           <div class="post_content">
             <h5 class="title">Tiêu đề: Du lịch cùng tôi</h5>
             <p class="content">Đi du lịch Quy Nhơn tận hưởng hè cực chill</p>
           </div>
-  
+
           <div class="post_images d-grid overflow-auto">
             <div class="post_image">
               <img src="assets/images/avatar/avatar.jfif" alt="">
             </div>
           </div>
-  
+
           <div class="likes mt-2 d-flex flex-column">
             <div class="d-flex">
               <span>
                 <i class="fa-solid fa-heart favorite"></i>
               </span>
-  
+
               <span class="comment">
                 <i class="fa-regular fa-comment"></i>
               </span>
             </div>
-  
+
             <p>100 lượt thích</p>
           </div>
-  
+
           <input type="checkbox" name="" hidden class="show_comment">
           <label class="amount-comment show-comment">Xem tất cả bình luận</label>
           <label class="amount-comment collapse-comment">Thu gọn bình luận</label>
-  
+
           <div class="comments d-grid">
             <div class="comment">
-              <div class="comment_item d-flex align-items-center" >
+              <div class="comment_item d-flex align-items-center">
                 <img src="assets/images/social/Dat.jpg" alt="">
 
                 <div class="comment__item--content">
                   <p class="reply_content"><b>Son Nguyen:</b> DMM
                   </p>
-  
+
                   <div class="d-flex reply_container align-items-center">
                     <span class="reply_time">23/11/2023</span>
                     <button class="reply_choose" value="">Trả
                       lời</button>
                     <button class="btn btn-popup btn-delete">Xóa</button>
                   </div>
-  
+
                   <div class="comment comment_reply">
                     <div class="comment_item d-flex align-items-center">
                       <img src="assets/images/social/Dat.jpg" alt="">
-  
+
                       <div class="comment__item--content">
                         <p class="reply_content"><b>@Son Nguyen:</b> </p>
                         <a class="reply_comment d-flex">@Quoc Em <p class="reply_comment--content">
-                           Haha</p></a>
-  
+                            Haha</p></a>
+
                         <div class="d-flex reply_container align-items-center">
                           <span class="reply_time">23/11/2023</span>
                           <button class="reply_choose" value="">Trả
@@ -82,15 +79,107 @@
               </div>
             </div>
           </div>
-  
+
           <form action="" class="d-flex form-control form-comment">
             <input type="text" class=" name-input__comment">
-            <input formControlName="content" type="text" class="comment_insert w-100 shadow-none" placeholder="Thêm bình luận">
-  
+            <input formControlName="content" type="text" class="comment_insert w-100 shadow-none"
+              placeholder="Thêm bình luận">
+
+            <button type="submit" class="btn btn-comment shadow-none">Đăng</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="post">
+      <div class="post_item">
+        <div>
+          <div class="post_top d-flex align-items-center">
+            <img src="assets/images/avatar/avatar.jfif" alt="" data-bs-toggle="modal" data-bs-target="#shortinformodal">
+
+            <div class="post_top--info">
+              <h5 class="post_name">Ho Quang Dat</h5>
+              <p class="post_time">20/3/2023
+                <i class="fa-solid fa-earth-asia"></i>
+              </p>
+            </div>
+          </div>
+
+          <div class="post_content">
+            <h5 class="title">Tiêu đề: Du lịch cùng tôi</h5>
+            <p class="content">Đi du lịch Quy Nhơn tận hưởng hè cực chill</p>
+          </div>
+
+          <div class="post_images d-grid overflow-auto">
+            <div class="post_image">
+              <img src="assets/images/avatar/avatar.jfif" alt="">
+            </div>
+          </div>
+
+          <div class="likes mt-2 d-flex flex-column">
+            <div class="d-flex">
+              <span>
+                <i class="fa-solid fa-heart favorite"></i>
+              </span>
+
+              <span class="comment">
+                <i class="fa-regular fa-comment"></i>
+              </span>
+            </div>
+
+            <p>100 lượt thích</p>
+          </div>
+
+          <input type="checkbox" name="" hidden class="show_comment">
+          <label class="amount-comment show-comment">Xem tất cả bình luận</label>
+          <label class="amount-comment collapse-comment">Thu gọn bình luận</label>
+
+          <div class="comments d-grid">
+            <div class="comment">
+              <div class="comment_item d-flex align-items-center">
+                <img src="assets/images/social/Dat.jpg" alt="">
+
+                <div class="comment__item--content">
+                  <p class="reply_content"><b>Son Nguyen:</b> DMM
+                  </p>
+
+                  <div class="d-flex reply_container align-items-center">
+                    <span class="reply_time">23/11/2023</span>
+                    <button class="reply_choose" value="">Trả
+                      lời</button>
+                    <button class="btn btn-popup btn-delete">Xóa</button>
+                  </div>
+
+                  <div class="comment comment_reply">
+                    <div class="comment_item d-flex align-items-center">
+                      <img src="assets/images/social/Dat.jpg" alt="">
+
+                      <div class="comment__item--content">
+                        <p class="reply_content"><b>@Son Nguyen:</b> </p>
+                        <a class="reply_comment d-flex">@Quoc Em <p class="reply_comment--content">
+                            Haha</p></a>
+
+                        <div class="d-flex reply_container align-items-center">
+                          <span class="reply_time">23/11/2023</span>
+                          <button class="reply_choose" value="">Trả
+                            lời</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <form action="" class="d-flex form-control form-comment">
+            <input type="text" class=" name-input__comment">
+            <input formControlName="content" type="text" class="comment_insert w-100 shadow-none"
+              placeholder="Thêm bình luận">
+
             <button type="submit" class="btn btn-comment shadow-none">Đăng</button>
           </form>
         </div>
       </div>
     </div>
   </section>
-  

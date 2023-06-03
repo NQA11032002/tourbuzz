@@ -1,5 +1,5 @@
-.full-infor{
-    padding: 20px;
+
+  .full-infor{
     .full-infor-img{
         img{
             width: 6rem;
@@ -12,7 +12,20 @@
         span{
             font-weight: 500;
             font-size: 20px;
+        }
 
+        .connect-friend
+        {
+          background-color: #E4E6EB;
+          border: unset;
+          color: #050505;
+          font-size: 13px;
+          font-weight: 500;
+          width: 100px;
+          i
+          {
+            margin-right: 10px;
+          }
         }
     }
     .full-infor-changed{
@@ -58,23 +71,32 @@
   .full-infor-desc{
     .full-infor-desc-title{
         border-bottom: 1px solid var(--color-border);
-        margin-top: 30px;
+        margin-top: 10px;
         h5{
             margin: 0;
             padding: 10px 0 2px 0;
-            font-size: 18px;
-            font-weight: 500;
+            font-size: 16px;
             display: inline-block;
             cursor: pointer;
+
+            a{
+                text-decoration: none;
+                color: var(--color-main);
+            }
         }
         .about{
+            padding-right: 20px;
+            border: none;
+        }
+        .about_border{
+            border-bottom: 2px solid black;
+        }
+        .post_border{
             border-bottom: 2px solid black;
         }
         .post{
             padding-left: 20px;
-        }
-        .image{
-            padding-left: 20px;
+            border: none;
         }
     }
     .full-infor-desc-biography{
@@ -176,6 +198,4 @@
     }
   }
 
-  .full-body{
-    min-height: 500px;
-  }
+
