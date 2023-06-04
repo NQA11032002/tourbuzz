@@ -1,6 +1,7 @@
+
 .modal-content{
     overflow-y: auto;
-    
+
 }
 .modal-body{
     input{
@@ -146,18 +147,27 @@
                     text-align: left;
                 }
         }
-    
+
     }
 }
 .modal-footer{
     .btn{
         background-color: var(--color-btn-main);
         color: var(--color-main);
-        border: none;   
+        border: none;
     }
     .btn-save{
         background-color: var(--color-main);
         color: var(--color-btn-main);
     }
-    
+
+}
+
+.modal-dialog-scrollable
+{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) !important;
+  height: unset !important;
 }

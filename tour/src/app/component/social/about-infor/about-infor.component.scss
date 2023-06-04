@@ -19,15 +19,19 @@
 
   .full-body
   {
-    display: grid;
-    grid-template-columns: 35% calc(65% - 15px);
+    display: flex;
     border-radius: 10px;
     margin-top: 20px;
     column-gap: 15px;
 
     .full-infor-desc{
+      width: 390px;
+      position: relative;
+
       .full-infor-left
       {
+        position: sticky;
+        top: 0;
         display: grid;
         grid-template-rows: 1fr;
 
@@ -37,10 +41,9 @@
           box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
           border-radius: 10px;
           padding: 15px;
-
-          .full-infor-desc-biography-title{
-            font-weight: bold;
-            font-size: 19px;
+          .full-infor-desc-biography-title
+          {
+            margin-bottom: unset;
             .amount-images
             {
               font-weight: 500;
@@ -88,16 +91,7 @@
           .full-infor-title
           {
             margin-bottom: 20px;
-            .full-infor-desc-biography-title
-            {
-              margin-bottom: unset;
-              .amount-images
-              {
-                font-weight: 500;
-                font-size: 14px;
-                color: gray;
-              }
-            }
+
 
             .link-primary
             {

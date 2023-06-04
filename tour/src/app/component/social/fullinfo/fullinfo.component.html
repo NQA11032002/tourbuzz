@@ -10,7 +10,8 @@
         <div class="full-infor-name">
           <h4 class="name fw-bold">Nguyễn Quốc Anh</h4>
 
-          <button class="btn btn-danger connect-friend"><i class="fa-solid fa-user-group"></i>Friend</button>
+          <button class="btn btn-danger connect-friend shadow-none"><i
+              class="fa-solid fa-user-group"></i>Friend</button>
         </div>
 
         <div class="full-infor-changed">
@@ -18,7 +19,6 @@
             <i class="fa-solid fa-pencil"></i>
             <span class="changed-infor">Thay đổi thông tin</span>
           </a>
-
         </div>
         <!-- <div class="full-infor-addfriend">
               icon ket ban
@@ -29,14 +29,12 @@
       </div>
       <div class="full-infor-desc">
         <div class="full-infor-desc-title">
-          <h5 [class]="isProfilePath() == true ? 'about_border' : 'about'"><a href="" [routerLink]="['/profile']"
-              routerLinkActive="router-link-active">About</a></h5>
-          <h5 [class]="isProfilePath() == false ? 'post_border' : 'post'"><a href="" [routerLink]="['/profile/post']"
-              routerLinkActive="router-link-active">Description</a></h5>
-          <h5 [class]="isProfilePath() == false ? 'post_border' : 'post'"><a href="" [routerLink]="['/profile/post']"
-              routerLinkActive="router-link-active">Friends</a></h5>
-          <h5 [class]="isProfilePath() == false ? 'post_border' : 'post'"><a href="" [routerLink]="['/profile/post']"
-              routerLinkActive="router-link-active">Images</a></h5>
+          <h5 [class]="isProfilePath() === '/profile' ? 'about_border border-native' : 'about'"><a href=""
+              [routerLink]="['/profile']" routerLinkActive="router-link-active">About</a></h5>
+          <h5 [class]="isProfilePath() === '/profile/friends' ? 'friends_border border-native' : 'friend'"><a href=""
+              [routerLink]=" ['/profile/friends']" routerLinkActive="router-link-active">Friends</a></h5>
+          <h5 [class]="isProfilePath() === '/profile/images' ? 'images_border border-native' : 'images'"><a href=""
+              [routerLink]="['/profile/images']" routerLinkActive="router-link-active">Images</a></h5>
         </div>
       </div>
 

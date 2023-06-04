@@ -33,6 +33,8 @@ import { HistorybookingTourComponent } from './component/tours/historybooking-to
 import { HistorypostTourComponent } from './component/tours/historypost-tour/historypost-tour.component';
 import { AboutInforComponent } from './component/social/about-infor/about-infor.component';
 import { PostPersonalComponent } from './component/social/post-personal/post-personal.component';
+import { FriendsComponent } from './component/social/friends/friends.component';
+import { ImagesComponent } from './component/social/images/images.component';
 
 @NgModule({
   declarations: [
@@ -62,6 +64,8 @@ import { PostPersonalComponent } from './component/social/post-personal/post-per
     HistorypostTourComponent,
     AboutInforComponent,
     PostPersonalComponent,
+    FriendsComponent,
+    ImagesComponent,
   ],
   imports: [
     BrowserModule,

@@ -23,15 +23,13 @@ export class FullinfoComponent {
     if(token != null){
       this.userinfor.getUserInformation(id,token).subscribe(p=>{
         this.data = p.data;
-        console.log(this.data);
       })
     }
   }
 
-  isProfilePath(): boolean {
+  isProfilePath(): string {
     const path = this.location.path();
-    if(path === '/profile')
-    return true;
-      return false;
+
+    return path;
   }
 }
