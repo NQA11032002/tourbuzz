@@ -87,9 +87,6 @@ export class DetailstourComponent implements OnInit{
       this.tour.getDetail(this.tour_id, this.user_token).subscribe(p => {
         if(p.status === 200){
           this.tour.tour_detail = p.data;
-
-          console.log(this.tour.tour_detail);
-
         }
       })
     }

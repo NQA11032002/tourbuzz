@@ -30,11 +30,13 @@
       <div class="full-infor-desc">
         <div class="full-infor-desc-title">
           <h5 [class]="isProfilePath() === '/profile' ? 'about_border border-native' : 'about'"><a href=""
-              [routerLink]="['/profile']" routerLinkActive="router-link-active">About</a></h5>
+              [routerLink]="['/profile']" [queryParams]="{id:id}" routerLinkActive="router-link-active">About</a></h5>
           <h5 [class]="isProfilePath() === '/profile/friends' ? 'friends_border border-native' : 'friend'"><a href=""
-              [routerLink]=" ['/profile/friends']" routerLinkActive="router-link-active">Friends</a></h5>
+              [routerLink]=" ['/profile/friends']" [queryParams]="{id:id}"
+              routerLinkActive="router-link-active">Friends</a></h5>
           <h5 [class]="isProfilePath() === '/profile/images' ? 'images_border border-native' : 'images'"><a href=""
-              [routerLink]="['/profile/images']" routerLinkActive="router-link-active">Images</a></h5>
+              [routerLink]="['/profile/images']" [queryParams]="{id:id}"
+              routerLinkActive="router-link-active">Images</a></h5>
         </div>
       </div>
 

@@ -24,13 +24,13 @@
     <div class="dropdown d-flex">
       <button class="btn btn-secondary dropdown-toggle btn-logined shadow-none" type="button" id="dropdownMenuLink"
         data-bs-toggle="dropdown" aria-expanded="false">
-        <img src="assets/images/avatar/{{ this.image }}" alt="">
-        {{ this.name }}
+        <img src="assets/images/avatar/{{ user_info.image }}" alt="">
+        {{ user_info.image }}
       </button>
 
       <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-        <li><a class="dropdown-item" [routerLink]="['/profile']" routerLinkActive="router-link-active"><i
-              class="fa-solid fa-user"></i>
+        <li><a class="dropdown-item" [routerLink]="['/profile']" [queryParams]="{id:user_info.id}"
+            routerLinkActive="router-link-active"><i class="fa-solid fa-user"></i>
             Profile</a>
         </li>
         <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#resetpass"><i class="fa-solid fa-pen"></i>

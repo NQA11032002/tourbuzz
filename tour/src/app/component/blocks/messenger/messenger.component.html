@@ -1,14 +1,15 @@
 <div class="messengers d-flex position-fixed bottom-0">
   <div class="messenger" *ngFor="let item of user.messenger">
     <div class="messenger_header d-flex justify-content-between">
-      <div class="messenger_left d-flex">
+      <a class="messenger_left d-flex text-decoration-none" [routerLink]=" ['/profile']" [queryParams]="{id:item.id}"
+        routerLinkActive="router-link-active">
         <img class="messenger_avatar" src="assets/images/avatar/{{item.image}}" alt="">
         <div class="messenger_info">
           <h6 class="messenger_name">{{item.name}}</h6>
           <p class="messenger_status" *ngIf="item.is_login === 1">Đang hoạt động</p>
           <p class="messenger_status" *ngIf="item.is_login === 0">Người dùng hiện không có mặt</p>
         </div>
-      </div>
+      </a>
       <div class="messenger_window d-flex">
         <i class="fa-solid fa-xmark close_messenger" (click)="closeMessenger(item.id)"></i>
       </div>
