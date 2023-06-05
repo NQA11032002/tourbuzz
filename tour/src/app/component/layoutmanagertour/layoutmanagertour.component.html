@@ -1,0 +1,20 @@
+<section class="manager-tour">
+  <div class="sidebar">
+    <ul class="">
+      <h3 class="nav-title text-center p-2 border-bottom">Manager Tour</h3>
+      <a [routerLink]="['/manager/addition']" class="nav-link"><i class="fa-regular fa-pen-to-square"></i> Addtion
+        tour</a>
+      <a [routerLink]="['/manager/tours']" class="nav-link"><i class="fa-solid fa-signs-post"></i> List
+        tour</a>
+      <a [routerLink]="['/manager/booking']" class="nav-link"><i class="fa-regular fa-clock"></i> History booking</a>
+    </ul>
+  </div>
+
+  <div class="content">
+    <app-historypost-tour *ngIf="url === 'tours'"></app-historypost-tour>
+    <app-post-tour *ngIf="url === 'addition'"></app-post-tour>
+    <app-historybooking-tour *ngIf="url === 'booking'"></app-historybooking-tour>
+  </div>
+</section>
+
+<app-footer></app-footer>

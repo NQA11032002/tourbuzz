@@ -47,7 +47,6 @@ export class NavbarTourComponent implements OnInit {
     })
   }
 
-
   //get list tours
   getTours(){
     let data = {"price" : this.priceTour, "address_start" : this.address_start, "address_end" : this.address_end, "date_start": this.date_start, "date_end": this.date_end, "vehicles" : this.cbVehicles.join(',')};

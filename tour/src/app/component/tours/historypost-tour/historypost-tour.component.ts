@@ -8,7 +8,7 @@ import { HistorypostTourService } from 'src/app/services/historypost-tour.servic
 })
 export class HistorypostTourComponent {
   public data : any = null;
-  
+
   constructor(private historyposttour: HistorypostTourService){}
 
   ngOnInit(): void {
@@ -19,9 +19,10 @@ export class HistorypostTourComponent {
     let token = sessionStorage.getItem("token_user");
     let id = sessionStorage.getItem("id");
     let data = {
-      'id_user' : id
+      'id_user' : id,
+      "list" : "",
     };
-    console.log(data);
+
     if(token != null){
       this.historyposttour.getHistoryPostTour(token,data).subscribe(p => {
         this.data = p.data;
@@ -43,6 +44,6 @@ export class HistorypostTourComponent {
     }else{
       console.log("Hủy xóa");
     }
-    
+
   }
 }

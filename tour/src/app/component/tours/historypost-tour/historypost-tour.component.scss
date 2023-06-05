@@ -1,5 +1,5 @@
 .container_historybooking-tour{
-    padding-top: 100px;
+  height: 820px;
     // margin-left: 50%;
     // transform: translateX(-50%);
     .historybooking-tour{
@@ -7,31 +7,101 @@
             text-align: center;
             padding-bottom: 20px;
             margin: 0;
+
+            h3
+            {
+              padding-top: 15px;
+            }
         }
         .hbt-content{
-            padding: 0 40px;
             .hbt-table{
                 .thead-dark{
                     background-color: #212529;
                     color: white;
                     tr{
                         th{
-                            width: 150px;
+                            font-size: 15px;
                         }
                     }
                 }
                 tbody{
                     tr{
                         background: white;
+                        font-size: 14px;
+                        .date
+                        {
+                          width: 100px;
+                        }
+                        .description
+                        {
+                          display: -webkit-box;
+                          -webkit-line-clamp: 1;
+                          -webkit-box-orient: vertical;
+                          overflow: hidden;
+                          text-overflow: ellipsis;
+                          word-break: break-word;
+                          width: 250px;
+                        }
                         a{
                             text-decoration: none;
+                            font-size: 14px;
+                            color: #03001C;
+                            i
+                            {
+                              padding-right: 5px;
+                            }
+                        }
+                        .detail
+                        {
+                          color: #19A7CE;
+                          margin-right: 15px;
+                        }
+                        .edit
+                        {
+                          margin-right: 15px;
+                          color: #DC0000;
+                        }
+                        .users
+                        {
+                          color: #573391;
                         }
                         button{
                             border: none;
-                            color: white;
-                            background-color: #5bb8fe;
-                            width: 65px;
                             border-radius: 5px;
+                            font-size: 14px;
+                            font-weight: 400;
+                            padding: unset;
+                            i
+                            {
+                              padding-right: 5px;
+                            }
+                        }
+                        button:hover, a:hover
+                        {
+                          opacity: 80%;
+                        }
+
+                        .status
+                        {
+                          width: 120px;
+                          font-size: 13px;
+                          font-weight: bold;
+                          margin: unset;
+                          text-align: left;
+                        }
+                        .status-secondary
+                        {
+                          color: #F99417;
+                        }
+
+                        .status-success
+                        {
+                          color: #24b817;
+                        }
+
+                        .status-danger
+                        {
+                          color: #D21312;
                         }
                     }
                 }

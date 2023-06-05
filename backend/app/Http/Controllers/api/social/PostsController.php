@@ -20,13 +20,17 @@ class PostsController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index($keyWork = null)
+    public function index($keyWork = null, $id_user = null)
     {
-        $posts = posts::whereHas('user_information', function ($query) use ($keyWork) {
+        $posts = posts::whereHas('user_information', function ($query) use ($keyWork, $id_user) {
             if (!empty($keyWork)) {
                 $query->where('name', 'like', '%' . $keyWork . '%')->orWhere('address', 'like', '%' . $keyWork  . '%');
             }
-        })->orderByDesc('id')->with('post_picture')->with('post_comments')->with('user_information')->with('post_favorite')->with('type_travel')->with('address_travel')->get();
+
+            if (!empty($id_user)) {
+                $query->where('id', $id_user);
+            }
+        })->where('status', '!=', 2)->orderByDesc('id')->with('post_picture')->with('post_comments')->with('user_information')->with('post_favorite')->with('type_travel')->with('address_travel')->get();
 
         if ($posts->count() > 0) {
             $response = [

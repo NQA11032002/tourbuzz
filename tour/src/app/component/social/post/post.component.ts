@@ -23,7 +23,7 @@ export class PostComponent{
   public count = 0;
 
   constructor(public social:SocialService, private fb:FormBuilder, private firestore: Firestore, private userService:UsersService){
-    
+
     this.commentForm = this.fb.group({
       content: ['', Validators.required],
     })
@@ -62,7 +62,7 @@ export class PostComponent{
 
   //post is favorite by user
   isFavorite(favorites:any) : boolean {
-    
+
     if(favorites.length > 0)
     {
       //post favorite by user is return true
@@ -70,7 +70,7 @@ export class PostComponent{
         if(favorites[i].user_id === this.user_id.id){
 
           return true;
-        }  
+        }
       }
     }
 
@@ -87,7 +87,7 @@ export class PostComponent{
         //filter list item post
         this.posts.filter(item => {
 
-          //get item post has id = post like or unlike 
+          //get item post has id = post like or unlike
           if(item.id == post.id)
           {
             //if status check of response api return = "like" post is favorite, or check = "unlike" post is remove out list post_favorite
@@ -107,7 +107,7 @@ export class PostComponent{
   //get list comment of the post
   getListComments(){
     // let token = sessionStorage.getItem("token_user");
-    
+
     // if(token != null){
     //   this.social.getComments(token).subscribe((p:any) => {
     //     this.comments = p.data;
@@ -124,7 +124,7 @@ export class PostComponent{
   //get list comment of the post
   getListCommentsReply(){
     // let token = sessionStorage.getItem("token_user");
-  
+
     // if(token != null){
     //   this.social.getCommentsReply(token).subscribe((p:any) => {
     //     this.commentsReply = p.data;
@@ -136,7 +136,7 @@ export class PostComponent{
     this.social.comments_reply = collectionData(q, {idField : "id"});
   }
 
-  
+
   //comment the post
   async comment(post:any)
   {
@@ -162,7 +162,7 @@ export class PostComponent{
         addDoc(collectionInstance, data).then(() => { })
         .catch((error) => { })
 
-      
+
         //insert comment into mysql purpose get total comment of the post
         // this.social.comment(post.id, content, token).subscribe(p => {
         //   if(p.status === 200){
@@ -171,7 +171,7 @@ export class PostComponent{
         // })
 
         //add comments total of the post to firebase
- 
+
 
         this.resetComment();
       }
@@ -228,7 +228,7 @@ export class PostComponent{
     //   })
     // }
 
-    
+
     const docInstance = doc(this.firestore, 'comments', id);
     deleteDoc(docInstance).then(() => {
       console.log("comment deleted");
@@ -247,7 +247,7 @@ export class PostComponent{
       (inputComment as HTMLElement).style.display = "block";
       (inputComment as HTMLInputElement).value = "@" + user.name + ": ";
       (inputComment as HTMLElement).style.width = (inputComment as HTMLInputElement).value.length + "ch";
-      
+
       inputComment?.addEventListener("keyup", (p) => {
         let value = (p.target as HTMLInputElement).value;
         if(value.length === 0)

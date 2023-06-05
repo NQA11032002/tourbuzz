@@ -1,3 +1,5 @@
+<app-header></app-header>
+
 <section>
   <div class="container_home">
     <div class=" position-relative container_slide">
@@ -199,21 +201,30 @@
       <div class="home_popular-list">
         <div class="home_popular-item" *ngFor="let item of tours">
           <div class="home_popular-item-img">
-            <img src="{{ item.images }}" alt="">
+            <img src="assets/images/tours/{{ item.images }}" alt="">
           </div>
           <div class="home_popular-item-title">
             <span>{{ item.title }}</span>
           </div>
+          <div class="home_popular-item-date">
+            <span>{{item.date_start}} to {{ item.date_end }} </span>
+          </div>
+
           <div class="home_popular-item-price">
-            <span>{{ item.price_tour  | currency }}</span>
+            <span>{{ item.price_tour | number: '1.0-0' }} VNĐ</span>
           </div>
           <div class="home_popular-item-desc">
             <span>{{ item.description }}</span>
           </div>
           <div class="home_popular-item-btn">
-            <a class="text-decoration-none" [routerLink]="['/tour-detail']" [queryParams]="{id: item.id}"
+            <a [routerLink]="['/tour-detail']" [queryParams]="{id:item.id}" class="home btn shadow-none"
               routerLinkActive="router-link-active">Views
               Details</a>
+          </div>
+          <div class="home_popular-item-amount">
+            <i [class]="checkAmount(item.amount_customer_present,item.amount_customer_maximum) ? 'iconred' : 'icongreen'"
+              class="fa-solid fa-circle"></i>
+            <span>{{item.amount_customer_present}} / {{ item.amount_customer_maximum}} </span>
           </div>
         </div>
       </div>

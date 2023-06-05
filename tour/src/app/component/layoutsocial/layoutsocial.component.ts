@@ -10,11 +10,23 @@ import { delay } from 'rxjs';
 })
 export class LayoutsocialComponent {
   public searchFriend:string = "";
-
+  public userLogin:any;
   public friends:Array<any> = new Array<any>();
 
-  constructor(private user:UsersService, private firestore:Firestore){
+  constructor(public user:UsersService, private firestore:Firestore){
     this.getFriends();
+  }
+
+  ngOnInit(){
+    const collectionInstance = collection(this.firestore, 'messenger');
+    const q = query(collectionInstance, orderBy("stt", "asc") );
+    this.user.messages = collectionData(q, {idField: 'id'});
+
+    let userLogin = sessionStorage.getItem("user_information");
+
+    if(userLogin != null){
+      this.userLogin = JSON.parse(userLogin);
+    }
   }
 
   //get list friend of the user login
@@ -51,10 +63,6 @@ export class LayoutsocialComponent {
             this.getFriends();
           }
       });
-
-      const collectionInstance = collection(this.firestore, 'messenger');
-      const q = query(collectionInstance, orderBy("stt", "asc") );
-      this.user.messages = collectionData(q, {idField: 'id'});
     }
   }
 

@@ -10,6 +10,7 @@ use DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 class ToursController extends Controller
 {
@@ -82,7 +83,10 @@ class ToursController extends Controller
         if (!empty($request->vehicles)) {
             $tours = $tours->whereIn('vehicle_id', $arr);
         }
-        $sql = $tours->toSql();
+
+        if (!empty($request->list)) {
+            $tours = $tours->where('status', 1);
+        }
 
         $tours = $tours->with('tour_picture')->with('tour_comments')->with('vehicles')->with('user_information')->get();
 
@@ -91,6 +95,8 @@ class ToursController extends Controller
                 'title' => 'get list tours',
                 'data' => $tours,
                 'status' => 200,
+                'address_end' => $request->address_end,
+                "address_start" => $request->address_start,
                 'detail' => 'get list tours success'
             ];
         } else {
@@ -98,6 +104,9 @@ class ToursController extends Controller
                 'title' => 'get list tours',
                 'data' => [],
                 'status' => 503,
+                'address_end' => $request->address_end,
+                "address_start" => $request->address_start,
+                'date' => date('Y-m-d'),
                 'detail' => 'get list tours error'
             ];
         }
@@ -130,8 +139,6 @@ class ToursController extends Controller
 
         return $response;
     }
-
-
     /**
      * Show the form for creating a new resource.
      */
@@ -175,7 +182,7 @@ class ToursController extends Controller
         }
 
         $tour = DB::table('tours')->insertGetId([
-            "user_id" => Auth::user()->id,
+            "user_id" => Auth::user()->user_information->id,
             "vehicle_id" => $request->vehicle_id,
             "title" => $request->title,
             "description" => $request->description,
@@ -191,23 +198,10 @@ class ToursController extends Controller
         ]);
 
         if ($tour) {
-            if ($request->images) {
-                $images = explode(",", $request->images);
-
-                if (count($images) > 0) {
-                    foreach ($images as $image) {
-                        tour_picture::insert([
-                            "tour_id" => $tour,
-                            "images" => $image,
-                        ]);
-                    }
-                }
-            }
-
-
             $response = [
                 'title' => 'Create new a tour',
                 'status' => 200,
+                'data' => $tour,
                 'detail' => 'The tour was create success'
             ];
         } else {
@@ -358,6 +352,50 @@ class ToursController extends Controller
                 'detail' => 'error'
             ];
         }
+
+        return $response;
+    }
+
+    public function uploadImages(Request $request)
+    {
+        $file = $request->file('file');
+
+        //upload file
+        //lấy ra file
+        $file = $request->file;
+
+        //lấy ra đuôi file
+        $ext = $file->extension();
+
+        //đổi tên file gán với đuôi
+        $file_name = Str::random(20) . '.' . time() . '.' . $ext;
+
+        //get current url disk backend
+        $urlDisk = public_path('assets');
+
+        //replace url disk current backend change to url disk tour
+        $directory = str_replace("backend\\public\\assets", "tour/src/assets/images/tours", $urlDisk);
+        $directory = str_replace("\\", "/", $directory);
+
+        //di chuyển file vào thư mực avatar
+        $file->move($directory, $file_name);
+
+        $image = $file_name;
+
+        //images will create with a new post if user is chooses images
+        if ($request->post !== null) {
+            // Lưu ảnh với tourId đã lấy được
+            DB::table('tour_picture')->insert([
+                "tour_id" => $request->post,
+                "images" => $image,
+            ]);
+        }
+
+        $response = [
+            'title' => 'create a new post',
+            'status' => 200,
+            'detail' => 'post was create with the images',
+        ];
 
         return $response;
     }

@@ -12,6 +12,8 @@ import { HistorypostTourComponent } from './component/tours/historypost-tour/his
 import { FriendsComponent } from './component/social/friends/friends.component';
 import { DetailstourComponent } from './component/tours/detailstour/detailstour.component';
 import { ImagesComponent } from './component/social/images/images.component';
+import { PostTourComponent } from './component/tours/post-tour/post-tour.component';
+import { LayoutmanagertourComponent } from './component/layoutmanagertour/layoutmanagertour.component';
 
 const routes: Routes = [
   {path:'', component: HomeComponent},
@@ -27,6 +29,11 @@ const routes: Routes = [
   {path:'profile/images', component: ImagesComponent},
   {path:'historybooking', component: HistorybookingTourComponent},
   {path:'historyposttour', component: HistorypostTourComponent},
+  {path:'postTour',component: PostTourComponent},
+  {path:'manager/tours', component: LayoutmanagertourComponent},
+  {path:'manager/addition', component: LayoutmanagertourComponent},
+  {path:'manager/booking', component: LayoutmanagertourComponent},
+
   {path:'**', component: HomeComponent},
 
 ];

@@ -1,0 +1,41 @@
+.manager-tour
+{
+  display: flex;
+  justify-content: space-between;
+  margin: 80px auto;
+  max-width: 80%;
+  height: auto;
+
+  .sidebar
+  {
+    width: 100%;
+    max-width: 20%;
+    background-color: #ffff;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    border-radius: 5px;
+
+    ul
+    {
+      margin: unset;
+      padding: unset;
+      a
+      {
+        color: #65676B;
+      }
+    }
+
+    .nav-title
+    {
+      font-size: 20px;
+    }
+  }
+
+  .content
+  {
+    width: 100%;
+    max-width: calc(80% - 20px);
+    background-color: #ffff;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    border-radius: 5px;
+  }
+}

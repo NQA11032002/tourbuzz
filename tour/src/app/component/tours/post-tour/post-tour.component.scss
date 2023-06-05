@@ -2,11 +2,122 @@
     resize: none;
 }
 
+#description{
+    resize: none;
+}
+
 label{
-    margin-top: 10px;
+  margin-top: 10px;
+  font-size: 14px;
+  font-weight: 600;
 }
 
 .btn{
     background-color: #212529;
     color: #f7f9fa;
+}
+
+.wp-content {
+    .content {
+        width: 100%;
+        margin: 0 auto;
+        padding-top: 10px;
+        border-radius: 5px;
+
+        .flex-two-column
+        {
+          div
+          {
+            width: calc(50% - 10px);
+          }
+        }
+
+        .form-control, .form-select
+        {
+          font-size: 13px;
+        }
+
+        .images
+        {
+          .icon_post
+          {
+            label
+            {
+              cursor: grab;
+              color: #050505;
+              font-weight: 500;
+              i
+              {
+                margin-right: 10px;
+              }
+            }
+          }
+
+          .create_content--image
+          {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            .image_item
+            {
+              height: 370px;
+              flex: 1;
+              overflow: hidden;
+              img
+              {
+                border-radius: 5px;
+                width: 100%;
+                height: 350px;
+                object-fit: cover;
+              }
+              .icon-close-image
+              {
+                border-radius: 50%;
+                background-color: #F2F3F5;
+                border: 1px solid #828282;
+                right: 5px;
+                top: 5px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 30px;
+                height: 30px;
+                color: #8D949E;
+                cursor: grab;
+                font-size: 15px;
+              }
+              .icon-close-image:hover
+              {
+                opacity: 80%;
+              }
+            }
+          }
+        }
+
+        .btn-cancel
+        {
+          margin-right: 10px;
+          background-color: #EBEDF0;
+          color: #303338;
+          font-size: 15px;
+          font-weight: 500;
+        }
+
+        .confirm_tour
+        {
+          margin: 20px 0;
+          width: 120px;
+          margin-left: auto;
+          font-size: 15px;
+        }
+
+        .btn:hover
+        {
+          opacity: 80%;
+        }
+    }
+
+    .sidebar_fill {
+        height: auto;
+    }
 }

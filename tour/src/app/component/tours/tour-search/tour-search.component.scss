@@ -30,7 +30,6 @@
         }
     }
 
-
     .tour-items-holder
     {
       margin-top: 25px;
@@ -61,6 +60,7 @@
           .thumbnail-tour img{
             object-fit: cover;
             height: 100%;
+            width: 100%;
             transition: all 1.3s ease;
           }
 
@@ -73,7 +73,7 @@
                 flex: 1;
                   .tour-title {
                       a {
-                          font-weight: 800;
+                          font-weight: 500;
                           color: #191b1f;
                       }
                   }

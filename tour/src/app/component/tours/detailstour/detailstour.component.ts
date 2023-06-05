@@ -67,13 +67,11 @@ export class DetailstourComponent implements OnInit{
       //set session information
       let user =  sessionStorage.getItem("user_information");
       let token = sessionStorage.getItem("token_user");
-
       if(user != null)
       {
         let objUser = JSON.parse(user);
         this.user_information = objUser;
       }
-
       if(token != null){
         this.user_token = token;
       }
@@ -138,7 +136,6 @@ export class DetailstourComponent implements OnInit{
 
       let more = document.querySelector('.btn_more');
       (more as HTMLElement).style.display = "block";
-
       let less = document.querySelector('.btn_less');
       (less as HTMLElement).style.display = "none";
     }

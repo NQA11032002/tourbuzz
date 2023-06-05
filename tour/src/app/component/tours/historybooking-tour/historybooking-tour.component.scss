@@ -1,5 +1,6 @@
 .container_historybooking-tour{
-    padding-top: 100px;
+  height: 820px;
+
     // margin-left: 50%;
     // transform: translateX(-50%);
     .historybooking-tour{
@@ -7,9 +8,14 @@
             text-align: center;
             padding-bottom: 20px;
             margin: 0;
+
+            h3
+            {
+              padding-top: 20px;
+            }
         }
         .hbt-content{
-            padding: 0 40px;
+
             .hbt-table{
                 .thead-dark{
                     background-color: #212529;
@@ -17,22 +23,68 @@
                     tr{
                         th{
                             width: 150px;
+                            font-size: 14px;
                         }
                     }
                 }
                 tbody{
                     tr{
+                      font-size: 14px;
                         background: white;
                         a{
-                            text-decoration: none;
-                        }
-                        button{
-                            border: none;
-                            color: white;
-                            background-color: #5bb8fe;
-                            width: 65px;
-                            border-radius: 5px;
-                        }
+                          text-decoration: none;
+                          font-size: 14px;
+                          color: #03001C;
+                          i
+                          {
+                            padding-right: 5px;
+                          }
+                      }
+                      p
+                      {
+                        margin: unset;
+                      }
+                      .price
+                      {
+                        width: 100px;
+                      }
+                      .payment
+                      {
+                        color: #5463FF;
+                      }
+                      .status
+                      {
+                        width: 90px;
+                      }
+                      .status_success
+                      {
+                        color: #03C988;
+                      }
+                      .status_booking
+                      {
+                        color: #FF5B00;
+                      }
+                      .detail
+                      {
+                        color: #19A7CE;
+                        margin-right: 10px;
+                      }
+                      button{
+                          border: none;
+                          border-radius: 5px;
+                          font-size: 14px;
+                          font-weight: 400;
+                          padding: unset;
+                          color: #DC0000;
+                          i
+                          {
+                            padding-right: 5px;
+                          }
+                      }
+                      button:hover, a:hover
+                      {
+                        opacity: 80%;
+                      }
                     }
                 }
             }

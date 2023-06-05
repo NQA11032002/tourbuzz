@@ -35,6 +35,7 @@ import { AboutInforComponent } from './component/social/about-infor/about-infor.
 import { PostPersonalComponent } from './component/social/post-personal/post-personal.component';
 import { FriendsComponent } from './component/social/friends/friends.component';
 import { ImagesComponent } from './component/social/images/images.component';
+import { LayoutmanagertourComponent } from './component/layoutmanagertour/layoutmanagertour.component';
 
 @NgModule({
   declarations: [
@@ -66,6 +67,7 @@ import { ImagesComponent } from './component/social/images/images.component';
     PostPersonalComponent,
     FriendsComponent,
     ImagesComponent,
+    LayoutmanagertourComponent,
   ],
   imports: [
     BrowserModule,

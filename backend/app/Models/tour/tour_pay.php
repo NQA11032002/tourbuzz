@@ -19,7 +19,6 @@ class tour_pay extends Model
         return $this->belongsTo(tour_booking::class, "id", "tour_booking_id");
     }
 
-
     public function categories_pay()
     {
         return $this->hasOne(categories_pay::class, "id", "category_pay_id");

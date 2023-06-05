@@ -53,7 +53,7 @@
         }
     }
     .full-infor-container{
-        color: var(--color-content);
+        color: #6c757d;
         font-size: 14px;
     }
   }
@@ -69,6 +69,13 @@
   }
 
   .full-infor-desc{
+    .history_pagination_social
+    {
+      margin-bottom: unset;
+      font-size: 12px;
+      color: #6c757d;
+      margin-left: 5px;
+    }
     .full-infor-desc-title{
         margin-top: 20px;
         h5{

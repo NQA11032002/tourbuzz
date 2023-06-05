@@ -28,8 +28,9 @@
               <i class="status-info fa-solid fa-circle position-absolute bottom-0 right-0 status_offine"
                 *ngIf="item.user_information.is_login === 0"></i>
             </div>
-            <div class="navbar-infor-name">
-              <span>{{ item.user_information.name }}</span>
+            <div class="navbar-infor-name d-flex flex-column">
+              <p class="name-mess">{{ item.user_information.name }}</p>
+
             </div>
           </div>
         </div>

@@ -1,37 +1,109 @@
-<div class="post_Tour">
-  <h4 class="text-center">Post Tour</h4>
-  <form action="" class="mx-3">
-    <label for="title">Tên tour</label>
-    <input type="text" class="form-control" name="title" id="title">
-    <label for="description">Mô tả</label>
-    <textarea name="description" class="form-control" id="description" cols="30" rows="10"></textarea>
-    <label for="startDay">Ngày khởi Hành </label>
-    <input type="date" class="form-control" name="startDay" id="startDay">
-    <label for="endDay">Ngày kết thúc </label>
-    <input type="date" class="form-control" name="endDay" id="endDay">
-    <label for="price">Giá Tour </label>
-    <input type="number" class="form-control" name="price" id="price">
-    <label for="Detail_price">Giá Chi tiết </label>
-    <input type="text" class="form-control" name="Detail_price" id="Detail_price">
-    <label for="amount_customer">Số Lượng khách tối đa </label>
-    <input type="text" class="form-control" name="amount_customer" id="amount_customer">
-    <label for="des-img">Hình ảnh mô tả </label>
-    <input type="file" class="form-control" name="des-img" id="des-img">
-    <label for="vehical">Phương tiện</label>
-    <select id="vehical" class="form-select">
-      <option value="">xe máy</option>
-      <option value="">xe đạp</option>
-      <option value="">máy bay phản lực</option>
-      <option value="">UFO</option>
-    </select>
-    <div class="img-veheical mt-3">
-      <img src="https://www.collinsdictionary.com/images/full/motorbike_69587620.jpg" class="img-thumbnail w-25" alt="">
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQDR1C1ouoBT3eDkgPC5Hz_kFevoDEvlkF4TQ&usqp=CAU"
-        class="img-thumbnail w-25" alt="">
-      <img src="https://bizweb.dktcdn.net/thumb/1024x1024/100/324/597/products/42710433-2309-408e-9e6f-07076f363e22.jpg"
-        class="img-thumbnail w-25" alt="">
-      <img src="https://d.newsweek.com/en/full/2225092/ufo.jpg" class="img-thumbnail w-25" alt="">
+<div class="wp-content">
+  <div class="content">
+    <div class="post_Tour">
+      <h4 class="text-center">Post Tour</h4>
+
+      <form action="" method="POST" class="mx-3" (ngSubmit)="submitPostTour()">
+        <div class="images">
+          <label for="des_img">Hình ảnh mô tả </label>
+          <div class="icon_post">
+            <label for="post_image"><i class="fa-solid fa-image"></i>Choose images</label>
+            <input formControlName="images" multiple (change)="onFileSelected($event)" type="file" name="post_image"
+              id="post_image" hidden>
+          </div>
+
+          <div class="create_content--image">
+            <div class="image_item position-relative " *ngFor="let image of imageUrl">
+              <i class="fa-solid fa-xmark position-absolute icon-close-image text-red" (click)="deleteImage(image)"></i>
+              <img [src]="image" *ngIf="imageUrl" src="" alt="" class="border">
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <label for="title">Tên tour</label>
+          <input type="text" class="form-control border shadow-none" [(ngModel)]="title" name="title" id="title">
+        </div>
+
+        <div>
+          <label for="description">Mô tả</label>
+          <textarea name="description" class="form-control border shadow-none" [(ngModel)]="description"
+            id="description" cols="30" rows="10"></textarea>
+        </div>
+
+        <div class="d-flex justify-content-between flex-two-column">
+          <div>
+            <label for="startDay">Địa điểm bắt đầu</label>
+            <select id="address_start" [(ngModel)]="address_start" name="address_start"
+              class="form-select border shadow-none border shadow-none">
+              <option *ngFor="let item of data" value="{{item.matp}}">{{item.name}}</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="tour">Địa điểm đến</label>
+            <select id="address_end" [(ngModel)]="address_end" name="address_end"
+              class="form-select border shadow-none">
+              <option *ngFor="let item of data" value="{{item.matp}}">{{item.name}}</option>
+            </select>
+          </div>
+        </div>
+
+
+        <div class="d-flex justify-content-between flex-two-column">
+          <div>
+            <label for="address_start">Ngày khởi Hành </label>
+            <input type="date" class="form-control border shadow-none" [(ngModel)]="date_start" name="date_start"
+              id="date_start">
+          </div>
+
+          <div>
+            <label for="endDay">Ngày kết thúc </label>
+            <input type="date" class="form-control border shadow-none" [(ngModel)]="date_end" name="date_end"
+              id="date_end">
+          </div>
+        </div>
+
+        <div>
+          <label for="vehical">Phương tiện</label>
+          <select id="vehical" class="form-select shadow-none border" name="vehicle" [(ngModel)]="vehicle">
+            <option *ngFor="let item of vehicles" value="{{item.id}}">{{item.name}}</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="price">Giá Tour </label>
+          <input type="number" class="form-control border shadow-none" [(ngModel)]="price_tour" name="price_tour"
+            id="price_tour">
+        </div>
+
+        <div>
+          <label for="Detail_price">Giá Chi tiết </label>
+          <textarea rows="10" class="form-control border shadow-none" [(ngModel)]="detail_price_tour"
+            name="detail_price_tour" id="detail_price_tour">
+            </textarea>
+        </div>
+
+        <div class="d-flex justify-content-between flex-two-column">
+          <div>
+            <label for="amount_customer">Số Lượng khách tối đa </label>
+            <input type="number" class="form-control border shadow-none" [(ngModel)]="amount_customer_maximum"
+              name="amount_customer_maximum" id="amount_customer_maximum">
+          </div>
+
+          <div>
+            <label for="amount_customer">Số Lượng khách Hiện tại </label>
+            <input disabled="" type="number" class="form-control border shadow-none"
+              [(ngModel)]="amount_customer_present" name="amount_customer_present" id="amount_customer_present">
+          </div>
+        </div>
+
+        <div class="d-flex align-items-center justify-content-end">
+          <a [routerLink]="['/tour']" class="btn btn-cancel">Cancel</a>
+          <div class="d-flex justify-content-center shadow-none"><input type="submit" class="btn btn-dark confirm_tour"
+              value="Confirm"></div>
+        </div>
+      </form>
     </div>
-    <div class="d-flex justify-content-center"><input type="submit" class="btn w-50 my-3" value="submit"></div>
-  </form>
+  </div>
 </div>

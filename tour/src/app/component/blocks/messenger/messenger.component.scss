@@ -66,11 +66,11 @@
     .messenger_content
     {
       overflow-y: auto;
+
       .messenger_user_2
       {
-        margin: 10px 0;
-        max-width: 250px;
-        width: auto;
+        margin: 5px 0;
+        max-width: fit-content;
         margin-right: auto;
 
         .messenger_user_2--avatar
@@ -80,10 +80,10 @@
           width: 35px;
           object-fit: cover;
           border-radius: 50%;
+          margin-bottom: auto;
         }
         .messenger_user_2--content
         {
-          flex: 1;
           margin-left: 10px;
           border: 1px solid var(--color-border);
           padding: 10px;
@@ -91,15 +91,18 @@
           margin-bottom: unset;
           font-size: 14px;
           cursor: default;
+          width: 200px;
+          word-wrap: break-word;
         }
       }
 
       .messenger_user_1
       {
-        margin: 10px 0;
-        max-width: 215px;
-        width: auto;
+        margin: 5px 0;
+        max-width: fit-content;
+        width: 250px;
         margin-left: auto;
+
         .messenger_user_1--content
         {
           background-color: #efefef;
@@ -109,6 +112,7 @@
           margin-bottom: unset;
           cursor: default;
           margin-right: 10px;
+          word-wrap: break-word;
         }
       }
     }

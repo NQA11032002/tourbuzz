@@ -33,7 +33,7 @@ class Tour_bookingController extends Controller
             $bookings = $bookings->where('status_booking_id', $request->status_booking_id);
         }
 
-        $bookings = $bookings->with('status_booking')->with('tour_pay')->with('tours')->with('user_information')->paginate(10);
+        $bookings = $bookings->with('tour_pay')->with('tours')->paginate(10);
 
         if ($bookings->count() > 0) {
             $response = [
@@ -89,7 +89,7 @@ class Tour_bookingController extends Controller
             "email" => $request->email,
             "amount_crew" => $request->amount_crew,
             "description" => $request->description,
-            "status_booking" => "đặt tour thành công",
+            "status_booking" => "chờ duyệt",
         ]);
 
         if ($booking) {

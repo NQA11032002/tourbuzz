@@ -43,26 +43,33 @@ class AuthController extends Controller
         ];
 
         $checkLogin = Auth::attempt($arr);
-        if ($checkLogin) {
+        $user = Auth::user();
+
+        if ($checkLogin && $user->role_id == 2) {
             if (auth('sanctum')->check()) {
                 auth()->user()->tokens()->delete();
             }
 
-            $user = Auth::user();
+            if ($user->status != 0) {
+                //update status is login
+                $user_update = user_information::where('user_id', $user->id)->first();
+                $user_update->is_login = 1;
+                $user_update->save();
 
-            //update status is login
-            $user_update = user_information::where('user_id', $user->id)->first();
-            $user_update->is_login = 1;
-            $user_update->save();
+                //create new token for user
+                $token = $user->createToken('auth_token', ["*"], Carbon::now()->addHours(3))->plainTextToken;
 
-            //create new token for user
-            $token = $user->createToken('auth_token', ["*"], Carbon::now()->addHours(3))->plainTextToken;
-
-            $response = [
-                'status' => 200,
-                'token' => $token,
-                'data' => $user->user_information,
-            ];
+                $response = [
+                    'status' => 200,
+                    'token' => $token,
+                    'data' => $user->user_information,
+                ];
+            } else if ($user->status == 0) {
+                $response = [
+                    'status' => 203,
+                    'data' => 'Tài khoản của bạn đã bị khóa!!! Vui lòng liên hệ với đội ngũ quản trị để được giúp đỡ'
+                ];
+            }
         } else {
             $response = [
                 'status' => 401,

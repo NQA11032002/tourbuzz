@@ -69,6 +69,7 @@ Route::prefix('social')->name('social.')->middleware('auth:sanctum')->group(func
 });
 
 Route::post('/upload', [PostsController::class, "uploadImages"])->name('upload-images');
+Route::post('/uploadTour', [ToursController::class, "uploadImages"])->name('upload-images');
 
 
 Route::prefix('tour')->name('tour.')->middleware('auth:sanctum')->group(function () {

@@ -59,6 +59,10 @@ export class LoginComponent implements OnInit{
       {
         this.loginFail = "Tài khoản hoặc mật khẩu không chính xác";
       }
+      else if(p.status === 203)
+      {
+        this.loginFail = p.data;
+      }
       else if(p.status === 200)
       {
         let token = p.token;

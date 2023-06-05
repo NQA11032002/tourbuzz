@@ -33,7 +33,7 @@ export class TourSearchComponent {
 
   //get list tours
   getTours(){
-      let data = {"title" : this.keyword, "order": this.orderBy};
+      let data = {"title" : this.keyword, "order": this.orderBy, "list" : "ok"};
       this.tour.getTours(data, this.user_token).subscribe(p => {
         this.tour.tours = p.data;
       })

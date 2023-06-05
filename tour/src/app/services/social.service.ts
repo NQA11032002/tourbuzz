@@ -12,7 +12,6 @@ export class SocialService {
   public comments_reply: Observable<any> = new Observable<any>;
   public comments_total: Array<any> = [];
   public vehicles: Array<any> = [];
-
   constructor(private http: HttpClient) { }
 
   private api = "http://localhost:8000/api/social/";

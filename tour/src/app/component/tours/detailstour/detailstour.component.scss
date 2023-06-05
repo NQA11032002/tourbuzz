@@ -50,12 +50,14 @@
     }
     .details_img{
         display: flex;
-
+        flex-wrap: wrap;
         .details_img-item{
             padding: 0;
+            width: 100%;
+            margin-top: 10px;
             img{
                 width: 100%;
-                height: 100%;
+                height: 550px;
                 object-fit: cover;
             }
         }
@@ -149,12 +151,10 @@
             .details_reviews-infor{
                 margin-top: 15px;
                 border-bottom: 1px solid #f2f2f2;
-
                 .details_reviews-infor-container{
                     display: grid;
                     grid-template-columns: 60px auto;
                     grid-template-rows: 20px auto;
-
                 }
                 .details_reviews-infor-img{
                     grid-row-start: 1;
@@ -193,7 +193,6 @@
             .details_reviews-infor:last-child
             {
                 border-bottom: unset !important;
-
             }
         }
 
@@ -229,7 +228,6 @@
         .transport{
             display: grid;
             grid-template-columns: 25px auto;
-
         }
         .time-start{
             display: grid;
@@ -242,7 +240,6 @@
         .email{
             display: grid;
             grid-template-columns: 25px auto;
-
         }
         .phone{
             display: grid;

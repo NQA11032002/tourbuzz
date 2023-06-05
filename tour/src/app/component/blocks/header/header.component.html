@@ -1,4 +1,5 @@
 <app-resetpass></app-resetpass>
+
 <div class="header align-items-center">
   <div class="top d-flex align-items-center">
     <img class="Logo"
@@ -14,9 +15,9 @@
   </div>
 
   <div class="toolbar d-flex align-items-center">
-    <a [routerLink]="['/home']" class="home btn" routerLinkActive="router-link-active">Home</a>
-    <a [routerLink]="['/social']" class="home btn" routerLinkActive="router-link-active">Social</a>
-    <a [routerLink]="['/tour']" class="tour btn" routerLinkActive="router-link-active">Tour</a>
+    <a [routerLink]="['/home']" class="home btn shadow-none" routerLinkActive="router-link-active">Home</a>
+    <a [routerLink]="['/social']" class="home btn shadow-none" routerLinkActive="router-link-active">Social</a>
+    <a [routerLink]="['/tour']" class="tour btn shadow-none" routerLinkActive="router-link-active">Tour</a>
 
   </div>
 
@@ -25,7 +26,7 @@
       <button class="btn btn-secondary dropdown-toggle btn-logined shadow-none" type="button" id="dropdownMenuLink"
         data-bs-toggle="dropdown" aria-expanded="false">
         <img src="assets/images/avatar/{{ user_info.image }}" alt="">
-        {{ user_info.image }}
+        {{ user_info.name }}
       </button>
 
       <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
@@ -37,13 +38,13 @@
             Password
             Change</a>
         </li>
-        <li><a class="dropdown-item" [routerLink]="['/historyposttour']" routerLinkActive="router-link-active"><i
-              class="fa-solid fa-clock-rotate-left"></i>
-            Lịch sử đăng Tour</a>
+        <li><a class="dropdown-item" [routerLink]="['/manager/addition']" routerLinkActive="router-link-active"><i
+              class="fa-solid fa-signs-post"></i>
+            Post Tour</a>
         </li>
-        <li><a class="dropdown-item" [routerLink]="['/historybooking']" routerLinkActive="router-link-active"><i
-              class="fa-regular fa-clock"></i>
-            Lịch sử đặt Tour</a>
+        <li><a class="dropdown-item" [routerLink]="['/manager/tours']" routerLinkActive="router-link-active"><i
+              class="fa-solid fa-user-gear"></i>
+            Manager Tour</a>
         </li>
         <li><a class="dropdown-item" (click)="logout()"><i class="fa-solid fa-door-open"></i>
             Logout</a></li>

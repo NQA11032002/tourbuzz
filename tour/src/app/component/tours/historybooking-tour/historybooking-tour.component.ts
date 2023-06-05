@@ -8,9 +8,9 @@ declare var window: any;
   styleUrls: ['./historybooking-tour.component.scss']
 })
 export class HistorybookingTourComponent {
-  
+
   public data: any = null;
-  
+
   constructor(private historybookingtour:HistorybookingTourService) { }
 
   ngOnInit(): void {
@@ -23,7 +23,6 @@ export class HistorybookingTourComponent {
     let data = {
       'id_user' : id
     };
-    console.log(data);
     if(token != null){
       this.historybookingtour.getHistoryBookingTour(token,data).subscribe(p => {
         this.data = p.data.data;
@@ -38,13 +37,11 @@ export class HistorybookingTourComponent {
     if(result){
       if(token != null){
         this.historybookingtour.deleteHistoryBookingTour(token,id).subscribe(p => {
-          console.log(p);
           location.reload();
         });
       }
     }else{
-      console.log("Hủy xóa");
     }
-   
+
   }
 }

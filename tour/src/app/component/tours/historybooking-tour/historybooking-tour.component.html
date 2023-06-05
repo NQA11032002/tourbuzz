@@ -2,40 +2,57 @@
   <div class="container_historybooking-tour">
     <div class="historybooking-tour">
       <div class="hbt-header">
-        <h3>Lịch Sử Đặt Tour</h3>
+        <h3>Tour Booking History</h3>
       </div>
       <div class="hbt-content">
         <table class="hbt-table table">
-          <thead class="thead-dark">
+          <thead>
             <tr>
-              <th scope="col">STT</th>
-              <th scope="col">Người đặt</th>
-              <th scope="col">Tên Tour</th>
-              <th>Phương tiện</th>
-              <th>Nơi bắt đầu</th>
-              <th>Nơi kết thúc</th>
-              <th>Ngày bắt đầu</th>
-              <th>Ngày kết thúc</th>
-              <th>Trạng thái</th>
-              <th>Giá tiền</th>
-              <th></th>
-              <th></th>
+              <th>STT</th>
+              <th>Tour</th>
+              <th>Customer</th>
+              <th>Phone</th>
+              <th>Email</th>
+              <th>Crew</th>
+              <th>Price</th>
+              <th>Payment</th>
+              <th>Status</th>
+              <th>Booking</th>
+              <th>Feature</th>
             </tr>
           </thead>
           <tbody *ngFor="let item of data, let i = index">
             <tr>
               <th scope="row">{{i+1}}</th>
-              <td>{{ item.user_information.name }}</td>
-              <td>{{ item.tours.title }}</td>
-              <td>{{ item.tours.vehicle_id }}</td>
-              <td>{{ item.tours.address_start }}</td>
-              <td>{{ item.tours.address_end }}</td>
-              <td>{{ item.tours.date_start }}</td>
-              <td>{{ item.tours.date_end }}</td>
-              <td>{{ item.status_booking.name }}</td>
-              <td>{{ item.tours.price_tour }}</td>
-              <td><a href="">Chi tiết</a></td>
-              <td><button type="submit" (click)="deleteHistoryTour(item.id)">Hủy</button></td>
+              <td>{{ item.tour_id }}</td>
+              <td>{{ item.name_user }}</td>
+              <td>{{ item.phone }}</td>
+              <td>{{ item.email }}</td>
+              <td>{{ item.amount_crew }}</td>
+              <td>
+                <p class="price">{{ item.tour_pay.total_price | currency }} / {{ item.tours.price_tour | currency}}</p>
+              </td>
+              <td>
+                <p class="payment" *ngIf="item.tour_pay.category_pay_id == 1">Thanh toán trực tiếp</p>
+                <p class="payment" *ngIf="item.tour_pay.category_pay_id == 2">Thanh toán Online</p>
+                <p class="payment" *ngIf="item.tour_pay.category_pay_id == 3">Đặt cọc</p>
+              </td>
+              <td>
+                <p class="status" [ngClass]="item.status_booking == 'thành công' ? 'status_success' : 'status_booking'">
+                  {{ item.status_booking }}</p>
+              </td>
+
+              <td>{{ item.created_at | date:'dd-MM-yyyy' }}</td>
+              <td>
+                <div class="d-flex align-items-center">
+                  <a href="" [routerLink]="['/tour-detail']" [queryParams]="{id:item.id}"
+                    class="detail d-flex align-items-center"><i class="fa-solid fa-calendar-week"></i> Detail</a>
+
+                  <button *ngIf="item.status_booking == 'chờ duyệt'"
+                    class="bg-transparent border-0 d-flex align-items-center" type="submit"
+                    (click)="deleteHistoryTour(item.id)"><i class="fa-regular fa-trash-can"></i>Remove</button>
+                </div>
+              </td>
             </tr>
           </tbody>
         </table>
