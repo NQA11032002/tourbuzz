@@ -45,12 +45,12 @@
               <td>{{ item.created_at | date:'dd-MM-yyyy' }}</td>
               <td>
                 <div class="d-flex align-items-center">
-                  <a href="" [routerLink]="['/tour-detail']" [queryParams]="{id:item.id}"
-                    class="detail d-flex align-items-center"><i class="fa-solid fa-calendar-week"></i> Detail</a>
-
                   <button *ngIf="item.status_booking == 'chờ duyệt'"
-                    class="bg-transparent border-0 d-flex align-items-center" type="submit"
-                    (click)="deleteHistoryTour(item.id)"><i class="fa-regular fa-trash-can"></i>Remove</button>
+                    class="bg-transparent border-0 d-flex align-items-center agree" type="submit"
+                    (click)="agreeBookingTour(item.id)"><i class="fa-solid fa-check"></i> Agree</button>
+
+                  <button class="bg-transparent border-0 d-flex align-items-center remove" type="submit"
+                    (click)="deleteHistoryTour(item.id)"><i class="fa-regular fa-trash-can"></i> Remove</button>
                 </div>
               </td>
             </tr>

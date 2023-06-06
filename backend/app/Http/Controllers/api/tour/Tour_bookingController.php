@@ -21,16 +21,12 @@ class Tour_bookingController extends Controller
     {
         $bookings = tour_booking::orderByDesc("id");
 
-        if ($request->tour_id && $request->tour_id != 0) {
+        if (!empty($request->tour_id)) {
             $bookings = $bookings->where('tour_id', $request->tour_id);
         }
 
-        if ($request->user_id && $request->user_id != 0) {
-            $bookings = $bookings->where('user_id', $request->user_id);
-        }
-
-        if ($request->status_booking_id && $request->status_booking_id != 0) {
-            $bookings = $bookings->where('status_booking_id', $request->status_booking_id);
+        if (!empty($request->status_booking_id)) {
+            $bookings = $bookings->where('status_booking_id', 'like', $request->status_booking_id);
         }
 
         $bookings = $bookings->with('tour_pay')->with('tours')->paginate(10);
@@ -184,6 +180,30 @@ class Tour_bookingController extends Controller
                 'title' => 'The user is changing booking tour',
                 'status' => 200,
                 'detail' => 'Booking tour is change error'
+            ];
+        }
+
+        return $response;
+    }
+
+    public function agreeBooking(Request $request)
+    {
+        $booking = tour_booking::find($request->id);
+
+        if (!empty($booking)) {
+            $booking->status_booking = $request->status_booking;
+            $booking->save();
+
+            $response = [
+                'title' => 'The user is changing status booking tour',
+                'status' => 200,
+                'detail' => 'success'
+            ];
+        } else {
+            $response = [
+                'title' => 'The user is changing status booking tour',
+                'status' => 500,
+                'detail' => 'error'
             ];
         }
 

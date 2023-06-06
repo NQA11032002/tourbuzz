@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { HistorybookingTourService } from 'src/app/services/historybooking-tour.service';
 declare var window: any;
 
@@ -8,35 +9,57 @@ declare var window: any;
   styleUrls: ['./historybooking-tour.component.scss']
 })
 export class HistorybookingTourComponent {
-
+  private tour_id:any;
   public data: any = null;
 
-  constructor(private historybookingtour:HistorybookingTourService) { }
+  constructor(private booking:HistorybookingTourService, private route:ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.getHistoryTour();
+    //get query string id tour
+    this.route.queryParams.subscribe((params:any) => {
+      // Use the params object to access query parameters
+      this.tour_id = params.id;
+    });
+
+    this.getHistoryBookingTour();
   }
 
-  getHistoryTour(){
+  getHistoryBookingTour(){
     let token = sessionStorage.getItem("token_user");
-    let id = sessionStorage.getItem("id");
     let data = {
-      'id_user' : id
+      'tour_id' : this.tour_id,
     };
+
     if(token != null){
-      this.historybookingtour.getHistoryBookingTour(token,data).subscribe(p => {
+      this.booking.getHistoryBookingTour(token,data).subscribe(p => {
         this.data = p.data.data;
-        console.log(this.data);
       });
     }
   }
+
+  //agree user is booking tour success
+  agreeBookingTour(id:any){
+    let token = sessionStorage.getItem("token_user");
+
+    let data = {
+      'id' : id,
+      'status_booking' : 'thành công'
+    };
+
+    if(token != null){
+      this.booking.agreeBookingTour(token, data).subscribe(p => {
+        location.reload();
+      });
+    }
+  }
+
 
   deleteHistoryTour(id:any){
     let result = window.confirm('Bạn có chắc chắn muốn hủy tour?');
     let token = sessionStorage.getItem("token_user");
     if(result){
       if(token != null){
-        this.historybookingtour.deleteHistoryBookingTour(token,id).subscribe(p => {
+        this.booking.deleteHistoryBookingTour(token,id).subscribe(p => {
           location.reload();
         });
       }

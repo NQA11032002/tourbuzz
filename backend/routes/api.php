@@ -75,10 +75,11 @@ Route::post('/uploadTour', [ToursController::class, "uploadImages"])->name('uplo
 Route::prefix('tour')->name('tour.')->middleware('auth:sanctum')->group(function () {
     Route::get('/', [ToursController::class, "index"])->name('index');
     Route::get('/popular', [ToursController::class, "toursPopular"])->name('popular');
-    Route::get('/{id}', [ToursController::class, "index"])->name('index');
+    // Route::get('/{id}', [ToursController::class, "index"])->name('index');
     Route::post('/', [ToursController::class, "create"])->name('create');
-    Route::patch('/{id}', [ToursController::class, "update"])->name('update');
-    Route::delete('/{id}', [ToursController::class, "destroy"])->name('destroy');
+    Route::patch('/update/{id}', [ToursController::class, "update"])->name('update');
+    Route::delete('/delete/{id}', [ToursController::class, "destroy"])->name('destroy');
+    Route::delete('/delete-picture/{id}', [ToursController::class, "deletePicture"]);
 });
 
 Route::prefix('tour-comment')->name('tour-comment.')->middleware('auth:sanctum')->group(function () {
@@ -88,7 +89,8 @@ Route::prefix('tour-comment')->name('tour-comment.')->middleware('auth:sanctum')
 Route::prefix('booking')->name('booking.')->middleware('auth:sanctum')->group(function () {
     Route::get('/', [Tour_bookingController::class, "index"])->name('index');
     Route::post('/', [Tour_bookingController::class, "create"])->name('create');
-    Route::patch('/{id}', [Tour_bookingController::class, "update"])->name('update');
+    // Route::patch('/{id}', [Tour_bookingController::class, "update"])->name('update');
+    Route::patch('/agree', [Tour_bookingController::class, "agreeBooking"]);
     Route::delete('/{id}', [Tour_bookingController::class, "destroy"])->name('destroy');
     Route::get('/categories-pay', [Tour_bookingController::class, "categories_pay"])->name('categories_pay');
 });

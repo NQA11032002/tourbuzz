@@ -17,7 +17,13 @@ body.my-login-page {
 	position: relative;
 	z-index: 1;
 }
-
+.forgot
+{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 .my-login-page .brand img {
 	width: 100%;
 }

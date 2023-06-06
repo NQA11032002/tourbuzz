@@ -26,7 +26,6 @@ export class HistorypostTourComponent {
     if(token != null){
       this.historyposttour.getHistoryPostTour(token,data).subscribe(p => {
         this.data = p.data;
-        console.log(p.data);
       });
     }
   }
@@ -37,7 +36,6 @@ export class HistorypostTourComponent {
     if(result){
       if(token != null){
         this.historyposttour.deleteHistoryPostTour(token,id).subscribe(p => {
-          console.log(p);
           location.reload();
         });
       }

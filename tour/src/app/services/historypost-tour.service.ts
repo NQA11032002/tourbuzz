@@ -9,18 +9,18 @@ export class HistorypostTourService {
   constructor(private http:HttpClient) { }
 
   private api = "http://localhost:8000/api/tour";
-  
+
   getHistoryPostTour(token:string, data: any){
     let headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
     let urlApi = `${this.api}`;
 
     return this.http.get<any>(urlApi, {headers: headers, params: data});
   }
-  
+
   deleteHistoryPostTour(token:string, id: any){
     let headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
-    let urlApi = `${this.api}/${id}`;
+    let urlApi = `${this.api}/delete/${id}`;
 
-    return this.http.delete<any>(urlApi, {headers}); 
+    return this.http.delete<any>(urlApi, {headers});
   }
 }

@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
+use function PHPSTORM_META\type;
+
 class ToursController extends Controller
 {
     /**
@@ -22,8 +24,8 @@ class ToursController extends Controller
         date_default_timezone_set("Asia/Ho_Chi_Minh");
         $tours = tours::orderByDesc('id');
 
-        if (!empty($id)) {
-            $tours = $tours->where('id', $id);
+        if (!empty($request->id)) {
+            $tours = $tours->where('id', $request->id);
         }
 
         if (!empty($request->title) && $request->title != "undefined") {
@@ -102,7 +104,7 @@ class ToursController extends Controller
         } else {
             $response = [
                 'title' => 'get list tours',
-                'data' => [],
+                'data' => $tours,
                 'status' => 503,
                 'address_end' => $request->address_end,
                 "address_start" => $request->address_start,
@@ -298,25 +300,11 @@ class ToursController extends Controller
             $tour->status = 0;
             $tour->save();
 
-            if ($request->images) {
-                tour_picture::where('tour_id', $tour->id)->delete();
-
-                $images = explode(",", $request->images);
-
-                if (count($images) > 0) {
-                    foreach ($images as $image) {
-                        tour_picture::insert([
-                            "tour_id" => $tour->id,
-                            "images" => $image,
-                        ]);
-                    }
-                }
-            }
-
 
             $response = [
                 'title' => 'update a tour',
                 'status' => 200,
+                'data' =>  $tour,
                 'detail' => 'The tour was success'
             ];
         } else {
@@ -352,6 +340,24 @@ class ToursController extends Controller
                 'detail' => 'error'
             ];
         }
+
+        return $response;
+    }
+
+    //delete pictures
+    public function deletePicture($id)
+    {
+        //delete all picture of the tour
+        $tour_picture = tour_picture::where('tour_id', $id)->get();
+        foreach ($tour_picture as $tour_picture) {
+            $tour_picture->delete();
+        }
+
+        $response = [
+            'title' => 'delete picture of a tour',
+            'status' => 200,
+            'detail' => 'success'
+        ];
 
         return $response;
     }

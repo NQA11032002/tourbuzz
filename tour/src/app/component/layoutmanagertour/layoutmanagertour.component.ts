@@ -13,6 +13,13 @@ export class LayoutmanagertourComponent {
 
   ngOnInit(): void {
     this.url = this.location.path();
-    this.url = this.url.split('/')[2];
+    let string = this.url.split('/')[2];
+    let index =  string.indexOf('?');
+
+    if(index != -1){
+      string = string.substring(0, index);
+    }
+
+    this.url = string;
   }
 }

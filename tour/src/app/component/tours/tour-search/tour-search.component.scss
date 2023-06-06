@@ -88,6 +88,8 @@
                       overflow: hidden;
                       -webkit-line-clamp: 1;
                       font-size: 14px;
+                      text-overflow: ellipsis;
+                      word-break: break-word;
                       b
                       {
                         font-size: 15px;

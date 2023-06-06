@@ -1,0 +1,118 @@
+<div class="wp-content">
+  <div class="content">
+    <div class="post_Tour">
+      <h4 class="text-center">Post Tour</h4>
+
+      <form action="" method="POST" class="mx-3" (ngSubmit)="submitPostTour()">
+        <div class="images">
+          <label for="des_img">Hình ảnh mô tả </label>
+          <div class="icon_post">
+            <label for="post_image"><i class="fa-solid fa-image"></i>Choose images</label>
+            <input formControlName="images" multiple (change)="onFileSelected($event)" type="file" name="post_image"
+              id="post_image" hidden>
+          </div>
+
+          <div class="create_content--image">
+            <div class="image_item position-relative " *ngFor="let image of this.imageUrl">
+              <i class="fa-solid fa-xmark position-absolute icon-close-image text-red" (click)="deleteImage(image)"></i>
+              <img [src]="image" *ngIf="imageUrl" src="" alt="" class="border">
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <label for="title">Tên tour</label>
+          <input type="text" class="form-control border shadow-none" [(ngModel)]="tourModel.title" name="title"
+            id="title">
+        </div>
+
+        <div>
+          <label for="description">Mô tả</label>
+          <textarea name="description" class="form-control border shadow-none" [(ngModel)]="tourModel.description"
+            id="description" cols="30" rows="10"></textarea>
+        </div>
+
+        <div class="d-flex justify-content-between flex-two-column">
+          <div>
+            <label for="startDay">Địa điểm bắt đầu</label>
+            <select id="address_start" [(ngModel)]="tourModel.address_start" name="address_start"
+              class="form-select border shadow-none border shadow-none">
+              <option *ngFor="let item of cities" value="{{ item.matp }}"
+                [selected]="tourModel.address_start == item.matp">
+                {{item.name}}
+              </option>
+            </select>
+          </div>
+
+          <div>
+            <label for="tour">Địa điểm đến</label>
+            <select id="address_end" [(ngModel)]="tourModel.address_end" name="address_end"
+              class="form-select border shadow-none">
+              <option *ngFor="let item of cities" value="{{item.matp}}" [selected]="tourModel.address_end == item.matp"
+                value="{{ item.matp }}">
+                {{item.name}}</option>
+            </select>
+          </div>
+        </div>
+
+
+        <div class="d-flex justify-content-between flex-two-column">
+          <div>
+            <label for="address_start">Ngày khởi Hành </label>
+            <input type="date" class="form-control border shadow-none" [(ngModel)]="tourModel.date_start"
+              name="date_start" id="date_start">
+          </div>
+
+          <div>
+            <label for="endDay">Ngày kết thúc </label>
+            <input type="date" class="form-control border shadow-none" [(ngModel)]="tourModel.date_end" name="date_end"
+              id="date_end">
+          </div>
+        </div>
+
+        <div>
+          <label for="vehical">Phương tiện</label>
+          <select id="vehical" class="form-select shadow-none border" name="vehicle" [(ngModel)]="tourModel.vehicle_id">
+            <option *ngFor="let item of vehicles" [selected]="tourModel.vehicle_id == item.id" value="{{item.id}}">
+              {{item.name}}</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="price">Giá Tour </label>
+          <input type="number" class="form-control border shadow-none" [(ngModel)]="tourModel.price_tour"
+            name="price_tour" id="price_tour">
+        </div>
+
+        <div>
+          <label for="Detail_price">Giá Chi tiết </label>
+          <textarea rows="10" class="form-control border shadow-none" [(ngModel)]="tourModel.detail_price_tour"
+            name="detail_price_tour" id="detail_price_tour">
+            </textarea>
+        </div>
+
+        <div class="d-flex justify-content-between flex-two-column">
+          <div>
+            <label for="amount_customer">Số Lượng khách tối đa </label>
+            <input type="number" class="form-control border shadow-none" [(ngModel)]="tourModel.amount_customer_maximum"
+              name="amount_customer_maximum" id="amount_customer_maximum">
+          </div>
+
+          <div>
+            <label for="amount_customer">Số Lượng khách Hiện tại </label>
+            <input disabled="" type="number" class="form-control border shadow-none"
+              [(ngModel)]="tourModel.amount_customer_present" name="amount_customer_present"
+              id="amount_customer_present">
+          </div>
+        </div>
+
+        <div class="d-flex align-items-center justify-content-end">
+          <a [routerLink]="['/tour']" class="btn btn-cancel">Cancel</a>
+
+          <div class="d-flex justify-content-center shadow-none"><input type="submit" class="btn btn-dark confirm_tour"
+              value="Confirm"></div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

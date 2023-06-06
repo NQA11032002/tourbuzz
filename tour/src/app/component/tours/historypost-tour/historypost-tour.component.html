@@ -35,15 +35,15 @@
               <p class="status status-danger" *ngIf="item.status == 2">Tạm ngưng</p>
             </td>
             <td>
-              <div class="d-flex align-items-center">
-                <a *ngIf="item.status === 1" href="" [routerLink]="['/tour-detail']" [queryParams]="{id:item.id}"
+              <div class="d-flex align-items-center justify-content-end">
+                <a *ngIf="item.status === 1" href="" [routerLink]="['/manager/booking']" [queryParams]="{id:item.id}"
                   class="detail users d-flex align-items-center"><i class="fa-solid fa-users"></i> Users</a>
 
                 <a *ngIf="item.status === 1" href="" [routerLink]="['/tour-detail']" [queryParams]="{id:item.id}"
-                  class="detail d-flex align-items-center"><i class="fa-solid fa-calendar-week"></i> Detail</a>
+                  class="detail d-flex align-items-center"><i class="fa-regular fa-eye"></i> View</a>
 
-                <a href="" class="d-flex align-items-center edit" [routerLink]="['/manager/addition']"><i
-                    class="fa-regular fa-pen-to-square"></i> Edit</a>
+                <a href="" class="d-flex align-items-center edit" [routerLink]="['/manager/edit']"
+                  [queryParams]="{id:item.id}"><i class="fa-regular fa-pen-to-square"></i> Edit</a>
 
                 <button class="bg-transparent border-0 d-flex align-items-center" type="submit"
                   (click)="deleteHistoryPostTour(item.id)"><i class="fa-regular fa-trash-can"></i> Remove</button>

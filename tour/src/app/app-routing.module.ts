@@ -33,6 +33,7 @@ const routes: Routes = [
   {path:'manager/tours', component: LayoutmanagertourComponent},
   {path:'manager/addition', component: LayoutmanagertourComponent},
   {path:'manager/booking', component: LayoutmanagertourComponent},
+  {path:'manager/edit', component: LayoutmanagertourComponent},
 
   {path:'**', component: HomeComponent},
 

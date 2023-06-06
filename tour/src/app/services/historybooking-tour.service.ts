@@ -14,13 +14,20 @@ export class HistorybookingTourService {
     let headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
     let urlApi = `${this.api}`;
 
-    return this.http.get<any>(urlApi, {headers: headers, params: data});  
+    return this.http.get<any>(urlApi, {headers: headers, params: data});
+  }
+
+  agreeBookingTour(token:string, data: any){
+    let headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
+    let urlApi = `${this.api}/agree`;
+
+    return this.http.patch<any>(urlApi, data, {headers});
   }
 
   deleteHistoryBookingTour(token:string, id: any){
     let headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
     let urlApi = `${this.api}/${id}`;
 
-    return this.http.delete<any>(urlApi, {headers}); 
+    return this.http.delete<any>(urlApi, {headers});
   }
 }

@@ -15,7 +15,6 @@ export class TourService {
 
   private api = "http://localhost:8000/api/tour";
   private apiBooking = "http://localhost:8000/api/booking";
-  private apiTourComment = "http://localhost:8000/api/tour-comment";
   private vehi = "http://localhost:8000/api/social/vehicles";
 
     //get list tour popular
@@ -25,6 +24,7 @@ export class TourService {
 
       return this.http.get<any>(urlApi, {headers});
     }
+
     //get list tour
     getTours(data:any, token:string):Observable<any>{
       let headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
@@ -64,6 +64,8 @@ export class TourService {
 
     //   return this.http.post<any>(urlApi, data ,{headers});
     // }
+
+    //get list vehicles
     getVehicle(token:string){
       let headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
       let urlApi = `${this.vehi}`;
@@ -71,10 +73,27 @@ export class TourService {
       return this.http.get<any>(urlApi, {headers});
     }
 
+    //insert tour
     postTour(data: any,token:string) {
       let headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
       let urlApi = `${this.api}`;
 
       return this.http.post<any>(urlApi,data,{headers});
+    }
+
+    //update tour
+    updateTour(id:any, data: any,token:string) {
+      let headers = new HttpHeaders().set('Authorization', 'Bearer '+ token);
+      let urlApi = `${this.api}/update/${id}`;
+
+      return this.http.patch<any>(urlApi,data, {headers});
+    }
+
+    //delete picture of the tour
+    deletePicture(id:any, token:string) {
+      let headers = new HttpHeaders().set('Authorization', 'Bearer '+ token);
+      let urlApi = `${this.api}/delete-picture/${id}`;
+
+      return this.http.delete<any>(urlApi, {headers});
     }
 }

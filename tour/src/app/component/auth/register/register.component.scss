@@ -16,6 +16,14 @@ body.my-login-page {
 	box-shadow: 0 4px 8px rgba(0,0,0,.05);
 	position: relative;
 	z-index: 1;
+}   
+
+.register
+{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .my-login-page .brand img {

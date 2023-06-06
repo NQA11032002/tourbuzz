@@ -6,32 +6,33 @@
   <meta name="author" content="Kodinger">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>My Login Page &mdash; Bootstrap 4 Login Page Snippet</title>
-  <link rel="stylesheet"
-    href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-    crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 
+
 <body class="my-login-page">
-  <section class="h-100">
-    <div class="container h-100">
+  <section class="register">
+    <div>
       <div class="row justify-content-md-center h-100">
         <div class="card-wrapper">
           <div class="brand">
-            <img src="assets/img/logo.jpg" alt="logo">
+            <img src="assets/images/logo.jpg" alt="logo">
           </div>
           <div class="card fat">
             <div class="card-body">
               <h4 class="card-title">Register</h4>
-              <form method="post" class="my-login-validation" novalidate="" [formGroup]="registerForm" (ngSubmit)="submitRegister()">
+              <form method="post" class="my-login-validation" novalidate="" [formGroup]="registerForm"
+                (ngSubmit)="submitRegister()">
                 <div class="form-group">
                   <label for="name">Name</label>
                   <input id="name" type="text" formControlName="name" class="form-control" name="name" required
                     autofocus>
 
-                    <div class="errors" *ngIf="registerForm.controls['name'].invalid && (registerForm.controls['name'].dirty || registerForm.controls['name'].touched)">
-                      <p *ngIf="registerForm.get('name')?.hasError('required')">Tên không được để trống</p>
-                    </div>
+                  <div class="errors"
+                    *ngIf="registerForm.controls['name'].invalid && (registerForm.controls['name'].dirty || registerForm.controls['name'].touched)">
+                    <p *ngIf="registerForm.get('name')?.hasError('required')">Tên không được để trống</p>
+                  </div>
                 </div>
 
                 <div class="form-group">
@@ -39,28 +40,30 @@
                   <input id="name" type="date" class="form-control" formControlName="birth_date" name="name" required
                     autofocus>
 
-                    <div class="errors" *ngIf="registerForm.controls['birth_date'].invalid && (registerForm.controls['birth_date'].dirty || registerForm.controls['birth_date'].touched)">
-                      <p *ngIf="registerForm.get('birth_date')?.hasError('required')">Ngày sinh không được để trống</p>
-                    </div>
+                  <div class="errors"
+                    *ngIf="registerForm.controls['birth_date'].invalid && (registerForm.controls['birth_date'].dirty || registerForm.controls['birth_date'].touched)">
+                    <p *ngIf="registerForm.get('birth_date')?.hasError('required')">Ngày sinh không được để trống</p>
+                  </div>
                 </div>
 
                 <div class="form-group">
                   <label for="email">E-Mail Address</label>
-                  <input id="email" type="email" class="form-control" formControlName="email" name="email"
-                    required>
-                    <div class="errors" *ngIf="registerForm.controls['email'].invalid && (registerForm.controls['email'].dirty || registerForm.controls['email'].touched)">
-                      <p *ngIf="registerForm.get('email')?.hasError('required')">Email không được để trống</p>
-                      <p *ngIf="registerForm.get('email')?.hasError('email')">Email không đúng định dạng</p>
-                    </div>
+                  <input id="email" type="email" class="form-control" formControlName="email" name="email" required>
+                  <div class="errors"
+                    *ngIf="registerForm.controls['email'].invalid && (registerForm.controls['email'].dirty || registerForm.controls['email'].touched)">
+                    <p *ngIf="registerForm.get('email')?.hasError('required')">Email không được để trống</p>
+                    <p *ngIf="registerForm.get('email')?.hasError('email')">Email không đúng định dạng</p>
+                  </div>
                 </div>
 
                 <div class="form-group">
                   <label for="password">Password</label>
-                  <input id="password" type="password" class="form-control" formControlName="password"
-                    name="password" required data-eye>
-                    <div class="errors" *ngIf="registerForm.controls['password'].invalid && (registerForm.controls['password'].dirty || registerForm.controls['password'].touched)">
-                      <p *ngIf="registerForm.get('password')?.hasError('required')">Mật khẩu không được để trống</p>
-                    </div>
+                  <input id="password" type="password" class="form-control" formControlName="password" name="password"
+                    required data-eye>
+                  <div class="errors"
+                    *ngIf="registerForm.controls['password'].invalid && (registerForm.controls['password'].dirty || registerForm.controls['password'].touched)">
+                    <p *ngIf="registerForm.get('password')?.hasError('required')">Mật khẩu không được để trống</p>
+                  </div>
                 </div>
 
                 <div class="errors" *ngIf="registerFail">
@@ -68,10 +71,9 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="agree" class="d-flex align-items-center">
-                      <input type="checkbox" name="agree" id="agree"
-                       required="" class="mr-1">I agree to the <a
-                        href="#">Terms and Conditions</a></label>
+                  <label for="agree" class="d-flex align-items-center">
+                    <input type="checkbox" name="agree" id="agree" required="" class="mr-1">I agree to the <a
+                      href="#">Terms and Conditions</a></label>
                 </div>
 
                 <div class="form-group m-0">
@@ -94,11 +96,11 @@
   </section>
 
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-    crossorigin="anonymous"></script>
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+  </script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-    crossorigin="anonymous"></script>
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+  </script>
   <script src="assets/js/my-login.js"></script>
 
 </body>
