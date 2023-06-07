@@ -42,6 +42,8 @@ Route::prefix('social')->name('social.')->middleware('auth:sanctum')->group(func
     Route::prefix('posts')->name('posts.')->group(function () {
         Route::get('/', [PostsController::class, "index"])->name('index');
         Route::get('/{name}', [PostsController::class, "index"])->name('search');
+        Route::get('/', [PostsController::class, "getIMG"])->name('getIMG');
+        // Route::get('/{name}-{id}', [PostsController::class, "index"])->name('detail');
         Route::post('/', [PostsController::class, "create"])->name('create');
         Route::post('/favorite', [PostsController::class, "favorite"])->name('favorite');
         Route::patch('/{id}', [PostsController::class, "update"])->name('update');

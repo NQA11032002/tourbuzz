@@ -1,6 +1,7 @@
 import { UsersService } from 'src/app/services/users.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { User_InformationModel } from 'src/app/models/User_Information.models';
 
 @Component({
   selector: 'app-header',
@@ -8,24 +9,19 @@ import { Router } from '@angular/router';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent{
-  public name:string = "";
-  public image:string = "";
-  public id_user: string = "";
+  public user_info:User_InformationModel;
 
   public constructor(private user:UsersService, private router:Router){
     let data = sessionStorage.getItem("user_information");
+    this.user_info = new User_InformationModel();
 
     if(data)
     {
       let obj = JSON.parse(data);
-
-      this.name = obj.name;
-      this.image = obj.image;
+      this.user_info.name = obj.name;
+      this.user_info.image = obj.image;
+      this.user_info.id = obj.id;
     }
-  }
-
-  ngOnInit() {
-    this.getID();
   }
 
   logout(){
@@ -41,13 +37,6 @@ export class HeaderComponent{
           this.router.navigate(['/', 'login'])
         }
       });
-    }
-  }
-
-  getID(){
-    let id = sessionStorage.getItem("id");
-    if(id){
-      this.id_user = id;
     }
   }
 }

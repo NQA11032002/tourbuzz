@@ -4,6 +4,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Firestore, collection, addDoc, query, where, orderBy, collectionData, deleteDoc } from '@angular/fire/firestore';
 import { doc, getDocs } from 'firebase/firestore';
 import { UsersService } from 'src/app/services/users.service';
+import { ProfileService } from 'src/app/services/profile.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
 
@@ -22,8 +24,9 @@ export class PostPersonalComponent {
   public info_user:any;
   public post_id_change = null;
   public count = 0;
+  public id_params: any;
 
-  constructor(public social:SocialService, private fb:FormBuilder, private firestore: Firestore, private userService:UsersService){
+  constructor(public social:SocialService, private fb:FormBuilder, private firestore: Firestore, private route: ActivatedRoute , private userService:UsersService, private profile:ProfileService){
     
     this.commentForm = this.fb.group({
       content: ['', Validators.required],
@@ -36,6 +39,10 @@ export class PostPersonalComponent {
       let objUser = JSON.parse(user);
       this.user_id = objUser;
     }
+
+    this.route.queryParams.subscribe(params => {
+      this.id_params = params['id'];
+    });
   }
 
   ngOnInit() {
@@ -53,16 +60,18 @@ export class PostPersonalComponent {
   //get list post
   getPosts(){
     let token = sessionStorage.getItem("token_user");
-    let id = sessionStorage.getItem("id");
-    let data = {
-      'id' : id
-    };
+    let data_user_id = {
+      'id': this.id_params
+    }
+    console.log(data_user_id);
     if(token != null){
-      this.social.getPostsPersonal(token,data).subscribe(p => {
+      this.profile.getPostsPersonal(token,data_user_id).subscribe(p=>{
         this.posts = p.data;
-      });
+        console.log("GET IMG: "+this.posts);
+      })
     }
   }
+  
 
   //post is favorite by user
   isFavorite(favorites:any) : boolean {

@@ -20,16 +20,42 @@ class PostsController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index($keyWork = null)
+    public function index($keyWork = null, Request $request)
     {
         $posts = posts::whereHas('user_information', function ($query) use ($keyWork) {
-            // if ($query->id && $query->id != 0) {
-            //     $query = $query->where('id', $query->id);
-            // }
             if (!empty($keyWork)) {
                 $query->where('name', 'like', '%' . $keyWork . '%')->orWhere('address', 'like', '%' . $keyWork  . '%');
             }
-        })->orderByDesc('id')->with('post_picture')->with('post_comments')->with('user_information')->with('post_favorite')->with('type_travel')->with('address_travel')->get();
+
+        })->where('status', '!=', 2)->orderByDesc('id')->with('post_picture')->with('post_comments')->with('user_information')->with('post_favorite')->with('type_travel')->with('address_travel')->get();
+
+        if ($posts->count() > 0) {
+            $response = [
+                'title' => 'list posts on page social',
+                'status' => 200,
+                'data' => $posts,
+                'detail' => 'information of posts are show success'
+            ];
+        } else {
+            $response = [
+                'title' => 'list posts on page social',
+                'status' => 500,
+                'data' => [],
+                'detail' => 'information of posts are show error'
+            ];
+        }
+
+        return $response;
+    }
+
+    public function getIMG(Request $request)
+    {
+        $posts = posts::whereHas('user_information', function ($query) use ($request) {
+            if (!empty($request->id)) {
+                $query->where("id", $request->id);
+            }
+
+        })->where('status', '!=', 2)->orderByDesc('id')->with('post_picture')->with('post_comments')->with('user_information')->with('post_favorite')->with('type_travel')->with('address_travel')->get();
 
         if ($posts->count() > 0) {
             $response = [

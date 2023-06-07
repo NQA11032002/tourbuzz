@@ -23,8 +23,8 @@ class UserController extends Controller
 
     public function index()
     {
-        $users = user_information::with('posts')->with('users_connect')->where('id', Auth::user()->user_information->id)->get();
-        // $users = PostResource::collection($users);
+        $users = user_information::with('posts')->with('users_connect')->with('post_picture')->where('id', Auth::user()->user_information->id)->get();
+        //$users = PostResource::collection($users);
 
         foreach ($users as $user) {
             foreach ($user->users_connect as $connect) {

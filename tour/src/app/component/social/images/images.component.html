@@ -1,0 +1,20 @@
+<section class="background-profile">
+    <div class="profile_header">
+      <app-fullinfo></app-fullinfo>
+    </div>
+  
+    <div class="friends_container">
+      <div class="friends_header d-flex justify-content-between align-items-center">
+        <h3 class="friend_title">Image</h3>
+      </div>
+  
+      <div class="friends d-grid images" >
+        <a class="friend border image border-0" href="" *ngFor="let item of dataimg,let i = index">
+          <img
+            src="\assets\images\social\{{ item.post_picture[0].images }}"
+            alt="">
+        </a>
+  
+      </div>
+    </div>
+  </section>

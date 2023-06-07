@@ -1,0 +1,86 @@
+.background-profile
+{
+  max-width: 60%;
+  margin: 0 auto;
+  margin-top: 90px;
+  margin-bottom: 30px;
+  height: 100%;
+  display: grid;
+  grid-template-rows: 159px 1fr;
+  row-gap: 15px;
+  .profile_header
+  {
+    overflow: hidden;
+    background-color: #fff;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    border-radius: 10px;
+    padding: 20px;
+  }
+
+  .friends_container
+  {
+    overflow: hidden;
+    background-color: #fff;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    border-radius: 10px;
+    padding: 20px;
+
+    .friend_title
+    {
+      font-weight: 600;
+      font-size: 20px;
+      margin-bottom: unset;
+    }
+    form
+    {
+      .search_friend
+      {
+        padding-left: 25px;
+        border-radius: 20px;
+        font-size: 14px;
+        width: 250px;
+      }
+
+      .submit_search
+      {
+        color: #8D949E;
+      }
+    }
+
+    .friends
+    {
+      .friend
+      {
+        border-radius: 10px;
+        width: calc(50% - 10px);
+        padding: 10px;
+        margin-top: 20px;
+        img
+        {
+          width: 80px;
+          height: 80px;
+          object-fit: cover;
+          border-radius: 10px;
+          margin-right: 10px;
+        }
+
+        .friend-content
+        {
+          .friend_name
+          {
+            font-size: 16px;
+            font-weight: 600;
+            color: #050505;
+            margin-bottom: unset;
+          }
+          .friend_amount
+          {
+            margin-bottom: unset;
+            font-size: 12px;
+            color: #65676B;
+          }
+        }
+      }
+    }
+  }
+}

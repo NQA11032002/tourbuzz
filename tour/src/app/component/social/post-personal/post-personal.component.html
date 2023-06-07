@@ -1,12 +1,9 @@
-<app-header></app-header>
-<app-fullinfo></app-fullinfo>
 <section class="container">
-  <div class="create_post">
-  </div>
+  <hr>
 
   <div class="posts">
     <div class="post_item" *ngFor="let item of posts">
-      <div>
+      <div *ngIf="item.status != 0">
         <div class="post_top d-flex align-items-center">
           <img src="assets/images/avatar/{{item.user_information.image}}" alt="" data-bs-toggle="modal"
             data-bs-target="#shortinformodal">

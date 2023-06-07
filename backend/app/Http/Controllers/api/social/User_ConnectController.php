@@ -23,6 +23,9 @@ class User_ConnectController extends Controller
             if (!empty($request->keyword)) {
                 $query = $query->where("name", "like", "%" . $request->keyword . "%");
             }
+            if (!empty($request->user_2_id)) {
+                $query = $query->where("user_2_id", $request->user_2_id );
+            }
 
             $query = $query->orderByDesc('is_login');
         })->groupBy('user_2_id')->with('user_information')->get();

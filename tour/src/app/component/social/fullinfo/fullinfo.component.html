@@ -1,4 +1,4 @@
-<app-changeinfo></app-changeinfo>
+<!-- <app-changeinfo></app-changeinfo>
 <div class="full-body">
     <div class="full-infor">
       <div class="full-infor-header">
@@ -33,9 +33,9 @@
               <div class="full-infor-phonenumber">
                 <span class="phonenumbe" *ngIf="data">Phone: {{data?.phone }}</span>
               </div>
-              <!-- <div class="full-infor-dateofbirth">
+               <div class="full-infor-dateofbirth">
                 <span class="dateofbir" *ngIf="data">Date of birth: {{data?.birth_date }}</span>
-              </div> -->
+              </div>
           </div>
       </div>
       <div class="full-infor-desc">
@@ -45,5 +45,62 @@
           </div> 
       </div>
       
+    </div>
+  </div> -->
+
+   <app-changeinfo></app-changeinfo>
+
+  <div class="full-body">
+    <div class="full-infor">
+      <div class="full-infor-header">
+        <div class="full-infor-img">
+          <img src="assets/images/avatar/avatar.jfif" alt="" class="full-avatar">
+        </div>
+
+        <div class="full-infor-name">
+          <h4 class="name fw-bold" *ngIf="data_infor">{{data_infor?.name }}</h4>
+
+          <button class="btn btn-danger connect-friend shadow-none" *ngIf="!isOwner">
+            <div *ngIf="!isOwner && !isFriend && !isPending">
+              <i class="fa-solid fa-user-plus"></i>Add Friend
+            </div>
+            
+            <div *ngIf="!isOwner && isFriend">
+              <i class="fa-solid fa-user-check"></i>Friend
+            </div>
+            
+            <div *ngIf="!isOwner && isPending ">
+              <i class="fa-solid fa-clock"></i>Pending
+            </div>
+            </button>
+        </div>
+
+        <div class="full-infor-changed" >
+          <a href="" data-bs-toggle="modal" data-bs-target="#changedinfomodal" *ngIf="isOwner==true">
+            <i class="fa-solid fa-pencil"></i>
+            <span class="changed-infor">Thay đổi thông tin</span>
+          </a>
+          
+        </div>
+        <!-- <div class="full-infor-addfriend">
+              icon ket ban
+              <i class="fa-solid fa-user-plus"></i>
+              icon da ket ban
+              <i class="fa-solid fa-user-check"></i>
+            </div> -->
+      </div>
+      <div class="full-infor-desc">
+        <div class="full-infor-desc-title">
+          <h5 [class]="isProfilePath() === '/profile' ? 'about_border border-native' : 'about'"><a href=""
+              [routerLink]="['/profile']" [queryParams]="{id:id_params}" routerLinkActive="router-link-active">About</a></h5>
+          <h5 [class]="isProfilePath() === '/profile/friends' ? 'friends_border border-native' : 'friend'"><a href=""
+              [routerLink]=" ['/profile/friends']" [queryParams]="{id:id_params}"
+              routerLinkActive="router-link-active">Friends</a></h5>
+          <h5 [class]="isProfilePath() === '/profile/images' ? 'images_border border-native' : 'images'"><a href=""
+              [routerLink]="['/profile/images']" [queryParams]="{id:id_params}"
+              routerLinkActive="router-link-active">Images</a></h5>
+        </div>
+      </div>
+
     </div>
   </div>

@@ -6,25 +6,27 @@ import { ForgotpassComponent } from './component/auth/forgotpass/forgotpass.comp
 import { LayoutsocialComponent } from './component/layoutsocial/layoutsocial.component';
 import { LayouttourComponent } from './component/layouttour/layouttour.component';
 import { HomeComponent } from './component/home/home.component';
-import { FullinfoComponent } from './component/social/fullinfo/fullinfo.component';
-import { ResetpassComponent } from './component/social/resetpass/resetpass.component';
+import { AboutInforComponent } from './component/social/about-infor/about-infor.component';
 import { HistorybookingTourComponent } from './component/tours/historybooking-tour/historybooking-tour.component';
 import { HistorypostTourComponent } from './component/tours/historypost-tour/historypost-tour.component';
-import { AboutInforComponent } from './component/social/about-infor/about-infor.component';
-import { PostPersonalComponent } from './component/social/post-personal/post-personal.component';
+import { FriendsComponent } from './component/social/friends/friends.component';
+import { DetailstourComponent } from './component/tours/detailstour/detailstour.component';
+import { ImagesComponent } from './component/social/images/images.component';
 
 const routes: Routes = [
   {path:'', component: HomeComponent},
   {path:'social', component: LayoutsocialComponent},
   {path:'tour', component: LayouttourComponent},
+  {path:'tour-detail', component: DetailstourComponent},
   {path:'home', component: HomeComponent},
   {path:'login', component: LoginComponent},
   {path:'register', component: RegisterComponent},
   {path:'forgot-password', component: ForgotpassComponent},
-  {path:'profile/:id_user', component: AboutInforComponent},
+  {path:'profile', component: AboutInforComponent},
+  {path:'profile/friends', component: FriendsComponent},
+  {path:'profile/images', component: ImagesComponent},
   {path:'historybooking', component: HistorybookingTourComponent},
   {path:'historyposttour', component: HistorypostTourComponent},
-  {path:'profile/post/:id_user', component: PostPersonalComponent},
   {path:'**', component: HomeComponent},
 
 ];

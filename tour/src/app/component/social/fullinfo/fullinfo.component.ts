@@ -11,54 +11,44 @@ import { ProfileService } from 'src/app/services/profile.service';
   styleUrls: ['./fullinfo.component.scss']
 })
 export class FullinfoComponent {
-  public data: any = null;
+  public data_infor: any = null;
   public data_friend: any = null;
   public id: string = "";
   public id_user: string = "";
+  public id_params: any;
 
   isOwner: any = null; // Xác định xem người dùng có phải là chủ tài khoản hay không
   isFriend: any = null; // Xác định xem người dùng đã kết bạn hay chưa
   isPending: any = null; // Kiểm tra nếu đang chờ đồng ý
 
   constructor(private userinfor : UsersService, private location: Location, private route: ActivatedRoute, private router: Router, private profileService: ProfileService) {
-  
+    this.route.queryParams.subscribe(params => {
+      this.id_params = params['id'];
+    });
   }
 
   ngOnInit(): void {
     this.getInfor();
-    this.getID();
     this.checkOwner();
     this.checkFriend();
   }
+
   getInfor(){
     let token = sessionStorage.getItem('token_user');
-    this.route.paramMap.subscribe(params => {
-      let id_user = params.get('id_user');
-      if(id_user){
-        this.id=id_user;
-      }
-    });
-    console.log(this.id);
+    console.log(this.id_params);
     if(token != null){
-      this.userinfor.getUserInformation(this.id,token).subscribe(p=>{
-        this.data = p.data;
+      this.userinfor.getUserInformation(this.id_params,token).subscribe(p=>{
+        this.data_infor = p.data;
+        console.log(this.data_infor);
       })
     }
-  }
-
-  //Kiem tra duong dan
-  isProfilePath(): boolean {
-    const regex = /^\/profile(\/\d+)?$/;;
-    const path = regex.test(this.router.url);
-    if(path)
-    return true;
-      return false;
+    
   }
 
   // Kiem tra co phai chu tai khoan hay khong de hien thi "Doi thong tin"
   checkOwner(){
     let id_ss = sessionStorage.getItem("id");
-    if(this.id===id_ss){
+    if(this.id_params===id_ss){
       this.isOwner = true;
     }  
   }
@@ -66,20 +56,14 @@ export class FullinfoComponent {
   // Kiem tra da ket ban hay chua
   checkFriend(){
     let token = sessionStorage.getItem('token_user');
-    this.route.paramMap.subscribe(params => {
-      let id_user = params.get('id_user');
-      if(id_user){
-        this.id=id_user;
-      }
-    });
-    let data = {
-      'user_2_id': this.id
+    let data_user_id = {
+      'user_2_id': this.id_params
     }
-
+    console.log(data_user_id);
     if(token != null){
-      this.profileService.checkFriend(token, data).subscribe(p=>{
+      this.profileService.checkFriend(token, data_user_id).subscribe(p=>{
         this.data_friend = p.data;
-        console.log(p.data);
+        // console.log(p.data);
 
         for (const item of this.data_friend) {
           console.log("trang thai 1: "+item.status_user_1);
@@ -104,13 +88,12 @@ export class FullinfoComponent {
       })
     }
     
-
   }
 
-  getID(){
-    let id = sessionStorage.getItem("id");
-    if(id){
-      this.id_user = id;
-    }
+  isProfilePath(): string {
+    const path = this.location.path();
+    var string = path.split('?');
+
+    return string[0];
   }
 }

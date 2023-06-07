@@ -65,6 +65,7 @@ export class LoginComponent implements OnInit{
       {
         let token = p.token;
         let id = p.data.id;
+        let name = p.data.name;
         let data = {"id":p.data.id, "name":p.data.name, "birth_date":p.data.birth_date, "gender":p.data.gender, "address":p.data.address, "phone":p.data.phone, "education":p.data.education, "image":p.data.image};
         this.cookieLogin();
         
@@ -73,6 +74,8 @@ export class LoginComponent implements OnInit{
           sessionStorage.setItem('token_user', token);
           sessionStorage.setItem('user_information', JSON.stringify(data));
           sessionStorage.setItem('id', id);
+          sessionStorage.setItem('name', name);
+
         }
 
         this.router.navigate(['/', 'home'])

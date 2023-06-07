@@ -24,26 +24,26 @@
     <div class="dropdown d-flex">
       <button class="btn btn-secondary dropdown-toggle btn-logined shadow-none" type="button" id="dropdownMenuLink"
         data-bs-toggle="dropdown" aria-expanded="false">
-        <img src="assets/images/avatar/{{ this.image }}" alt="">
-        {{ this.name }}
+        <img src="assets/images/avatar/{{ user_info.image }}" alt="">
+        {{ user_info.name }}
       </button>
 
       <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-        <li><a class="dropdown-item" *ngIf="id_user" [routerLink]="['/profile',id_user]" routerLinkActive="router-link-active"><i
-              class="fa-solid fa-user"></i>
+        <li><a class="dropdown-item" [routerLink]="['/profile']" [queryParams]="{id:user_info.id}"
+            routerLinkActive="router-link-active"><i class="fa-solid fa-user"></i>
             Profile</a>
         </li>
-        <li><a class="dropdown-item"
-            data-bs-toggle="modal" data-bs-target="#resetpass"><i  class="fa-solid fa-pen"></i> Password
+        <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#resetpass"><i class="fa-solid fa-pen"></i>
+            Password
             Change</a>
         </li>
         <li><a class="dropdown-item" [routerLink]="['/historyposttour']" routerLinkActive="router-link-active"><i
-          class="fa-solid fa-user"></i>
-          Lịch sử đăng Tour</a>
+              class="fa-solid fa-clock-rotate-left"></i>
+            Lịch sử đăng Tour</a>
         </li>
         <li><a class="dropdown-item" [routerLink]="['/historybooking']" routerLinkActive="router-link-active"><i
-          class="fa-solid fa-user"></i>
-          Lịch sử đặt Tour</a>
+              class="fa-regular fa-clock"></i>
+            Lịch sử đặt Tour</a>
         </li>
         <li><a class="dropdown-item" (click)="logout()"><i class="fa-solid fa-door-open"></i>
             Logout</a></li>

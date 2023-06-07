@@ -1,4 +1,4 @@
-<app-header></app-header>
+<!-- <app-header></app-header>
 <app-fullinfo></app-fullinfo>
 <div class="full-body">
       <div class="full-infor-desc">
@@ -40,4 +40,107 @@
         </div> 
           
       </div>
-  </div>
+  </div> -->
+
+  <section class="background-profile">
+    <div class="profile_header">
+      <app-fullinfo></app-fullinfo>
+    </div>
+  
+    <div class="full-body">
+      <div class="full-infor-desc">
+        <section class="full-infor-left">
+          <div class="full-infor--items">
+            <div class="full-infor-item--description full-infor-desc-biography">
+              <h6 class="full-infor-desc-biography-title h5">Description</h6>
+  
+              <p class="full-infor-desc-biography-content">
+                Đẹp trai không ai sánh bằng!
+              </p>
+  
+              <div class="description-content">
+                <div class="full-infor-desc-location full-infor-content d-flex align-items-center">
+                  <i class="fa-solid fa-location-dot"></i>
+                  <p>Sống tại <b *ngIf="data">{{data?.address}}</b></p>
+                </div>
+  
+                <div class="full-infor-desc-membersince full-infor-content d-flex align-items-center">
+                  <i class="fa-regular fa-calendar"></i>
+                  <p>Ngày sinh <b *ngIf="data">{{data?.birth_date }}</b></p>
+                </div>
+  
+                <div class="full-infor-desc-membersince full-infor-content d-flex align-items-center">
+                  <i class="fa-solid fa-venus-mars"></i>
+                  <p>Giới tính <b *ngIf="data">{{data?.gender }}</b></p>
+                </div>
+  
+  
+                <div class="full-infor-edu-item full-infor-content d-flex align-items-center">
+                  <i class="fa-solid fa-graduation-cap"></i>
+                  <p class="edu" *ngIf="data">{{data?.education }}</p>
+                </div>
+              </div>
+            </div>
+  
+            <div class="full-infor-desc-social-list full-infor-desc-biography">
+              <h6 class="full-infor-desc-biography-title h5">Social</h6>
+  
+              <a
+                class="full-infor-desc-social-item full-infor-content d-flex align-items-center social-link text-decoration-none cursor-grab">
+                <i class="facebook fa-brands fa-facebook"></i>
+                <p>Facebook.com/datquangho</p>
+              </a>
+  
+              <a
+                class="full-infor-desc-social-item full-infor-content d-flex align-items-center social-link text-decoration-none cursor-grab">
+                <i class="ins fa-brands fa-instagram"></i>
+                <p>Instagram.com/datquangho</p>
+              </a>
+  
+              <a
+                class="full-infor-desc-social-item full-infor-content d-flex align-items-center social-link text-decoration-none cursor-grab">
+                <i class="twt fa-brands fa-twitter"></i>
+                <p>Twitter.com/datquangho</p>
+              </a>
+            </div>
+  
+            <div class="full-infor-desc-social-images full-infor-desc-biography">
+              <div class="d-flex align-items-center justify-content-between full-infor-title">
+                <h6 class="full-infor-desc-biography-title h5">Images <span class="amount-images" *ngIf="countIMG">({{countIMG}})</span></h6>
+                <a class="text-decoration-none link-primary" href="">List images</a>
+              </div>
+  
+              <div class="images" >
+                <div class="image" *ngFor="let itempic of dataimg">
+                  <img *ngIf="itempic.post_picture[0].images.length > 0" src="assets/images/social/{{ itempic.post_picture[0].images }}" alt="">
+                </div>
+  
+              </div>
+            </div>
+  
+            <div class="full-infor-desc-social-friends full-infor-desc-biography">
+              <div class="d-flex align-items-center justify-content-between full-infor-title">
+                <h6 class="full-infor-desc-biography-title h5">Friends <span class="amount-images" *ngIf="countFriends">({{countFriends}})</span></h6>
+                <a class="text-decoration-none link-primary" href="">List friends</a>
+              </div>
+  
+              <div class="friends images" >
+                <a class="friend image text-decoration-none" href="" *ngFor="let itemFriend of datafriends" >
+                  
+                  <img *ngIf="itemFriend.status_user_1 == 1 && itemFriend.status_user_2 == 1 && itemFriend.user_information.image.length > 0" src="assets/images/avatar/{{ itemFriend.user_information.image }}" alt="">
+                  <p *ngIf="itemFriend.status_user_1 == 1 && itemFriend.status_user_2 == 1 && itemFriend.user_information.image.length > 0" class="friend_name">{{itemFriend.user_information.name}}</p>
+                </a>
+
+              </div>
+            </div>
+          </div>
+  
+  
+        </section>
+      </div>
+  
+      <div class="history_post">
+        <app-post-personal></app-post-personal>
+      </div>
+    </div>
+  </section>

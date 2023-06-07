@@ -1,0 +1,32 @@
+<section class="background-profile">
+    <div class="profile_header">
+      <app-fullinfo></app-fullinfo>
+    </div>
+  
+    <div class="friends_container">
+      <div class="friends_header d-flex justify-content-between align-items-center">
+        <h3 class="friend_title">Friend</h3>
+  
+        <form action="" method="get" class="position-relative d-flex justify-content-between align-items-center">
+          <input type="text" name="" id="" class="form-control search_friend shadow-none border"
+            placeholder="Search by name...">
+          <button class="bg-transparent border-0 position-absolute left-0 submit_search"><i
+              class="fa-solid fa-magnifying-glass"></i></button>
+        </form>
+      </div>
+  
+      <div class="friends d-flex flex-wrap justify-content-between" >
+          <a class="friend border d-flex align-items-center text-decoration-none" *ngFor="let item of data">
+          <img 
+            src="assets/images/avatar/{{ item.user_information.image }}"
+            alt="">
+  
+          <div class="friend-content">
+            <h4 class="friend_name">{{item.user_information.name}}</h4>
+            <p class="friend_amount">66 bạn chung</p>
+          </div>
+        </a>
+        
+      </div>
+    </div>
+  </section>
