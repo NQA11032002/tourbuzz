@@ -1,17 +1,39 @@
 <app-resetpass></app-resetpass>
 
 <div class="header align-items-center">
-  <div class="top d-flex align-items-center">
+  <div class="top d-flex align-items-center position-relative">
     <img class="Logo"
       src="https://99designs-blog.imgix.net/blog/wp-content/uploads/2019/05/attachment_98891896-e1557890804541.jpg?auto=format&q=60&fit=max&w=930"
       alt="">
     <form action="" method="POST" class="form-search my-4 mx-2 position-relative">
-      <input class="search" type="text" name="key_word" id="" placeholder="Search" autocomplete="off">
+      <input class="search" (input)="searchUser()" [(ngModel)]="keyword" type="text" name="key_word" id=""
+        placeholder="Search" autocomplete="off">
 
       <button type="submit" class="btn-search position-absolute right-0">
         <i class="fa-solid fa-magnifying-glass"></i>
       </button>
     </form>
+
+    <div class="search_users position-fixed" [ngClass]="searching ? 'search-show' : 'search-hidden'">
+      <h3 class="text-center title-search">Result search: {{ keyword }}</h3>
+      <a [routerLink]="['/profile']" [queryParams]="{id:item.id}" routerLinkActive="router-link-active" class="user"
+        *ngFor="let item of users">
+        <img class="user_image" src="assets/images/avatar/{{ item.image }}" alt="">
+
+        <div class="user_infor">
+          <h4 class="user_infor--name">{{ item.name }}</h4>
+          <p class="user_infor--status"
+            *ngIf="(user_info.id == item.user_1_id || user_info.id == item.user_2_id) && item.status == 'Bạn bè'">
+            Bạn bè
+          </p>
+          <p class="user_infor--status"
+            *ngIf="(user_info.id == item.user_1_id || user_info.id == item.user_2_id || item.user_2_id == null || item.user_1_id == null) && (item.status != 'Bạn bè' || item.status == null)">
+            Người
+            lạ
+          </p>
+        </div>
+      </a>
+    </div>
   </div>
 
   <div class="toolbar d-flex align-items-center">

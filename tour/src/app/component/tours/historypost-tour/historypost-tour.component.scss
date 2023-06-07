@@ -32,7 +32,7 @@
                         {
                           width: 100px;
                         }
-                        .description
+                        .description,.title
                         {
                           display: -webkit-box;
                           -webkit-line-clamp: 1;
@@ -40,7 +40,11 @@
                           overflow: hidden;
                           text-overflow: ellipsis;
                           word-break: break-word;
-                          width: 250px;
+                          width: 180px;
+                        }
+                        .title
+                        {
+                          width: 150px;
                         }
                         a{
                             text-decoration: none;
@@ -83,7 +87,6 @@
 
                         .status
                         {
-                          width: 120px;
                           font-size: 13px;
                           font-weight: 500;
                           margin: unset;

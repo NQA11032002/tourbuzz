@@ -35,6 +35,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::prefix('social')->name('social.')->middleware('auth:sanctum')->group(function () {
     Route::get('users', [UserController::class, "index"])->name('index');
     Route::get('users/{id}', [UserController::class, "show"])->name('detail');
+    Route::get('users-search', [UserController::class, "searchUsers"])->name('searchUsers');
     Route::post('users', [UserController::class, "create"])->name('create');
     Route::patch('users/{id}', [UserController::class, "update"])->name('update');
     Route::delete('users/{id}', [UserController::class, "destroy"])->name('destroy');
@@ -75,7 +76,7 @@ Route::post('/uploadTour', [ToursController::class, "uploadImages"])->name('uplo
 Route::prefix('tour')->name('tour.')->middleware('auth:sanctum')->group(function () {
     Route::get('/', [ToursController::class, "index"])->name('index');
     Route::get('/popular', [ToursController::class, "toursPopular"])->name('popular');
-    // Route::get('/{id}', [ToursController::class, "index"])->name('index');
+    Route::get('/{id}', [ToursController::class, "index"])->name('index');
     Route::post('/', [ToursController::class, "create"])->name('create');
     Route::patch('/update/{id}', [ToursController::class, "update"])->name('update');
     Route::delete('/delete/{id}', [ToursController::class, "destroy"])->name('destroy');

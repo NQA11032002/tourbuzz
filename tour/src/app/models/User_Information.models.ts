@@ -11,4 +11,7 @@ export class User_InformationModel
   public image:string = "";
   public created_at:Date = new Date();
   public updated_at:Date = new Date();
+  public user_1_id:number = 0;
+  public user_2_id:number = 0;
+  public status:string = "";
 }

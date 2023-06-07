@@ -21,7 +21,9 @@
         <tbody *ngFor="let item of data, let i = index">
           <tr>
             <th scope="row">{{ i+1 }}</th>
-            <td>{{ item.title }}</td>
+            <td>
+              <p class="title">{{ item.title }}</p>
+            </td>
             <td>
               <p class="description">{{ item.description }}</p>
             </td>

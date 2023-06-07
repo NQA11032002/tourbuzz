@@ -287,4 +287,30 @@ class UserController extends Controller
 
         return $response;
     }
+
+    //search user information
+    public function searchUsers(Request $request)
+    {
+        $users = user_information::leftJoin('users_relationship as r', 'user_information.id', '=', 'r.user_2_id')
+            ->where('user_information.name', 'like', '%' . $request->name . '%')
+            ->selectRaw('user_information.name, user_information.id, r.status, r.user_1_id, r.user_2_id, user_information.image')
+            ->get();
+
+        if ($users->count() > 0) {
+            $response = [
+                'title' => 'search user by name',
+                'data' => $users,
+                'status' => 200,
+                'detail' => 'success',
+            ];
+        } else {
+            $response = [
+                'title' => 'search user by name',
+                'status' => 503,
+                'detail' => 'error',
+            ];
+        }
+
+        return $response;
+    }
 }

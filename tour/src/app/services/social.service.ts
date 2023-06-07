@@ -102,4 +102,12 @@ export class SocialService {
 
     return this.http.post<any>(urlApi, para ,{headers});
   }
+
+  //search user information by name
+  searchUser(data:any, token:string){
+    let headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
+    let urlApi = `${this.api}users-search`;
+
+    return this.http.get<Comments>(urlApi, {headers:headers, params:data});
+  }
 }

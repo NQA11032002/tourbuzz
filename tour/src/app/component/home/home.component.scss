@@ -405,7 +405,7 @@
                     margin: unset;
                     margin-bottom: 10px;
                     flex-shrink: 0;
-                    height: 70px;
+                    font-size: 14px;
                   }
 
                   .post-title
@@ -526,6 +526,7 @@
                       -webkit-box-orient: vertical;
                       overflow: hidden;
                       -webkit-line-clamp: 3;
+                      font-size: 14px;
                   }
               }
               .home_popular-item-btn{
