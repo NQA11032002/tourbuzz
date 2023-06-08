@@ -299,7 +299,10 @@
       padding-top: 70px;
   }
   .home_tour{
-      padding-bottom: 50px;;
+      padding-bottom: 50px;
+      width: 100%;
+      max-width: 1350px;
+      margin: 0 auto;
       .home_tour-title{
           text-align: center;
           padding: 0 0 40px 0;
@@ -309,20 +312,23 @@
           font-weight: 500;
       }
       .home_tour-details{
-          display: grid;
-          grid-template-columns: 1fr 1fr;
+          display: flex;
+          justify-content: center;
           img{
-              width: 500px;
-              height: 500px;
-              object-fit: cover;
+            width: 400px;
+            height: 600px;
+            object-fit: cover;
+            border-radius: 5px;
           }
           .home_tour-details-img{
               text-align: center;
           }
           .home_tour-details-desc{
-              padding: 50px 250px 0 0;
-              span{
-                  line-height: 2.2;
+            margin-left: 30px;
+              p{
+                margin-bottom: unset;
+                line-height: 2.2;
+                font-size: 15px;
               }
               h3{
                   font-weight: 600;
@@ -391,6 +397,8 @@
                       width: 400px;
                       height: 500px;
                       object-fit: cover;
+                      border-radius: 5px;
+
                   }
                   .home_social-desc{
                       padding: 5px 0 5px 5px;
@@ -405,7 +413,7 @@
                     margin: unset;
                     margin-bottom: 10px;
                     flex-shrink: 0;
-                    font-size: 14px;
+                    font-size: 15px;
                   }
 
                   .post-title
@@ -453,16 +461,17 @@
       .home_popular-list{
           display: grid;
           grid-template-columns: auto auto;
-          row-gap: 40px;
+          gap: 40px;
           padding-bottom: 50px;
           justify-content: center;
-          column-gap: 150px;
           .home_popular-item{
               display: grid;
               grid-template-columns: 160px 275px 165px;
-              grid-template-rows: 50px 50px auto;
+              grid-template-rows: 50px 38px auto;
               width: 600px;
               height: 200px;
+              border-radius: 5px;
+              overflow: hidden;
               background-color: white;
 
               .home_popular-item-img{

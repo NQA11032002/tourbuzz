@@ -68,10 +68,12 @@ export class LoginComponent implements OnInit{
         let token = p.token;
         let data = {"id":p.data.id, "name":p.data.name, "birth_date":p.data.birth_date, "gender":p.data.gender, "address":p.data.address, "phone":p.data.phone, "education":p.data.education, "image":p.data.image};
         this.cookieLogin();
+
         if(token)
         {
           sessionStorage.setItem('token_user', token);
           sessionStorage.setItem('user_information', JSON.stringify(data));
+          this.user.token = token;
         }
 
         this.router.navigate(['/', 'home'])

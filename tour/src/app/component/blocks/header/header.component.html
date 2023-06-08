@@ -23,11 +23,11 @@
         <div class="user_infor">
           <h4 class="user_infor--name">{{ item.name }}</h4>
           <p class="user_infor--status"
-            *ngIf="(user_info.id == item.user_1_id || user_info.id == item.user_2_id) && item.status == 'Bạn bè'">
+            *ngIf="(user.user_info.id == item.user_1_id || user.user_info.id == item.user_2_id) && item.status == 'Bạn bè'">
             Bạn bè
           </p>
           <p class="user_infor--status"
-            *ngIf="(user_info.id == item.user_1_id || user_info.id == item.user_2_id || item.user_2_id == null || item.user_1_id == null) && (item.status != 'Bạn bè' || item.status == null)">
+            *ngIf="(user.user_info.id == item.user_1_id || user.user_info.id == item.user_2_id || item.user_2_id == null || item.user_1_id == null) && (item.status != 'Bạn bè' || item.status == null)">
             Người
             lạ
           </p>
@@ -44,15 +44,20 @@
   </div>
 
   <div class="group d-flex align-items-center">
-    <div class="dropdown d-flex">
+    <div class="not-login" *ngIf="user.token === ''">
+      <a [routerLink]="['/login']" routerLinkActive="router-link-active" class="login btn" href="">Login</a>
+      <a [routerLink]="['/register']" routerLinkActive="router-link-active" class="register btn" href="">Register</a>
+    </div>
+
+    <div class="dropdown d-flex" *ngIf="user.token != ''">
       <button class="btn btn-secondary dropdown-toggle btn-logined shadow-none" type="button" id="dropdownMenuLink"
         data-bs-toggle="dropdown" aria-expanded="false">
-        <img src="assets/images/avatar/{{ user_info.image }}" alt="">
-        {{ user_info.name }}
+        <img src="assets/images/avatar/{{ user.user_info.image }}" alt="">
+        {{ user.user_info.name }}
       </button>
 
       <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-        <li><a class="dropdown-item" [routerLink]="['/profile']" [queryParams]="{id:user_info.id}"
+        <li><a class="dropdown-item" [routerLink]="['/profile']" [queryParams]="{id:user.user_info.id}"
             routerLinkActive="router-link-active"><i class="fa-solid fa-user"></i>
             Profile</a>
         </li>

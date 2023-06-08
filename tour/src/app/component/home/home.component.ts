@@ -23,6 +23,10 @@ export class HomeComponent{
     this.typeTravels();
     this.getVehicles();
     this.getTours();
+
+    setInterval(() => {
+      this.previousSlide();
+    }, 4000)
   }
 
 
@@ -81,15 +85,9 @@ export class HomeComponent{
 
   //get list post
   getTours(){
-    let token = sessionStorage.getItem("token_user");
-
-    if(token != null){
-      this.tour.getTourPopular(token).subscribe(p => {
-        this.tours = p.data;
-
-        console.log(this.tours);
-      });
-    }
+    this.tour.getTourPopular().subscribe(p => {
+      this.tours = p.data;
+    });
   }
 
   //next slide image show on home

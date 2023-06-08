@@ -18,11 +18,10 @@ export class TourService {
   private vehi = "http://localhost:8000/api/social/vehicles";
 
     //get list tour popular
-    getTourPopular(token:string):Observable<any>{
-      let headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
+    getTourPopular():Observable<any>{
       let urlApi = `${this.api}/popular`;
 
-      return this.http.get<any>(urlApi, {headers});
+      return this.http.get<any>(urlApi);
     }
 
     //get list tour

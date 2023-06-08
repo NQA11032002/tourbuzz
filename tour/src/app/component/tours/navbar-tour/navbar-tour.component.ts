@@ -18,7 +18,7 @@ export class NavbarTourComponent implements OnInit {
   private date_end:any;
   public cbVehicles: Array<any> = [];
 
-  public constructor(private address:AddressService, public vehicles: SocialService, private tour:TourService){}
+  public constructor(private address:AddressService, public vehicles: SocialService, public tour:TourService){}
 
   ngOnInit() {
     let token = sessionStorage.getItem("token_user");
@@ -53,8 +53,6 @@ export class NavbarTourComponent implements OnInit {
 
     this.tour.getTours(data, this.user_token).subscribe(p => {
       this.tour.tours = p.data;
-
-      console.log(p);
     })
   }
 

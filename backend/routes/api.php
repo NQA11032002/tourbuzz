@@ -32,15 +32,15 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::prefix('social')->name('social.')->middleware('auth:sanctum')->group(function () {
-    Route::get('users', [UserController::class, "index"])->name('index');
-    Route::get('users/{id}', [UserController::class, "show"])->name('detail');
-    Route::get('users-search', [UserController::class, "searchUsers"])->name('searchUsers');
-    Route::post('users', [UserController::class, "create"])->name('create');
-    Route::patch('users/{id}', [UserController::class, "update"])->name('update');
-    Route::delete('users/{id}', [UserController::class, "destroy"])->name('destroy');
+Route::prefix('social')->name('social.')->group(function () {
+    Route::get('users', [UserController::class, "index"])->middleware('auth:sanctum')->name('index');
+    Route::get('users/{id}', [UserController::class, "show"])->middleware('auth:sanctum')->name('detail');
+    Route::get('users-search', [UserController::class, "searchUsers"])->middleware('auth:sanctum')->name('searchUsers');
+    Route::post('users', [UserController::class, "create"])->middleware('auth:sanctum')->name('create');
+    Route::patch('users/{id}', [UserController::class, "update"])->middleware('auth:sanctum')->name('update');
+    Route::delete('users/{id}', [UserController::class, "destroy"])->middleware('auth:sanctum')->name('destroy');
 
-    Route::prefix('posts')->name('posts.')->group(function () {
+    Route::prefix('posts')->name('posts.')->middleware('auth:sanctum')->group(function () {
         Route::get('/', [PostsController::class, "index"])->name('index');
         Route::get('/{name}', [PostsController::class, "index"])->name('search');
         Route::post('/', [PostsController::class, "create"])->name('create');
@@ -49,18 +49,18 @@ Route::prefix('social')->name('social.')->middleware('auth:sanctum')->group(func
         Route::delete('/{id}', [PostsController::class, "destroy"])->name('destroy');
     });
 
-    Route::prefix('comments')->name('comments.')->group(function () {
+    Route::prefix('comments')->name('comments.')->middleware('auth:sanctum')->group(function () {
         Route::get('/', [PostsController::class, "getComments"])->name('getComments');
         Route::post('/', [PostsController::class, "comment"])->name('comment');
         Route::delete('/{id}', [PostsController::class, "deleteComment"])->name('deleteComment');
     });
 
-    Route::prefix('comment-reply')->name('comments.')->group(function () {
+    Route::prefix('comment-reply')->name('comments.')->middleware('auth:sanctum')->group(function () {
         Route::get('/', [PostsController::class, 'getCommentReply'])->name('getCommentReply');
         Route::post('/', [PostsController::class, 'commentReply'])->name('commentReply');
     });
 
-    Route::prefix('friends')->name('friends.')->group(function () {
+    Route::prefix('friends')->name('friends.')->middleware('auth:sanctum')->group(function () {
         Route::get('/', [User_ConnectController::class, "getFriends"])->name('getFriends');
         Route::get('/{user_id}', [User_ConnectController::class, "getMessenger"])->name('getMessenger');
         Route::post('/', [User_ConnectController::class, "insertMessenger"])->name('insertMessenger');
@@ -73,7 +73,7 @@ Route::post('/upload', [PostsController::class, "uploadImages"])->name('upload-i
 Route::post('/uploadTour', [ToursController::class, "uploadImages"])->name('upload-images');
 
 
-Route::prefix('tour')->name('tour.')->middleware('auth:sanctum')->group(function () {
+Route::prefix('tour')->name('tour.')->group(function () {
     Route::get('/', [ToursController::class, "index"])->name('index');
     Route::get('/popular', [ToursController::class, "toursPopular"])->name('popular');
     Route::get('/{id}', [ToursController::class, "index"])->name('index');
@@ -83,11 +83,11 @@ Route::prefix('tour')->name('tour.')->middleware('auth:sanctum')->group(function
     Route::delete('/delete-picture/{id}', [ToursController::class, "deletePicture"]);
 });
 
-Route::prefix('tour-comment')->name('tour-comment.')->middleware('auth:sanctum')->group(function () {
+Route::prefix('tour-comment')->name('tour-comment.')->group(function () {
     Route::post('/', [Tour_commentsController::class, "comments"])->name('comments');
 });
 
-Route::prefix('booking')->name('booking.')->middleware('auth:sanctum')->group(function () {
+Route::prefix('booking')->name('booking.')->group(function () {
     Route::get('/', [Tour_bookingController::class, "index"])->name('index');
     Route::post('/', [Tour_bookingController::class, "create"])->name('create');
     // Route::patch('/{id}', [Tour_bookingController::class, "update"])->name('update');
@@ -96,7 +96,7 @@ Route::prefix('booking')->name('booking.')->middleware('auth:sanctum')->group(fu
     Route::get('/categories-pay', [Tour_bookingController::class, "categories_pay"])->name('categories_pay');
 });
 
-Route::prefix('address')->name('address.')->middleware('auth:sanctum')->group(function () {
+Route::prefix('address')->name('address.')->group(function () {
     Route::get('/city', [Province_cityController::class, "index"]);
     Route::get('/district', [DistrictController::class, "index"]);
     Route::get('/town', [TownController::class, "index"]);

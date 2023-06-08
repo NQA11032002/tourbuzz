@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { UsersService } from 'src/app/services/users.service';
 import { Firestore, collection, collectionData, query, orderBy  } from '@angular/fire/firestore';
 import { delay } from 'rxjs';
+import { Router } from '@angular/router';
+import { User_InformationModel } from 'src/app/models/User_Information.models';
 
 @Component({
   selector: 'app-layoutsocial',
@@ -12,21 +14,51 @@ export class LayoutsocialComponent {
   public searchFriend:string = "";
   public userLogin:any;
   public friends:Array<any> = new Array<any>();
+  public listChat:[] = [];
 
-  constructor(public user:UsersService, private firestore:Firestore){
+  constructor(public user:UsersService, private firestore:Firestore, private router:Router) {
     this.getFriends();
   }
 
   ngOnInit(){
-    const collectionInstance = collection(this.firestore, 'messenger');
-    const q = query(collectionInstance, orderBy("stt", "asc") );
-    this.user.messages = collectionData(q, {idField: 'id'});
+    let token = sessionStorage.getItem("token_user");
 
-    let userLogin = sessionStorage.getItem("user_information");
+    if(token != null){
+      const collectionInstance = collection(this.firestore, 'messenger');
+      const q = query(collectionInstance, orderBy("stt", "asc") );
+      this.user.messages = collectionData(q, {idField: 'id'});
 
-    if(userLogin != null){
-      this.userLogin = JSON.parse(userLogin);
+      let userLogin = sessionStorage.getItem("user_information");
+
+      if(userLogin != null){
+        this.userLogin = JSON.parse(userLogin);
+      }
+
+      this.user.messages.subscribe(p => {
+        this.listChat = p;
+      })
+
     }
+    else
+    {
+      this.router.navigate(['/', 'login']);
+    }
+
+  }
+
+  //get last message
+  getLastMessage(friend:any){
+    let getLastMessage;
+    let lastListMessage = new Array();
+
+    this.listChat.forEach((p : User_InformationModel) => {
+      if((p.user_1_id == friend.user_1_id && p.user_2_id == friend.user_2_id) || (p.user_1_id == friend.user_2_id && p.user_2_id == friend.user_1_id)){
+        lastListMessage.push(p.chat_user);
+        getLastMessage = lastListMessage[lastListMessage.length - 1];
+      }
+    })
+
+    return getLastMessage;
   }
 
   //get list friend of the user login
@@ -36,7 +68,8 @@ export class LayoutsocialComponent {
     if(token != null){
       this.user.getFriends(keyword, token).subscribe(p => {
         this.friends = p.data;
-      });
+        console.log(p.sql);
+        });
     }
   }
 

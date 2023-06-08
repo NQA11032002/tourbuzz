@@ -14,4 +14,5 @@ export class User_InformationModel
   public user_1_id:number = 0;
   public user_2_id:number = 0;
   public status:string = "";
+  public chat_user:string = "";
 }

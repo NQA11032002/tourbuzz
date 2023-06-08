@@ -1,6 +1,6 @@
 import { Component, ElementRef, Input, OnInit,   } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TourService } from 'src/app/services/tour.service';
 import { Firestore, collection, addDoc, query, where, orderBy, collectionData, deleteDoc } from '@angular/fire/firestore';
 
@@ -16,7 +16,7 @@ export class DetailstourComponent implements OnInit{
   public lengthComment:any;
   commentGroup:FormGroup;
 
-  constructor(private elementRef: ElementRef, private router: ActivatedRoute, public tour:TourService, private fb:FormBuilder, private firestore: Firestore) {
+  constructor(private elementRef: ElementRef, private router: ActivatedRoute, public tour:TourService, private fb:FormBuilder, private firestore: Firestore, private route:Router) {
     this.commentGroup = this.fb.group({
       content: ['', Validators.required]
     })
@@ -91,17 +91,25 @@ export class DetailstourComponent implements OnInit{
 
     //comment tour
     commentTour(){
-      let content = this.commentGroup.get('content')?.value;
-      let today = new Date();
+      if(this.user_token != null)
+      {
+        let content = this.commentGroup.get('content')?.value;
+        let today = new Date();
 
-      let data = {"tour_id": this.tour_id, "content" : content, "user" : this.user_information, "created_at":today.toLocaleString()};
+        let data = {"tour_id": this.tour_id, "content" : content, "user" : this.user_information, "created_at":today.toLocaleString()};
 
-      //add comments to firebase
-      const collectionInstance = collection(this.firestore, 'comments_tour');
-      addDoc(collectionInstance, data).then(() => { })
-      .catch((error) => { })
+        //add comments to firebase
+        const collectionInstance = collection(this.firestore, 'comments_tour');
+        addDoc(collectionInstance, data).then(() => { })
+        .catch((error) => { })
 
-      this.commentGroup.get('content')?.setValue("");
+        this.commentGroup.get('content')?.setValue("");
+      }
+      else
+      {
+        this.route.navigate(['/', 'login']);
+      }
+
     }
 
     //get comments of the tour

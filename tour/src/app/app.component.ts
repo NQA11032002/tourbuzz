@@ -14,7 +14,7 @@ export class AppComponent {
   constructor(private router: Router) {
     if(sessionStorage.getItem('token_user') == null)
     {
-      this.router.navigate(['/', 'login']);
+      this.router.navigate(['/', 'home']);
     }
   }
 }

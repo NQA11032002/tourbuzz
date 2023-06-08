@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
+import { User_InformationModel } from '../models/User_Information.models';
 
 @Injectable({
   providedIn: 'root'
@@ -8,6 +9,8 @@ import { Observable, Subject } from 'rxjs';
 export class UsersService {
   public messenger: Array<any> = [];
   public messages: Observable<any> = new Observable<any>;
+  public token:string = "";
+  public user_info:User_InformationModel = new User_InformationModel();
 
   constructor(private http: HttpClient) { }
 
