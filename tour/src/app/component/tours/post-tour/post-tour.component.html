@@ -3,7 +3,7 @@
     <div class="post_Tour">
       <h4 class="text-center">Post Tour</h4>
 
-      <form action="" method="POST" class="mx-3" (ngSubmit)="submitPostTour()">
+      <form action="" method="POST" class="mx-3" (ngSubmit)="submitPostTour()" [formGroup]="postForm">
         <div class="images">
           <label for="des_img">Hình ảnh mô tả </label>
           <div class="icon_post">
@@ -22,30 +22,46 @@
 
         <div>
           <label for="title">Tên tour</label>
-          <input type="text" class="form-control border shadow-none" [(ngModel)]="title" name="title" id="title">
+          <input type="text" class="form-control border shadow-none" formControlName="title" [(ngModel)]="title"
+            name="title" id="title">
+          <div class="errors"
+            *ngIf="postForm.controls['title'].invalid && (postForm.controls['title'].dirty || postForm.controls['title'].touched)">
+            <p *ngIf="postForm.get('title')?.hasError('required')">Tên Tour không được để trống</p>
+          </div>
         </div>
 
         <div>
           <label for="description">Mô tả</label>
-          <textarea name="description" class="form-control border shadow-none" [(ngModel)]="description"
-            id="description" cols="30" rows="10"></textarea>
+          <textarea name="description" class="form-control border shadow-none" formControlName="description"
+            [(ngModel)]="description" id="description" cols="30" rows="10"></textarea>
+          <div class="errors"
+            *ngIf="postForm.controls['description'].invalid && (postForm.controls['description'].dirty || postForm.controls['description'].touched)">
+            <p *ngIf="postForm.get('description')?.hasError('required')">Không được để trống mô tả</p>
+          </div>
         </div>
 
         <div class="d-flex justify-content-between flex-two-column">
           <div>
             <label for="startDay">Địa điểm bắt đầu</label>
-            <select id="address_start" [(ngModel)]="address_start" name="address_start"
+            <select id="address_start" [(ngModel)]="address_start" formControlName="address_start" name="address_start"
               class="form-select border shadow-none border shadow-none">
               <option *ngFor="let item of data" value="{{item.matp}}">{{item.name}}</option>
             </select>
+            <div class="errors"
+              *ngIf="postForm.controls['address_start'].invalid && (postForm.controls['address_start'].dirty || postForm.controls['address_start'].touched)">
+              <p *ngIf="postForm.get('address_start')?.hasError('required')">Không được để trống địa điểm khởi dầu</p>
+            </div>
           </div>
-
           <div>
             <label for="tour">Địa điểm đến</label>
-            <select id="address_end" [(ngModel)]="address_end" name="address_end"
+            <select id="address_end" [(ngModel)]="address_end" formControlName="address_end" name="address_end"
               class="form-select border shadow-none">
               <option *ngFor="let item of data" value="{{item.matp}}">{{item.name}}</option>
             </select>
+            <div class="errors"
+              *ngIf="postForm.controls['address_end'].invalid && (postForm.controls['address_end'].dirty || postForm.controls['address_end'].touched)">
+              <p *ngIf="postForm.get('address_end')?.hasError('required')">Không được để trống địa điểm kết thúc</p>
+            </div>
           </div>
         </div>
 
@@ -53,55 +69,88 @@
         <div class="d-flex justify-content-between flex-two-column">
           <div>
             <label for="address_start">Ngày khởi Hành </label>
-            <input type="date" class="form-control border shadow-none" [(ngModel)]="date_start" name="date_start"
-              id="date_start">
+            <input type="date" class="form-control border shadow-none" formControlName="date_start"
+              [(ngModel)]="date_start" name="date_start" id="date_start">
+            <div class="errors"
+              *ngIf="postForm.controls['date_start'].invalid && (postForm.controls['date_start'].dirty || postForm.controls['date_start'].touched)">
+              <p *ngIf="postForm.get('date_start')?.hasError('required')">Không được để trống ngày khởi hành</p>
+            </div>
           </div>
-
           <div>
             <label for="endDay">Ngày kết thúc </label>
-            <input type="date" class="form-control border shadow-none" [(ngModel)]="date_end" name="date_end"
-              id="date_end">
+            <input type="date" class="form-control border shadow-none" formControlName="date_end" [(ngModel)]="date_end"
+              name="date_end" id="date_end">
+            <div class="errors"
+              *ngIf="postForm.controls['date_end'].invalid && (postForm.controls['date_end'].dirty || postForm.controls['date_end'].touched)">
+              <p *ngIf="postForm.get('date_end')?.hasError('required')">Không được để trống ngày kết thúc</p>
+            </div>
           </div>
         </div>
-
+        <div class="errors" *ngIf="errorDate">
+          <p>{{ this.errorDate }}</p>
+        </div>
         <div>
           <label for="vehical">Phương tiện</label>
-          <select id="vehical" class="form-select shadow-none border" name="vehicle" [(ngModel)]="vehicle">
+          <select id="vehical" class="form-select shadow-none border" formControlName="vehicle_id" name="vehicle"
+            [(ngModel)]="vehicle_id">
             <option *ngFor="let item of vehicles" value="{{item.id}}">{{item.name}}</option>
           </select>
+          <div class="errors"
+            *ngIf="postForm.controls['vehicle_id'].value == 0 && postForm.controls['vehicle_id'].invalid && (postForm.controls['vehicle_id'].dirty || postForm.controls['vehicle_id'].touched)">
+          </div>
         </div>
 
         <div>
           <label for="price">Giá Tour </label>
-          <input type="number" class="form-control border shadow-none" [(ngModel)]="price_tour" name="price_tour"
-            id="price_tour">
+          <input type="number" class="form-control border shadow-none" formControlName="price_tour"
+            [(ngModel)]="price_tour" name="price_tour" id="price_tour">
+          <div class="errors"
+            *ngIf="postForm.controls['price_tour'].invalid && (postForm.controls['price_tour'].dirty || postForm.controls['price_tour'].touched)">
+            <p *ngIf="postForm.get('price_tour')?.hasError('required')">Hãy nhập giá tour</p>
+          </div>
         </div>
 
         <div>
           <label for="Detail_price">Giá Chi tiết </label>
-          <textarea rows="10" class="form-control border shadow-none" [(ngModel)]="detail_price_tour"
-            name="detail_price_tour" id="detail_price_tour">
+          <textarea rows="10" class="form-control border shadow-none" formControlName="detail_price_tour"
+            [(ngModel)]="detail_price_tour" name="detail_price_tour" id="detail_price_tour">
             </textarea>
+          <div class="errors"
+            *ngIf="postForm.controls['detail_price_tour'].invalid && (postForm.controls['detail_price_tour'].dirty || postForm.controls['detail_price_tour'].touched)">
+            <p *ngIf="postForm.get('detail_price_tour')?.hasError('required')">Hãy nhập chi tiết giá tiền của tour</p>
+          </div>
         </div>
 
         <div class="d-flex justify-content-between flex-two-column">
           <div>
             <label for="amount_customer">Số Lượng khách tối đa </label>
-            <input type="number" class="form-control border shadow-none" [(ngModel)]="amount_customer_maximum"
-              name="amount_customer_maximum" id="amount_customer_maximum">
+            <input type="number" class="form-control border shadow-none" formControlName="amount_customer_maximum"
+              [(ngModel)]="amount_customer_maximum" name="amount_customer_maximum" id="amount_customer_maximum">
+            <div class="errors"
+              *ngIf="postForm.controls['amount_customer_maximum'].invalid && (postForm.controls['amount_customer_maximum'].dirty || postForm.controls['amount_customer_maximum'].touched)">
+              <p *ngIf="postForm.get('amount_customer_maximum')?.hasError('required')">Hãy nhập số lượng khách hàng tối
+                đa</p>
+            </div>
           </div>
 
           <div>
             <label for="amount_customer">Số Lượng khách Hiện tại </label>
-            <input disabled="" type="number" class="form-control border shadow-none"
-              [(ngModel)]="amount_customer_present" name="amount_customer_present" id="amount_customer_present">
+            <input type="number" class="form-control border shadow-none" [(ngModel)]="amount_customer_present"
+                name="amount_customer_present" id="amount_customer_present" disabled="">
           </div>
         </div>
-
+        <div class="errors" *ngIf="error">
+          <p>{{ this.error }}</p>
+        </div>
         <div class="d-flex align-items-center justify-content-end">
           <a [routerLink]="['/tour']" class="btn btn-cancel">Cancel</a>
-          <div class="d-flex justify-content-center shadow-none"><input type="submit" class="btn btn-dark confirm_tour"
-              value="Confirm"></div>
+          <div class="d-flex justify-content-center shadow-none">
+            <input type="submit" class="btn btn-dark confirm_tour" value="Confirm">
+            <!-- [disabled]="postForm.invalid" -->
+          </div>
+        </div>
+        <div class="errors" *ngIf="postFail">
+          <p>{{ this.postFail }}</p>
         </div>
       </form>
     </div>

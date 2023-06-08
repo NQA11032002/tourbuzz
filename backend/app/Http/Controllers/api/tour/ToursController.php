@@ -255,7 +255,7 @@ class ToursController extends Controller
             "date_end" => "required|after_or_equal:date_start",
             "price_tour" => "required",
             "detail_price_tour" => "required",
-            "amount_customer_maximum" => "required",
+            "amount_customer_maximum" => "required:max:3",
             "amount_customer_present" => "required|lt:amount_customer_maximum",
         ];
 
@@ -273,8 +273,7 @@ class ToursController extends Controller
             "price_tour.required" => "Giá tour không được để trống",
             "detail_price_tour.required" => "Mô tả chi tiết giá tour không được để trống",
             "amount_customer_maximum.required" => "Số lượng khách tối đa không được để trống",
-            "amount_customer_present.required" => "Số lượng khách hiện tại không được để trống",
-            "amount_customer_present.lt" => "Số lượng khách hiện tại phải nhỏ hơn số lượng khách tối đa",
+            "amount_customer_maximum.max" => "Tối đa 100 khách hàng",
         ];
 
         $validator = Validator::make($request->all(), $rules, $messenger);
