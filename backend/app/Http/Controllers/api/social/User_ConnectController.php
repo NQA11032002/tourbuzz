@@ -19,16 +19,16 @@ class User_ConnectController extends Controller
     {
         $myUser = Auth::user()->user_information->id;
 
-        $friends = users_relationship::where('user_1_id', $myUser)->whereHas('user_information', function ($query) use ($request) {
+        $friends = users_relationship::whereHas('user_information', function ($query) use ($request) {
             if (!empty($request->keyword)) {
                 $query = $query->where("name", "like", "%" . $request->keyword . "%");
             }
-            if (!empty($request->user_2_id)) {
-                $query = $query->where("user_2_id", $request->user_2_id );
+            if (!empty($request->user_1_id)) {
+                $query = $query->where("user_1_id", $request->user_1_id );
             }
 
             $query = $query->orderByDesc('is_login');
-        })->groupBy('user_2_id')->with('user_information')->get();
+        })->with('user_information')->get();
 
         if ($friends->count() > 0) {
             $response = [
@@ -134,4 +134,120 @@ class User_ConnectController extends Controller
         }
         return $response;
     }
+
+    // Add Friend
+    public function addFriend(Request $request){
+        $myUser = Auth::user()->user_information->id;
+
+        $message = users_relationship::create([
+            "user_1_id" => $myUser,
+            "user_2_id" => $request->user_2_id,
+            "status_user_1" => '1',
+            "status_user_2" => '0',
+            "status" => 'Chờ xác nhận'
+        ]);
+
+        if ($message) {
+            $response = [
+                'title' => 'Add friend success',
+                'status' => 200,
+                'detail' => 'success'
+            ];
+        } else {
+            $response = [
+                'title' => 'Add friend fail',
+                'status' => 500,
+                'detail' => 'fail'
+            ];
+        }
+
+        return $response;
+    }
+
+    // Accept Friend
+    public function acceptFriend(Request $request){
+        $user_1_id = Auth::user()->user_information->id;
+
+        $message = users_relationship::where('user_1_id',$user_1_id)
+        ->where('user_2_id', $request->user_2_id)
+        ->update([
+            "status_user_2" => '1',
+            "status" => 'Bạn bè'
+        ]);
+
+        if ($message) {
+            $response = [
+                'title' => 'Accept friend success',
+                'status' => 200,
+                'detail' => 'success'
+            ];
+        } else {
+            $response = [
+                'title' => 'Accept friend fail',
+                'status' => 500,
+                'detail' => 'fail'
+            ];
+        }
+
+        return $response;
+    }
+
+    // Delete Friend
+    public function unFriend(Request $request){
+        $user_1_id = Auth::user()->user_information->id;
+
+        $message = users_relationship::where('user_1_id',$user_1_id)
+        ->where('user_2_id', $request->user_2_id)
+        ->delete();
+
+        if ($message) {
+            $response = [
+                'title' => 'Delete friend success',
+                'status' => 200,
+                'detail' => 'success'
+            ];
+        } else {
+            $response = [
+                'title' => 'Delete friend fail',
+                'status' => 500,
+                'detail' => 'fail'
+            ];
+        }
+
+        return $response;
+    }
+
+    //Ban chung
+    // public function muntualFriend(Request $request){
+    //     $user_1_id = Auth::user()->user_information->id;
+
+    //     $result = users_relationship::selectRaw('COUNT(*) as count')
+    //     ->where('user_1_id', $user_1_id)
+    //     ->whereIn('user_2_id', function ($query) use ($request){
+    //         $query->select('user_2_id')
+    //             ->from('users_relationship')
+    //             ->where('user_1_id', $request->user_2_id);
+    //     })
+    //     ->where('status', 'Bạn bè')
+    //     ->count();
+        
+    //     if ($result) {
+    //         $response = [
+    //             'title' => 'Get mutual Friend sucess',
+    //             'status' => 200,
+    //             'detail' => 'success',
+    //             'data' => $result
+    //         ];
+    //     } else {
+    //         $response = [
+    //             'title' => 'Get mutual Friend fail',
+    //             'status' => 500,
+    //             'detail' => 'fail',
+    //             'data' => $result
+
+    //         ];
+    //     }
+
+    //     return $response;
+    // }
 }

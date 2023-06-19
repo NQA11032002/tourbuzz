@@ -67,7 +67,7 @@ export class AboutInforComponent {
   getFriend(){
     let token = sessionStorage.getItem('token_user');
     let data_id = {
-      'user_2_id' : this.id,
+      'user_1_id' : this.id,
     }
     if(token != null){
       this.profile.getFriendsPersonal(token,data_id).subscribe(p=>{

@@ -38,6 +38,8 @@ Route::prefix('social')->name('social.')->middleware('auth:sanctum')->group(func
     Route::post('users', [UserController::class, "create"])->name('create');
     Route::patch('users/{id}', [UserController::class, "update"])->name('update');
     Route::delete('users/{id}', [UserController::class, "destroy"])->name('destroy');
+    
+    
 
     Route::prefix('posts')->name('posts.')->group(function () {
         Route::get('/', [PostsController::class, "index"])->name('index');
@@ -49,6 +51,8 @@ Route::prefix('social')->name('social.')->middleware('auth:sanctum')->group(func
         Route::patch('/{id}', [PostsController::class, "update"])->name('update');
         Route::delete('/{id}', [PostsController::class, "destroy"])->name('destroy');
     });
+
+    Route::post('uploadAV', [UserController::class, "uploadAV"])->name('uploadAV');
 
     Route::prefix('comments')->name('comments.')->group(function () {
         Route::get('/', [PostsController::class, "getComments"])->name('getComments');
@@ -69,8 +73,12 @@ Route::prefix('social')->name('social.')->middleware('auth:sanctum')->group(func
     });
     Route::prefix('profile')->name('profile.')->group(function () {
         Route::get('/', [User_ConnectController::class, "checkFriend"])->name('checkFriend');
+        Route::post('/', [User_ConnectController::class, "addFriend"])->name('addFriend');
+        Route::patch('/', [User_ConnectController::class, "acceptFriend"])->name('acceptFriend');
+        Route::delete('/', [User_ConnectController::class, "unFriend"])->name('unFriend');
     });
 
+    // Route::get('muntualFriend', [User_ConnectController::class, "muntualFriend"])->name('muntualFriend');
 
     Route::get('vehicles', [VehiclesController::class, "index"])->name('vehicles');
 });

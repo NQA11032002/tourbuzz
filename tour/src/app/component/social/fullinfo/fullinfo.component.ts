@@ -17,6 +17,7 @@ export class FullinfoComponent {
   public id_user: string = "";
   public id_params: any;
 
+
   isOwner: any = null; // Xác định xem người dùng có phải là chủ tài khoản hay không
   isFriend: any = null; // Xác định xem người dùng đã kết bạn hay chưa
   isPending: any = null; // Kiểm tra nếu đang chờ đồng ý
@@ -31,6 +32,7 @@ export class FullinfoComponent {
     this.getInfor();
     this.checkOwner();
     this.checkFriend();
+
   }
 
   getInfor(){
@@ -87,7 +89,44 @@ export class FullinfoComponent {
         
       })
     }
-    
+  }
+
+  // Add Friend
+  addFriend(){
+    let token = sessionStorage.getItem('token_user');
+    console.log(this.id_params);
+    if(token != null){
+      this.profileService.addFriend(token,this.id_params).subscribe(p=>{
+        console.log(token);
+      })
+    }
+  }
+
+   // Accept Friend
+   acceptFriend(){
+    let token = sessionStorage.getItem('token_user');
+    let data_user_2 = {
+      'user_2_id': this.id_params
+    }
+    console.log(this.id_params);
+    if(token != null){
+      this.profileService.acceptFriend(token,data_user_2).subscribe(p=>{
+        console.log(p);
+      })
+    }
+  }
+
+  // Accept Friend
+  unFriend(){
+    let token = sessionStorage.getItem('token_user');
+    let data_user_2 = {
+      'user_2_id': this.id_params
+    }
+    if(token != null){
+      this.profileService.unFriend(token,data_user_2).subscribe(p=>{
+        console.log(p);
+      })
+    }
   }
 
   isProfilePath(): string {

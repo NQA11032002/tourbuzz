@@ -1,7 +1,11 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ChangeinforService } from 'src/app/services/changeinfor.service';
 import { UsersService } from 'src/app/services/users.service';
+import { delay } from 'rxjs/operators';
+import { ProfileService } from 'src/app/services/profile.service';
+
 @Component({
   selector: 'app-changeinfo',
   templateUrl: './changeinfo.component.html',
@@ -16,11 +20,14 @@ export class ChangeinfoComponent{
   address: string = "";
   education: string = "";
   changeInforForm:FormGroup;
+  imagesUpload:Array<any> = new Array<any>();
+  error:any = "";
+
 
   imgInfo!: HTMLImageElement;
   input!: HTMLInputElement;
 
-  constructor(private changeinfor:ChangeinforService, private fb:FormBuilder, private userinfor:UsersService) { 
+  constructor(private changeinfor:ChangeinforService, private fb:FormBuilder, private userinfor:UsersService, private http: HttpClient, private profile: ProfileService) { 
     this.changeInforForm = this.fb.group({
       name: ['', Validators.required],
       birth_date: ['', Validators.required],
@@ -91,6 +98,29 @@ export class ChangeinfoComponent{
     const target = e.target as HTMLInputElement;
     if (target.files && target.files[0]) {
       this.imgInfo.src = URL.createObjectURL(target.files[0]);
+      // this.onUpload(this.imgInfo.src);
     }
   }
+
+  // onUpload(post:any) {
+    // let token = sessionStorage.getItem("token_user");
+   
+      //crate formData to upload file 
+      // const formData = new FormData();
+      // formData.append('file', this.imgInfo.src);
+      // formData.append('post', post);
+      
+      //create header call api
+
+      // this.profile.uploadAV(token,)
+    //   this.profile.uploadAV(formData), { headers: headers }).subscribe(
+    //     (response) => {
+    //       delay(5000)
+    //       location.reload();
+    //     },
+    //     (error) => {
+    //       console.log(error);
+    //     }
+    //   );
+    // })
 }

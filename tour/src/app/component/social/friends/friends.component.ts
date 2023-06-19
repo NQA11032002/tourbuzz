@@ -25,15 +25,16 @@ export class FriendsComponent {
 
   getFriends(){
     let token = sessionStorage.getItem('token_user');
-    let id_user = sessionStorage.getItem('id');
     let data_id_user = {
-      'user_2_id' : this.id,
-    }
-    if(token != null){
-      this.profileService.getFriendsPersonal(token,data_id_user).subscribe(p=>{
-        this.data = p.data;
-        console.log("GET IMG: "+this.data);
-      })
-    }
+        'user_1_id' : this.id,
+      }
+      if(token != null){
+        this.profileService.getFriendsPersonal(token,data_id_user).subscribe(p=>{
+          this.data = p.data;
+          console.log("GET IMG: "+this.data);
+        })
+      }
+    
+    
   }
 }

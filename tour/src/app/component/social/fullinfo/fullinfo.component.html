@@ -61,15 +61,15 @@
           <h4 class="name fw-bold" *ngIf="data_infor">{{data_infor?.name }}</h4>
 
           <button class="btn btn-danger connect-friend shadow-none" *ngIf="!isOwner">
-            <div *ngIf="!isOwner && !isFriend && !isPending">
+            <div *ngIf="!isOwner && !isFriend && !isPending" (click)="addFriend()">
               <i class="fa-solid fa-user-plus"></i>Add Friend
             </div>
             
-            <div *ngIf="!isOwner && isFriend">
+            <div *ngIf="!isOwner && isFriend" (click)="unFriend()">
               <i class="fa-solid fa-user-check"></i>Friend
             </div>
             
-            <div *ngIf="!isOwner && isPending ">
+            <div *ngIf="!isOwner && isPending" (click)="acceptFriend()">
               <i class="fa-solid fa-clock"></i>Pending
             </div>
             </button>
@@ -82,12 +82,6 @@
           </a>
           
         </div>
-        <!-- <div class="full-infor-addfriend">
-              icon ket ban
-              <i class="fa-solid fa-user-plus"></i>
-              icon da ket ban
-              <i class="fa-solid fa-user-check"></i>
-            </div> -->
       </div>
       <div class="full-infor-desc">
         <div class="full-infor-desc-title">
