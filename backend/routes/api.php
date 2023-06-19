@@ -77,10 +77,10 @@ Route::prefix('tour')->name('tour.')->group(function () {
     Route::get('/', [ToursController::class, "index"])->name('index');
     Route::get('/popular', [ToursController::class, "toursPopular"])->name('popular');
     Route::get('/{id}', [ToursController::class, "index"])->name('index');
-    Route::post('/', [ToursController::class, "create"])->name('create');
-    Route::patch('/update/{id}', [ToursController::class, "update"])->name('update');
-    Route::delete('/delete/{id}', [ToursController::class, "destroy"])->name('destroy');
-    Route::delete('/delete-picture/{id}', [ToursController::class, "deletePicture"]);
+    Route::post('/', [ToursController::class, "create"])->middleware('auth:sanctum')->name('create');
+    Route::patch('/update/{id}', [ToursController::class, "update"])->middleware('auth:sanctum')->name('update');
+    Route::delete('/delete/{id}', [ToursController::class, "destroy"])->middleware('auth:sanctum')->name('destroy');
+    Route::delete('/delete-picture/{id}', [ToursController::class, "deletePicture"])->middleware('auth:sanctum');
 });
 
 Route::prefix('tour-comment')->name('tour-comment.')->group(function () {

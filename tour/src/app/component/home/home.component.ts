@@ -24,9 +24,6 @@ export class HomeComponent{
     this.getVehicles();
     this.getTours();
 
-    setInterval(() => {
-      this.previousSlide();
-    }, 4000)
   }
 
 

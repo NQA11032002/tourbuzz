@@ -99,7 +99,6 @@ export class PostTourComponent {
 
       this.http.post('http://localhost:8000/api/uploadTour', formData, { headers: headers }).subscribe(
         (response) => {
-          delay(5000)
           location.reload();
         },
         (error) => {
