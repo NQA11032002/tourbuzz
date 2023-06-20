@@ -13,6 +13,7 @@ export class ProfileService {
   private apiSocial = "http://localhost:8000/api/social/";
   private apiUploadAV = "http://localhost:8000/api/uploadAV/"
   private apiInsertAfterAccept = "http://localhost:8000/api/social/insertAfterAccecpt";
+  private apiFriendRequest = "http://localhost:8000/api/social/friendRequest";
  
 
   checkFriend(token:string, data: any){
@@ -77,4 +78,11 @@ export class ProfileService {
     return this.http.delete<any>(urlApi, {headers: headers, params: data});
   }
 
+  // Request ket ban
+    friendRequest(token:string){
+      let headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
+      let urlApi = `${this.apiFriendRequest}`;
+  
+      return this.http.get<any>(urlApi, {headers});
+    }
 }

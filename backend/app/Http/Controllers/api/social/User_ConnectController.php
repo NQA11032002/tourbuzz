@@ -170,8 +170,8 @@ class User_ConnectController extends Controller
         $myUser = Auth::user()->user_information->id;
 
         $message = users_relationship::create([
-            "user_1_id" => $request->user_1_id,
-            "user_2_id" => $myUser,
+            "user_1_id" => $myUser,
+            "user_2_id" => $request->user_1_id,
             "status_user_1" => '1',
             "status_user_2" => '1',
             "status" => 'Bạn bè'
@@ -196,8 +196,8 @@ class User_ConnectController extends Controller
     public function acceptFriend(Request $request){
         $user_1_id = Auth::user()->user_information->id;
 
-        $message = users_relationship::where('user_1_id',$user_1_id)
-        ->where('user_2_id', $request->user_2_id)
+        $message = users_relationship::where('user_1_id',$request->user_2_id)
+        ->where('user_2_id', $user_1_id)
         ->update([
             "status_user_2" => '1',
             "status" => 'Bạn bè'
@@ -244,6 +244,38 @@ class User_ConnectController extends Controller
 
         return $response;
     }
+
+    // Yeu cau ket ban
+    public function friendRequest(Request $request)
+    {
+        $user_id = Auth::user()->user_information->id;
+        $requestFriend = DB::table('users_relationship as us')
+        ->join('user_information as ui', 'us.user_1_id', '=', 'ui.id')
+        ->select('us.*', 'ui.*')
+        ->where('us.user_2_id', $user_id)
+        ->where('us.status', 'Chờ xác nhận')
+        ->where('us.status_user_2', 0)
+        ->get();
+        
+        if ($requestFriend) {
+            $response = [
+                'title' => 'Get request sucess',
+                'status' => 200,
+                'data' => $requestFriend,
+                'detail' => 'Friend'
+            ];
+        } else {
+            $response = [
+                'title' => 'Get request fail',
+                'status' => 203,
+                'data' => $requestFriend,
+                'detail' => 'Not Friend yet'
+            ];
+        }
+        return $response;
+    }
+
+
 
     //Ban chung
     // public function muntualFriend(Request $request){

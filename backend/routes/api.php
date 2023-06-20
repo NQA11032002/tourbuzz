@@ -78,6 +78,8 @@ Route::prefix('social')->name('social.')->middleware('auth:sanctum')->group(func
         Route::delete('/', [User_ConnectController::class, "unFriend"])->name('unFriend');
     });
     Route::post('insertAfterAccecpt', [User_ConnectController::class, "insertAfterAccecpt"])->name('insertAfterAccecpt');
+    Route::get('friendRequest', [User_ConnectController::class, "friendRequest"])->name('friendRequest');
+
 
     // Route::get('muntualFriend', [User_ConnectController::class, "muntualFriend"])->name('muntualFriend');
 

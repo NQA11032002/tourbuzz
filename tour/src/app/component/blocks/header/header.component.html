@@ -21,13 +21,30 @@
   </div>
 
   <div class="group d-flex align-items-center">
+    <li class="header__navbar-item header__navbar-item--has-notify">
+              <i class="header__navbar-icon fa-solid fa-bell"></i>
+      <div class="header__notify">
+          <header class="header__notify-header">
+              <h3>Yêu cầu kết bạn</h3>
+          </header>
+          <ul class="header__notify-list">
+              <li class="header__notify-item header__notify-item--viewed">
+                      <div class="header__notify-info" *ngFor = "let item of data_request">
+                          <div class="header__notify-img"><img src="\assets\images\avatar\{{ item.image}}" alt="" class="header__notify-img"></div>
+                          <div class="header__notify-name">{{ item.name }}</div>
+                          <div class="header__notify-accept" (click)="acceptFriend()">Đồng ý</div>
+                          <div class="header__notify-refuse" (click)="unFriend()">Từ chối</div>
+                      </div>
+              </li>
+          </ul>
+      </div>
+  </li>
     <div class="dropdown d-flex">
       <button class="btn btn-secondary dropdown-toggle btn-logined shadow-none" type="button" id="dropdownMenuLink"
         data-bs-toggle="dropdown" aria-expanded="false">
         <img src="assets/images/avatar/{{ user_info.image }}" alt="">
         {{ user_info.name }}
       </button>
-
       <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
         <li><a class="dropdown-item" [routerLink]="['/profile']" [queryParams]="{id:user_info.id}"
             routerLinkActive="router-link-active"><i class="fa-solid fa-user"></i>
