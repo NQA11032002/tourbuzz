@@ -12,6 +12,7 @@ export class ProfileService {
   private apiGetFriend = "http://localhost:8000/api/social/friends/";
   private apiSocial = "http://localhost:8000/api/social/";
   private apiUploadAV = "http://localhost:8000/api/uploadAV/"
+  private apiInsertAfterAccept = "http://localhost:8000/api/social/insertAfterAccecpt";
  
 
   checkFriend(token:string, data: any){
@@ -59,6 +60,13 @@ export class ProfileService {
     let urlApi = `${this.api}`;
 
     return this.http.patch<any>(urlApi, data,{headers});
+  }
+  insertAfterAccept(token:string, data: any){
+    let headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
+    let para = {"user_1_id" : data};
+    let urlApi = `${this.apiInsertAfterAccept}`;
+
+    return this.http.post<any>(urlApi, para,{headers});
   }
 
   // Huy ket ban

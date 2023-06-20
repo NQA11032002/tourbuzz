@@ -110,8 +110,17 @@ export class FullinfoComponent {
     }
     console.log(this.id_params);
     if(token != null){
+      this.insertAfterAccept();
       this.profileService.acceptFriend(token,data_user_2).subscribe(p=>{
         console.log(p);
+      })
+    }
+  }
+  insertAfterAccept(){
+    let token = sessionStorage.getItem('token_user');
+    if(token != null){
+      this.profileService.insertAfterAccept(token,this.id_params).subscribe(p=>{
+        console.log(token);
       })
     }
   }

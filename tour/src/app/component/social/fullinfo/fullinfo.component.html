@@ -67,6 +67,7 @@
             
             <div *ngIf="!isOwner && isFriend" (click)="unFriend()">
               <i class="fa-solid fa-user-check"></i>Friend
+              <i class="fa-solid fa-x"></i>
             </div>
             
             <div *ngIf="!isOwner && isPending" (click)="acceptFriend()">

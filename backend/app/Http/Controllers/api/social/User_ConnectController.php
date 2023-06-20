@@ -23,9 +23,10 @@ class User_ConnectController extends Controller
             if (!empty($request->keyword)) {
                 $query = $query->where("name", "like", "%" . $request->keyword . "%");
             }
-            if (!empty($request->user_1_id)) {
-                $query = $query->where("user_1_id", $request->user_1_id );
+            if (!empty($request->user_1_id) ||  !empty($request->user_2_id)) {
+                $query = $query->Where("user_2_id", $request->user_2_id)->orWhere("user_1_id", $request->user_1_id );
             }
+
 
             $query = $query->orderByDesc('is_login');
         })->with('user_information')->get();
@@ -165,6 +166,33 @@ class User_ConnectController extends Controller
     }
 
     // Accept Friend
+    public function insertAfterAccecpt(Request $request){
+        $myUser = Auth::user()->user_information->id;
+
+        $message = users_relationship::create([
+            "user_1_id" => $request->user_1_id,
+            "user_2_id" => $myUser,
+            "status_user_1" => '1',
+            "status_user_2" => '1',
+            "status" => 'Bạn bè'
+        ]);
+
+        if ($message) {
+            $response = [
+                'title' => 'Add friend success',
+                'status' => 200,
+                'detail' => 'success'
+            ];
+        } else {
+            $response = [
+                'title' => 'Add friend fail',
+                'status' => 500,
+                'detail' => 'fail'
+            ];
+        }
+
+        return $response;
+    }
     public function acceptFriend(Request $request){
         $user_1_id = Auth::user()->user_information->id;
 
@@ -176,19 +204,18 @@ class User_ConnectController extends Controller
         ]);
 
         if ($message) {
-            $response = [
-                'title' => 'Accept friend success',
-                'status' => 200,
-                'detail' => 'success'
-            ];
-        } else {
-            $response = [
-                'title' => 'Accept friend fail',
-                'status' => 500,
-                'detail' => 'fail'
-            ];
-        }
-
+                $response = [
+                    'title' => 'Accept friend success',
+                    'status' => 200,
+                    'detail' => 'success'
+                ];
+            }else {
+                $response = [
+                    'title' => 'Accept friend fail',
+                    'status' => 500,
+                    'detail' => 'fail'
+                ];
+            }
         return $response;
     }
 
@@ -197,7 +224,8 @@ class User_ConnectController extends Controller
         $user_1_id = Auth::user()->user_information->id;
 
         $message = users_relationship::where('user_1_id',$user_1_id)
-        ->where('user_2_id', $request->user_2_id)
+        ->where('user_2_id', $request->user_2_id)->orWhere('user_1_id', $request->user_2_id)
+        ->Where('user_2_id', $user_1_id)
         ->delete();
 
         if ($message) {
